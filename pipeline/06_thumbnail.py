@@ -12,8 +12,6 @@ Usage:
     python pipeline/06_thumbnail.py --script output/script_main_xxx.json
 """
 
-from typing import List, Optional
-
 import argparse
 import glob
 import json
@@ -112,7 +110,7 @@ def draw_brain_icon(draw: "ImageDraw.Draw", cx: int, cy: int, r: int = 60):
                  start=200, end=340, fill=accent, width=2)
 
 
-def wrap_title(title: str, max_chars: int = 28) -> List[str]:
+def wrap_title(title: str, max_chars: int = 28) -> list[str]:
     """Split title into max 2 lines."""
     words = title.split()
     if len(title) <= max_chars:
@@ -231,7 +229,7 @@ def generate_thumbnail(title: str, output_path: str) -> bool:
     return True
 
 
-def find_latest_script(output_dir: str, video_type: str = None) -> Optional[str]:
+def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
     pattern = os.path.join(output_dir, "script_*.json")
     if video_type:
         pattern = os.path.join(output_dir, f"script_{video_type}_*.json")

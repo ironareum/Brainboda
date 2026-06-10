@@ -17,8 +17,6 @@ Usage:
     python pipeline/05_render_video.py --script output/script_main_xxx.json --test
 """
 
-from typing import List, Optional
-
 import argparse
 import glob
 import json
@@ -166,7 +164,7 @@ def get_audio_duration(audio_path: str) -> float:
     return 30.0  # fallback
 
 
-def wrap_text(text: str, max_chars: int = 60) -> List[str]:
+def wrap_text(text: str, max_chars: int = 60) -> list[str]:
     """Word-wrap text into lines."""
     words = text.split()
     lines, current = [], ""
@@ -188,7 +186,7 @@ def create_text_overlay_frame(
     narration: str,
     width: int,
     height: int,
-) -> "np.Optional[ndarray]":
+) -> "np.ndarray | None":
     """Render a PIL image with text overlay. Returns numpy array or None."""
     if not PILLOW_AVAILABLE:
         return None
@@ -249,7 +247,7 @@ def create_text_overlay_frame(
         return None
 
 
-def get_images_for_segment(segment_id: str) -> List[str]:
+def get_images_for_segment(segment_id: str) -> list[str]:
     """Return list of image paths for a segment, or empty list."""
     seg_dir = os.path.join(VISUALS_DIR, segment_id)
     if not os.path.isdir(seg_dir):
@@ -275,7 +273,7 @@ def build_clip_moviepy(
     narration: str,
     width: int,
     height: int,
-) -> "Optional[CompositeVideoClip]":
+) -> "CompositeVideoClip | None":
     """Build a MoviePy video clip for one segment."""
     if not MOVIEPY_AVAILABLE:
         return None
@@ -330,11 +328,11 @@ def build_clip_moviepy(
 
 
 def render_with_ffmpeg(
-    segments: List[dict],
+    segments: list[dict],
     output_path: str,
     width: int,
     height: int,
-    bgm_path: Optional[str],
+    bgm_path: str | None,
 ) -> bool:
     """Pure ffmpeg fallback renderer. Creates a slideshow video."""
     log.info("Using ffmpeg fallback renderer")
@@ -471,11 +469,11 @@ def render_with_ffmpeg(
 
 
 def render_with_moviepy(
-    segments: List[dict],
+    segments: list[dict],
     output_path: str,
     width: int,
     height: int,
-    bgm_path: Optional[str],
+    bgm_path: str | None,
 ) -> bool:
     """Render video using MoviePy."""
     log.info("Using MoviePy renderer")
@@ -529,7 +527,7 @@ def render_with_moviepy(
         return False
 
 
-def find_latest_script(output_dir: str, video_type: str = None) -> Optional[str]:
+def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
     pattern = os.path.join(output_dir, "script_*.json")
     if video_type:
         pattern = os.path.join(output_dir, f"script_{video_type}_*.json")

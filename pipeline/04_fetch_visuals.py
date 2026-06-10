@@ -10,14 +10,6 @@ Usage:
     python pipeline/04_fetch_visuals.py --script output/script_main_xxx.json
 """
 
-from typing import Dict, List, Optional
-
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass
-
 import argparse
 import glob
 import json
@@ -100,7 +92,7 @@ def download_image(url: str, dest_path: str) -> bool:
         return False
 
 
-def fetch_pixabay(query: str, n: int = 3) -> List[str]:
+def fetch_pixabay(query: str, n: int = 3) -> list[str]:
     """Return up to n image URLs from Pixabay."""
     if not PIXABAY_KEY or PIXABAY_KEY == "YOUR_PIXABAY_API_KEY":
         log.debug("Pixabay key not configured, skipping")
@@ -126,7 +118,7 @@ def fetch_pixabay(query: str, n: int = 3) -> List[str]:
     return []
 
 
-def fetch_pexels(query: str, n: int = 3) -> List[str]:
+def fetch_pexels(query: str, n: int = 3) -> list[str]:
     """Return up to n image URLs from Pexels."""
     if not PEXELS_KEY or PEXELS_KEY == "YOUR_PEXELS_API_KEY":
         log.debug("Pexels key not configured, skipping")
@@ -180,7 +172,7 @@ def generate_placeholder(dest_path: str, label: str, color_idx: int = 0) -> bool
         return False
 
 
-def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0) -> List[str]:
+def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0) -> list[str]:
     """Download images for a fact into output/visuals/{fact_id}/. Returns list of saved paths."""
     fact_dir = os.path.join(VISUALS_DIR, fact_id)
 
@@ -228,7 +220,7 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
     return saved_paths
 
 
-def find_latest_script(output_dir: str, video_type: str = None) -> Optional[str]:
+def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
     pattern = os.path.join(output_dir, "script_*.json")
     if video_type:
         pattern = os.path.join(output_dir, f"script_{video_type}_*.json")
@@ -255,7 +247,7 @@ def main():
     facts = script.get("facts", [])
     log.info("Facts to process: %d", len(facts))
 
-    all_paths: Dict[str, list] = {}
+    all_paths: dict[str, list] = {}
     for i, fact in enumerate(facts):
         fact_id = fact["id"]
         keywords = fact.get("search_keywords", [])

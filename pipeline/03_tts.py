@@ -15,8 +15,6 @@ Usage:
     python pipeline/03_tts.py --script output/script_main_xxx.json --voice en-US-JennyNeural
 """
 
-from typing import Optional
-
 import argparse
 import asyncio
 import glob
@@ -287,7 +285,7 @@ async def run_tts(script_path: str, voice: str) -> dict:
     return results
 
 
-def find_latest_script(output_dir: str, video_type: str = None) -> Optional[str]:
+def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
     """Find the most recently modified script JSON in output/."""
     pattern = os.path.join(output_dir, "script_*.json")
     if video_type:
