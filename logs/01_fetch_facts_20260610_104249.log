@@ -1,0 +1,6 @@
+2026-06-10 10:42:49,338 [INFO] === 01_fetch_facts.py START ===
+2026-06-10 10:42:49,339 [INFO] Topic: general psychology | Limit: 30 | Offline: True
+2026-06-10 10:42:49,339 [INFO] Skipping 0 already-known fact IDs
+2026-06-10 10:42:49,339 [INFO] Falling back to built-in seed facts (offline mode)
+2026-06-10 10:42:49,339 [INFO] Saved 30 new facts to /home/user/Brainboda/data/facts_raw.csv
+2026-06-10 10:42:49,339 [INFO] === 01_fetch_facts.py DONE ===
