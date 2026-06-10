@@ -33,8 +33,9 @@ from config.channel import (
 # ── logging ───────────────────────────────────────────────────────────────────
 
 os.makedirs(LOGS_DIR, exist_ok=True)
-VISUALS_DIR = os.path.join(OUTPUT_DIR, "visuals")
-os.makedirs(VISUALS_DIR, exist_ok=True)
+_DEFAULT_VISUALS_DIR = os.path.join(OUTPUT_DIR, "visuals")
+# VISUALS_DIR is set after args parsed (may be run-dir based)
+VISUALS_DIR = _DEFAULT_VISUALS_DIR
 
 log_file = os.path.join(LOGS_DIR, f"04_fetch_visuals_{datetime.now():%Y%m%d_%H%M%S}.log")
 logging.basicConfig(
@@ -172,9 +173,11 @@ def generate_placeholder(dest_path: str, label: str, color_idx: int = 0) -> bool
         return False
 
 
-def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0) -> list[str]:
-    """Download images for a fact into output/visuals/{fact_id}/. Returns list of saved paths."""
-    fact_dir = os.path.join(VISUALS_DIR, fact_id)
+def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0,
+                          visuals_dir: str = None) -> list[str]:
+    """Download images for a fact into visuals/{fact_id}/. Returns list of saved paths."""
+    base_dir = visuals_dir or VISUALS_DIR
+    fact_dir = os.path.join(base_dir, fact_id)
 
     # Check if already downloaded
     existing = glob.glob(os.path.join(fact_dir, "*.jpg"))
@@ -231,15 +234,29 @@ def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
 def main():
     parser = argparse.ArgumentParser(description="Fetch visual images for each fact")
     parser.add_argument("--script", type=str, default=None)
+    parser.add_argument("--run-dir", type=str, default=None,
+                        help="Run output directory. Visuals go to {run-dir}/visuals/")
     args = parser.parse_args()
 
     log.info("=== 04_fetch_visuals.py START ===")
 
-    script_path = args.script or find_latest_script(OUTPUT_DIR)
+    # Resolve visuals dir
+    visuals_dir = os.path.join(args.run_dir, "visuals") if args.run_dir else _DEFAULT_VISUALS_DIR
+    os.makedirs(visuals_dir, exist_ok=True)
+
+    # Resolve script path
+    script_path = args.script
+    if not script_path and args.run_dir:
+        candidate = os.path.join(args.run_dir, "script.json")
+        if os.path.exists(candidate):
+            script_path = candidate
+    if not script_path:
+        script_path = find_latest_script(OUTPUT_DIR)
     if not script_path or not os.path.exists(script_path):
         log.error("No script JSON found. Run 02_build_script.py first.")
         sys.exit(1)
     log.info("Script: %s", script_path)
+    log.info("Visuals dir: %s", visuals_dir)
 
     with open(script_path, encoding="utf-8") as f:
         script = json.load(f)
@@ -252,14 +269,15 @@ def main():
         fact_id = fact["id"]
         keywords = fact.get("search_keywords", [])
         heading = fact.get("heading", fact_id)
-        paths = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i)
+        paths = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
+                                      visuals_dir=visuals_dir)
         all_paths[fact_id] = paths
         log.info("  %s → %d images", fact_id, len(paths))
 
     # Hook/outro placeholders
     for segment in [("hook", "Psychology Brain"), ("outro", "Subscribe Brainboda")]:
         seg_id, seg_label = segment
-        seg_dir = os.path.join(VISUALS_DIR, seg_id)
+        seg_dir = os.path.join(visuals_dir, seg_id)
         existing = glob.glob(os.path.join(seg_dir, "*.jpg"))
         if not existing:
             os.makedirs(seg_dir, exist_ok=True)
@@ -271,7 +289,7 @@ def main():
     total = sum(len(v) for v in all_paths.values())
     print(f"\n{'='*60}")
     print(f"  Visuals fetched: {total} images across {len(all_paths)} facts")
-    print(f"  Output dir: {VISUALS_DIR}")
+    print(f"  Output dir: {visuals_dir}")
     print(f"{'='*60}")
     for fact_id, paths in all_paths.items():
         print(f"  {fact_id[:30]:<30} {len(paths)} images")

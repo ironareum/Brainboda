@@ -49,6 +49,18 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
+# ── quality filter ───────────────────────────────────────────────────────────
+
+REJECT_KEYWORDS = [
+    "anthropology", "ghost job", "animal studies", "black-american",
+    "phantom job", "fake job", "field within", "recently recognised field"
+]
+
+def is_psychology_relevant(fact: dict) -> bool:
+    text = (fact.get("title", "") + " " + fact.get("body", "")).lower()
+    return not any(kw in text for kw in REJECT_KEYWORDS)
+
+
 # ── built-in seed facts (fallback when Wikipedia is unreachable) ──────────────
 
 SEED_FACTS = [
@@ -572,6 +584,11 @@ def fetch_facts(topic: str | None = None, limit: int = 100, offline: bool = Fals
                 continue
             facts.append(s)
             skip_ids.add(s["id"])
+
+    # Apply quality filter
+    facts = [f for f in facts if is_psychology_relevant(f)]
+    if facts:
+        log.info("After quality filter: %d facts retained", len(facts))
 
     return facts
 

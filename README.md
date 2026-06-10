@@ -33,7 +33,11 @@ Wikipedia 심리학 facts를 자동으로 수집해서 영어 YouTube 영상(메
 ```
 Brainboda/
 ├── config/
-│   └── channel.py              ← 채널 설정 (TTS 보이스, 카테고리, 경로 등)
+│   ├── channel.py              ← 채널 설정 (TTS 보이스, 카테고리, 경로 등)
+│   └── fonts/
+│       ├── download_fonts.py   ← Poppins TTF 다운로드 스크립트
+│       ├── Poppins-Bold.ttf    ← (다운로드 후 생성)
+│       └── Poppins-Regular.ttf ← (다운로드 후 생성)
 │
 ├── data/
 │   ├── facts_raw.csv           ← Wikipedia에서 수집된 원본 facts (누적 append)
@@ -49,11 +53,49 @@ Brainboda/
 │   ├── 06_thumbnail.py         ← Pillow → 썸네일 생성
 │   └── 07_upload.py            ← YouTube Data API → 업로드
 │
-├── output/                     ← 생성된 영상 임시 저장
+├── output/
+│   └── {YYYYMMDD_HHMMSS}_{type}/   ← 각 파이프라인 실행별 폴더
+│       ├── script.json
+│       ├── thumbnail.jpg
+│       ├── video.mp4
+│       ├── audio/
+│       │   ├── hook.mp3
+│       │   ├── fact_01.mp3 ... fact_10.mp3
+│       │   ├── outro.mp3
+│       │   └── full_narration.mp3
+│       └── visuals/
+│           ├── {fact_id}/
+│           │   └── img_01.jpg ...
+│           ├── hook/
+│           └── outro/
+│
 ├── logs/                       ← 실행 로그 (단계별 타임스탬프)
 ├── run.py                      ← 전체 파이프라인 진입점
 └── README.md
 ```
+
+### Output Folder Structure
+
+Each pipeline run creates a timestamped folder under `output/`:
+
+```
+output/20260611_003322_main/
+├── script.json          ← video script (facts, hook, outro, title)
+├── thumbnail.jpg        ← YouTube thumbnail (1280x720)
+├── video.mp4            ← final rendered video
+├── audio/
+│   ├── hook.mp3
+│   ├── fact_01.mp3 ... fact_10.mp3
+│   ├── outro.mp3
+│   └── full_narration.mp3
+└── visuals/
+    ├── {fact_id}/
+    │   └── img_01.jpg ...
+    ├── hook/
+    └── outro/
+```
+
+All pipeline steps (`02`–`07`) receive `--run-dir` so every artifact for a run stays in one folder. Pass `--script path/to/run_dir/script.json` to resume from an existing run — the run directory is derived from the script's parent folder.
 
 ---
 
@@ -273,14 +315,23 @@ pip install requests edge-tts moviepy pillow openai-whisper google-api-python-cl
 # 2. FFmpeg 설치 (Windows)
 # https://ffmpeg.org/download.html → 환경변수 PATH에 추가
 
-# 3. API 키 설정 (config/channel.py 또는 환경변수)
+# 3. Font Setup — Download Poppins (recommended)
+python config/fonts/download_fonts.py
+# Poppins-Bold.ttf, Poppins-Regular.ttf, Poppins-SemiBold.ttf → config/fonts/
+# Falls back to system fonts (DejaVu, Liberation, Arial) if Poppins not found.
+
+# 4. API 키 설정 (config/channel.py 또는 환경변수)
 PIXABAY_API_KEY=your_key       # pixabay.com 무료 가입
 PEXELS_API_KEY=your_key        # pexels.com/api 무료 가입
 
-# 4. YouTube Data API v3 credentials
+# 5. YouTube Data API v3 credentials
 # Google Cloud Console → 새 프로젝트 → YouTube Data API v3 활성화
 # → OAuth 2.0 credentials 다운로드 → client_secrets.json으로 저장
 ```
+
+### Fact Quality Filter
+
+`01_fetch_facts.py` and `02_build_script.py` both apply a quality filter that rejects facts whose title or body contain irrelevant signals (non-psychology Wikipedia category pages). Rejected keywords include: `anthropology`, `ghost job`, `animal studies`, `black-american`, `phantom job`, `fake job`, `field within`, `recently recognised field`.
 
 ---
 

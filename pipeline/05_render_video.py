@@ -34,8 +34,11 @@ from config.channel import (
 )
 
 os.makedirs(LOGS_DIR, exist_ok=True)
-AUDIO_DIR = os.path.join(OUTPUT_DIR, "audio")
-VISUALS_DIR = os.path.join(OUTPUT_DIR, "visuals")
+_DEFAULT_AUDIO_DIR = os.path.join(OUTPUT_DIR, "audio")
+_DEFAULT_VISUALS_DIR = os.path.join(OUTPUT_DIR, "visuals")
+# These are set dynamically in main() based on --run-dir
+AUDIO_DIR = _DEFAULT_AUDIO_DIR
+VISUALS_DIR = _DEFAULT_VISUALS_DIR
 
 log_file = os.path.join(LOGS_DIR, f"05_render_video_{datetime.now():%Y%m%d_%H%M%S}.log")
 logging.basicConfig(
@@ -92,15 +95,24 @@ except ImportError:
 
 # ── fonts ─────────────────────────────────────────────────────────────────────
 
+_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOLD_FONTS = [
+    "/Library/Fonts/Poppins-Bold.ttf",
+    "~/Library/Fonts/Poppins-Bold.ttf",
+    os.path.join(_BASE_DIR, "config", "fonts", "Poppins-Bold.ttf"),
+    "/System/Library/Fonts/Supplemental/Futura.ttc",
+    "/System/Library/Fonts/Supplemental/Impact.ttf",
+    "/System/Library/Fonts/Supplemental/Verdana Bold.ttf",
     "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
     "/System/Library/Fonts/Helvetica.ttc",
-    "/System/Library/Fonts/Supplemental/Impact.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
     "C:/Windows/Fonts/arialbd.ttf",
 ]
 REGULAR_FONTS = [
+    "/Library/Fonts/Poppins-Regular.ttf",
+    "~/Library/Fonts/Poppins-Regular.ttf",
+    os.path.join(_BASE_DIR, "config", "fonts", "Poppins-Regular.ttf"),
     "/System/Library/Fonts/Supplemental/Arial.ttf",
     "/System/Library/Fonts/Helvetica.ttc",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
@@ -112,9 +124,10 @@ def find_font(paths, size):
     if not PILLOW_AVAILABLE:
         return None
     for p in paths:
-        if os.path.exists(p):
+        expanded = os.path.expanduser(p)
+        if os.path.exists(expanded):
             try:
-                return ImageFont.truetype(p, size)
+                return ImageFont.truetype(expanded, size)
             except Exception:
                 pass
     try:
@@ -154,8 +167,9 @@ def make_gradient_bg(width: int, height: int) -> "Image.Image":
     return Image.fromarray(arr, "RGB")
 
 
-def get_images_for_segment(segment_id: str):
-    seg_dir = os.path.join(VISUALS_DIR, segment_id)
+def get_images_for_segment(segment_id: str, visuals_dir: str = None):
+    base = visuals_dir or VISUALS_DIR
+    seg_dir = os.path.join(base, segment_id)
     if not os.path.isdir(seg_dir):
         return []
     imgs = sorted(
@@ -183,7 +197,9 @@ def get_audio_duration(audio_path: str) -> float:
         pass
     return 30.0
 
-# ── text / subtitle helpers ───────────────────────────────────────────────────
+# ── text helpers ─────────────────────────────────────────────────────────────
+
+import re as _re
 
 def wrap_words(text: str, max_chars: int = 50):
     words, lines, cur = text.split(), [], ""
@@ -199,105 +215,129 @@ def wrap_words(text: str, max_chars: int = 50):
     return lines
 
 
-def get_subtitle_chunk(narration: str, t: float, duration: float, chunk_size: int = 8) -> str:
-    """Return the subtitle text to display at time t (word-group sync)."""
-    words = narration.split()
-    if not words:
-        return ""
-    total_words = len(words)
-    # How many words should be visible per second (based on 150 wpm)
-    wpm = 150
-    words_per_sec = wpm / 60
-    word_idx = int(t * words_per_sec)
-    word_idx = min(word_idx, total_words - 1)
-    # Show a chunk of words around current position
-    start = max(0, word_idx - chunk_size // 2)
-    end = min(total_words, start + chunk_size)
-    return " ".join(words[start:end])
+def extract_key_sentence(narration: str) -> str:
+    """Extract the most impactful sentence for display."""
+    sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
+    # Skip "Fact N: Title." opener, use second sentence
+    for s in sentences[1:]:
+        if len(s) > 30:
+            return s[:120]  # cap length
+    return sentences[0][:120] if sentences else ""
+
 
 # ── frame renderer ────────────────────────────────────────────────────────────
 
 def render_frame(
     base_img: "Image.Image",
     heading: str,
-    subtitle: str,
+    narration: str,
     width: int,
     height: int,
     is_hook_outro: bool = False,
+    fact_n: int = None,
 ) -> "np.ndarray":
     """
     Render one frame:
-    - Full-bleed base image
-    - Heading: semi-transparent dark strip overlaid at top
-    - Subtitle: semi-transparent dark strip at bottom
+    - Full-bleed background image
+    - TOP-LEFT: Fact number badge (circle #N) for fact segments
+    - CENTER: Key sentence in a styled rounded-rectangle text box (30-75% vertical)
+    - Hook/Outro: channel name centered + key sentence box
     """
     # ── base ──
     frame = crop_fill(base_img.copy(), width, height)
-
-    # ── heading strip (top) ──
-    font_h_size = max(52, height // 16)
-    font_s_size = max(36, height // 22)
-    font_heading = find_font(BOLD_FONTS, font_h_size)
-    font_sub = find_font(REGULAR_FONTS, font_s_size)
-
-    pad = 24
-    h_lines = wrap_words(heading, max_chars=40)
-    line_h = font_h_size + 14
-    strip_h = len(h_lines) * line_h + pad * 2
-
-    # Build transparent heading overlay
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     d = ImageDraw.Draw(overlay)
-    # Gradient strip: more opaque at top, fades down
-    for y in range(strip_h):
-        alpha = int(180 * (1 - y / strip_h * 0.3))
-        d.line([(0, y), (width, y)], fill=(0, 0, 0, alpha))
 
-    y = pad
-    for line in h_lines:
+    font_h_size = max(52, height // 16)
+    font_text_size = max(40, height // 14)
+    font_badge_size = max(36, height // 18)
+    font_heading = find_font(BOLD_FONTS, font_h_size)
+    font_text = find_font(BOLD_FONTS, font_text_size)
+    font_badge = find_font(BOLD_FONTS, font_badge_size)
+
+    pad_h = 30
+    pad_v = 20
+
+    # ── Fact number badge (top-left circle) ──────────────────────────────────
+    if fact_n is not None and not is_hook_outro:
+        badge_r = height // 14
+        badge_cx = badge_r + 30
+        badge_cy = badge_r + 30
+        d.ellipse(
+            [badge_cx - badge_r, badge_cy - badge_r,
+             badge_cx + badge_r, badge_cy + badge_r],
+            fill=(0, 0, 0, 180),
+        )
+        badge_text = f"#{fact_n}"
         try:
-            bbox = d.textbbox((0, 0), line, font=font_heading)
-            tw = bbox[2] - bbox[0]
+            bb = d.textbbox((0, 0), badge_text, font=font_badge)
+            tw, th = bb[2] - bb[0], bb[3] - bb[1]
         except Exception:
-            tw = len(line) * (font_h_size // 2)
-        x = (width - tw) // 2
-        # Shadow
-        d.text((x + 3, y + 3), line, font=font_heading, fill=(0, 0, 0, 160))
-        # Text
-        d.text((x, y), line, font=font_heading, fill=(255, 255, 255, 255))
+            tw, th = len(badge_text) * (font_badge_size // 2), font_badge_size
+        d.text(
+            (badge_cx - tw // 2, badge_cy - th // 2),
+            badge_text, font=font_badge, fill=(255, 255, 255, 255),
+        )
+
+    # ── Hook/Outro: "BRAINBODA" or heading at center-top ─────────────────────
+    if is_hook_outro:
+        brand_text = heading  # e.g. "Brainboda" or "Subscribe to Brainboda"
+        try:
+            bb = d.textbbox((0, 0), brand_text, font=font_heading)
+            tw = bb[2] - bb[0]
+        except Exception:
+            tw = len(brand_text) * (font_h_size // 2)
+        bx = (width - tw) // 2
+        by = int(height * 0.12)
+        d.text((bx + 3, by + 3), brand_text, font=font_heading, fill=(0, 0, 0, 160))
+        d.text((bx, by), brand_text, font=font_heading, fill=(255, 255, 255, 255))
+
+    # ── Key sentence text box (CENTER, 30-75% vertical) ──────────────────────
+    key = extract_key_sentence(narration) if narration else heading
+    if not key:
+        frame = overlay_rgba(frame, overlay)
+        return np.array(frame)
+
+    # Wrap to max 2 lines
+    box_max_chars = max(30, int(width * 0.065))
+    key_lines = wrap_words(key, max_chars=box_max_chars)[:2]
+
+    line_h = font_text_size + 12
+    box_inner_h = len(key_lines) * line_h
+    box_h = box_inner_h + pad_v * 2
+    box_w = width - pad_h * 4
+
+    # Vertical position: centered between 30% and 75% of frame
+    zone_top = int(height * 0.30)
+    zone_bot = int(height * 0.75)
+    zone_center = (zone_top + zone_bot) // 2
+    box_top = zone_center - box_h // 2
+    box_bot = box_top + box_h
+    box_left = pad_h * 2
+    box_right = box_left + box_w
+
+    # Rounded rectangle background
+    corner_r = 18
+    d.rounded_rectangle(
+        [box_left, box_top, box_right, box_bot],
+        radius=corner_r,
+        fill=(0, 0, 0, 170),
+    )
+
+    # Text lines centered within box
+    y = box_top + pad_v
+    for line in key_lines:
+        try:
+            bb = d.textbbox((0, 0), line, font=font_text)
+            tw = bb[2] - bb[0]
+        except Exception:
+            tw = len(line) * (font_text_size // 2)
+        x = box_left + (box_w - tw) // 2
+        d.text((x + 2, y + 2), line, font=font_text, fill=(0, 0, 0, 140))
+        d.text((x, y), line, font=font_text, fill=(255, 255, 255, 255))
         y += line_h
 
     frame = overlay_rgba(frame, overlay)
-
-    # ── subtitle strip (bottom) ──
-    if subtitle:
-        sub_lines = wrap_words(subtitle, max_chars=55)[-3:]  # max 3 lines
-        s_line_h = font_s_size + 10
-        sub_strip_h = len(sub_lines) * s_line_h + pad * 2
-        sub_y_start = height - sub_strip_h
-
-        sub_overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-        sd = ImageDraw.Draw(sub_overlay)
-        # Strip background
-        for y_off in range(sub_strip_h):
-            alpha = int(170 * (y_off / sub_strip_h * 0.4 + 0.6))
-            sd.line([(0, sub_y_start + y_off), (width, sub_y_start + y_off)],
-                    fill=(0, 0, 0, alpha))
-
-        y = sub_y_start + pad
-        for line in sub_lines:
-            try:
-                bbox = sd.textbbox((0, 0), line, font=font_sub)
-                tw = bbox[2] - bbox[0]
-            except Exception:
-                tw = len(line) * (font_s_size // 2)
-            x = (width - tw) // 2
-            sd.text((x + 2, y + 2), line, font=font_sub, fill=(0, 0, 0, 140))
-            sd.text((x, y), line, font=font_sub, fill=(230, 230, 230, 255))
-            y += s_line_h
-
-        frame = overlay_rgba(frame, sub_overlay)
-
     return np.array(frame)
 
 # ── MoviePy clip builder ──────────────────────────────────────────────────────
@@ -310,10 +350,12 @@ def build_clip(
     width: int,
     height: int,
     is_hook_outro: bool = False,
+    fact_n: int = None,
+    visuals_dir: str = None,
 ):
-    """Build a MoviePy clip with synced subtitles and Ken Burns effect."""
+    """Build a MoviePy clip with key sentence display and Ken Burns effect."""
     duration = get_audio_duration(audio_path)
-    images = get_images_for_segment(segment_id)
+    images = get_images_for_segment(segment_id, visuals_dir=visuals_dir)
 
     # Load base image
     if images:
@@ -322,7 +364,8 @@ def build_clip(
         base_img = make_gradient_bg(width, height)
     else:
         # Try to grab any available image
-        all_imgs = glob.glob(os.path.join(VISUALS_DIR, "*/*.jpg"))
+        base_vdir = visuals_dir or VISUALS_DIR
+        all_imgs = glob.glob(os.path.join(base_vdir, "*/*.jpg"))
         if all_imgs:
             base_img = Image.open(all_imgs[0]).convert("RGB")
         else:
@@ -342,10 +385,8 @@ def build_clip(
         top = (new_h - height) // 2
         frame_img = zoomed.crop((left, top, left + width, top + height))
 
-        # Subtitle: sync to time
-        subtitle = get_subtitle_chunk(narration, t, duration)
-
-        return render_frame(frame_img, heading, subtitle, width, height, is_hook_outro)
+        return render_frame(frame_img, heading, narration, width, height,
+                            is_hook_outro, fact_n=fact_n)
 
     try:
         video_clip = VideoClip(make_frame, duration=duration)
@@ -366,7 +407,7 @@ def build_clip(
 
 # ── MoviePy renderer ──────────────────────────────────────────────────────────
 
-def render_with_moviepy(segments, output_path, width, height, bgm_path):
+def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_dir=None):
     log.info("Using MoviePy renderer")
     clips = []
     for seg in segments:
@@ -378,6 +419,7 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path):
         clip = build_clip(
             audio_path, seg["id"], seg["heading"], seg["narration"],
             width, height, seg.get("is_hook_outro", False),
+            fact_n=seg.get("fact_n"), visuals_dir=visuals_dir,
         )
         if clip:
             clips.append(clip)
@@ -421,11 +463,12 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path):
 
 # ── ffmpeg fallback renderer ──────────────────────────────────────────────────
 
-def render_with_ffmpeg(segments, output_path, width, height, bgm_path):
+def render_with_ffmpeg(segments, output_path, width, height, bgm_path, visuals_dir=None):
     """Pure ffmpeg fallback: pre-renders frames with Pillow, then muxes."""
     log.info("Using ffmpeg fallback renderer")
     tmpdir = tempfile.mkdtemp()
     segment_videos = []
+    base_vdir = visuals_dir or VISUALS_DIR
 
     for i, seg in enumerate(segments):
         audio_path = seg.get("audio")
@@ -433,23 +476,24 @@ def render_with_ffmpeg(segments, output_path, width, height, bgm_path):
             continue
 
         duration = get_audio_duration(audio_path)
-        images = get_images_for_segment(seg["id"])
+        images = get_images_for_segment(seg["id"], visuals_dir=visuals_dir)
         heading = seg.get("heading", "")
         narration = seg.get("narration", "")
         is_ho = seg.get("is_hook_outro", False)
+        fact_n = seg.get("fact_n")
 
         if images:
             base_img = Image.open(images[0]).convert("RGB")
         elif is_ho:
             base_img = make_gradient_bg(width, height)
         else:
-            all_imgs = glob.glob(os.path.join(VISUALS_DIR, "*/*.jpg"))
+            all_imgs = glob.glob(os.path.join(base_vdir, "*/*.jpg"))
             base_img = Image.open(all_imgs[0]).convert("RGB") if all_imgs else make_gradient_bg(width, height)
 
-        # Render a static frame (mid-point subtitle)
-        mid_subtitle = get_subtitle_chunk(narration, duration / 2, duration)
+        # Render a static frame
         if PILLOW_AVAILABLE:
-            frame_arr = render_frame(crop_fill(base_img, width, height), heading, mid_subtitle, width, height, is_ho)
+            frame_arr = render_frame(crop_fill(base_img, width, height), heading, narration,
+                                     width, height, is_ho, fact_n=fact_n)
             frame_img = Image.fromarray(frame_arr)
         else:
             frame_img = crop_fill(base_img, width, height)
@@ -522,11 +566,24 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--script", type=str, default=None)
     parser.add_argument("--test", action="store_true", help="Render only 2 facts")
+    parser.add_argument("--run-dir", type=str, default=None,
+                        help="Run output directory. Read audio/visuals from run-dir, write video to {run-dir}/video.mp4")
     args = parser.parse_args()
 
     log.info("=== 05_render_video.py START ===")
 
-    script_path = args.script or find_latest_script(OUTPUT_DIR)
+    # Resolve dirs
+    audio_dir = os.path.join(args.run_dir, "audio") if args.run_dir else _DEFAULT_AUDIO_DIR
+    visuals_dir = os.path.join(args.run_dir, "visuals") if args.run_dir else _DEFAULT_VISUALS_DIR
+
+    # Resolve script path
+    script_path = args.script
+    if not script_path and args.run_dir:
+        candidate = os.path.join(args.run_dir, "script.json")
+        if os.path.exists(candidate):
+            script_path = candidate
+    if not script_path:
+        script_path = find_latest_script(OUTPUT_DIR)
     if not script_path or not os.path.exists(script_path):
         log.error("No script JSON found.")
         sys.exit(1)
@@ -546,29 +603,31 @@ def main():
 
     segments = []
 
-    hook_audio = os.path.join(AUDIO_DIR, "hook.mp3")
+    hook_audio = os.path.join(audio_dir, "hook.mp3")
     if os.path.exists(hook_audio):
         segments.append({
             "id": "hook",
             "audio": hook_audio,
-            "heading": "Brainboda",
+            "heading": "BRAINBODA",
             "narration": script.get("hook", ""),
             "is_hook_outro": True,
+            "fact_n": None,
         })
 
     for fact in facts:
         n = fact["n"]
-        audio = os.path.join(AUDIO_DIR, f"fact_{n:02d}.mp3")
+        audio = os.path.join(audio_dir, f"fact_{n:02d}.mp3")
         if os.path.exists(audio):
             segments.append({
                 "id": fact["id"],
                 "audio": audio,
-                "heading": f"#{n}  {fact.get('heading', '')}",
+                "heading": fact.get("heading", ""),
                 "narration": fact.get("narration", ""),
                 "is_hook_outro": False,
+                "fact_n": n,
             })
 
-    outro_audio = os.path.join(AUDIO_DIR, "outro.mp3")
+    outro_audio = os.path.join(audio_dir, "outro.mp3")
     if os.path.exists(outro_audio):
         segments.append({
             "id": "outro",
@@ -576,6 +635,7 @@ def main():
             "heading": "Subscribe to Brainboda",
             "narration": script.get("outro", ""),
             "is_hook_outro": True,
+            "fact_n": None,
         })
 
     if not segments:
@@ -584,17 +644,17 @@ def main():
 
     log.info("Segments: %d", len(segments))
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = os.path.join(OUTPUT_DIR, f"video_{video_type}_{timestamp}.mp4")
+    if args.run_dir:
+        output_path = os.path.join(args.run_dir, "video.mp4")
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = os.path.join(OUTPUT_DIR, f"video_{video_type}_{timestamp}.mp4")
 
     # Skip if non-test video already exists
-    if not args.test:
-        existing = glob.glob(os.path.join(OUTPUT_DIR, f"video_{video_type}_*.mp4"))
-        if existing:
-            latest = max(existing, key=os.path.getmtime)
-            log.info("Video already exists: %s — delete it to re-render", latest)
-            print(f"\nVideo already exists: {latest}")
-            return latest
+    if not args.test and os.path.exists(output_path):
+        log.info("Video already exists: %s — delete it to re-render", output_path)
+        print(f"\nVideo already exists: {output_path}")
+        return output_path
 
     bgm_path = os.path.join(OUTPUT_DIR, "bgm.mp3")
     if not os.path.exists(bgm_path):
@@ -603,12 +663,14 @@ def main():
     success = False
     if MOVIEPY_AVAILABLE and PILLOW_AVAILABLE:
         try:
-            success = render_with_moviepy(segments, output_path, width, height, bgm_path)
+            success = render_with_moviepy(segments, output_path, width, height, bgm_path,
+                                          visuals_dir=visuals_dir)
         except Exception as exc:
             log.warning("MoviePy failed: %s — falling back to ffmpeg", exc)
 
     if not success:
-        success = render_with_ffmpeg(segments, output_path, width, height, bgm_path)
+        success = render_with_ffmpeg(segments, output_path, width, height, bgm_path,
+                                     visuals_dir=visuals_dir)
 
     log.info("=== 05_render_video.py DONE ===")
 

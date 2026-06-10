@@ -99,7 +99,10 @@ def count_available_facts(n_needed: int) -> int:
         return 0
 
 
-def find_latest_script(video_type: str = None) -> str | None:
+def find_latest_script(video_type: str = None, run_dir: str = None) -> str | None:
+    if run_dir:
+        p = os.path.join(run_dir, "script.json")
+        return p if os.path.exists(p) else None
     pattern = os.path.join(OUTPUT_DIR, "script_*.json")
     if video_type:
         pattern = os.path.join(OUTPUT_DIR, f"script_{video_type}_*.json")
@@ -107,7 +110,10 @@ def find_latest_script(video_type: str = None) -> str | None:
     return max(files, key=os.path.getmtime) if files else None
 
 
-def find_latest_video(video_type: str = None) -> str | None:
+def find_latest_video(video_type: str = None, run_dir: str = None) -> str | None:
+    if run_dir:
+        p = os.path.join(run_dir, "video.mp4")
+        return p if os.path.exists(p) else None
     pattern = os.path.join(OUTPUT_DIR, "video_*.mp4")
     if video_type:
         pattern = os.path.join(OUTPUT_DIR, f"video_{video_type}_*.mp4")
@@ -115,7 +121,10 @@ def find_latest_video(video_type: str = None) -> str | None:
     return max(files, key=os.path.getmtime) if files else None
 
 
-def find_latest_thumbnail() -> str | None:
+def find_latest_thumbnail(run_dir: str = None) -> str | None:
+    if run_dir:
+        p = os.path.join(run_dir, "thumbnail.jpg")
+        return p if os.path.exists(p) else None
     files = glob.glob(os.path.join(OUTPUT_DIR, "thumbnail_*.jpg"))
     return max(files, key=os.path.getmtime) if files else None
 
@@ -152,6 +161,17 @@ def main():
         "steps_failed": [],
     }
 
+    # ── Determine run_dir ────────────────────────────────────────────────────
+    if args.script:
+        # Derive run_dir from the provided script's parent directory
+        run_dir = os.path.dirname(os.path.abspath(args.script))
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        run_dir = os.path.join(OUTPUT_DIR, f"{timestamp}_{args.type}")
+        os.makedirs(run_dir, exist_ok=True)
+
+    log.info("Run directory: %s", run_dir)
+
     # ── If script provided, skip steps 1-2 ───────────────────────────────────
     if args.script:
         if not os.path.exists(args.script):
@@ -182,7 +202,8 @@ def main():
             results["steps_ok"].append("01_fetch_facts (skipped)")
 
         # ── Step 2: Build script ───────────────────────────────────────────────
-        cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"), "--type", args.type]
+        cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"),
+               "--type", args.type, "--run-dir", run_dir]
         if args.topic:
             cmd += ["--topic", args.topic]
         ok = run_step("02_build_script", cmd)
@@ -191,7 +212,7 @@ def main():
             sys.exit(1)
         results["steps_ok"].append("02_build_script")
 
-        script_path = find_latest_script(args.type)
+        script_path = find_latest_script(args.type, run_dir=run_dir)
         if not script_path:
             log.error("Could not find generated script JSON")
             sys.exit(1)
@@ -200,7 +221,8 @@ def main():
     log.info("Script: %s", script_path)
 
     # ── Step 3: TTS ───────────────────────────────────────────────────────────
-    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "03_tts.py"), "--script", script_path]
+    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "03_tts.py"),
+           "--script", script_path, "--run-dir", run_dir]
     ok = run_step("03_tts", cmd)
     if ok:
         results["steps_ok"].append("03_tts")
@@ -209,7 +231,8 @@ def main():
         log.warning("03_tts failed — continuing anyway (may affect video quality)")
 
     # ── Step 4: Fetch visuals ─────────────────────────────────────────────────
-    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "04_fetch_visuals.py"), "--script", script_path]
+    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "04_fetch_visuals.py"),
+           "--script", script_path, "--run-dir", run_dir]
     ok = run_step("04_fetch_visuals", cmd, allow_fail=True)
     if ok:
         results["steps_ok"].append("04_fetch_visuals")
@@ -218,30 +241,33 @@ def main():
         log.warning("04_fetch_visuals failed — video will use placeholder images")
 
     # ── Step 5: Render video ──────────────────────────────────────────────────
-    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "05_render_video.py"), "--script", script_path]
+    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "05_render_video.py"),
+           "--script", script_path, "--run-dir", run_dir]
     if args.test:
         cmd.append("--test")
     ok = run_step("05_render_video", cmd, allow_fail=False)
     if ok:
         results["steps_ok"].append("05_render_video")
-        results["video"] = find_latest_video(args.type)
+        results["video"] = find_latest_video(args.type, run_dir=run_dir)
     else:
         results["steps_failed"].append("05_render_video")
         log.warning("05_render_video failed — continuing to thumbnail")
 
     # ── Step 6: Thumbnail ─────────────────────────────────────────────────────
-    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "06_thumbnail.py"), "--script", script_path]
+    cmd = [PYTHON, os.path.join(PIPELINE_DIR, "06_thumbnail.py"),
+           "--script", script_path, "--run-dir", run_dir]
     ok = run_step("06_thumbnail", cmd, allow_fail=True)
     if ok:
         results["steps_ok"].append("06_thumbnail")
-        results["thumbnail"] = find_latest_thumbnail()
+        results["thumbnail"] = find_latest_thumbnail(run_dir=run_dir)
     else:
         results["steps_failed"].append("06_thumbnail")
         log.warning("06_thumbnail failed")
 
     # ── Step 7: Upload ────────────────────────────────────────────────────────
     if do_upload:
-        cmd = [PYTHON, os.path.join(PIPELINE_DIR, "07_upload.py"), "--script", script_path]
+        cmd = [PYTHON, os.path.join(PIPELINE_DIR, "07_upload.py"),
+               "--script", script_path, "--run-dir", run_dir]
         if results["video"]:
             cmd += ["--video", results["video"]]
         if results["thumbnail"]:

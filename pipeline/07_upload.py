@@ -225,16 +225,30 @@ def main():
                         help="Path to thumbnail JPG. If omitted, auto-detects.")
     parser.add_argument("--script", type=str, default=None,
                         help="Script JSON for title/description/tags")
+    parser.add_argument("--run-dir", type=str, default=None,
+                        help="Run output directory. Auto-detect video/thumbnail/script from run-dir.")
     parser.add_argument("--test", action="store_true",
                         help="Upload as private instead of public")
     args = parser.parse_args()
 
     log.info("=== 07_upload.py START ===")
 
-    # Resolve paths
-    script_path = args.script or find_latest_script(OUTPUT_DIR)
-    video_path = args.video or find_latest_video(OUTPUT_DIR)
-    thumbnail_path = args.thumbnail or find_latest_thumbnail(OUTPUT_DIR)
+    # Resolve paths — run-dir takes precedence for auto-detection
+    if args.run_dir:
+        script_path = args.script or os.path.join(args.run_dir, "script.json")
+        video_path = args.video or os.path.join(args.run_dir, "video.mp4")
+        thumbnail_path = args.thumbnail or os.path.join(args.run_dir, "thumbnail.jpg")
+        # Fall back to None if files don't exist
+        if not os.path.exists(script_path):
+            script_path = find_latest_script(OUTPUT_DIR)
+        if not os.path.exists(video_path):
+            video_path = find_latest_video(OUTPUT_DIR)
+        if not os.path.exists(thumbnail_path):
+            thumbnail_path = find_latest_thumbnail(OUTPUT_DIR)
+    else:
+        script_path = args.script or find_latest_script(OUTPUT_DIR)
+        video_path = args.video or find_latest_video(OUTPUT_DIR)
+        thumbnail_path = args.thumbnail or find_latest_thumbnail(OUTPUT_DIR)
 
     if not video_path or not os.path.exists(video_path):
         log.error("No video file found. Run 05_render_video.py first.")

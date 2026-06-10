@@ -31,8 +31,8 @@ from config.channel import LOGS_DIR, OUTPUT_DIR, TTS_VOICE_DEFAULT
 # ── logging ───────────────────────────────────────────────────────────────────
 
 os.makedirs(LOGS_DIR, exist_ok=True)
-AUDIO_DIR = os.path.join(OUTPUT_DIR, "audio")
-os.makedirs(AUDIO_DIR, exist_ok=True)
+# AUDIO_DIR is set after args are parsed (may be run-dir based)
+_DEFAULT_AUDIO_DIR = os.path.join(OUTPUT_DIR, "audio")
 
 log_file = os.path.join(LOGS_DIR, f"03_tts_{datetime.now():%Y%m%d_%H%M%S}.log")
 logging.basicConfig(
@@ -238,8 +238,12 @@ def concatenate_audio(input_paths: list, output_path: str) -> bool:
 
 # ── main logic ────────────────────────────────────────────────────────────────
 
-async def run_tts(script_path: str, voice: str) -> dict:
+async def run_tts(script_path: str, voice: str, audio_dir: str = None) -> dict:
     """Generate all audio segments. Returns dict of {segment_name: file_path}."""
+    if audio_dir is None:
+        audio_dir = _DEFAULT_AUDIO_DIR
+    os.makedirs(audio_dir, exist_ok=True)
+
     log.info("Loading script: %s", script_path)
     with open(script_path, encoding="utf-8") as f:
         script = json.load(f)
@@ -247,7 +251,7 @@ async def run_tts(script_path: str, voice: str) -> dict:
     results = {}
 
     # Hook
-    hook_path = os.path.join(AUDIO_DIR, "hook.mp3")
+    hook_path = os.path.join(audio_dir, "hook.mp3")
     ok = await synthesize_segment(script["hook"], hook_path, voice, script.get("hook_duration_est", 20))
     if ok:
         results["hook"] = hook_path
@@ -255,13 +259,13 @@ async def run_tts(script_path: str, voice: str) -> dict:
     # Facts
     for fact in script["facts"]:
         n = fact["n"]
-        fact_path = os.path.join(AUDIO_DIR, f"fact_{n:02d}.mp3")
+        fact_path = os.path.join(audio_dir, f"fact_{n:02d}.mp3")
         ok = await synthesize_segment(fact["narration"], fact_path, voice, fact.get("duration_est", 30))
         if ok:
             results[f"fact_{n:02d}"] = fact_path
 
     # Outro
-    outro_path = os.path.join(AUDIO_DIR, "outro.mp3")
+    outro_path = os.path.join(audio_dir, "outro.mp3")
     ok = await synthesize_segment(script["outro"], outro_path, voice, script.get("outro_duration_est", 20))
     if ok:
         results["outro"] = outro_path
@@ -277,7 +281,7 @@ async def run_tts(script_path: str, voice: str) -> dict:
     if "outro" in results:
         ordered.append(results["outro"])
 
-    full_path = os.path.join(AUDIO_DIR, "full_narration.mp3")
+    full_path = os.path.join(audio_dir, "full_narration.mp3")
     concatenate_audio(ordered, full_path)
     if file_exists_nonempty(full_path):
         results["full_narration"] = full_path
@@ -302,14 +306,24 @@ def main():
                         help="Path to script JSON. If omitted, uses latest in output/")
     parser.add_argument("--voice", type=str, default=TTS_VOICE_DEFAULT,
                         help="edge-tts voice name")
+    parser.add_argument("--run-dir", type=str, default=None,
+                        help="Run output directory. Audio goes to {run-dir}/audio/")
     args = parser.parse_args()
 
     log.info("=== 03_tts.py START ===")
 
+    # Resolve audio dir
+    audio_dir = os.path.join(args.run_dir, "audio") if args.run_dir else _DEFAULT_AUDIO_DIR
+
     # Resolve script path
     script_path = args.script
     if not script_path:
-        script_path = find_latest_script(OUTPUT_DIR)
+        if args.run_dir:
+            script_path = os.path.join(args.run_dir, "script.json")
+            if not os.path.exists(script_path):
+                script_path = None
+        if not script_path:
+            script_path = find_latest_script(OUTPUT_DIR)
         if not script_path:
             log.error("No script JSON found in %s — run 02_build_script.py first", OUTPUT_DIR)
             sys.exit(1)
@@ -320,15 +334,15 @@ def main():
         sys.exit(1)
 
     log.info("Voice: %s", args.voice)
-    log.info("Audio output dir: %s", AUDIO_DIR)
+    log.info("Audio output dir: %s", audio_dir)
 
-    results = asyncio.run(run_tts(script_path, args.voice))
+    results = asyncio.run(run_tts(script_path, args.voice, audio_dir=audio_dir))
 
     log.info("=== 03_tts.py DONE ===")
 
     print(f"\n{'='*60}")
     print(f"  TTS complete — {len(results)} audio segments")
-    print(f"  Output dir: {AUDIO_DIR}")
+    print(f"  Output dir: {audio_dir}")
     print(f"{'='*60}")
     for name, path in sorted(results.items()):
         size_kb = os.path.getsize(path) / 1024 if os.path.exists(path) else 0

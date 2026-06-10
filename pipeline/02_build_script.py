@@ -116,6 +116,16 @@ def save_used_ids(ids: set[str]) -> None:
         json.dump({"used_ids": sorted(merged)}, f, indent=2)
 
 
+REJECT_KEYWORDS = [
+    "anthropology", "ghost job", "animal studies", "black-american",
+    "phantom job", "fake job", "field within", "recently recognised field"
+]
+
+def is_psychology_relevant(fact: dict) -> bool:
+    text = (fact.get("title", "") + " " + fact.get("body", "")).lower()
+    return not any(kw in text for kw in REJECT_KEYWORDS)
+
+
 def load_available_facts(topic: str | None = None) -> list[dict]:
     """Load facts from approved CSV (preferred) or raw CSV, filtered by used IDs."""
     used_ids = load_used_ids()
@@ -136,6 +146,9 @@ def load_available_facts(topic: str | None = None) -> list[dict]:
                 if row["id"] in used_ids:
                     continue
                 if topic and topic.lower() not in (row["title"] + row["body"]).lower():
+                    continue
+                if not is_psychology_relevant(row):
+                    log.debug("Quality filter rejected: %s", row.get("title", ""))
                     continue
                 facts.append(row)
     except FileNotFoundError:
@@ -318,6 +331,8 @@ def main():
     parser.add_argument("--type", choices=["main", "short"], default="main")
     parser.add_argument("--topic", type=str, default=None)
     parser.add_argument("--dry-run", action="store_true", help="Preview only, write no files")
+    parser.add_argument("--run-dir", type=str, default=None,
+                        help="Run output directory. If provided, save script as {run-dir}/script.json")
     args = parser.parse_args()
 
     log.info("=== 02_build_script.py START ===")
@@ -341,7 +356,11 @@ def main():
 
     # ── output ────────────────────────────────────────────────────────────────
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    script_path = os.path.join(OUTPUT_DIR, f"script_{args.type}_{timestamp}.json")
+    if args.run_dir:
+        os.makedirs(args.run_dir, exist_ok=True)
+        script_path = os.path.join(args.run_dir, "script.json")
+    else:
+        script_path = os.path.join(OUTPUT_DIR, f"script_{args.type}_{timestamp}.json")
 
     if not args.dry_run:
         with open(script_path, "w", encoding="utf-8") as f:

@@ -240,11 +240,20 @@ def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
 def main():
     parser = argparse.ArgumentParser(description="Generate YouTube thumbnail")
     parser.add_argument("--script", type=str, default=None)
+    parser.add_argument("--run-dir", type=str, default=None,
+                        help="Run output directory. Write thumbnail to {run-dir}/thumbnail.jpg")
     args = parser.parse_args()
 
     log.info("=== 06_thumbnail.py START ===")
 
-    script_path = args.script or find_latest_script(OUTPUT_DIR)
+    # Resolve script path
+    script_path = args.script
+    if not script_path and args.run_dir:
+        candidate = os.path.join(args.run_dir, "script.json")
+        if os.path.exists(candidate):
+            script_path = candidate
+    if not script_path:
+        script_path = find_latest_script(OUTPUT_DIR)
     if not script_path or not os.path.exists(script_path):
         log.error("No script JSON found.")
         sys.exit(1)
@@ -256,16 +265,23 @@ def main():
     title = script.get("title", "Brainboda Psychology Facts")
     log.info("Title: %s", title)
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = os.path.join(OUTPUT_DIR, f"thumbnail_{timestamp}.jpg")
-
-    # Check existing
-    existing = glob.glob(os.path.join(OUTPUT_DIR, "thumbnail_*.jpg"))
-    if existing:
-        latest = max(existing, key=os.path.getmtime)
-        log.info("Thumbnail already exists: %s — skipping", latest)
-        print(f"\nThumbnail already exists: {latest}")
-        return latest
+    if args.run_dir:
+        output_path = os.path.join(args.run_dir, "thumbnail.jpg")
+        # Check existing in run_dir
+        if os.path.exists(output_path):
+            log.info("Thumbnail already exists: %s — skipping", output_path)
+            print(f"\nThumbnail already exists: {output_path}")
+            return output_path
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = os.path.join(OUTPUT_DIR, f"thumbnail_{timestamp}.jpg")
+        # Check existing in output dir
+        existing = glob.glob(os.path.join(OUTPUT_DIR, "thumbnail_*.jpg"))
+        if existing:
+            latest = max(existing, key=os.path.getmtime)
+            log.info("Thumbnail already exists: %s — skipping", latest)
+            print(f"\nThumbnail already exists: {latest}")
+            return latest
 
     success = generate_thumbnail(title, output_path)
 
