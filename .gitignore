@@ -22,3 +22,6 @@ config/client_secrets.json
 
 # Logs (optional - keep for debugging)
 # logs/
+
+# Env files
+.env

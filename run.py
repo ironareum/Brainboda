@@ -11,6 +11,15 @@ Usage:
     python run.py --type main --topic manipulation  # specific topic
 """
 
+from typing import Optional
+
+# Load .env file if present (python-dotenv)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 import argparse
 import glob
 import json
@@ -99,7 +108,7 @@ def count_available_facts(n_needed: int) -> int:
         return 0
 
 
-def find_latest_script(video_type: str = None) -> str | None:
+def find_latest_script(video_type: str = None) -> Optional[str]:
     pattern = os.path.join(OUTPUT_DIR, "script_*.json")
     if video_type:
         pattern = os.path.join(OUTPUT_DIR, f"script_{video_type}_*.json")
@@ -107,7 +116,7 @@ def find_latest_script(video_type: str = None) -> str | None:
     return max(files, key=os.path.getmtime) if files else None
 
 
-def find_latest_video(video_type: str = None) -> str | None:
+def find_latest_video(video_type: str = None) -> Optional[str]:
     pattern = os.path.join(OUTPUT_DIR, "video_*.mp4")
     if video_type:
         pattern = os.path.join(OUTPUT_DIR, f"video_{video_type}_*.mp4")
@@ -115,7 +124,7 @@ def find_latest_video(video_type: str = None) -> str | None:
     return max(files, key=os.path.getmtime) if files else None
 
 
-def find_latest_thumbnail() -> str | None:
+def find_latest_thumbnail() -> Optional[str]:
     files = glob.glob(os.path.join(OUTPUT_DIR, "thumbnail_*.jpg"))
     return max(files, key=os.path.getmtime) if files else None
 

@@ -11,6 +11,8 @@ Usage:
     python pipeline/07_upload.py ... --test   # uploads as private
 """
 
+from typing import Optional
+
 import argparse
 import glob
 import json
@@ -63,7 +65,7 @@ CONFIG_DIR = os.path.join(BASE_DIR, "config")
 TOKEN_PATH = os.path.join(CONFIG_DIR, "youtube_token.json")
 
 
-def find_client_secrets() -> str | None:
+def find_client_secrets() -> Optional[str]:
     """Search for client_secrets.json in repo root and config/."""
     for p in [
         os.path.join(BASE_DIR, "client_secrets.json"),
@@ -202,17 +204,17 @@ def set_thumbnail(youtube, video_id: str, thumbnail_path: str) -> bool:
         return False
 
 
-def find_latest_script(output_dir: str) -> str | None:
+def find_latest_script(output_dir: str) -> Optional[str]:
     files = glob.glob(os.path.join(output_dir, "script_*.json"))
     return max(files, key=os.path.getmtime) if files else None
 
 
-def find_latest_video(output_dir: str) -> str | None:
+def find_latest_video(output_dir: str) -> Optional[str]:
     files = glob.glob(os.path.join(output_dir, "video_*.mp4"))
     return max(files, key=os.path.getmtime) if files else None
 
 
-def find_latest_thumbnail(output_dir: str) -> str | None:
+def find_latest_thumbnail(output_dir: str) -> Optional[str]:
     files = glob.glob(os.path.join(output_dir, "thumbnail_*.jpg"))
     return max(files, key=os.path.getmtime) if files else None
 

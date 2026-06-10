@@ -11,6 +11,8 @@ Usage:
     python pipeline/01_fetch_facts.py --offline   # use built-in seed facts only
 """
 
+from typing import List, Optional, Set
+
 import argparse
 import csv
 import json
@@ -310,7 +312,7 @@ WIKI_API = "https://en.wikipedia.org/w/api.php"
 HEADERS = {"User-Agent": "Brainboda/1.0 (youtube automation; contact@example.com)"}
 
 
-def get_page_summary_rest(title: str) -> str | None:
+def get_page_summary_rest(title: str) -> Optional[str]:
     """Fetch page intro via Wikipedia REST summary endpoint."""
     url = WIKI_REST.format(title=title.replace(" ", "_"))
     for attempt in range(3):
@@ -328,7 +330,7 @@ def get_page_summary_rest(title: str) -> str | None:
     return None
 
 
-def get_page_extract_action(title: str) -> str | None:
+def get_page_extract_action(title: str) -> Optional[str]:
     """Fetch page intro via Wikipedia action API (fallback)."""
     params = {
         "action": "query",
@@ -355,7 +357,7 @@ def get_page_extract_action(title: str) -> str | None:
     return None
 
 
-def get_page_extract(title: str) -> str | None:
+def get_page_extract(title: str) -> Optional[str]:
     """Try REST API first, then action API."""
     result = get_page_summary_rest(title)
     if result:
@@ -363,9 +365,9 @@ def get_page_extract(title: str) -> str | None:
     return get_page_extract_action(title)
 
 
-def get_category_members(category: str, limit: int = 50) -> list[str]:
+def get_category_members(category: str, limit: int = 50) -> List[str]:
     """Return page titles in a Wikipedia category (action API)."""
-    titles: list[str] = []
+    titles: List[str] = []
     cmcontinue = None
     while len(titles) < limit:
         params = {
@@ -402,7 +404,7 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 
-def extract_sentences(text: str, min_len: int = 60, max_len: int = 350) -> list[str]:
+def extract_sentences(text: str, min_len: int = 60, max_len: int = 350) -> List[str]:
     raw = re.split(r"(?<=[.!?])\s+", text)
     return [
         clean_text(s)
@@ -411,7 +413,7 @@ def extract_sentences(text: str, min_len: int = 60, max_len: int = 350) -> list[
     ]
 
 
-def build_fact_from_extract(title: str, extract: str) -> dict | None:
+def build_fact_from_extract(title: str, extract: str) -> Optional[dict]:
     sentences = extract_sentences(extract)
     if not sentences:
         return None
@@ -432,7 +434,7 @@ def build_fact_from_extract(title: str, extract: str) -> dict | None:
 
 # ── deduplication ─────────────────────────────────────────────────────────────
 
-def load_used_ids() -> set[str]:
+def load_used_ids() -> Set[str]:
     if not os.path.exists(USED_FACTS_JSON):
         return set()
     try:
@@ -443,10 +445,10 @@ def load_used_ids() -> set[str]:
         return set()
 
 
-def load_existing_raw_ids() -> set[str]:
+def load_existing_raw_ids() -> Set[str]:
     if not os.path.exists(FACTS_RAW_CSV):
         return set()
-    ids: set[str] = set()
+    ids: Set[str] = set()
     try:
         with open(FACTS_RAW_CSV, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -462,7 +464,7 @@ def load_existing_raw_ids() -> set[str]:
 CSV_FIELDS = ["id", "title", "body", "source_page", "source_url", "category", "fetched_at"]
 
 
-def append_facts_to_csv(facts: list[dict]) -> None:
+def append_facts_to_csv(facts: List[dict]) -> None:
     file_exists = os.path.exists(FACTS_RAW_CSV) and os.path.getsize(FACTS_RAW_CSV) > 0
     with open(FACTS_RAW_CSV, "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
@@ -478,9 +480,9 @@ def append_facts_to_csv(facts: list[dict]) -> None:
 
 # ── fetch from Wikipedia ──────────────────────────────────────────────────────
 
-def fetch_from_wikipedia(topic: str | None, limit: int, skip_ids: set[str]) -> list[dict]:
+def fetch_from_wikipedia(topic: Optional[str], limit: int, skip_ids: Set[str]) -> List[dict]:
     """Try to fetch facts live from Wikipedia."""
-    pages: list[str] = []
+    pages: List[str] = []
 
     if topic:
         log.info("Searching Wikipedia for topic: %s", topic)
@@ -510,10 +512,10 @@ def fetch_from_wikipedia(topic: str | None, limit: int, skip_ids: set[str]) -> l
             except Exception as exc:
                 log.warning("Category '%s' failed: %s", cat, exc)
 
-    seen: set[str] = set()
+    seen: Set[str] = set()
     unique_pages = [p for p in pages if not (p in seen or seen.add(p))]  # type: ignore[func-returns-value]
 
-    facts: list[dict] = []
+    facts: List[dict] = []
     for title in unique_pages:
         if len(facts) >= limit:
             break
@@ -539,13 +541,13 @@ def fetch_from_wikipedia(topic: str | None, limit: int, skip_ids: set[str]) -> l
 
 # ── main ──────────────────────────────────────────────────────────────────────
 
-def fetch_facts(topic: str | None = None, limit: int = 100, offline: bool = False) -> list[dict]:
+def fetch_facts(topic: Optional[str] = None, limit: int = 100, offline: bool = False) -> List[dict]:
     used_ids = load_used_ids()
     existing_ids = load_existing_raw_ids()
     skip_ids = used_ids | existing_ids
     log.info("Skipping %d already-known fact IDs", len(skip_ids))
 
-    facts: list[dict] = []
+    facts: List[dict] = []
 
     if not offline:
         log.info("Attempting live Wikipedia fetch…")

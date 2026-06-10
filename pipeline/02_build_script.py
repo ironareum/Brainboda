@@ -11,6 +11,8 @@ Usage:
     python pipeline/02_build_script.py --dry-run   # preview only, no files written
 """
 
+from typing import List, Optional, Set
+
 import argparse
 import csv
 import json
@@ -98,7 +100,7 @@ TRANSITION_PHRASES = [
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
-def load_used_ids() -> set[str]:
+def load_used_ids() -> Set[str]:
     if not os.path.exists(USED_FACTS_JSON):
         return set()
     try:
@@ -109,14 +111,14 @@ def load_used_ids() -> set[str]:
         return set()
 
 
-def save_used_ids(ids: set[str]) -> None:
+def save_used_ids(ids: Set[str]) -> None:
     existing = load_used_ids()
     merged = existing | ids
     with open(USED_FACTS_JSON, "w") as f:
         json.dump({"used_ids": sorted(merged)}, f, indent=2)
 
 
-def load_available_facts(topic: str | None = None) -> list[dict]:
+def load_available_facts(topic: Optional[str] = None) -> List[dict]:
     """Load facts from approved CSV (preferred) or raw CSV, filtered by used IDs."""
     used_ids = load_used_ids()
 
@@ -128,7 +130,7 @@ def load_available_facts(topic: str | None = None) -> list[dict]:
     else:
         log.info("Using raw facts: %s", source)
 
-    facts: list[dict] = []
+    facts: List[dict] = []
     try:
         with open(source, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -145,7 +147,7 @@ def load_available_facts(topic: str | None = None) -> list[dict]:
     return facts
 
 
-def pick_facts(facts: list[dict], n: int, topic: str | None) -> list[dict]:
+def pick_facts(facts: List[dict], n: int, topic: Optional[str]) -> List[dict]:
     """Pick N facts, shuffled. If topic-filtered pool is too small, fill from all."""
     if len(facts) < n:
         log.warning("Only %d facts available, need %d", len(facts), n)
@@ -191,7 +193,7 @@ def estimate_duration(text: str, wpm: int = 150) -> int:
     return max(20, round(words / wpm * 60))
 
 
-def build_hook(facts: list[dict], n_total: int) -> str:
+def build_hook(facts: List[dict], n_total: int) -> str:
     """Pick the most striking fact for the hook teaser."""
     # Use fact at index 2 (fact #3) for the hook reference as per spec
     hook_fact_idx = min(2, len(facts) - 1)
@@ -210,7 +212,7 @@ def build_hook(facts: list[dict], n_total: int) -> str:
 
 
 def build_script(
-    facts: list[dict],
+    facts: List[dict],
     video_type: str = "main",
 ) -> dict:
     """Assemble the full script dictionary."""
@@ -271,14 +273,14 @@ def build_script(
     }
 
 
-def _visual_keywords(fact: dict) -> list[str]:
+def _visual_keywords(fact: dict) -> List[str]:
     """Keywords for image search (Pixabay/Pexels) for this fact."""
     base = ["brain", "psychology", "mind", "human behavior"]
     title_words = [w.lower() for w in fact["title"].split() if len(w) > 4]
     return (title_words + base)[:5]
 
 
-def _build_description(title: str, facts: list[dict]) -> str:
+def _build_description(title: str, facts: List[dict]) -> str:
     lines = [
         title,
         "",
@@ -299,7 +301,7 @@ def _build_description(title: str, facts: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def _build_tags(facts: list[dict]) -> list[str]:
+def _build_tags(facts: List[dict]) -> List[str]:
     base = [
         "psychology", "human behavior", "mind", "brain", "cognitive bias",
         "self improvement", "neuroscience", "mindset", "mental health",
@@ -307,7 +309,7 @@ def _build_tags(facts: list[dict]) -> list[str]:
     ]
     fact_tags = [f["title"].lower() for f in facts]
     all_tags = fact_tags + base
-    seen: set[str] = set()
+    seen: Set[str] = set()
     return [t for t in all_tags if not (t in seen or seen.add(t))][:30]  # type: ignore[func-returns-value]
 
 
