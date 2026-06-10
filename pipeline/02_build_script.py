@@ -250,6 +250,7 @@ def build_script(
             "heading": fact["title"],
             "source_url": fact.get("source_url", ""),
             "narration": narration,
+            "key_insight": build_key_insight(fact["title"], fact["body"]),
             "duration_est": estimate_duration(narration),
             "search_keywords": _visual_keywords(fact),
         })
@@ -282,6 +283,61 @@ def build_script(
         "description": description,
         "tags": tags,
     }
+
+
+def build_key_insight(title: str, body: str) -> str:
+    """Generate a 5-8 word punchy key insight for on-screen display."""
+    import re as _re
+
+    # Prefer sentences with numbers/percentages — most impactful
+    sentences = _re.split(r'(?<=[.!?])\s+', body.strip())
+    number_pattern = _re.compile(r'\b\d+[\d.,]*\s*(%|x|times|percent|fold|people|out of|seconds?|minutes?|hours?|days?|years?)\b', _re.IGNORECASE)
+
+    best = None
+    for s in sentences:
+        if number_pattern.search(s) and 30 <= len(s) <= 200:
+            best = s
+            break
+
+    if not best:
+        # Fall back to the second sentence (usually the core claim)
+        for s in sentences[1:]:
+            if len(s) > 30:
+                best = s
+                break
+    if not best:
+        best = sentences[0] if sentences else title
+
+    # Extract a short clause: split on comma/dash/colon and pick the punchiest part
+    parts = _re.split(r'[,;—–]', best)
+    parts = [p.strip() for p in parts if len(p.strip()) > 15]
+
+    # Score parts: prefer ones with numbers or strong psychology words
+    power_words = ["effect", "bias", "paradox", "fact", "people", "times", "more", "less", "never", "always", "actually", "proven", "shows", "found"]
+    def score(p):
+        p_low = p.lower()
+        return sum(1 for w in power_words if w in p_low) + (3 if number_pattern.search(p) else 0)
+
+    parts_sorted = sorted(parts, key=score, reverse=True)
+    chosen = parts_sorted[0] if parts_sorted else best
+
+    # Trim to 5-8 words
+    words = chosen.split()
+    if len(words) > 8:
+        # Try to find a natural cut point within 5-8 words
+        short = " ".join(words[:7])
+        # Remove trailing preposition/conjunction
+        short = _re.sub(r'\s+(a|an|the|and|or|but|in|on|of|to|is|are|was|were|that|which)\s*$', '', short, flags=_re.IGNORECASE)
+        chosen = short.strip()
+    elif len(words) < 4:
+        # Pad with title if too short
+        chosen = title
+
+    # Capitalize first letter
+    if chosen:
+        chosen = chosen[0].upper() + chosen[1:]
+
+    return chosen
 
 
 def _visual_keywords(fact: dict) -> list[str]:

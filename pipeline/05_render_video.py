@@ -235,6 +235,7 @@ def render_frame(
     height: int,
     is_hook_outro: bool = False,
     fact_n: int = None,
+    key_insight: str = None,
 ) -> "np.ndarray":
     """
     Render one frame:
@@ -293,13 +294,13 @@ def render_frame(
         d.text((bx, by), brand_text, font=font_heading, fill=(255, 255, 255, 255))
 
     # ── Key sentence text box (CENTER, 30-75% vertical) ──────────────────────
-    key = extract_key_sentence(narration) if narration else heading
+    key = key_insight or (extract_key_sentence(narration) if narration else heading)
     if not key:
         frame = overlay_rgba(frame, overlay)
         return np.array(frame)
 
-    # Wrap to max 2 lines
-    box_max_chars = max(30, int(width * 0.065))
+    # Wrap to max 2 lines — key_insight should be ≤8 words so usually 1 line
+    box_max_chars = max(25, int(width * 0.040))
     key_lines = wrap_words(key, max_chars=box_max_chars)[:2]
 
     line_h = font_text_size + 12
@@ -352,6 +353,7 @@ def build_clip(
     is_hook_outro: bool = False,
     fact_n: int = None,
     visuals_dir: str = None,
+    key_insight: str = None,
 ):
     """Build a MoviePy clip with key sentence display and Ken Burns effect."""
     duration = get_audio_duration(audio_path)
@@ -386,7 +388,7 @@ def build_clip(
         frame_img = zoomed.crop((left, top, left + width, top + height))
 
         return render_frame(frame_img, heading, narration, width, height,
-                            is_hook_outro, fact_n=fact_n)
+                            is_hook_outro, fact_n=fact_n, key_insight=key_insight)
 
     try:
         video_clip = VideoClip(make_frame, duration=duration)
@@ -420,6 +422,7 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_
             audio_path, seg["id"], seg["heading"], seg["narration"],
             width, height, seg.get("is_hook_outro", False),
             fact_n=seg.get("fact_n"), visuals_dir=visuals_dir,
+            key_insight=seg.get("key_insight"),
         )
         if clip:
             clips.append(clip)
@@ -481,6 +484,7 @@ def render_with_ffmpeg(segments, output_path, width, height, bgm_path, visuals_d
         narration = seg.get("narration", "")
         is_ho = seg.get("is_hook_outro", False)
         fact_n = seg.get("fact_n")
+        key_insight = seg.get("key_insight")
 
         if images:
             base_img = Image.open(images[0]).convert("RGB")
@@ -493,7 +497,7 @@ def render_with_ffmpeg(segments, output_path, width, height, bgm_path, visuals_d
         # Render a static frame
         if PILLOW_AVAILABLE:
             frame_arr = render_frame(crop_fill(base_img, width, height), heading, narration,
-                                     width, height, is_ho, fact_n=fact_n)
+                                     width, height, is_ho, fact_n=fact_n, key_insight=key_insight)
             frame_img = Image.fromarray(frame_arr)
         else:
             frame_img = crop_fill(base_img, width, height)
@@ -623,6 +627,7 @@ def main():
                 "audio": audio,
                 "heading": fact.get("heading", ""),
                 "narration": fact.get("narration", ""),
+                "key_insight": fact.get("key_insight"),
                 "is_hook_outro": False,
                 "fact_n": n,
             })
