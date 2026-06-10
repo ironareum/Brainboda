@@ -1,0 +1,32 @@
+2026-06-10 11:20:30,319 [INFO] =================================================================
+2026-06-10 11:20:30,320 [INFO] BRAINBODA PIPELINE START
+2026-06-10 11:20:30,320 [INFO] Type: main | Topic: any | Test: True | SkipUpload: True
+2026-06-10 11:20:30,320 [INFO] =================================================================
+2026-06-10 11:20:30,320 [INFO] Available unused facts: 20 (need 10)
+2026-06-10 11:20:30,320 [INFO] Fact pool sufficient — skipping 01_fetch_facts.py
+2026-06-10 11:20:30,320 [INFO] ────────────────────────────────────────────────────────────
+2026-06-10 11:20:30,320 [INFO] STEP: 02_build_script
+2026-06-10 11:20:30,321 [INFO] CMD:  /usr/local/bin/python /home/user/Brainboda/pipeline/02_build_script.py --type main
+2026-06-10 11:20:30,385 [INFO] STEP 02_build_script — SUCCESS
+2026-06-10 11:20:30,385 [INFO] Script: /home/user/Brainboda/output/script_main_20260610_112030.json
+2026-06-10 11:20:30,385 [INFO] ────────────────────────────────────────────────────────────
+2026-06-10 11:20:30,385 [INFO] STEP: 03_tts
+2026-06-10 11:20:30,385 [INFO] CMD:  /usr/local/bin/python /home/user/Brainboda/pipeline/03_tts.py --script /home/user/Brainboda/output/script_main_20260610_112030.json
+2026-06-10 11:20:30,850 [INFO] STEP 03_tts — SUCCESS
+2026-06-10 11:20:30,850 [INFO] ────────────────────────────────────────────────────────────
+2026-06-10 11:20:30,850 [INFO] STEP: 04_fetch_visuals
+2026-06-10 11:20:30,850 [INFO] CMD:  /usr/local/bin/python /home/user/Brainboda/pipeline/04_fetch_visuals.py --script /home/user/Brainboda/output/script_main_20260610_112030.json
+2026-06-10 11:20:31,215 [INFO] STEP 04_fetch_visuals — SUCCESS
+2026-06-10 11:20:31,215 [INFO] ────────────────────────────────────────────────────────────
+2026-06-10 11:20:31,215 [INFO] STEP: 05_render_video
+2026-06-10 11:20:31,215 [INFO] CMD:  /usr/local/bin/python /home/user/Brainboda/pipeline/05_render_video.py --script /home/user/Brainboda/output/script_main_20260610_112030.json --test
+2026-06-10 11:20:31,583 [ERROR] STEP 05_render_video — FAILED (exit 1)
+2026-06-10 11:20:31,583 [WARNING] 05_render_video failed — continuing to thumbnail
+2026-06-10 11:20:31,583 [INFO] ────────────────────────────────────────────────────────────
+2026-06-10 11:20:31,583 [INFO] STEP: 06_thumbnail
+2026-06-10 11:20:31,583 [INFO] CMD:  /usr/local/bin/python /home/user/Brainboda/pipeline/06_thumbnail.py --script /home/user/Brainboda/output/script_main_20260610_112030.json
+2026-06-10 11:20:31,697 [INFO] STEP 06_thumbnail — SUCCESS
+2026-06-10 11:20:31,697 [INFO] Upload skipped (--test or --skip-upload)
+2026-06-10 11:20:31,697 [INFO] =================================================================
+2026-06-10 11:20:31,697 [INFO] PIPELINE COMPLETE in 1 seconds
+2026-06-10 11:20:31,697 [INFO] =================================================================

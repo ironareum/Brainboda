@@ -1,0 +1,186 @@
+{
+  "type": "main",
+  "created_at": "2026-06-10T11:20:30",
+  "title": "10 Incredible Psychology Facts About the Human Mind",
+  "hook": "The human brain is the most complex object in the known universe — and it's full of secrets. Anchoring is a cognitive bias where people rely too heavily on the first piece of information they receive. Here are 10 facts you need to know.",
+  "hook_duration_est": 20,
+  "facts": [
+    {
+      "n": 1,
+      "id": "overthinking",
+      "heading": "Overthinking and Rumination",
+      "source_url": "https://en.wikipedia.org/wiki/Rumination_(psychology)",
+      "narration": "Fact 1: Overthinking and Rumination. Overthinking, or rumination, is the habit of thinking about something too much or for too long, often dwelling on problems or negative experiences. Research shows that chronic overthinking is linked to depression and anxiety. Research shows that chronic overthinking is linked to depression and anxiety.",
+      "duration_est": 20,
+      "search_keywords": [
+        "overthinking",
+        "rumination",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 2,
+      "id": "placebo_effect",
+      "heading": "Placebo Effect",
+      "source_url": "https://en.wikipedia.org/wiki/Placebo",
+      "narration": "Fact 2: Placebo Effect. The placebo effect is a beneficial effect produced by a treatment that cannot be attributed to the properties of the placebo itself but must be due to the patient's belief in that treatment. Studies show that even when patients know they are taking a placebo, they still experience real physical improvements. This proves the extraordinary power of belief over biology.",
+      "duration_est": 26,
+      "search_keywords": [
+        "placebo",
+        "effect",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 3,
+      "id": "anchoring_bias",
+      "heading": "Anchoring Bias",
+      "source_url": "https://en.wikipedia.org/wiki/Anchoring_(cognitive_bias)",
+      "narration": "Fact 3: Anchoring Bias. Anchoring is a cognitive bias where people rely too heavily on the first piece of information they receive. Once an anchor is set, all subsequent judgments are made in relation to it. What this tells us is for example, if you see a jacket 'marked down' from $500 to $250, you feel it's a deal — even if $250 is still too expensive for that jacket.",
+      "duration_est": 28,
+      "search_keywords": [
+        "anchoring",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 4,
+      "id": "liking_social_psychology",
+      "heading": "Liking (Social Psychology)",
+      "source_url": "https://en.wikipedia.org/wiki/Liking",
+      "narration": "Fact 4: Liking (Social Psychology). The principle of liking states that people are more easily persuaded by people they like. We like people who are similar to us, who compliment us, and who we associate with good things. This explains why celebrities endorse products — we like them, so we trust their recommendations. This explains why celebrities endorse products — we like them, so we trust their recommendations.",
+      "duration_est": 27,
+      "search_keywords": [
+        "liking",
+        "(social",
+        "psychology)",
+        "brain",
+        "psychology"
+      ]
+    },
+    {
+      "n": 5,
+      "id": "psychological_manipulation",
+      "heading": "Psychological Manipulation",
+      "source_url": "https://en.wikipedia.org/wiki/Psychological_manipulation",
+      "narration": "Fact 5: Psychological Manipulation. Psychological manipulation involves influencing a person using deceptive or underhanded tactics that benefit the manipulator at the expense of the victim. Common techniques include gaslighting, love bombing, guilt-tripping, and silent treatment. In practice, this means understanding these tactics is the first step to protecting yourself from toxic relationships and environments.",
+      "duration_est": 22,
+      "search_keywords": [
+        "psychological",
+        "manipulation",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 6,
+      "id": "reciprocity_social_psychology",
+      "heading": "Reciprocity (Social Psychology)",
+      "source_url": "https://en.wikipedia.org/wiki/Reciprocity_(social_psychology)",
+      "narration": "Fact 6: Reciprocity (Social Psychology). Reciprocity in social psychology is the concept that in response to friendly actions, people are frequently much nicer and more cooperative than predicted by the model of self-interest. When someone gives you a gift — even an unwanted one — you feel an obligation to give something back. In real life, this translates to salespeople exploit this constantly by offering free samples.",
+      "duration_est": 27,
+      "search_keywords": [
+        "reciprocity",
+        "(social",
+        "psychology)",
+        "brain",
+        "psychology"
+      ]
+    },
+    {
+      "n": 7,
+      "id": "emotional_intelligence",
+      "heading": "Emotional Intelligence",
+      "source_url": "https://en.wikipedia.org/wiki/Emotional_intelligence",
+      "narration": "Fact 7: Emotional Intelligence. Emotional intelligence is the ability to perceive, use, understand, manage, and handle emotions. People with high emotional intelligence recognize their own emotions and those of others, distinguish between different feelings, and use emotional information to guide thinking and behavior. In real life, this translates to studies consistently show EQ predicts professional success better than IQ in most careers.",
+      "duration_est": 25,
+      "search_keywords": [
+        "emotional",
+        "intelligence",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 8,
+      "id": "commitment_consistency",
+      "heading": "Commitment and Consistency",
+      "source_url": "https://en.wikipedia.org/wiki/Foot-in-the-door_technique",
+      "narration": "Fact 8: Commitment and Consistency. The principle of commitment and consistency states that once we make a commitment — especially a public one — we feel psychological pressure to behave consistently with that commitment. This is why car salespeople first get you to agree to small requests before asking for the big sale. The practical takeaway here is once you say 'yes' once, your brain pushes you to keep saying yes.",
+      "duration_est": 28,
+      "search_keywords": [
+        "commitment",
+        "consistency",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 9,
+      "id": "sunk_cost_fallacy",
+      "heading": "Sunk Cost Fallacy",
+      "source_url": "https://en.wikipedia.org/wiki/Sunk_cost",
+      "narration": "Fact 9: Sunk Cost Fallacy. The sunk cost fallacy is the tendency to continue an endeavor because of previously invested resources — time, money, or effort — even when it no longer makes rational sense to do so. We stay in bad movies, bad relationships, and bad jobs because we've already 'invested' so much. What this tells us is a rational decision should be based only on future costs and benefits.",
+      "duration_est": 28,
+      "search_keywords": [
+        "fallacy",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 10,
+      "id": "cognitive_dissonance",
+      "heading": "Cognitive Dissonance",
+      "source_url": "https://en.wikipedia.org/wiki/Cognitive_dissonance",
+      "narration": "Fact 10: Cognitive Dissonance. Cognitive dissonance is the mental discomfort experienced by a person who holds two or more contradictory beliefs, values, or ideas simultaneously. People tend to seek consistency among their cognitions and will change their attitudes or behaviors to reduce the discomfort. This means that this is why people rationalize bad decisions rather than admit they were wrong.",
+      "duration_est": 24,
+      "search_keywords": [
+        "cognitive",
+        "dissonance",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    }
+  ],
+  "outro": "The human mind is endlessly fascinating. Which fact are you going to think about today? Comment below, and hit subscribe so you never miss an episode.",
+  "outro_duration_est": 20,
+  "total_duration_est": 295,
+  "description": "10 Incredible Psychology Facts About the Human Mind\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\nWhat you'll learn:\n  ✦ Overthinking and Rumination\n  ✦ Placebo Effect\n  ✦ Anchoring Bias\n  ✦ Liking (Social Psychology)\n  ✦ Psychological Manipulation\n  ✦ Reciprocity (Social Psychology)\n  ✦ Emotional Intelligence\n  ✦ Commitment and Consistency\n  ✦ Sunk Cost Fallacy\n  ✦ Cognitive Dissonance\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience",
+  "tags": [
+    "overthinking and rumination",
+    "placebo effect",
+    "anchoring bias",
+    "liking (social psychology)",
+    "psychological manipulation",
+    "reciprocity (social psychology)",
+    "emotional intelligence",
+    "commitment and consistency",
+    "sunk cost fallacy",
+    "cognitive dissonance",
+    "psychology",
+    "human behavior",
+    "mind",
+    "brain",
+    "cognitive bias",
+    "self improvement",
+    "neuroscience",
+    "mindset",
+    "mental health",
+    "psychology facts",
+    "brainboda"
+  ]
+}

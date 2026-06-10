@@ -1,0 +1,186 @@
+{
+  "type": "main",
+  "created_at": "2026-06-10T11:23:34",
+  "title": "10 Dark Psychology Facts That Will Make You Think Twice",
+  "hook": "What if everything you believed about yourself was shaped by hidden mental forces? A growth mindset, coined by Carol Dweck, is the belief that one's abilities and intelligence can be developed through dedication and hard work. Let's dive in.",
+  "hook_duration_est": 20,
+  "facts": [
+    {
+      "n": 1,
+      "id": "priming_psychology",
+      "heading": "Priming (Psychology)",
+      "source_url": "https://en.wikipedia.org/wiki/Priming_(psychology)",
+      "narration": "Fact 1: Priming (Psychology). Priming is an implicit memory effect in which exposure to a stimulus influences a response to a later stimulus. For example, if you hear the word 'yellow,' you will recognize the word 'banana' faster than 'doctor' because yellow and banana are closely associated. For you, this means advertisers and politicians use priming constantly to influence how you feel about their message.",
+      "duration_est": 26,
+      "search_keywords": [
+        "priming",
+        "(psychology)",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 2,
+      "id": "social_influence",
+      "heading": "Social Influence",
+      "source_url": "https://en.wikipedia.org/wiki/Social_influence",
+      "narration": "Fact 2: Social Influence. Social influence occurs when one's emotions, opinions, or behaviors are affected by others. It takes many forms and can be seen in conformity, socialization, peer pressure, obedience, leadership, persuasion, sales, and marketing. For you, this means solomon Asch's conformity experiments showed that people will deny the evidence of their own eyes to agree with a group — the desire to belong is that powerful.",
+      "duration_est": 27,
+      "search_keywords": [
+        "social",
+        "influence",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 3,
+      "id": "growth_mindset",
+      "heading": "Growth Mindset",
+      "source_url": "https://en.wikipedia.org/wiki/Mindset#Fixed_and_growth",
+      "narration": "Fact 3: Growth Mindset. A growth mindset, coined by Carol Dweck, is the belief that one's abilities and intelligence can be developed through dedication and hard work. People with a growth mindset embrace challenges, persist through obstacles, and see effort as a path to mastery. Research shows students taught growth mindset principles achieve significantly higher academic outcomes.",
+      "duration_est": 23,
+      "search_keywords": [
+        "growth",
+        "mindset",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 4,
+      "id": "fundamental_attribution_error",
+      "heading": "Fundamental Attribution Error",
+      "source_url": "https://en.wikipedia.org/wiki/Fundamental_attribution_error",
+      "narration": "Fact 4: Fundamental Attribution Error. The fundamental attribution error is the tendency for people to over-emphasize dispositional explanations for behaviors observed in others while under-emphasizing situational explanations. When someone cuts you off in traffic, you think they're a bad person — not that they're rushing to the hospital. For you, this means yet when we make the same mistake, we blame circumstances.",
+      "duration_est": 25,
+      "search_keywords": [
+        "fundamental",
+        "attribution",
+        "error",
+        "brain",
+        "psychology"
+      ]
+    },
+    {
+      "n": 5,
+      "id": "bystander_effect",
+      "heading": "Bystander Effect",
+      "source_url": "https://en.wikipedia.org/wiki/Bystander_effect",
+      "narration": "Fact 5: Bystander Effect. The bystander effect is a social psychological theory that states that individuals are less likely to offer help in an emergency situation when other people are present. The greater the number of bystanders, the less likely it is that any one of them will help. What's remarkable about this is responsibility diffuses through the crowd — everyone assumes someone else will act.",
+      "duration_est": 26,
+      "search_keywords": [
+        "bystander",
+        "effect",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 6,
+      "id": "framing_effect",
+      "heading": "Framing Effect",
+      "source_url": "https://en.wikipedia.org/wiki/Framing_effect_(psychology)",
+      "narration": "Fact 6: Framing Effect. The framing effect is a cognitive bias where people decide on options based on whether the options are presented with positive or negative connotations. A medical treatment described as having a '90% survival rate' is judged far more favorably than one described as having a '10% mortality rate' — even though they are statistically identical. For you, this means the way information is packaged changes our choices.",
+      "duration_est": 28,
+      "search_keywords": [
+        "framing",
+        "effect",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 7,
+      "id": "confirmation_bias",
+      "heading": "Confirmation Bias",
+      "source_url": "https://en.wikipedia.org/wiki/Confirmation_bias",
+      "narration": "Fact 7: Confirmation Bias. Confirmation bias is the tendency to search for, interpret, favor, and recall information in a way that confirms or supports one's prior beliefs or values. People display this bias most strongly for emotionally significant issues and for established beliefs. This means that once we believe something, we unconsciously filter reality to support it.",
+      "duration_est": 23,
+      "search_keywords": [
+        "confirmation",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 8,
+      "id": "dunning_kruger_effect",
+      "heading": "Dunning–Kruger Effect",
+      "source_url": "https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect",
+      "narration": "Fact 8: Dunning–Kruger Effect. The Dunning–Kruger effect is a cognitive bias in which people with limited competence in a particular domain overestimate their abilities. People with low ability at a task overestimate their own ability, whereas people with high ability at a task underestimate their own ability. This means that incompetence prevents self-recognition of incompetence.",
+      "duration_est": 22,
+      "search_keywords": [
+        "dunning–kruger",
+        "effect",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 9,
+      "id": "social_proof",
+      "heading": "Social Proof",
+      "source_url": "https://en.wikipedia.org/wiki/Social_proof",
+      "narration": "Fact 9: Social Proof. Social proof is a psychological phenomenon where people assume the actions of others in an attempt to reflect correct behavior in a given situation. If a restaurant is empty, we assume it's bad; if it's packed, we assume it's good. What this tells us is this is why reviews, testimonials, and follower counts are so persuasive — we look to others to tell us what to value.",
+      "duration_est": 28,
+      "search_keywords": [
+        "social",
+        "proof",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 10,
+      "id": "habit_psychology",
+      "heading": "Habit Formation",
+      "source_url": "https://en.wikipedia.org/wiki/Habit",
+      "narration": "Fact 10: Habit Formation. A habit is a routine of behavior that is repeated regularly and tends to occur subconsciously. Neuroscience research shows that habits are stored in the basal ganglia, freeing up the prefrontal cortex for new decisions. The habit loop — cue, routine, reward — means that changing behavior requires identifying and replacing routines while keeping the same cue and reward.",
+      "duration_est": 25,
+      "search_keywords": [
+        "habit",
+        "formation",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    }
+  ],
+  "outro": "The human mind is endlessly fascinating. Which fact are you going to think about today? Comment below, and hit subscribe so you never miss an episode.",
+  "outro_duration_est": 20,
+  "total_duration_est": 293,
+  "description": "10 Dark Psychology Facts That Will Make You Think Twice\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\nWhat you'll learn:\n  ✦ Priming (Psychology)\n  ✦ Social Influence\n  ✦ Growth Mindset\n  ✦ Fundamental Attribution Error\n  ✦ Bystander Effect\n  ✦ Framing Effect\n  ✦ Confirmation Bias\n  ✦ Dunning–Kruger Effect\n  ✦ Social Proof\n  ✦ Habit Formation\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience",
+  "tags": [
+    "priming (psychology)",
+    "social influence",
+    "growth mindset",
+    "fundamental attribution error",
+    "bystander effect",
+    "framing effect",
+    "confirmation bias",
+    "dunning–kruger effect",
+    "social proof",
+    "habit formation",
+    "psychology",
+    "human behavior",
+    "mind",
+    "brain",
+    "cognitive bias",
+    "self improvement",
+    "neuroscience",
+    "mindset",
+    "mental health",
+    "psychology facts",
+    "brainboda"
+  ]
+}

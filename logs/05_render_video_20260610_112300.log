@@ -1,0 +1,19 @@
+2026-06-10 11:23:00,915 [INFO] ffmpeg binary: /usr/local/lib/python3.11/dist-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2
+2026-06-10 11:23:01,024 [INFO] MoviePy available
+2026-06-10 11:23:01,024 [INFO] === 05_render_video.py START ===
+2026-06-10 11:23:01,025 [INFO] Script: output/script_main_20260610_112030.json
+2026-06-10 11:23:01,025 [INFO] TEST mode — rendering only 2 facts
+2026-06-10 11:23:01,025 [INFO] Segments to render: 4
+2026-06-10 11:23:01,025 [INFO] No bgm.mp3 found — skipping BGM
+2026-06-10 11:23:01,025 [INFO] Using MoviePy renderer
+2026-06-10 11:23:01,100 [ERROR] build_clip_moviepy failed for hook: 'VideoClip' object has no attribute 'set_duration'
+2026-06-10 11:23:01,172 [ERROR] build_clip_moviepy failed for overthinking: 'VideoClip' object has no attribute 'set_duration'
+2026-06-10 11:23:01,256 [ERROR] build_clip_moviepy failed for placebo_effect: 'VideoClip' object has no attribute 'set_duration'
+2026-06-10 11:23:01,301 [ERROR] build_clip_moviepy failed for outro: 'VideoClip' object has no attribute 'set_duration'
+2026-06-10 11:23:01,303 [ERROR] No clips built
+2026-06-10 11:23:01,303 [INFO] Using ffmpeg fallback renderer
+2026-06-10 11:23:07,621 [INFO]   Rendered segment 0: /tmp/tmpahw0wdp_/seg_000.mp4
+2026-06-10 11:23:12,810 [INFO]   Rendered segment 1: /tmp/tmpahw0wdp_/seg_001.mp4
+2026-06-10 11:23:17,914 [INFO]   Rendered segment 2: /tmp/tmpahw0wdp_/seg_002.mp4
+2026-06-10 11:23:22,679 [INFO]   Rendered segment 3: /tmp/tmpahw0wdp_/seg_003.mp4
+2026-06-10 11:23:22,778 [INFO] === 05_render_video.py DONE ===

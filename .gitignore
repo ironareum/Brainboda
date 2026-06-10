@@ -1,0 +1,24 @@
+# Generated output (large files - manage locally)
+output/video_*.mp4
+output/audio/*.mp3
+output/visuals/
+
+# Keep these
+!output/.gitkeep
+!output/script_*.json
+!output/thumbnail_*.jpg
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+config/__pycache__/
+pipeline/__pycache__/
+
+# Credentials (NEVER commit)
+config/youtube_token.json
+client_secrets.json
+config/client_secrets.json
+
+# Logs (optional - keep for debugging)
+# logs/

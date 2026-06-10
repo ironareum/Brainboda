@@ -1,0 +1,54 @@
+2026-06-10 11:23:34,480 [INFO] === 04_fetch_visuals.py START ===
+2026-06-10 11:23:34,480 [INFO] Script: /home/user/Brainboda/output/script_main_20260610_112334.json
+2026-06-10 11:23:34,480 [INFO] Facts to process: 10
+2026-06-10 11:23:34,480 [INFO]   Fetching images for: priming_psychology (query: 'priming (psychology) brain')
+2026-06-10 11:23:34,480 [INFO]   Both APIs failed — generating placeholder images for priming_psychology
+2026-06-10 11:23:34,498 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,508 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,508 [INFO]   priming_psychology → 2 images
+2026-06-10 11:23:34,508 [INFO]   Fetching images for: social_influence (query: 'social influence brain')
+2026-06-10 11:23:34,508 [INFO]   Both APIs failed — generating placeholder images for social_influence
+2026-06-10 11:23:34,515 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,522 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,522 [INFO]   social_influence → 2 images
+2026-06-10 11:23:34,522 [INFO]   Fetching images for: growth_mindset (query: 'growth mindset brain')
+2026-06-10 11:23:34,522 [INFO]   Both APIs failed — generating placeholder images for growth_mindset
+2026-06-10 11:23:34,529 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,536 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,536 [INFO]   growth_mindset → 2 images
+2026-06-10 11:23:34,536 [INFO]   Fetching images for: fundamental_attribution_error (query: 'fundamental attribution error')
+2026-06-10 11:23:34,536 [INFO]   Both APIs failed — generating placeholder images for fundamental_attribution_error
+2026-06-10 11:23:34,544 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,553 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,553 [INFO]   fundamental_attribution_error → 2 images
+2026-06-10 11:23:34,553 [INFO]   Fetching images for: bystander_effect (query: 'bystander effect brain')
+2026-06-10 11:23:34,553 [INFO]   Both APIs failed — generating placeholder images for bystander_effect
+2026-06-10 11:23:34,560 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,567 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,567 [INFO]   bystander_effect → 2 images
+2026-06-10 11:23:34,567 [INFO]   Fetching images for: framing_effect (query: 'framing effect brain')
+2026-06-10 11:23:34,567 [INFO]   Both APIs failed — generating placeholder images for framing_effect
+2026-06-10 11:23:34,574 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,581 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,581 [INFO]   framing_effect → 2 images
+2026-06-10 11:23:34,581 [INFO]   Fetching images for: confirmation_bias (query: 'confirmation brain psychology')
+2026-06-10 11:23:34,581 [INFO]   Both APIs failed — generating placeholder images for confirmation_bias
+2026-06-10 11:23:34,588 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,595 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,595 [INFO]   confirmation_bias → 2 images
+2026-06-10 11:23:34,595 [INFO]   Fetching images for: dunning_kruger_effect (query: 'dunning–kruger effect brain')
+2026-06-10 11:23:34,595 [INFO]   Both APIs failed — generating placeholder images for dunning_kruger_effect
+2026-06-10 11:23:34,603 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,610 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,610 [INFO]   dunning_kruger_effect → 2 images
+2026-06-10 11:23:34,610 [INFO]   Fetching images for: social_proof (query: 'social proof brain')
+2026-06-10 11:23:34,610 [INFO]   Both APIs failed — generating placeholder images for social_proof
+2026-06-10 11:23:34,617 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,623 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,623 [INFO]   social_proof → 2 images
+2026-06-10 11:23:34,623 [INFO]   Fetching images for: habit_psychology (query: 'habit formation brain')
+2026-06-10 11:23:34,623 [INFO]   Both APIs failed — generating placeholder images for habit_psychology
+2026-06-10 11:23:34,629 [INFO]     Generated placeholder: img_01.jpg
+2026-06-10 11:23:34,636 [INFO]     Generated placeholder: img_02.jpg
+2026-06-10 11:23:34,636 [INFO]   habit_psychology → 2 images
+2026-06-10 11:23:34,636 [INFO] === 04_fetch_visuals.py DONE ===

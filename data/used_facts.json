@@ -1,14 +1,34 @@
 {
   "used_ids": [
+    "anchoring_bias",
     "availability_heuristic",
     "body_language",
+    "bystander_effect",
     "cognitive_bias",
+    "cognitive_dissonance",
+    "commitment_consistency",
+    "confirmation_bias",
+    "dunning_kruger_effect",
+    "emotional_intelligence",
+    "framing_effect",
+    "fundamental_attribution_error",
+    "growth_mindset",
+    "habit_psychology",
     "halo_effect",
     "hawthorne_effect",
     "impostor_syndrome",
+    "liking_social_psychology",
     "loss_aversion",
+    "overthinking",
     "peak_end_rule",
+    "placebo_effect",
+    "priming_psychology",
+    "psychological_manipulation",
+    "reciprocity_social_psychology",
     "scarcity_psychology",
-    "self_fulfilling_prophecy"
+    "self_fulfilling_prophecy",
+    "social_influence",
+    "social_proof",
+    "sunk_cost_fallacy"
   ]
 }

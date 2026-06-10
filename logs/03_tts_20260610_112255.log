@@ -1,0 +1,44 @@
+2026-06-10 11:22:55,123 [INFO] ffmpeg binary: /usr/local/lib/python3.11/dist-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2
+2026-06-10 11:22:55,286 [INFO] === 03_tts.py START ===
+2026-06-10 11:22:55,286 [INFO] Voice: en-US-GuyNeural
+2026-06-10 11:22:55,286 [INFO] Audio output dir: /home/user/Brainboda/output/audio
+2026-06-10 11:22:55,286 [INFO] Loading script: output/script_main_20260610_112030.json
+2026-06-10 11:22:55,298 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/hook.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,298 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,327 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/hook.mp3 (20000ms)
+2026-06-10 11:22:55,336 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_01.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,337 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,365 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_01.mp3 (20000ms)
+2026-06-10 11:22:55,386 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_02.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,386 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,418 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_02.mp3 (26000ms)
+2026-06-10 11:22:55,427 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_03.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,427 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,463 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_03.mp3 (28000ms)
+2026-06-10 11:22:55,472 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_04.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,472 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,505 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_04.mp3 (27000ms)
+2026-06-10 11:22:55,513 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_05.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,513 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,539 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_05.mp3 (22000ms)
+2026-06-10 11:22:55,547 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_06.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,547 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,575 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_06.mp3 (27000ms)
+2026-06-10 11:22:55,583 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_07.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,583 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,609 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_07.mp3 (25000ms)
+2026-06-10 11:22:55,618 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_08.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,618 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,647 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_08.mp3 (28000ms)
+2026-06-10 11:22:55,655 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_09.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,655 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,685 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_09.mp3 (28000ms)
+2026-06-10 11:22:55,705 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/fact_10.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,705 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,736 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/fact_10.mp3 (24000ms)
+2026-06-10 11:22:55,743 [WARNING]   [edge-tts] Failed: /home/user/Brainboda/output/audio/outro.mp3 — Cannot connect to host speech.platform.bing.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)')]
+2026-06-10 11:22:55,743 [WARNING]   edge-tts failed, using silent fallback
+2026-06-10 11:22:55,768 [INFO]   [fallback] Silent audio: /home/user/Brainboda/output/audio/outro.mp3 (20000ms)
+2026-06-10 11:22:55,769 [WARNING] pydub concat failed: [Errno 2] No such file or directory: 'ffprobe' — trying ffmpeg
+2026-06-10 11:22:56,040 [INFO] ffmpeg concat succeeded → /home/user/Brainboda/output/audio/full_narration.mp3
+2026-06-10 11:22:56,041 [INFO] === 03_tts.py DONE ===
