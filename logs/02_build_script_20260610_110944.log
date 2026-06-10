@@ -1,0 +1,7 @@
+2026-06-10 11:09:44,395 [INFO] === 02_build_script.py START ===
+2026-06-10 11:09:44,395 [INFO] Type: short | Topic: any | Dry-run: True
+2026-06-10 11:09:44,395 [INFO] Using raw facts: /home/user/Brainboda/data/facts_raw.csv
+2026-06-10 11:09:44,396 [INFO] Available (unused) facts: 20
+2026-06-10 11:09:44,396 [INFO] Selected 3 facts for short video
+2026-06-10 11:09:44,397 [INFO] [DRY RUN] Script NOT saved. No IDs marked as used.
+2026-06-10 11:09:44,397 [INFO] === 02_build_script.py DONE ===

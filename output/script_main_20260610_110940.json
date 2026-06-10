@@ -1,0 +1,185 @@
+{
+  "type": "main",
+  "created_at": "2026-06-10T11:09:40",
+  "title": "10 Dark Psychology Facts That Will Make You Think Twice",
+  "hook": "Scientists have discovered something shocking about the human mind. The availability heuristic is a mental shortcut that relies on immediate examples that come to a given person's mind when evaluating a specific topic, concept, method, or decision. And that's just the beginning.",
+  "hook_duration_est": 20,
+  "facts": [
+    {
+      "n": 1,
+      "id": "hawthorne_effect",
+      "heading": "Hawthorne Effect",
+      "source_url": "https://en.wikipedia.org/wiki/Hawthorne_effect",
+      "narration": "Fact 1: Hawthorne Effect. The Hawthorne effect is a type of reactivity in which individuals modify an aspect of their behavior in response to their awareness of being observed. Workers at a factory increased their productivity simply because they knew researchers were watching — not because of any actual change in working conditions. This means that people perform differently when they know they are being evaluated.",
+      "duration_est": 26,
+      "search_keywords": [
+        "hawthorne",
+        "effect",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 2,
+      "id": "halo_effect",
+      "heading": "Halo Effect",
+      "source_url": "https://en.wikipedia.org/wiki/Halo_effect",
+      "narration": "Fact 2: Halo Effect. The halo effect is a cognitive bias in which an observer's overall impression of a person influences the observer's feelings and thoughts about that person's character or properties. The practical takeaway here is if you find someone physically attractive, you are more likely to also assume they are intelligent, kind, and competent — even with no evidence.",
+      "duration_est": 24,
+      "search_keywords": [
+        "effect",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 3,
+      "id": "availability_heuristic",
+      "heading": "Availability Heuristic",
+      "source_url": "https://en.wikipedia.org/wiki/Availability_heuristic",
+      "narration": "Fact 3: Availability Heuristic. The availability heuristic is a mental shortcut that relies on immediate examples that come to a given person's mind when evaluating a specific topic, concept, method, or decision. After seeing news stories about plane crashes, people overestimate the danger of flying — even though driving is statistically far more deadly. In real life, this translates to vivid memories distort our sense of probability.",
+      "duration_est": 27,
+      "search_keywords": [
+        "availability",
+        "heuristic",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 4,
+      "id": "impostor_syndrome",
+      "heading": "Impostor Syndrome",
+      "source_url": "https://en.wikipedia.org/wiki/Impostor_syndrome",
+      "narration": "Fact 4: Impostor Syndrome. Impostor syndrome is a psychological pattern in which an individual doubts their skills, talents, or accomplishments and has a persistent internalized fear of being exposed as a fraud. Despite external evidence of their competence, those experiencing this phenomenon remain convinced that they do not deserve their success. In real life, this translates to studies suggest up to 70% of people experience this at some point in their lives.",
+      "duration_est": 29,
+      "search_keywords": [
+        "impostor",
+        "syndrome",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 5,
+      "id": "self_fulfilling_prophecy",
+      "heading": "Self-Fulfilling Prophecy",
+      "source_url": "https://en.wikipedia.org/wiki/Self-fulfilling_prophecy",
+      "narration": "Fact 5: Self-Fulfilling Prophecy. A self-fulfilling prophecy is a prediction that directly or indirectly causes itself to become true. If you believe you will fail a test, you may study less, leading to actual failure. Robert Merton, who coined the term, showed that expectations shape reality — which means the stories we tell ourselves about ourselves become our destiny.",
+      "duration_est": 24,
+      "search_keywords": [
+        "self-fulfilling",
+        "prophecy",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    },
+    {
+      "n": 6,
+      "id": "cognitive_bias",
+      "heading": "Cognitive Bias",
+      "source_url": "https://en.wikipedia.org/wiki/Cognitive_bias",
+      "narration": "Fact 6: Cognitive Bias. A cognitive bias is a systematic pattern of deviation from rationality in judgment. People create their own subjective reality from their perception of the input, which can dictate their behavior in the world. What's remarkable about this is the most common cognitive bias is confirmation bias — the tendency to search for information that confirms one's preexisting beliefs.",
+      "duration_est": 25,
+      "search_keywords": [
+        "cognitive",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 7,
+      "id": "loss_aversion",
+      "heading": "Loss Aversion",
+      "source_url": "https://en.wikipedia.org/wiki/Loss_aversion",
+      "narration": "Fact 7: Loss Aversion. Loss aversion is the psychological principle that people prefer to avoid losses over acquiring equivalent gains. Research by Kahneman and Tversky found that losses are psychologically twice as powerful as gains. This means losing $100 feels roughly as bad as gaining $200 feels good — which is why fear of failure keeps people from taking smart risks.",
+      "duration_est": 24,
+      "search_keywords": [
+        "aversion",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 8,
+      "id": "body_language",
+      "heading": "Body Language",
+      "source_url": "https://en.wikipedia.org/wiki/Body_language",
+      "narration": "Fact 8: Body Language. Body language is a type of nonverbal communication in which physical behaviors, as opposed to words, are used to express or convey information. Albert Mehrabian's research suggested that communication is 7% verbal, 38% vocal tone, and 55% body language. What this tells us is confident postures — taking up space, maintaining eye contact, and standing tall — are read by others as signals of authority and trustworthiness.",
+      "duration_est": 28,
+      "search_keywords": [
+        "language",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 9,
+      "id": "peak_end_rule",
+      "heading": "Peak–End Rule",
+      "source_url": "https://en.wikipedia.org/wiki/Peak%E2%80%93end_rule",
+      "narration": "Fact 9: Peak–End Rule. The peak–end rule is a psychological heuristic in which people judge an experience based on how they felt at its most intense point and at its end, rather than based on the sum or average of every moment. In practice, this means a painful medical procedure followed by a brief period of mild discomfort is remembered as less terrible than a shorter procedure that ends at peak pain.",
+      "duration_est": 29,
+      "search_keywords": [
+        "peak–end",
+        "brain",
+        "psychology",
+        "mind",
+        "human behavior"
+      ]
+    },
+    {
+      "n": 10,
+      "id": "scarcity_psychology",
+      "heading": "Scarcity (Psychology)",
+      "source_url": "https://en.wikipedia.org/wiki/Scarcity_(social_psychology)",
+      "narration": "Fact 10: Scarcity (Psychology). Scarcity is a principle of influence where people assign more value to opportunities when they are less available. 'Only 3 left in stock' triggers a sense of urgency that bypasses rational thinking. Robert Cialdini identified scarcity as one of the six universal principles of persuasion — and it explains why limited-edition products and countdown timers are so effective at driving purchases.",
+      "duration_est": 26,
+      "search_keywords": [
+        "scarcity",
+        "(psychology)",
+        "brain",
+        "psychology",
+        "mind"
+      ]
+    }
+  ],
+  "outro": "So which of these 10 facts hit the hardest? Drop it in the comments. Subscribe to Brainboda for more mind-expanding psychology content every week.",
+  "outro_duration_est": 20,
+  "total_duration_est": 302,
+  "description": "10 Dark Psychology Facts That Will Make You Think Twice\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\nWhat you'll learn:\n  ✦ Hawthorne Effect\n  ✦ Halo Effect\n  ✦ Availability Heuristic\n  ✦ Impostor Syndrome\n  ✦ Self-Fulfilling Prophecy\n  ✦ Cognitive Bias\n  ✦ Loss Aversion\n  ✦ Body Language\n  ✦ Peak–End Rule\n  ✦ Scarcity (Psychology)\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience",
+  "tags": [
+    "hawthorne effect",
+    "halo effect",
+    "availability heuristic",
+    "impostor syndrome",
+    "self-fulfilling prophecy",
+    "cognitive bias",
+    "loss aversion",
+    "body language",
+    "peak–end rule",
+    "scarcity (psychology)",
+    "psychology",
+    "human behavior",
+    "mind",
+    "brain",
+    "self improvement",
+    "neuroscience",
+    "mindset",
+    "mental health",
+    "psychology facts",
+    "brainboda"
+  ]
+}

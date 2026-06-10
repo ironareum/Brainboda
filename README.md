@@ -148,35 +148,41 @@ python pipeline/01_fetch_facts.py --offline --limit 30
 
 ---
 
-### 🔄 진행 예정
+#### 2단계 — `pipeline/02_build_script.py` (2026-06-10)
 
-#### 2단계 — `pipeline/02_build_script.py`
+`facts_raw.csv`에서 facts를 선택하여 영어 스크립트 JSON을 생성.
 
-`facts_raw.csv`에서 facts 10개를 선택하여 영어 스크립트 JSON을 생성.
-
-**구현 예정 내용:**
-- `used_facts.json`에 없는 facts 중 랜덤 10개(또는 3개) 선택
-- YouTube 제목 자동 생성 (훅 패턴 템플릿 적용)
-  - `"10 Psychological Facts That Will Change How You See People"`
-  - `"7 Psychological Tricks Manipulators Use On You Every Day"`
-- 나레이션 포맷: `"Fact N: [제목]. [body]. This means that [실생활 적용]."`
-- YouTube 설명란 텍스트 자동 생성
-- 해시태그/태그 자동 생성
+**구현 내용:**
+- `used_facts.json`에 없는 facts 중 랜덤 선택 (메인: 10개, Shorts: 3개)
+- YouTube 제목 자동 생성 — 10가지 훅 패턴 템플릿에서 랜덤 선택
+- 나레이션 포맷: `"Fact N: [제목]. [설명]. [실생활 적용 문장]."`
+- YouTube 설명란 + 해시태그 + 태그 자동 생성
 - 선택된 fact IDs → `used_facts.json`에 즉시 마킹
-- 출력: `output/script_{timestamp}.json`
+- `--dry-run` 플래그로 파일 저장/마킹 없이 미리보기 가능
+- 출력: `output/script_{type}_{timestamp}.json`
+
+**테스트 결과:**
+```bash
+python pipeline/02_build_script.py --type main
+# → 제목: "10 Dark Psychology Facts That Will Make You Think Twice"
+# → 10개 facts 선택, ~302초(5분 2초) 분량 스크립트 생성
+# → output/script_main_20260610_110940.json 저장
+# → used_facts.json에 10개 ID 마킹
+```
 
 **출력 JSON 구조:**
 ```json
 {
   "type": "main",
-  "title": "10 Psychological Facts That Will Blow Your Mind",
-  "hook": "Did you know your brain makes 35,000 decisions a day...",
+  "title": "10 Dark Psychology Facts That Will Make You Think Twice",
+  "hook": "Scientists have discovered something shocking...",
   "facts": [
-    { "n": 1, "heading": "Cognitive Bias", "narration": "Fact 1: ...", "duration_est": 35 }
+    { "n": 1, "heading": "Hawthorne Effect", "narration": "Fact 1: ...",
+      "duration_est": 26, "search_keywords": ["brain", "psychology", ...] }
   ],
   "outro": "Which fact surprised you most? Comment below...",
   "description": "YouTube 설명란 텍스트",
-  "tags": ["psychology", "human behavior", "mind tricks"]
+  "tags": ["psychology", "human behavior", "mind tricks", ...]
 }
 ```
 
