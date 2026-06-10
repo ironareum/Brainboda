@@ -186,23 +186,81 @@ python pipeline/02_build_script.py --type main
 }
 ```
 
-#### 3단계 — `pipeline/03_tts.py`
+#### 3단계 — `pipeline/03_tts.py` ✅ (2026-06-10)
 edge-tts (`en-US-GuyNeural`) → 스크립트 JSON을 MP3 나레이션으로 변환
 
-#### 4단계 — `pipeline/04_fetch_visuals.py`
+**구현 내용:**
+- async edge-tts로 hook.mp3, fact_01~10.mp3, outro.mp3, full_narration.mp3 생성
+- edge-tts 네트워크 실패 시 pydub/ffmpeg 무음 MP3 fallback (imageio-ffmpeg 번들 사용)
+- 기존 파일 skip 로직 (size > 0)
+- CLI: `--script`, `--voice`
+
+#### 4단계 — `pipeline/04_fetch_visuals.py` ✅ (2026-06-10)
 Pixabay + Pexels API → 심리학/뇌/사람 이미지 수집
 
-#### 5단계 — `pipeline/05_render_video.py`
+**구현 내용:**
+- Pixabay → Pexels 순서로 시도, 둘 다 실패 시 Pillow로 solid-color placeholder 생성
+- 환경변수 PIXABAY_API_KEY / PEXELS_API_KEY 우선, fallback: config/channel.py
+- output/visuals/{fact_id}/ 에 2-3장 저장, 이미 있으면 skip
+- hook/outro용 placeholder도 자동 생성
+- CLI: `--script`
+
+#### 5단계 — `pipeline/05_render_video.py` ✅ (2026-06-10)
 FFmpeg + MoviePy → 이미지 슬라이드 + 나레이션 MP3 → MP4
 
-#### 6단계 — `pipeline/06_thumbnail.py`
+**구현 내용:**
+- MoviePy v1/v2 모두 호환 (set_audio ↔ with_audio 자동 감지)
+- 텍스트 오버레이: 상단 heading (굵은 흰색) + 하단 narration (반투명 검정 배경)
+- Ken Burns 효과 (1.0→1.05 slow zoom)
+- bgm.mp3 존재 시 volume=0.08로 믹싱 (없으면 스킵)
+- ffmpeg fallback renderer (MoviePy 실패 시)
+- imageio-ffmpeg 번들 자동 감지
+- CLI: `--script`, `--test` (2 facts만 렌더)
+
+#### 6단계 — `pipeline/06_thumbnail.py` ✅ (2026-06-10)
 Pillow → YouTube 썸네일 (1280×720) 생성
 
-#### 7단계 — `pipeline/07_upload.py`
+**구현 내용:**
+- 다크 그라디언트 배경 (#0a0a1a → #1a1a3a)
+- 제목 자동 2줄 분할, 키워드 단어 #FFD700 하이라이트
+- 드롭섀도우 + 비네트 효과
+- ImageDraw로 brain icon (기하학적 원형)
+- BRAINBODA 워터마크 우하단
+- 시스템 폰트 자동 탐색 (DejaVu/Liberation/FreeSans/Ubuntu)
+- CLI: `--script`
+
+#### 7단계 — `pipeline/07_upload.py` ✅ (2026-06-10)
 YouTube Data API v3 → 자동 업로드
 
-#### 8단계 — `run.py`
+**구현 내용:**
+- OAuth2 flow: client_secrets.json (repo root 또는 config/) → token 저장 config/youtube_token.json
+- Resumable upload (8MB chunks)
+- title, description, tags, categoryId="27" (Education) from script JSON
+- --test 플래그: privacyStatus="private"
+- 업로드 후 썸네일 자동 설정
+- CLI: `--video`, `--thumbnail`, `--script`, `--test`
+
+#### 8단계 — `run.py` ✅ (2026-06-10)
 전체 파이프라인 연결 + CLI 플래그 처리
+
+**구현 내용:**
+- 가용 facts 자동 체크: pool < n_needed 이면 01_fetch_facts.py 자동 실행
+- 02~07 순서 실행, 각 단계 실패 시 로그 후 계속 (visuals/thumbnail은 soft-fail)
+- `--test`: 05_render_video에 --test 전달 (2 facts만 렌더), upload 스킵
+- `--skip-upload`: 07 단계 스킵
+- `--script`: 기존 script JSON 사용 (01-02 스킵)
+- 결과 요약 (script/video/thumbnail 경로) 출력
+
+**테스트 결과 (2026-06-10):**
+```bash
+python run.py --type main --test --skip-upload
+# → 02_build_script: 10개 facts 선택, 스크립트 생성
+# → 03_tts: 13개 MP3 생성 (edge-tts fallback → 무음 MP3)
+# → 04_fetch_visuals: 20개 placeholder 이미지 생성
+# → 05_render_video: 5.5MB MP4 생성 (2 facts test mode)
+# → 06_thumbnail: 131KB JPG 생성
+# → All steps OK
+```
 
 ---
 

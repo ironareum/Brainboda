@@ -21,6 +21,7 @@ import glob
 import json
 import logging
 import os
+import subprocess
 import sys
 from datetime import datetime
 
@@ -44,6 +45,24 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
+# ── FFmpeg binary resolution ──────────────────────────────────────────────────
+
+def _find_ffmpeg() -> str:
+    """Return path to ffmpeg binary. Tries system PATH then imageio_ffmpeg bundle."""
+    import shutil
+    path = shutil.which("ffmpeg")
+    if path:
+        return path
+    try:
+        import imageio_ffmpeg
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        pass
+    return "ffmpeg"  # fallback — will fail gracefully
+
+FFMPEG_BIN = _find_ffmpeg()
+log.info("ffmpeg binary: %s", FFMPEG_BIN)
+
 # ── TTS helpers ───────────────────────────────────────────────────────────────
 
 try:
@@ -55,6 +74,9 @@ except ImportError:
 
 try:
     from pydub import AudioSegment
+    AudioSegment.converter = FFMPEG_BIN
+    AudioSegment.ffmpeg = FFMPEG_BIN
+    AudioSegment.ffprobe = FFMPEG_BIN.replace("ffmpeg", "ffprobe")
     PYDUB_AVAILABLE = True
 except ImportError:
     PYDUB_AVAILABLE = False
@@ -63,6 +85,48 @@ except ImportError:
 
 def file_exists_nonempty(path: str) -> bool:
     return os.path.exists(path) and os.path.getsize(path) > 0
+
+
+def _write_silent_wav_as_mp3_stub(output_path: str, duration_ms: int) -> bool:
+    """
+    Write a silent WAV file using only stdlib struct/wave.
+    Saves as .wav but renamed to .mp3 — ffmpeg-based players handle it;
+    for pipeline testing this is sufficient.
+    """
+    import struct
+    import wave
+    import io
+
+    sample_rate = 22050
+    n_channels = 1
+    sampwidth = 2  # 16-bit
+    n_frames = int(sample_rate * duration_ms / 1000)
+    wav_path = output_path + ".wav"
+    try:
+        with wave.open(wav_path, "w") as wf:
+            wf.setnchannels(n_channels)
+            wf.setsampwidth(sampwidth)
+            wf.setframerate(sample_rate)
+            wf.writeframes(b"\x00" * n_frames * n_channels * sampwidth)
+
+        # Try converting WAV→MP3 via ffmpeg
+        result = subprocess.run(
+            [FFMPEG_BIN, "-y", "-i", wav_path, "-acodec", "libmp3lame",
+             "-b:a", "64k", output_path],
+            capture_output=True, timeout=30
+        )
+        os.unlink(wav_path)
+        if result.returncode == 0 and file_exists_nonempty(output_path):
+            log.info("  [wav→mp3] Silent audio: %s (%dms)", output_path, duration_ms)
+            return True
+        # If ffmpeg conversion failed, just use the WAV as-is (renamed)
+        import shutil
+        shutil.move(wav_path, output_path)
+        log.info("  [wav fallback] Silent WAV saved as: %s (%dms)", output_path, duration_ms)
+        return file_exists_nonempty(output_path)
+    except Exception as exc:
+        log.error("Silent WAV fallback failed: %s", exc)
+        return False
 
 
 async def synthesize_edge_tts(text: str, output_path: str, voice: str) -> bool:
@@ -86,8 +150,8 @@ def generate_silent_mp3(output_path: str, duration_ms: int = 3000) -> bool:
         import subprocess
         duration_sec = duration_ms / 1000
         cmd = [
-            "ffmpeg", "-y", "-f", "lavfi", "-i",
-            f"anullsrc=r=44100:cl=mono", "-t", str(duration_sec),
+            FFMPEG_BIN, "-y", "-f", "lavfi", "-i",
+            "anullsrc=r=44100:cl=mono", "-t", str(duration_sec),
             "-acodec", "libmp3lame", "-b:a", "64k", output_path
         ]
         try:
@@ -98,13 +162,15 @@ def generate_silent_mp3(output_path: str, duration_ms: int = 3000) -> bool:
             return False
     else:
         try:
+            # Try pydub export via the resolved ffmpeg
             silent = AudioSegment.silent(duration=duration_ms)
             silent.export(output_path, format="mp3")
             log.info("  [fallback] Silent audio: %s (%dms)", output_path, duration_ms)
             return True
         except Exception as exc:
-            log.error("pydub silent fallback failed: %s", exc)
-            return False
+            log.warning("pydub silent fallback failed: %s — trying raw WAV", exc)
+            # Last resort: write a minimal silent WAV file (no external tools needed)
+            return _write_silent_wav_as_mp3_stub(output_path, duration_ms)
 
 
 async def synthesize_segment(text: str, output_path: str, voice: str, duration_est: int) -> bool:
@@ -156,7 +222,7 @@ def concatenate_audio(input_paths: list, output_path: str) -> bool:
             list_file = f.name
             for p in existing:
                 f.write(f"file '{os.path.abspath(p)}'\n")
-        cmd = ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", list_file,
+        cmd = [FFMPEG_BIN, "-y", "-f", "concat", "-safe", "0", "-i", list_file,
                "-acodec", "libmp3lame", "-b:a", "128k", output_path]
         result = subprocess.run(cmd, capture_output=True, timeout=120)
         os.unlink(list_file)
