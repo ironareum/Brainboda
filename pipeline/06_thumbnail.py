@@ -230,20 +230,23 @@ def layout_b(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
             break
         font_size = int(font_size * 0.92)
 
-    # Draw hero word centered, positioned upper third
+    # Draw hero word — vertically centered accounting for subtitle
+    sub_font_size = 58
+    sub_font = find_font(BOLD_FONTS, sub_font_size)
+    subtitle_words_list = wrap_text(subtitle, draw, sub_font, int(W * 0.80)) if subtitle else []
+    subtitle_h = len(subtitle_words_list) * int(sub_font_size * 1.2) + 20 if subtitle_words_list else 0
+
     tw, th = text_w(draw, keyword, font)
+    total_block_h = th + subtitle_h
+    y = (H - total_block_h) // 2 - 20  # vertically center the whole block
     x = (W - tw) // 2
-    y = int(H * 0.10)
     draw_shadow_text(draw, (x, y), keyword, font,
                      shadow_offsets=((6, 6), (5, 5), (-3, -3)))
 
     # Subtitle
-    if subtitle:
-        sub_font_size = 58
-        sub_font = find_font(BOLD_FONTS, sub_font_size)
-        sub_lines = wrap_text(subtitle, draw, sub_font, int(W * 0.80))
+    if subtitle_words_list:
         sub_y = y + th + 20
-        for line in sub_lines:
+        for line in subtitle_words_list:
             stw, _ = text_w(draw, line, sub_font)
             sx = (W - stw) // 2
             draw_shadow_text(draw, (sx, sub_y), line, sub_font,

@@ -15,6 +15,7 @@ import glob
 import json
 import logging
 import os
+import random
 import sys
 from datetime import datetime
 
@@ -68,6 +69,27 @@ PLACEHOLDER_COLORS = [
 ]
 
 HEADERS_REQUESTS = {"User-Agent": "Brainboda/1.0"}
+
+# ── Used URL tracking ─────────────────────────────────────────────────────────
+
+_USED_URLS_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "used_image_urls.json"
+)
+
+def _load_used_urls() -> set:
+    try:
+        with open(_USED_URLS_PATH, encoding="utf-8") as f:
+            return set(json.load(f).get("urls", []))
+    except Exception:
+        return set()
+
+def _save_used_urls(used: set):
+    os.makedirs(os.path.dirname(_USED_URLS_PATH), exist_ok=True)
+    try:
+        with open(_USED_URLS_PATH, "w", encoding="utf-8") as f:
+            json.dump({"urls": sorted(used)}, f, indent=2)
+    except Exception as exc:
+        log.warning("Could not save used URLs: %s", exc)
 
 
 def file_exists_nonempty(path: str) -> bool:
@@ -131,7 +153,7 @@ def download_image(url: str, dest_path: str) -> bool:
 
 _MIN_IMAGE_BYTES = 40_000  # reject images smaller than 40 KB (watermarks/icons)
 
-def fetch_pixabay(query: str, n: int = 10) -> list[str]:
+def fetch_pixabay(query: str, n: int = 10, page: int = 1) -> list[str]:
     """Return up to n image URLs from Pixabay."""
     if not PIXABAY_KEY or PIXABAY_KEY == "YOUR_PIXABAY_API_KEY":
         log.debug("Pixabay key not configured, skipping")
@@ -143,6 +165,7 @@ def fetch_pixabay(query: str, n: int = 10) -> list[str]:
             "q": query,
             "image_type": "photo",
             "per_page": min(n + 8, 30),
+            "page": page,
             "safesearch": "true",
             "min_width": 1000,
             "order": "popular",
@@ -158,7 +181,7 @@ def fetch_pixabay(query: str, n: int = 10) -> list[str]:
     return []
 
 
-def fetch_pexels(query: str, n: int = 10) -> list[str]:
+def fetch_pexels(query: str, n: int = 10, page: int = 1) -> list[str]:
     """Return up to n image URLs from Pexels."""
     if not PEXELS_KEY or PEXELS_KEY == "YOUR_PEXELS_API_KEY":
         log.debug("Pexels key not configured, skipping")
@@ -166,7 +189,7 @@ def fetch_pexels(query: str, n: int = 10) -> list[str]:
     try:
         url = "https://api.pexels.com/v1/search"
         headers = {"Authorization": PEXELS_KEY}
-        params = {"query": query, "per_page": min(n + 8, 30), "size": "large"}
+        params = {"query": query, "per_page": min(n + 8, 30), "page": page, "size": "large"}
         resp = requests.get(url, headers=headers, params=params, timeout=15)
         if resp.status_code == 200:
             photos = resp.json().get("photos", [])
@@ -222,25 +245,70 @@ def generate_placeholder(dest_path: str, label: str, color_idx: int = 0) -> bool
         return False
 
 
-def _collect_urls(queries: list[str], target: int) -> list[str]:
-    """Try multiple queries across Pixabay + Pexels, return deduplicated URL list."""
+def _collect_urls(queries: list[str], target: int, used_urls: set = None) -> list[str]:
+    """Try multiple queries across Pixabay + Pexels with random page offset.
+    Skips URLs already present in used_urls to avoid cross-run repetition.
+    """
+    if used_urls is None:
+        used_urls = set()
     seen, urls = set(), []
+    page = random.randint(1, 4)  # random starting page for variety across runs
     for query in queries:
         if len(urls) >= target + 5:
             break
-        for u in fetch_pixabay(query, n=target):
-            if u not in seen:
+        for u in fetch_pixabay(query, n=target, page=page):
+            if u not in seen and u not in used_urls:
                 seen.add(u)
                 urls.append(u)
-        for u in fetch_pexels(query, n=target):
-            if u not in seen:
+        for u in fetch_pexels(query, n=target, page=page):
+            if u not in seen and u not in used_urls:
                 seen.add(u)
                 urls.append(u)
+        # Try next page too if still short
+        if len(urls) < target:
+            next_page = (page % 5) + 1
+            for u in fetch_pixabay(query, n=target, page=next_page):
+                if u not in seen and u not in used_urls:
+                    seen.add(u)
+                    urls.append(u)
+            for u in fetch_pexels(query, n=target, page=next_page):
+                if u not in seen and u not in used_urls:
+                    seen.add(u)
+                    urls.append(u)
     return urls
 
 
+def _build_queries(keywords: list, heading: str) -> list[str]:
+    """Build specific search queries from fact keywords and heading."""
+    kw = [k.strip() for k in keywords if k.strip()][:4]
+    heading_words = [w for w in heading.split() if len(w) > 3]
+
+    queries = []
+
+    # Primary: full heading (most specific)
+    queries.append(heading)
+
+    # Secondary: top 2 keywords combined
+    if len(kw) >= 2:
+        queries.append(f"{kw[0]} {kw[1]}")
+    elif kw:
+        queries.append(kw[0])
+
+    # Tertiary: heading + contextual modifier
+    if heading_words:
+        queries.append(f"{heading_words[0]} science")
+        queries.append(f"{heading_words[0]} behavior")
+
+    # Extra: keyword + visual modifier
+    if kw:
+        queries.append(f"{kw[0]} human")
+
+    return queries[:5]  # cap at 5 queries
+
+
 def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0,
-                          visuals_dir: str = None, target: int = 10) -> list[str]:
+                          visuals_dir: str = None, target: int = 5,
+                          used_urls: set = None) -> list[str]:
     """Download images for a fact into visuals/{fact_id}/. Returns list of saved paths.
 
     img_01.jpg  — reserved for the title card frame (not used in narration slides)
@@ -256,52 +324,51 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
 
     os.makedirs(fact_dir, exist_ok=True)
 
-    # Build multiple search queries for variety
-    kw = keywords[:3] if keywords else []
-    primary = " ".join(kw) if kw else heading
-    secondary = (kw[0] + " concept abstract") if kw else (heading + " concept")
-    tertiary = (kw[0] + " psychology human") if kw else "psychology human mind"
-    queries = [primary, secondary, tertiary]
-    log.info("  Fetching images for: %s (queries: %s)", fact_id, queries[:2])
+    queries = _build_queries(keywords, heading)
+    log.info("  Fetching images for: %s | queries: %s", fact_id, queries[:3])
 
-    candidate_urls = _collect_urls(queries, target * 2)
+    candidate_urls = _collect_urls(queries, target * 3, used_urls=used_urls or set())
 
-    saved_paths = list(existing)  # keep any already-downloaded
+    saved_paths = list(existing)
+    newly_downloaded = []
     for url in candidate_urls:
         if len(saved_paths) >= target:
             break
         dest = os.path.join(fact_dir, f"img_{len(saved_paths)+1:02d}.jpg")
         if download_image(url, dest):
             saved_paths.append(dest)
+            newly_downloaded.append(url)
 
     if not saved_paths:
         log.error("  All sources failed for %s — no images downloaded", fact_id)
     else:
         log.info("  %s → %d images", fact_id, len(saved_paths))
 
-    return saved_paths
+    return saved_paths, newly_downloaded
 
 
-def fetch_hook_images(visuals_dir: str, target: int = 6) -> list[str]:
+def fetch_hook_images(visuals_dir: str, target: int = 6, used_urls: set = None) -> tuple:
     """Download generic psychology images for the hook segment."""
     hook_dir = os.path.join(visuals_dir, "_hook")
     existing = sorted(glob.glob(os.path.join(hook_dir, "*.jpg")))
     if len(existing) >= target:
         log.info("  [skip] _hook — %d images already downloaded", len(existing))
-        return existing
+        return existing, []
 
     os.makedirs(hook_dir, exist_ok=True)
-    candidate_urls = _collect_urls(_HOOK_QUERIES, target * 2)
+    candidate_urls = _collect_urls(_HOOK_QUERIES, target * 2, used_urls=used_urls or set())
     saved = list(existing)
+    newly_downloaded = []
     for url in candidate_urls:
         if len(saved) >= target:
             break
         dest = os.path.join(hook_dir, f"img_{len(saved)+1:02d}.jpg")
         if download_image(url, dest):
             saved.append(dest)
+            newly_downloaded.append(url)
 
     log.info("  _hook → %d images", len(saved))
-    return saved
+    return saved, newly_downloaded
 
 
 def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
@@ -345,27 +412,40 @@ def main():
     facts = script.get("facts", [])
     log.info("Facts to process: %d", len(facts))
 
+    # Load previously used URLs to avoid re-downloading the same images
+    used_urls = _load_used_urls()
+    log.info("Previously used image URLs: %d", len(used_urls))
+    newly_used: set = set()
+
     all_paths: dict[str, list] = {}
 
     # Fetch hook images (separate pool, generic psychology visuals)
-    hook_paths = fetch_hook_images(visuals_dir, target=6)
+    hook_paths, hook_new = fetch_hook_images(visuals_dir, target=6, used_urls=used_urls)
     if not hook_paths:
         log.error("No hook images fetched — check API keys or network. Aborting.")
         sys.exit(1)
     all_paths["_hook"] = hook_paths
+    newly_used.update(hook_new)
 
     all_paths_facts: dict[str, list] = {}
     for i, fact in enumerate(facts):
         fact_id = fact["id"]
         keywords = fact.get("search_keywords", [])
         heading = fact.get("heading", fact_id)
-        paths = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
-                                      visuals_dir=visuals_dir, target=5)
+        result = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
+                                       visuals_dir=visuals_dir, target=5,
+                                       used_urls=used_urls | newly_used)
+        paths, fact_new = result
         all_paths_facts[fact_id] = paths
         all_paths[fact_id] = paths
+        newly_used.update(fact_new)
         if not paths:
             log.error("No images for %s — check API keys or network. Aborting.", fact_id)
             sys.exit(1)
+
+    # Persist used URLs for next run
+    _save_used_urls(used_urls | newly_used)
+    log.info("Saved %d used URLs total", len(used_urls | newly_used))
 
     log.info("=== 04_fetch_visuals.py DONE ===")
 
