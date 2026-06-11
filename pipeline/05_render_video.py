@@ -289,7 +289,7 @@ def render_typewriter_frame(
     y = text_start_y
     for i, line in enumerate(lines):
         is_last = (i == len(lines) - 1)
-        display = line + ("|" if is_last else "")
+        display = line  # no cursor
         d.text((left_margin + 3, y + 3), display, font=font, fill=(0, 0, 0, 160))
         d.text((left_margin, y), display, font=font, fill=(255, 255, 255, 255))
         y += line_h
@@ -468,22 +468,32 @@ def _vol(clip, v: float):
     return None
 
 
-
-    """Short silent black clip used between facts."""
-    arr = np.zeros((height, width, 3), dtype=np.uint8)
-    return _set_dur(ImageClip(arr), duration)
-
-
-def _load_bgm(name: str):
-    """Load a BGM file from config/audio/ or return None."""
-    path = os.path.join(_BASE_DIR, "config", "audio", name)
+def _load_bgm(segment: str):
+    """Load a random BGM from config/bgm/{segment}/ folder.
+    Falls back to config/audio/bgm_{segment}.mp3.
+    segment: 'hook', 'facts', 'outro'
+    """
+    import random
+    folder = os.path.join(_BASE_DIR, "config", "bgm", segment)
+    if os.path.isdir(folder):
+        files = sorted(glob.glob(os.path.join(folder, "*.mp3")) +
+                       glob.glob(os.path.join(folder, "*.wav")))
+        if files:
+            path = random.choice(files)
+            try:
+                clip = AudioFileClip(path)
+                log.info("BGM (%s): %s", segment, os.path.basename(path))
+                return clip, path
+            except Exception as exc:
+                log.warning("BGM load failed (%s): %s", path, exc)
+    # Fallback: single file
+    path = os.path.join(_BASE_DIR, "config", "audio", f"bgm_{segment}.mp3")
     if not os.path.exists(path):
         return None, None
     try:
-        clip = AudioFileClip(path)
-        return clip, path
+        return AudioFileClip(path), path
     except Exception as exc:
-        log.warning("BGM load failed (%s): %s", name, exc)
+        log.warning("BGM load failed (%s): %s", path, exc)
         return None, None
 
 
@@ -564,7 +574,7 @@ def build_hook_clip(
         audio_clip = _subclip(audio_clip, 0, min_dur)
 
         # Mix bgm_hook.mp3
-        bgm_audio, bgm_path = _load_bgm("bgm_hook.mp3")
+        bgm_audio, bgm_path = _load_bgm("hook")
         if bgm_audio:
             bgm = _vol(bgm_audio, 0.10)
             if bgm is not None:
@@ -644,28 +654,51 @@ def build_fact_clip(
     # Title text to display during narration of "Fact N: Heading."
     title_text = f"Fact {fact_n}: {heading}." if fact_n and heading else heading
 
-    # Estimate how long the title sentence takes to narrate
+    # Estimate title duration
     title_words = len(title_text.split())
     title_dur = max(2.0, title_words / 135 * 60)
     title_dur = min(title_dur, duration * 0.45)
     image_dur = duration - title_dur
 
-    n_imgs = len(narr_loaded)
-    # Cap each image to max 4s so images cycle faster with more images
-    img_dur_each = min(4.0, image_dur / n_imgs) if n_imgs else image_dur
+    # Split narration into sentences and estimate per-sentence durations
+    # (excluding the title sentence which is already counted in title_dur)
+    narr_text = narration.strip()
+    sentences = _re.split(r'(?<=[.!?])\s+', narr_text)
+    # Skip title sentence (first sentence matches heading)
+    body_sentences = sentences[1:] if len(sentences) > 1 else sentences
+    if not body_sentences:
+        body_sentences = [""]
+
+    # Build sentence → image assignment (1 image per sentence, cycling through narr_loaded)
+    n_imgs = len(narr_loaded) if narr_loaded else 1
+    sent_word_counts = [max(1, len(s.split())) for s in body_sentences]
+    total_words = sum(sent_word_counts)
+    # Cumulative time offsets within image_dur
+    sent_boundaries = [0.0]
+    for wc in sent_word_counts:
+        sent_boundaries.append(sent_boundaries[-1] + (wc / max(total_words, 1)) * image_dur)
+
+    def _img_idx_at(local_t):
+        for i, boundary in enumerate(sent_boundaries[1:]):
+            if local_t < boundary:
+                return i % n_imgs
+        return (len(body_sentences) - 1) % n_imgs
 
     def make_frame(t):
-        # Image rotation
         if t < title_dur:
             bc = title_loaded[0]
             img = _apply_ken_burns(bc, t, title_dur, width, height)
             return render_fact_title_frame(img, fact_n, heading, width, height)
         else:
             local_t = t - title_dur
-            idx = int(local_t / max(img_dur_each, 0.01)) % n_imgs
+            idx = _img_idx_at(local_t)
             bc = narr_loaded[idx]
-            seg_local_t = local_t % max(img_dur_each, 0.01)
-            img = _apply_ken_burns(bc, seg_local_t, img_dur_each, width, height)
+            # Ken Burns resets per sentence for smooth zoom each image
+            sent_start = sent_boundaries[idx] if idx < len(sent_boundaries) else 0
+            sent_end = sent_boundaries[idx + 1] if idx + 1 < len(sent_boundaries) else image_dur
+            seg_dur = max(sent_end - sent_start, 0.5)
+            seg_t = local_t - sent_start
+            img = _apply_ken_burns(bc, seg_t, seg_dur, width, height)
             return render_fact_image_frame(img, fact_n, width, height)
 
     try:
@@ -675,8 +708,8 @@ def build_fact_clip(
         video_clip = _set_dur(video_clip, min_dur)
         audio_clip = _subclip(audio_clip, 0, min_dur)
 
-        # Mix bgm_facts.mp3
-        bgm_audio, _ = _load_bgm("bgm_facts.mp3")
+        # Mix facts BGM
+        bgm_audio, _ = _load_bgm("facts")
         if bgm_audio:
             bgm = _vol(bgm_audio, 0.09)
             if bgm is not None:
@@ -759,10 +792,9 @@ def build_outro_clip(
             except Exception:
                 silence = None
 
-        # Load outro BGM (try outro first, fall back to facts BGM)
-        bgm_audio, _ = _load_bgm("bgm_outro.mp3")
+        bgm_audio, _ = _load_bgm("outro")
         if bgm_audio is None:
-            bgm_audio, _ = _load_bgm("bgm_facts.mp3")
+            bgm_audio, _ = _load_bgm("facts")
 
         audio_parts = []
         if silence:

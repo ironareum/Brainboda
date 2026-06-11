@@ -360,7 +360,7 @@ def main():
         keywords = fact.get("search_keywords", [])
         heading = fact.get("heading", fact_id)
         paths = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
-                                      visuals_dir=visuals_dir, target=10)
+                                      visuals_dir=visuals_dir, target=5)
         all_paths_facts[fact_id] = paths
         all_paths[fact_id] = paths
         if not paths:

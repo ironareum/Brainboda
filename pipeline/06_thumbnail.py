@@ -158,7 +158,7 @@ def add_vignette(img, strength=160):
     return Image.alpha_composite(base, overlay).convert("RGB")
 
 
-def draw_badge(draw, W, facts_badge, bold_fonts):
+def draw_badge(draw, W, facts_badge, bold_fonts, accent=(255, 215, 0)):
     badge_font_size = 60
     badge_font = find_font(bold_fonts, badge_font_size)
     try:
@@ -171,14 +171,16 @@ def draw_badge(draw, W, facts_badge, bold_fonts):
     by1 = 30
     bx2 = W - 30
     by2 = by1 + bth + pad_y * 2
-    draw.rounded_rectangle([bx1, by1, bx2, by2], radius=14, fill=(255, 215, 0))
-    draw.text((bx1 + pad_x, by1 + pad_y), facts_badge, font=badge_font, fill=(0, 0, 0))
+    draw.rounded_rectangle([bx1, by1, bx2, by2], radius=14, fill=accent)
+    # Use dark text for light accents, white for dark accents
+    text_color = (0, 0, 0) if sum(accent) > 380 else (255, 255, 255)
+    draw.text((bx1 + pad_x, by1 + pad_y), facts_badge, font=badge_font, fill=text_color)
 
 
 # ── Layout A: Centered classic ────────────────────────────────────────────────
 # White bold text centered, yellow underline, badge top-right
 
-def layout_a(img, draw, W, H, hook_text, facts_badge):
+def layout_a(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
     max_text_w = int(W * 0.85)
     font_size = 130
     font = find_font(BOLD_FONTS, font_size)
@@ -203,16 +205,16 @@ def layout_a(img, draw, W, H, hook_text, facts_badge):
     accent_y = text_top + total_text_h + 18
     bar_w = int(W * 0.55)
     bar_x = (W - bar_w) // 2
-    draw.rectangle([bar_x, accent_y, bar_x + bar_w, accent_y + 6], fill=(255, 215, 0))
+    draw.rectangle([bar_x, accent_y, bar_x + bar_w, accent_y + 6], fill=accent)
 
     if facts_badge:
-        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+        draw_badge(draw, W, facts_badge, BOLD_FONTS, accent=accent)
 
 
 # ── Layout B: Huge keyword top + subtitle ─────────────────────────────────────
 # One big word dominates top half (EVERYTHING style), subtitle small below
 
-def layout_b(img, draw, W, H, hook_text, facts_badge):
+def layout_b(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
     words = hook_text.split()
     # Use longest word as hero, rest as subtitle
     keyword = max(words, key=len).upper()
@@ -245,17 +247,17 @@ def layout_b(img, draw, W, H, hook_text, facts_badge):
             stw, _ = text_w(draw, line, sub_font)
             sx = (W - stw) // 2
             draw_shadow_text(draw, (sx, sub_y), line, sub_font,
-                             fill=(255, 215, 0), shadow_offsets=((3, 3),))
+                             fill=accent, shadow_offsets=((3, 3),))
             sub_y += int(sub_font_size * 1.2)
 
     if facts_badge:
-        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+        draw_badge(draw, W, facts_badge, BOLD_FONTS, accent=accent)
 
 
 # ── Layout C: Left-aligned + vertical accent bar ──────────────────────────────
 # Bold text flush left, yellow vertical bar on left edge (NIHILISM style)
 
-def layout_c(img, draw, W, H, hook_text, facts_badge):
+def layout_c(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
     bar_x = 60
     bar_w = 8
     text_x = bar_x + bar_w + 28
@@ -280,19 +282,19 @@ def layout_c(img, draw, W, H, hook_text, facts_badge):
         draw_shadow_text(draw, (text_x, y), line, font,
                          shadow_offsets=((4, 4), (3, 3)))
 
-    # Yellow vertical bar
+    # Accent vertical bar
     bar_top = text_top - 10
     bar_bot = text_top + total_text_h + 10
-    draw.rectangle([bar_x, bar_top, bar_x + bar_w, bar_bot], fill=(255, 215, 0))
+    draw.rectangle([bar_x, bar_top, bar_x + bar_w, bar_bot], fill=accent)
 
     if facts_badge:
-        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+        draw_badge(draw, W, facts_badge, BOLD_FONTS, accent=accent)
 
 
 # ── Layout D: Dramatic centered statement ────────────────────────────────────
 # Smaller font, sentence-case, no shouting — cinematic quote style
 
-def layout_d(img, draw, W, H, hook_text, facts_badge):
+def layout_d(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
     max_text_w = int(W * 0.78)
     font_size = 100
     font = find_font(BOLD_FONTS, font_size)
@@ -316,13 +318,31 @@ def layout_d(img, draw, W, H, hook_text, facts_badge):
         draw_shadow_text(draw, (x, y), line, font,
                          shadow_offsets=((5, 5), (4, 4), (-1, -1)))
 
-    # Thin yellow dot-line above text
+    # Thin accent dot-line above text
     dot_y = text_top - 28
     dot_x = (W - 120) // 2
-    draw.rectangle([dot_x, dot_y, dot_x + 120, dot_y + 4], fill=(255, 215, 0))
+    draw.rectangle([dot_x, dot_y, dot_x + 120, dot_y + 4], fill=accent)
 
     if facts_badge:
-        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+        draw_badge(draw, W, facts_badge, BOLD_FONTS, accent=accent)
+
+
+# ── Color palette (accent colors per layout/video) ────────────────────────────
+# Each layout gets a distinct accent color; cycles based on title hash
+
+ACCENT_COLORS = [
+    (255, 215, 0),    # yellow  (classic)
+    (0, 220, 200),    # cyan-teal
+    (255, 80, 120),   # hot pink
+    (100, 200, 255),  # sky blue
+    (180, 255, 100),  # lime green
+    (255, 150, 30),   # orange
+]
+
+
+def pick_accent(title: str) -> tuple:
+    h = int(hashlib.md5(title.encode()).hexdigest(), 16)
+    return ACCENT_COLORS[h % len(ACCENT_COLORS)]
 
 
 # ── Layout dispatcher ─────────────────────────────────────────────────────────
@@ -354,7 +374,8 @@ def generate_thumbnail(script: dict, run_dir: str, output_path: str) -> bool:
     facts_badge = f"{n_facts} FACTS" if n_facts and video_type == "main" else ""
 
     layout_idx, layout_fn = pick_layout(title)
-    log.info("Thumbnail layout: %s", LAYOUT_NAMES[layout_idx])
+    accent = pick_accent(title)
+    log.info("Thumbnail layout: %s | accent: %s", LAYOUT_NAMES[layout_idx], accent)
 
     # ── Background ────────────────────────────────────────────────────────────
     bg_path = find_best_bg_image(run_dir)
@@ -369,7 +390,7 @@ def generate_thumbnail(script: dict, run_dir: str, output_path: str) -> bool:
     img = add_vignette(bg)
     draw = ImageDraw.Draw(img)
 
-    layout_fn(img, draw, W, H, hook_text, facts_badge)
+    layout_fn(img, draw, W, H, hook_text, facts_badge, accent=accent)
 
     img.save(output_path, "JPEG", quality=95)
     log.info("Thumbnail saved: %s (%.1f KB)", output_path, os.path.getsize(output_path) / 1024)
