@@ -229,7 +229,7 @@ def extract_key_sentence(narration: str) -> str:
 
 def _apply_ken_burns(base_cropped: "Image.Image", t: float, duration: float,
                      width: int, height: int) -> "Image.Image":
-    scale = 1.0 + 0.05 * (t / max(duration, 1))
+    scale = 1.0 + 0.08 * (t / max(duration, 1))
     iw, ih = base_cropped.size
     nw, nh = int(iw * scale), int(ih * scale)
     zoomed = base_cropped.resize((nw, nh), Image.LANCZOS)
@@ -266,7 +266,7 @@ def render_typewriter_frame(
     y = text_start_y
     for i, line in enumerate(lines):
         is_last = (i == len(lines) - 1)
-        display = line + ("▋" if is_last else "")
+        display = line + ("|" if is_last else "")
         d.text((left_margin + 3, y + 3), display, font=font, fill=(0, 0, 0, 160))
         d.text((left_margin, y), display, font=font, fill=(255, 255, 255, 255))
         y += line_h
@@ -360,7 +360,7 @@ def render_fact_image_frame(
     badge_font = find_font(BOLD_FONTS, badge_font_size)
     badge_text = f"FACT {fact_n:02d}" if fact_n else ""
     if badge_text:
-        pad_bx, pad_by = 14, 8
+        pad_bx, pad_by = 6, 6
         try:
             bb = d.textbbox((0, 0), badge_text, font=badge_font)
             btw, bth = bb[2] - bb[0], bb[3] - bb[1]
@@ -510,7 +510,7 @@ def build_hook_clip(
     # Pre-compute typewriter font metrics (stable across all frames)
     left_margin = int(width * 0.08)
     max_line_w = width - left_margin * 2
-    font_size = max(56, height // 11)
+    font_size = max(45, height // 14)
     font = find_font(BOLD_FONTS, font_size)
     # Auto-size to ensure full sentence fits in ≤3 lines
     for _ in range(10):
@@ -540,9 +540,9 @@ def build_hook_clip(
             bg = _apply_ken_burns(bc, local_t, img_dur, width, height)
 
         if t < first_dur:
-            # Typewriter: reveal characters proportionally
-            progress = t / first_dur
-            n_show = int(progress * total_chars)
+            # Typewriter: reveal characters proportionally (start immediately at t=0)
+            progress = t / max(first_dur, 0.01)
+            n_show = max(1, int(progress * total_chars)) if t > 0 else 1
             text_so_far = first_sentence[:n_show]
             return render_typewriter_frame(
                 bg, text_so_far, first_sentence, width, height,
@@ -564,13 +564,18 @@ def build_hook_clip(
         bgm_audio, bgm_path = _load_bgm("bgm_hook.mp3")
         if bgm_audio:
             try:
+                def _vol(clip, v):
+                    try:
+                        return clip.multiply_volume(v)
+                    except AttributeError:
+                        return clip.volumex(v)
                 # Loop BGM to cover full duration
-                bgm = bgm_audio.volumex(0.10)
+                bgm = _vol(bgm_audio, 0.10)
                 if bgm.duration < min_dur:
                     # Simple loop via concatenation
                     loops = int(min_dur / bgm.duration) + 1
                     from moviepy import concatenate_audioclips
-                    bgm = concatenate_audioclips([bgm_audio.volumex(0.10)] * loops)
+                    bgm = concatenate_audioclips([_vol(bgm_audio, 0.10)] * loops)
                 bgm = _subclip(bgm, 0, min_dur)
                 # Slight swell in last 2s
                 mixed = CompositeAudioClip([audio_clip, bgm])
@@ -629,7 +634,8 @@ def build_fact_clip(
     image_dur = duration - title_dur
 
     n_imgs = len(loaded)
-    img_dur_each = image_dur / n_imgs if n_imgs else image_dur
+    # Cap each image to max 4s so images cycle faster even with few images
+    img_dur_each = min(4.0, image_dur / n_imgs) if n_imgs else image_dur
 
     def make_frame(t):
         # Image rotation
@@ -656,11 +662,16 @@ def build_fact_clip(
         bgm_audio, _ = _load_bgm("bgm_facts.mp3")
         if bgm_audio:
             try:
-                bgm = bgm_audio.volumex(0.09)
+                def _vol(clip, v):
+                    try:
+                        return clip.multiply_volume(v)
+                    except AttributeError:
+                        return clip.volumex(v)
+                bgm = _vol(bgm_audio, 0.09)
                 if bgm.duration < min_dur:
                     from moviepy import concatenate_audioclips
                     loops = int(min_dur / bgm.duration) + 1
-                    bgm = concatenate_audioclips([bgm_audio.volumex(0.09)] * loops)
+                    bgm = concatenate_audioclips([_vol(bgm_audio, 0.09)] * loops)
                 bgm = _subclip(bgm, 0, min_dur)
                 mixed = CompositeAudioClip([audio_clip, bgm])
                 return _attach_audio(video_clip, mixed)
@@ -750,8 +761,8 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_
         elif seg_id == "outro":
             clip = build_outro_clip(audio_path, width, height, visuals_dir)
         else:
-            # 0.7s black transition before each fact
-            clips.append(_make_black_transition(width, height, 0.7))
+            # 0.3s black transition before each fact
+            clips.append(_make_black_transition(width, height, 0.3))
             clip = build_fact_clip(
                 audio_path, seg_id, seg.get("narration", ""),
                 width, height, fact_n=seg.get("fact_n"),
@@ -769,7 +780,11 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_
 
         if bgm_path and os.path.exists(bgm_path):
             try:
-                bgm = AudioFileClip(bgm_path).volumex(0.08)
+                _bgm_raw = AudioFileClip(bgm_path)
+                try:
+                    bgm = _bgm_raw.multiply_volume(0.08)
+                except AttributeError:
+                    bgm = _bgm_raw.volumex(0.08)
                 try:
                     bgm = bgm.with_duration(final.duration)
                 except AttributeError:
@@ -897,8 +912,8 @@ def render_with_ffmpeg(segments, output_path, width, height, bgm_path, visuals_d
         title_dur = min(title_dur, full_duration * 0.45)
         image_dur = full_duration - title_dur
 
-        # 0.7s black transition
-        save_still_seg(np.zeros((height, width, 3), dtype=np.uint8), None, 0.7)
+        # 0.3s black transition
+        save_still_seg(np.zeros((height, width, 3), dtype=np.uint8), None, 0.3)
 
         # Part A: title frame with title-duration audio
         if images:
