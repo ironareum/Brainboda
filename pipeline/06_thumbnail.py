@@ -1,11 +1,11 @@
 """
 Step 6: Generate YouTube thumbnail (1280x720) using Pillow.
 
-Design:
-- Background: best image from visuals/ (darkened overlay)
-- Large bold thumbnail_hook text centered (auto-sized)
-- N FACTS badge (top-right)
-- BRAINBODA watermark bottom-right
+4 rotating layout styles (selected by hash of title):
+  A - Centered text + yellow underline + badge  (current classic)
+  B - Huge single keyword top + image fill      (EVERYTHING style)
+  C - Left-aligned bold + vertical accent bar   (NIHILISM style)
+  D - Dramatic centered quote / statement       (You shouldn't be alive style)
 
 Usage:
     python pipeline/06_thumbnail.py --script output/script_main_xxx.json
@@ -13,6 +13,7 @@ Usage:
 
 import argparse
 import glob
+import hashlib
 import json
 import logging
 import os
@@ -66,6 +67,8 @@ except ImportError:
     log.error("Pillow not installed.")
 
 
+# ── helpers ───────────────────────────────────────────────────────────────────
+
 def find_font(paths, size):
     for p in paths:
         expanded = os.path.expanduser(p)
@@ -91,11 +94,9 @@ def crop_fill(img, width, height):
 
 
 def find_best_bg_image(run_dir: str) -> str | None:
-    """Pick the best background image from visuals/ in the run dir."""
     if run_dir:
         visuals_dir = os.path.join(run_dir, "visuals")
         images = sorted(glob.glob(os.path.join(visuals_dir, "*/*.jpg")))
-        # Prefer non-placeholder images (larger files)
         images_by_size = sorted(images, key=lambda p: os.path.getsize(p), reverse=True)
         if images_by_size:
             return images_by_size[0]
@@ -123,6 +124,220 @@ def wrap_text(text: str, draw, font, max_w: int) -> list[str]:
     return lines
 
 
+def text_w(draw, text, font):
+    try:
+        bb = draw.textbbox((0, 0), text, font=font)
+        return bb[2] - bb[0], bb[3] - bb[1]
+    except Exception:
+        return len(text) * int(font.size * 0.6), int(font.size)
+
+
+def draw_shadow_text(draw, xy, text, font, fill=(255, 255, 255),
+                     shadow=(0, 0, 0), shadow_offsets=((5, 5), (4, 4), (-2, -2))):
+    x, y = xy
+    for dx, dy in shadow_offsets:
+        draw.text((x + dx, y + dy), text, font=font, fill=shadow)
+    draw.text((x, y), text, font=font, fill=fill)
+
+
+def darken_bg(img_rgb, factor=0.45):
+    arr = np.array(img_rgb, dtype=np.float32)
+    arr = (arr * factor).clip(0, 255).astype(np.uint8)
+    return Image.fromarray(arr)
+
+
+def add_vignette(img, strength=160):
+    W, H = img.size
+    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    od = ImageDraw.Draw(overlay)
+    for y in range(H):
+        t = y / H
+        alpha = int(strength * abs(t - 0.5) * 2)
+        od.line([(0, y), (W, y)], fill=(0, 0, 0, min(alpha, 220)))
+    base = img.convert("RGBA")
+    return Image.alpha_composite(base, overlay).convert("RGB")
+
+
+def draw_badge(draw, W, facts_badge, bold_fonts):
+    badge_font_size = 60
+    badge_font = find_font(bold_fonts, badge_font_size)
+    try:
+        bb = draw.textbbox((0, 0), facts_badge, font=badge_font)
+        btw, bth = bb[2] - bb[0], bb[3] - bb[1]
+    except Exception:
+        btw, bth = len(facts_badge) * 34, badge_font_size
+    pad_x, pad_y = 28, 22
+    bx1 = W - btw - pad_x * 2 - 30
+    by1 = 30
+    bx2 = W - 30
+    by2 = by1 + bth + pad_y * 2
+    draw.rounded_rectangle([bx1, by1, bx2, by2], radius=14, fill=(255, 215, 0))
+    draw.text((bx1 + pad_x, by1 + pad_y), facts_badge, font=badge_font, fill=(0, 0, 0))
+
+
+# ── Layout A: Centered classic ────────────────────────────────────────────────
+# White bold text centered, yellow underline, badge top-right
+
+def layout_a(img, draw, W, H, hook_text, facts_badge):
+    max_text_w = int(W * 0.85)
+    font_size = 130
+    font = find_font(BOLD_FONTS, font_size)
+    lines = []
+    for _ in range(15):
+        font = find_font(BOLD_FONTS, font_size)
+        lines = wrap_text(hook_text, draw, font, max_text_w)
+        if len(lines) <= 2:
+            break
+        font_size = int(font_size * 0.88)
+
+    line_h = int(font_size * 1.18)
+    total_text_h = len(lines) * line_h
+    text_top = (H - total_text_h) // 2 - 20
+
+    for i, line in enumerate(lines):
+        y = text_top + i * line_h
+        tw, _ = text_w(draw, line, font)
+        x = (W - tw) // 2
+        draw_shadow_text(draw, (x, y), line, font)
+
+    accent_y = text_top + total_text_h + 18
+    bar_w = int(W * 0.55)
+    bar_x = (W - bar_w) // 2
+    draw.rectangle([bar_x, accent_y, bar_x + bar_w, accent_y + 6], fill=(255, 215, 0))
+
+    if facts_badge:
+        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+
+
+# ── Layout B: Huge keyword top + subtitle ─────────────────────────────────────
+# One big word dominates top half (EVERYTHING style), subtitle small below
+
+def layout_b(img, draw, W, H, hook_text, facts_badge):
+    words = hook_text.split()
+    # Use longest word as hero, rest as subtitle
+    keyword = max(words, key=len).upper()
+    subtitle_words = [w for w in words if w.lower() != keyword.lower()]
+    subtitle = " ".join(subtitle_words).upper() if subtitle_words else ""
+
+    # Hero word — fill top 55% width
+    font_size = 200
+    for _ in range(20):
+        font = find_font(BOLD_FONTS, font_size)
+        tw, _ = text_w(draw, keyword, font)
+        if tw <= int(W * 0.92):
+            break
+        font_size = int(font_size * 0.92)
+
+    # Draw hero word centered, positioned upper third
+    tw, th = text_w(draw, keyword, font)
+    x = (W - tw) // 2
+    y = int(H * 0.10)
+    draw_shadow_text(draw, (x, y), keyword, font,
+                     shadow_offsets=((6, 6), (5, 5), (-3, -3)))
+
+    # Subtitle
+    if subtitle:
+        sub_font_size = 58
+        sub_font = find_font(BOLD_FONTS, sub_font_size)
+        sub_lines = wrap_text(subtitle, draw, sub_font, int(W * 0.80))
+        sub_y = y + th + 20
+        for line in sub_lines:
+            stw, _ = text_w(draw, line, sub_font)
+            sx = (W - stw) // 2
+            draw_shadow_text(draw, (sx, sub_y), line, sub_font,
+                             fill=(255, 215, 0), shadow_offsets=((3, 3),))
+            sub_y += int(sub_font_size * 1.2)
+
+    if facts_badge:
+        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+
+
+# ── Layout C: Left-aligned + vertical accent bar ──────────────────────────────
+# Bold text flush left, yellow vertical bar on left edge (NIHILISM style)
+
+def layout_c(img, draw, W, H, hook_text, facts_badge):
+    bar_x = 60
+    bar_w = 8
+    text_x = bar_x + bar_w + 28
+    max_text_w = int(W * 0.62)
+
+    font_size = 120
+    font = find_font(BOLD_FONTS, font_size)
+    lines = []
+    for _ in range(15):
+        font = find_font(BOLD_FONTS, font_size)
+        lines = wrap_text(hook_text.upper(), draw, font, max_text_w)
+        if len(lines) <= 3:
+            break
+        font_size = int(font_size * 0.88)
+
+    line_h = int(font_size * 1.15)
+    total_text_h = len(lines) * line_h
+    text_top = (H - total_text_h) // 2
+
+    for i, line in enumerate(lines):
+        y = text_top + i * line_h
+        draw_shadow_text(draw, (text_x, y), line, font,
+                         shadow_offsets=((4, 4), (3, 3)))
+
+    # Yellow vertical bar
+    bar_top = text_top - 10
+    bar_bot = text_top + total_text_h + 10
+    draw.rectangle([bar_x, bar_top, bar_x + bar_w, bar_bot], fill=(255, 215, 0))
+
+    if facts_badge:
+        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+
+
+# ── Layout D: Dramatic centered statement ────────────────────────────────────
+# Smaller font, sentence-case, no shouting — cinematic quote style
+
+def layout_d(img, draw, W, H, hook_text, facts_badge):
+    max_text_w = int(W * 0.78)
+    font_size = 100
+    font = find_font(BOLD_FONTS, font_size)
+    lines = []
+    for _ in range(15):
+        font = find_font(BOLD_FONTS, font_size)
+        lines = wrap_text(hook_text, draw, font, max_text_w)
+        if len(lines) <= 3:
+            break
+        font_size = int(font_size * 0.88)
+
+    line_h = int(font_size * 1.22)
+    total_text_h = len(lines) * line_h
+    # Slightly lower than center for dramatic feel
+    text_top = (H - total_text_h) // 2 + 30
+
+    for i, line in enumerate(lines):
+        y = text_top + i * line_h
+        tw, _ = text_w(draw, line, font)
+        x = (W - tw) // 2
+        draw_shadow_text(draw, (x, y), line, font,
+                         shadow_offsets=((5, 5), (4, 4), (-1, -1)))
+
+    # Thin yellow dot-line above text
+    dot_y = text_top - 28
+    dot_x = (W - 120) // 2
+    draw.rectangle([dot_x, dot_y, dot_x + 120, dot_y + 4], fill=(255, 215, 0))
+
+    if facts_badge:
+        draw_badge(draw, W, facts_badge, BOLD_FONTS)
+
+
+# ── Layout dispatcher ─────────────────────────────────────────────────────────
+
+LAYOUTS = [layout_a, layout_b, layout_c, layout_d]
+LAYOUT_NAMES = ["A (centered classic)", "B (huge keyword)", "C (left-align)", "D (dramatic quote)"]
+
+
+def pick_layout(title: str):
+    idx = int(hashlib.md5(title.encode()).hexdigest(), 16) % len(LAYOUTS)
+    return idx, LAYOUTS[idx]
+
+
+# ── Main generator ────────────────────────────────────────────────────────────
+
 def generate_thumbnail(script: dict, run_dir: str, output_path: str) -> bool:
     if not PILLOW_AVAILABLE:
         log.error("Pillow required")
@@ -138,93 +353,23 @@ def generate_thumbnail(script: dict, run_dir: str, output_path: str) -> bool:
     hook_text = thumbnail_hook or title
     facts_badge = f"{n_facts} FACTS" if n_facts and video_type == "main" else ""
 
+    layout_idx, layout_fn = pick_layout(title)
+    log.info("Thumbnail layout: %s", LAYOUT_NAMES[layout_idx])
+
     # ── Background ────────────────────────────────────────────────────────────
     bg_path = find_best_bg_image(run_dir)
     if bg_path:
         log.info("Background image: %s", bg_path)
         bg = Image.open(bg_path).convert("RGB")
         bg = crop_fill(bg, W, H)
-        # Darken with numpy
-        arr = np.array(bg, dtype=np.float32)
-        arr = (arr * 0.45).clip(0, 255).astype(np.uint8)
-        bg = Image.fromarray(arr)
+        bg = darken_bg(bg, factor=0.40)
     else:
-        log.info("No visuals found — using gradient background")
         bg = Image.new("RGB", (W, H), (10, 10, 26))
-        d_bg = ImageDraw.Draw(bg)
-        for y in range(H):
-            t = y / H
-            c = (int(10 + t * 16), int(10 + t * 16), int(26 + t * 32))
-            d_bg.line([(0, y), (W, y)], fill=c)
 
-    img = bg.copy()
+    img = add_vignette(bg)
     draw = ImageDraw.Draw(img)
 
-    # ── Dark gradient overlay (bottom fade) ───────────────────────────────────
-    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    od = ImageDraw.Draw(overlay)
-    for y in range(H):
-        t = y / H
-        # Dark at edges, lighter in middle
-        alpha = int(120 + 80 * abs(t - 0.5) * 2)
-        od.line([(0, y), (W, y)], fill=(0, 0, 0, min(alpha, 200)))
-    img = img.convert("RGBA")
-    img = Image.alpha_composite(img, overlay)
-    img = img.convert("RGB")
-    draw = ImageDraw.Draw(img)
-
-    # ── Hook text (main) — auto-size font to fit 2 lines max ─────────────────
-    max_text_w = int(W * 0.85)
-    font_size = 130
-    font = find_font(BOLD_FONTS, font_size)
-    lines = []
-    for _ in range(15):
-        font = find_font(BOLD_FONTS, font_size)
-        lines = wrap_text(hook_text, draw, font, max_text_w)
-        if len(lines) <= 2:
-            break
-        font_size = int(font_size * 0.88)
-
-    line_h = int(font_size * 1.18)
-    total_text_h = len(lines) * line_h
-    # Position: center of frame, slightly above middle
-    text_top = (H - total_text_h) // 2 - 20
-
-    for i, line in enumerate(lines):
-        y = text_top + i * line_h
-        try:
-            bb = draw.textbbox((0, 0), line, font=font)
-            tw = bb[2] - bb[0]
-        except Exception:
-            tw = len(line) * int(font_size * 0.6)
-        x = (W - tw) // 2
-        # Strong drop shadow
-        for dx, dy in [(5, 5), (4, 4), (-2, -2)]:
-            draw.text((x + dx, y + dy), line, font=font, fill=(0, 0, 0))
-        draw.text((x, y), line, font=font, fill=(255, 255, 255))
-
-    # ── Accent underline ──────────────────────────────────────────────────────
-    accent_y = text_top + total_text_h + 18
-    bar_w = int(W * 0.55)
-    bar_x = (W - bar_w) // 2
-    draw.rectangle([bar_x, accent_y, bar_x + bar_w, accent_y + 6], fill=(255, 215, 0))
-
-    # ── N FACTS badge (top-right) ─────────────────────────────────────────────
-    if facts_badge:
-        badge_font_size = 60
-        badge_font = find_font(BOLD_FONTS, badge_font_size)
-        try:
-            bb = draw.textbbox((0, 0), facts_badge, font=badge_font)
-            btw, bth = bb[2] - bb[0], bb[3] - bb[1]
-        except Exception:
-            btw, bth = len(facts_badge) * 34, badge_font_size
-        pad_x, pad_y = 28, 22
-        bx1 = W - btw - pad_x * 2 - 30
-        by1 = 30
-        bx2 = W - 30
-        by2 = by1 + bth + pad_y * 2
-        draw.rounded_rectangle([bx1, by1, bx2, by2], radius=14, fill=(255, 215, 0))
-        draw.text((bx1 + pad_x, by1 + pad_y), facts_badge, font=badge_font, fill=(0, 0, 0))
+    layout_fn(img, draw, W, H, hook_text, facts_badge)
 
     img.save(output_path, "JPEG", quality=95)
     log.info("Thumbnail saved: %s (%.1f KB)", output_path, os.path.getsize(output_path) / 1024)
