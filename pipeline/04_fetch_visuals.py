@@ -74,8 +74,8 @@ def file_exists_nonempty(path: str) -> bool:
     return os.path.exists(path) and os.path.getsize(path) > 0
 
 
-def _is_too_bloody(path: str, threshold: float = 0.18) -> bool:
-    """Return True if image has too many blood-red pixels (R high, G+B low)."""
+def _is_too_bloody(path: str) -> bool:
+    """Return True if image looks like gore/biological tissue (blood or raw flesh)."""
     if not PILLOW_AVAILABLE:
         return False
     try:
@@ -83,12 +83,21 @@ def _is_too_bloody(path: str, threshold: float = 0.18) -> bool:
         img = Image.open(path).convert("RGB").resize((120, 68))
         arr = np.array(img, dtype=np.float32)
         r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
-        # Blood red: R > 140, G < 80, B < 80, and R dominates clearly
+
+        # Pure blood-red: R high, G+B both low
         blood_mask = (r > 140) & (g < 80) & (b < 80) & ((r - g) > 80)
-        ratio = blood_mask.sum() / blood_mask.size
-        if ratio > threshold:
-            log.info("    Rejected (bloody image, %.0f%% red pixels): %s",
-                     ratio * 100, os.path.basename(path))
+        blood_ratio = blood_mask.sum() / blood_mask.size
+
+        # Raw flesh / dissected tissue: pinkish-beige, R dominates, G mid, B low-mid
+        # Catches exposed brain tissue, surgical photos, organ shots
+        flesh_mask = (r > 160) & (g > 80) & (g < 165) & (b < 140) & ((r - g) > 35) & ((r - b) > 50)
+        flesh_ratio = flesh_mask.sum() / flesh_mask.size
+
+        if blood_ratio > 0.12:
+            log.info("    Rejected (blood-red %.0f%%): %s", blood_ratio * 100, os.path.basename(path))
+            return True
+        if flesh_ratio > 0.30:
+            log.info("    Rejected (raw flesh %.0f%%): %s", flesh_ratio * 100, os.path.basename(path))
             return True
     except Exception:
         pass
@@ -122,7 +131,7 @@ def download_image(url: str, dest_path: str) -> bool:
 
 _MIN_IMAGE_BYTES = 40_000  # reject images smaller than 40 KB (watermarks/icons)
 
-def fetch_pixabay(query: str, n: int = 3) -> list[str]:
+def fetch_pixabay(query: str, n: int = 10) -> list[str]:
     """Return up to n image URLs from Pixabay."""
     if not PIXABAY_KEY or PIXABAY_KEY == "YOUR_PIXABAY_API_KEY":
         log.debug("Pixabay key not configured, skipping")
@@ -133,7 +142,7 @@ def fetch_pixabay(query: str, n: int = 3) -> list[str]:
             "key": PIXABAY_KEY,
             "q": query,
             "image_type": "photo",
-            "per_page": n + 5,
+            "per_page": min(n + 8, 30),
             "safesearch": "true",
             "min_width": 1000,
             "order": "popular",
@@ -142,14 +151,14 @@ def fetch_pixabay(query: str, n: int = 3) -> list[str]:
         if resp.status_code == 200:
             hits = resp.json().get("hits", [])
             urls = [h.get("largeImageURL") or h.get("webformatURL") for h in hits if h]
-            return [u for u in urls if u][:n + 2]
+            return [u for u in urls if u][:n + 5]
         log.warning("Pixabay returned HTTP %d", resp.status_code)
     except Exception as exc:
         log.warning("Pixabay fetch failed: %s", exc)
     return []
 
 
-def fetch_pexels(query: str, n: int = 3) -> list[str]:
+def fetch_pexels(query: str, n: int = 10) -> list[str]:
     """Return up to n image URLs from Pexels."""
     if not PEXELS_KEY or PEXELS_KEY == "YOUR_PEXELS_API_KEY":
         log.debug("Pexels key not configured, skipping")
@@ -157,16 +166,26 @@ def fetch_pexels(query: str, n: int = 3) -> list[str]:
     try:
         url = "https://api.pexels.com/v1/search"
         headers = {"Authorization": PEXELS_KEY}
-        params = {"query": query, "per_page": n + 5, "size": "large"}
+        params = {"query": query, "per_page": min(n + 8, 30), "size": "large"}
         resp = requests.get(url, headers=headers, params=params, timeout=15)
         if resp.status_code == 200:
             photos = resp.json().get("photos", [])
             urls = [p["src"].get("large2x") or p["src"].get("large") for p in photos if p.get("src")]
-            return [u for u in urls if u][:n + 2]
+            return [u for u in urls if u][:n + 5]
         log.warning("Pexels returned HTTP %d", resp.status_code)
     except Exception as exc:
         log.warning("Pexels fetch failed: %s", exc)
     return []
+
+
+# Generic psychology/mind queries used for hook images (not fact-specific)
+_HOOK_QUERIES = [
+    "human mind abstract",
+    "psychology thought concept",
+    "neuroscience brain illustration",
+    "mental focus meditation",
+    "thinking person silhouette",
+]
 
 
 def generate_placeholder(dest_path: str, label: str, color_idx: int = 0) -> bool:
@@ -203,49 +222,86 @@ def generate_placeholder(dest_path: str, label: str, color_idx: int = 0) -> bool
         return False
 
 
+def _collect_urls(queries: list[str], target: int) -> list[str]:
+    """Try multiple queries across Pixabay + Pexels, return deduplicated URL list."""
+    seen, urls = set(), []
+    for query in queries:
+        if len(urls) >= target + 5:
+            break
+        for u in fetch_pixabay(query, n=target):
+            if u not in seen:
+                seen.add(u)
+                urls.append(u)
+        for u in fetch_pexels(query, n=target):
+            if u not in seen:
+                seen.add(u)
+                urls.append(u)
+    return urls
+
+
 def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0,
-                          visuals_dir: str = None) -> list[str]:
-    """Download images for a fact into visuals/{fact_id}/. Returns list of saved paths."""
+                          visuals_dir: str = None, target: int = 10) -> list[str]:
+    """Download images for a fact into visuals/{fact_id}/. Returns list of saved paths.
+
+    img_01.jpg  — reserved for the title card frame (not used in narration slides)
+    img_02+     — used during narration (cycling through)
+    """
     base_dir = visuals_dir or VISUALS_DIR
     fact_dir = os.path.join(base_dir, fact_id)
 
-    # Check if already downloaded
-    existing = glob.glob(os.path.join(fact_dir, "*.jpg"))
-    if len(existing) >= 2:
+    existing = sorted(glob.glob(os.path.join(fact_dir, "*.jpg")))
+    if len(existing) >= target:
         log.info("  [skip] %s — %d images already downloaded", fact_id, len(existing))
         return existing
 
     os.makedirs(fact_dir, exist_ok=True)
 
-    query = " ".join(keywords[:3]) if keywords else heading
-    log.info("  Fetching images for: %s (query: '%s')", fact_id, query)
+    # Build multiple search queries for variety
+    kw = keywords[:3] if keywords else []
+    primary = " ".join(kw) if kw else heading
+    secondary = (kw[0] + " concept abstract") if kw else (heading + " concept")
+    tertiary = (kw[0] + " psychology human") if kw else "psychology human mind"
+    queries = [primary, secondary, tertiary]
+    log.info("  Fetching images for: %s (queries: %s)", fact_id, queries[:2])
 
-    saved_paths = []
-    target = 3
+    candidate_urls = _collect_urls(queries, target * 2)
 
-    # Try Pixabay first
-    pixabay_urls = fetch_pixabay(query, n=target)
-    for i, url in enumerate(pixabay_urls):
+    saved_paths = list(existing)  # keep any already-downloaded
+    for url in candidate_urls:
         if len(saved_paths) >= target:
             break
         dest = os.path.join(fact_dir, f"img_{len(saved_paths)+1:02d}.jpg")
         if download_image(url, dest):
             saved_paths.append(dest)
 
-    # Try Pexels if we still need more
-    if len(saved_paths) < 2:
-        pexels_urls = fetch_pexels(query, n=target)
-        for url in pexels_urls:
-            if len(saved_paths) >= target:
-                break
-            dest = os.path.join(fact_dir, f"img_{len(saved_paths)+1:02d}.jpg")
-            if download_image(url, dest):
-                saved_paths.append(dest)
-
     if not saved_paths:
-        log.error("  Both Pixabay and Pexels failed for %s (query: '%s') — no images downloaded", fact_id, query)
+        log.error("  All sources failed for %s — no images downloaded", fact_id)
+    else:
+        log.info("  %s → %d images", fact_id, len(saved_paths))
 
     return saved_paths
+
+
+def fetch_hook_images(visuals_dir: str, target: int = 6) -> list[str]:
+    """Download generic psychology images for the hook segment."""
+    hook_dir = os.path.join(visuals_dir, "_hook")
+    existing = sorted(glob.glob(os.path.join(hook_dir, "*.jpg")))
+    if len(existing) >= target:
+        log.info("  [skip] _hook — %d images already downloaded", len(existing))
+        return existing
+
+    os.makedirs(hook_dir, exist_ok=True)
+    candidate_urls = _collect_urls(_HOOK_QUERIES, target * 2)
+    saved = list(existing)
+    for url in candidate_urls:
+        if len(saved) >= target:
+            break
+        dest = os.path.join(hook_dir, f"img_{len(saved)+1:02d}.jpg")
+        if download_image(url, dest):
+            saved.append(dest)
+
+    log.info("  _hook → %d images", len(saved))
+    return saved
 
 
 def find_latest_script(output_dir: str, video_type: str = None) -> str | None:
@@ -289,27 +345,35 @@ def main():
     facts = script.get("facts", [])
     log.info("Facts to process: %d", len(facts))
 
-    all_paths: dict[str, list] = {}
+    # Fetch hook images (separate pool, generic psychology visuals)
+    hook_paths = fetch_hook_images(visuals_dir, target=6)
+    if not hook_paths:
+        log.error("No hook images fetched — check API keys or network. Aborting.")
+        sys.exit(1)
+    all_paths["_hook"] = hook_paths
+
+    all_paths_facts: dict[str, list] = {}
     for i, fact in enumerate(facts):
         fact_id = fact["id"]
         keywords = fact.get("search_keywords", [])
         heading = fact.get("heading", fact_id)
         paths = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
-                                      visuals_dir=visuals_dir)
+                                      visuals_dir=visuals_dir, target=10)
+        all_paths_facts[fact_id] = paths
         all_paths[fact_id] = paths
-        log.info("  %s → %d images", fact_id, len(paths))
         if not paths:
             log.error("No images for %s — check API keys or network. Aborting.", fact_id)
             sys.exit(1)
 
     log.info("=== 04_fetch_visuals.py DONE ===")
 
-    total = sum(len(v) for v in all_paths.values())
+    total = sum(len(v) for v in all_paths_facts.values())
     print(f"\n{'='*60}")
-    print(f"  Visuals fetched: {total} images across {len(all_paths)} facts")
-    print(f"  Output dir: {visuals_dir}")
+    print(f"  Hook images : {len(hook_paths)}")
+    print(f"  Fact images : {total} across {len(all_paths_facts)} facts")
+    print(f"  Output dir  : {visuals_dir}")
     print(f"{'='*60}")
-    for fact_id, paths in all_paths.items():
+    for fact_id, paths in all_paths_facts.items():
         print(f"  {fact_id[:30]:<30} {len(paths)} images")
 
     return all_paths

@@ -167,15 +167,26 @@ def make_gradient_bg(width: int, height: int) -> "Image.Image":
     return Image.fromarray(arr, "RGB")
 
 
-def get_images_for_segment(segment_id: str, visuals_dir: str = None):
+def get_images_for_segment(segment_id: str, visuals_dir: str = None,
+                           narration_only: bool = False):
+    """Return sorted image paths for a segment.
+
+    segment_id == 'hook'  → uses _hook/ folder (generic psychology images)
+    narration_only=True   → skips img_01 (reserved for title card)
+    """
     base = visuals_dir or VISUALS_DIR
-    seg_dir = os.path.join(base, segment_id)
+    # Hook uses its own dedicated image pool
+    folder = "_hook" if segment_id == "hook" else segment_id
+    seg_dir = os.path.join(base, folder)
     if not os.path.isdir(seg_dir):
         return []
     imgs = sorted(
         glob.glob(os.path.join(seg_dir, "*.jpg")) +
         glob.glob(os.path.join(seg_dir, "*.png"))
     )
+    if narration_only:
+        # img_01 is reserved for the title card — skip it for narration slides
+        imgs = [p for p in imgs if not os.path.basename(p).startswith("img_01.")]
     return imgs
 
 
@@ -602,21 +613,37 @@ def build_fact_clip(
     BGM: bgm_facts.mp3 mixed in (if present)
     """
     duration = get_audio_duration(audio_path)
-    images = get_images_for_segment(segment_id, visuals_dir=visuals_dir)
-    if not images:
-        base_vdir = visuals_dir or VISUALS_DIR
-        images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:3]
 
-    # Load images
-    loaded = []
-    for p in images:
-        try:
-            loaded.append(crop_fill(Image.open(p).convert("RGB"), width, height))
-        except Exception:
-            pass
-    if not loaded:
+    # img_01 → title card only; img_02+ → narration slides
+    all_images = get_images_for_segment(segment_id, visuals_dir=visuals_dir)
+    narration_images = get_images_for_segment(segment_id, visuals_dir=visuals_dir,
+                                              narration_only=True)
+    if not all_images:
+        base_vdir = visuals_dir or VISUALS_DIR
+        all_images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:3]
+        narration_images = all_images
+
+    def _load(paths):
+        out = []
+        for p in paths:
+            try:
+                out.append(crop_fill(Image.open(p).convert("RGB"), width, height))
+            except Exception:
+                pass
+        return out
+
+    title_loaded = _load(all_images[:1])   # img_01 for title card
+    narr_loaded = _load(narration_images)   # img_02+ for narration
+
+    if not title_loaded and not narr_loaded:
         log.error("No images available for segment %s — run 04_fetch_visuals.py first", segment_id)
         sys.exit(1)
+
+    # Fall back gracefully if one pool is empty
+    if not title_loaded:
+        title_loaded = narr_loaded[:1]
+    if not narr_loaded:
+        narr_loaded = title_loaded
 
     # Title text to display during narration of "Fact N: Heading."
     title_text = f"Fact {fact_n}: {heading}." if fact_n and heading else heading
@@ -627,20 +654,20 @@ def build_fact_clip(
     title_dur = min(title_dur, duration * 0.45)
     image_dur = duration - title_dur
 
-    n_imgs = len(loaded)
-    # Cap each image to max 4s so images cycle faster even with few images
+    n_imgs = len(narr_loaded)
+    # Cap each image to max 4s so images cycle faster with more images
     img_dur_each = min(4.0, image_dur / n_imgs) if n_imgs else image_dur
 
     def make_frame(t):
         # Image rotation
         if t < title_dur:
-            bc = loaded[0]
+            bc = title_loaded[0]
             img = _apply_ken_burns(bc, t, title_dur, width, height)
             return render_fact_title_frame(img, fact_n, heading, width, height)
         else:
             local_t = t - title_dur
             idx = int(local_t / max(img_dur_each, 0.01)) % n_imgs
-            bc = loaded[idx]
+            bc = narr_loaded[idx]
             seg_local_t = local_t % max(img_dur_each, 0.01)
             img = _apply_ken_burns(bc, seg_local_t, img_dur_each, width, height)
             return render_fact_image_frame(img, fact_n, width, height)
