@@ -516,9 +516,9 @@ def build_hook_clip(
         base_vdir = visuals_dir or VISUALS_DIR
         images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:3]
 
-    # Load images (up to 3 for hook display)
+    # Load 1 image for hook (clean, focused look)
     loaded_imgs = []
-    for p in images[:3]:
+    for p in images[:1]:
         try:
             loaded_imgs.append(crop_fill(Image.open(p).convert("RGB"), width, height))
         except Exception:
@@ -548,21 +548,19 @@ def build_hook_clip(
     lines = wrap_words(hook_sentence, max_chars=max(10, int(max_line_w / max(1, font_size * 0.60))))
     text_start_y = (height - len(lines) * line_h) // 2
 
-    n_imgs = len(loaded_imgs)
-    img_dur = max(0.01, (duration - hook_dur) / n_imgs) if duration > hook_dur else 0.01
+    bg_img = loaded_imgs[0]  # single image for entire hook
 
     def make_frame(t):
         if t < hook_dur:
-            bg = _apply_ken_burns(loaded_imgs[0], t, hook_dur, width, height)
+            bg = _apply_ken_burns(bg_img, t, hook_dur, width, height)
             return render_typewriter_frame(
                 bg, hook_sentence, hook_sentence, width, height,
                 font_size, font, left_margin, line_h, text_start_y,
             )
         else:
-            idx = int((t - hook_dur) / img_dur) % n_imgs
-            bc = loaded_imgs[idx]
-            local_t = (t - hook_dur) % img_dur
-            bg = _apply_ken_burns(bc, local_t, img_dur, width, height)
+            local_t = t - hook_dur
+            remaining = max(duration - hook_dur, 1.0)
+            bg = _apply_ken_burns(bg_img, local_t, remaining, width, height)
             overlay = Image.new("RGBA", (width, height), (0, 0, 0, 55))
             return _apply_letterbox(np.array(overlay_rgba(bg, overlay)))
 
