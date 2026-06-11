@@ -226,18 +226,6 @@ def generate_thumbnail(script: dict, run_dir: str, output_path: str) -> bool:
         draw.rounded_rectangle([bx1, by1, bx2, by2], radius=12, fill=(255, 215, 0))
         draw.text((bx1 + pad, by1 + pad // 2), facts_badge, font=badge_font, fill=(0, 0, 0))
 
-    # ── BRAINBODA watermark (bottom-right) ────────────────────────────────────
-    wm_font_size = 38
-    wm_font = find_font(REGULAR_FONTS, wm_font_size)
-    watermark = CHANNEL_NAME.upper()
-    try:
-        bb = draw.textbbox((0, 0), watermark, font=wm_font)
-        ww = bb[2] - bb[0]
-    except Exception:
-        ww = len(watermark) * 20
-    draw.text((W - ww - 30, H - wm_font_size - 30), watermark,
-              font=wm_font, fill=(200, 200, 200))
-
     img.save(output_path, "JPEG", quality=95)
     log.info("Thumbnail saved: %s (%.1f KB)", output_path, os.path.getsize(output_path) / 1024)
     return True
