@@ -82,16 +82,21 @@ def download_image(url: str, dest_path: str) -> bool:
             with open(dest_path, "wb") as f:
                 for chunk in resp.iter_content(chunk_size=8192):
                     f.write(chunk)
-            if file_exists_nonempty(dest_path):
-                log.info("    Downloaded: %s (%.1f KB)", os.path.basename(dest_path),
-                         os.path.getsize(dest_path) / 1024)
+            size = os.path.getsize(dest_path) if os.path.exists(dest_path) else 0
+            if size >= _MIN_IMAGE_BYTES:
+                log.info("    Downloaded: %s (%.1f KB)", os.path.basename(dest_path), size / 1024)
                 return True
+            if os.path.exists(dest_path):
+                os.remove(dest_path)
+            log.debug("    Skipped (too small, %.1f KB): %s", size / 1024, url)
         log.warning("    HTTP %d for %s", resp.status_code, url)
         return False
     except Exception as exc:
         log.warning("    Download failed %s: %s", url, exc)
         return False
 
+
+_MIN_IMAGE_BYTES = 40_000  # reject images smaller than 40 KB (watermarks/icons)
 
 def fetch_pixabay(query: str, n: int = 3) -> list[str]:
     """Return up to n image URLs from Pixabay."""
@@ -104,15 +109,16 @@ def fetch_pixabay(query: str, n: int = 3) -> list[str]:
             "key": PIXABAY_KEY,
             "q": query,
             "image_type": "photo",
-            "per_page": n + 2,
+            "per_page": n + 5,
             "safesearch": "true",
-            "min_width": 800,
+            "min_width": 1000,
+            "order": "popular",
         }
         resp = requests.get(url, params=params, timeout=15)
         if resp.status_code == 200:
             hits = resp.json().get("hits", [])
-            urls = [h.get("webformatURL") or h.get("largeImageURL") for h in hits[:n] if h]
-            return [u for u in urls if u]
+            urls = [h.get("largeImageURL") or h.get("webformatURL") for h in hits if h]
+            return [u for u in urls if u][:n + 2]
         log.warning("Pixabay returned HTTP %d", resp.status_code)
     except Exception as exc:
         log.warning("Pixabay fetch failed: %s", exc)
@@ -127,12 +133,12 @@ def fetch_pexels(query: str, n: int = 3) -> list[str]:
     try:
         url = "https://api.pexels.com/v1/search"
         headers = {"Authorization": PEXELS_KEY}
-        params = {"query": query, "per_page": n + 2}
+        params = {"query": query, "per_page": n + 5, "size": "large"}
         resp = requests.get(url, headers=headers, params=params, timeout=15)
         if resp.status_code == 200:
             photos = resp.json().get("photos", [])
-            urls = [p["src"].get("large") or p["src"].get("medium") for p in photos[:n] if p.get("src")]
-            return [u for u in urls if u]
+            urls = [p["src"].get("large2x") or p["src"].get("large") for p in photos if p.get("src")]
+            return [u for u in urls if u][:n + 2]
         log.warning("Pexels returned HTTP %d", resp.status_code)
     except Exception as exc:
         log.warning("Pexels fetch failed: %s", exc)
