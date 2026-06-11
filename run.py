@@ -75,9 +75,22 @@ def run_step(name: str, cmd: list, allow_fail: bool = False) -> bool:
 
 
 def count_available_facts(n_needed: int) -> int:
-    """Count unused facts available in facts_raw.csv."""
-    if not os.path.exists(FACTS_RAW_CSV):
+    """Count facts that will pass quality filter and haven't been used yet.
+
+    Imports is_psychology_relevant from 02_build_script to use the same filter,
+    so the count matches what build_script will actually find.
+    """
+    import csv as _csv
+    source = FACTS_RAW_CSV
+
+    # Prefer approved CSV if present
+    approved = os.path.join(DATA_DIR, "facts_approved.csv")
+    if os.path.exists(approved) and os.path.getsize(approved) > 10:
+        source = approved
+
+    if not os.path.exists(source):
         return 0
+
     used_ids: set = set()
     if os.path.exists(USED_FACTS_JSON):
         try:
@@ -86,14 +99,26 @@ def count_available_facts(n_needed: int) -> int:
             used_ids = set(data.get("used_ids", []))
         except Exception:
             pass
+
+    # Import the same quality filter used by build_script
     try:
-        import csv
+        sys.path.insert(0, PIPELINE_DIR)
+        from importlib import import_module
+        bs = import_module("02_build_script".replace("-", "_"))
+        quality_filter = bs.is_psychology_relevant
+    except Exception:
+        quality_filter = None  # fallback: no filter (may overcount)
+
+    try:
         count = 0
-        with open(FACTS_RAW_CSV, newline="", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
+        with open(source, newline="", encoding="utf-8") as f:
+            reader = _csv.DictReader(f)
             for row in reader:
-                if row.get("id", "") not in used_ids:
-                    count += 1
+                if row.get("id", "") in used_ids:
+                    continue
+                if quality_filter and not quality_filter(row):
+                    continue
+                count += 1
         return count
     except Exception:
         return 0
@@ -202,14 +227,27 @@ def main():
             results["steps_ok"].append("01_fetch_facts (skipped)")
 
         # ── Step 2: Build script ───────────────────────────────────────────────
-        cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"),
-               "--type", args.type, "--run-dir", run_dir]
-        if args.topic:
-            cmd += ["--topic", args.topic]
-        ok = run_step("02_build_script", cmd)
+        def _build_script_cmd():
+            cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"),
+                   "--type", args.type, "--run-dir", run_dir]
+            if args.topic:
+                cmd += ["--topic", args.topic]
+            return cmd
+
+        ok = run_step("02_build_script", _build_script_cmd())
         if not ok:
-            log.error("02_build_script failed — cannot continue")
-            sys.exit(1)
+            # Auto-retry: fetch new facts then try again
+            log.warning("02_build_script failed — fetching fresh facts and retrying once")
+            fetch_cmd = [PYTHON, os.path.join(PIPELINE_DIR, "01_fetch_facts.py")]
+            if args.topic:
+                fetch_cmd += ["--topic", args.topic]
+            fetch_ok = run_step("01_fetch_facts (auto-retry)", fetch_cmd, allow_fail=True)
+            if fetch_ok:
+                results["steps_ok"].append("01_fetch_facts (auto-retry)")
+                ok = run_step("02_build_script (retry)", _build_script_cmd())
+            if not ok:
+                log.error("02_build_script failed after retry — cannot continue")
+                sys.exit(1)
         results["steps_ok"].append("02_build_script")
 
         script_path = find_latest_script(args.type, run_dir=run_dir)
