@@ -30,7 +30,7 @@ os.makedirs(LOGS_DIR, exist_ok=True)
 
 log_file = os.path.join(LOGS_DIR, f"00_fetch_bgm_{datetime.now():%Y%m%d_%H%M%S}.log")
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[logging.FileHandler(log_file), logging.StreamHandler(sys.stdout)],
 )
@@ -48,6 +48,21 @@ _SEGMENT_QUERIES = {
 
 _MIN_DURATION_S = 60   # reject tracks shorter than 60s
 _MAX_DURATION_S = 600  # reject tracks longer than 10min
+
+
+def _extract_music_url(hit: dict) -> str | None:
+    """Try all known field paths for the audio download URL."""
+    # Direct audio field (newer API)
+    audio = hit.get("audio")
+    if isinstance(audio, dict):
+        for k in ("mp3", "url", "download"):
+            if audio.get(k):
+                return audio[k]
+    # Flat fields
+    for key in ("audioURL", "audio_url", "musicURL", "previewURL", "largeImageURL", "webformatURL"):
+        if hit.get(key):
+            return hit[key]
+    return None
 
 
 def fetch_pixabay_music(query: str, n: int = 10) -> list[dict]:
@@ -68,17 +83,23 @@ def fetch_pixabay_music(query: str, n: int = 10) -> list[dict]:
         if resp.status_code == 200:
             data = resp.json()
             hits = data.get("hits", [])
+            if hits:
+                log.debug("Sample hit keys: %s", list(hits[0].keys()))
+                log.debug("Sample hit: %s", json.dumps(hits[0], indent=2)[:500])
             results = []
             for h in hits:
-                audio_url = h.get("audio", {}).get("mp3") if isinstance(h.get("audio"), dict) else None
-                # Pixabay music API response varies — try multiple paths
-                if not audio_url:
-                    audio_url = h.get("previewURL") or h.get("url")
+                audio_url = _extract_music_url(h)
                 duration = h.get("duration", 0)
                 title = h.get("tags", query)[:50]
-                if audio_url and _MIN_DURATION_S <= duration <= _MAX_DURATION_S:
-                    results.append({"url": audio_url, "title": title, "duration": duration})
-            log.info("  Pixabay music '%s': %d results (filtered from %d)", query, len(results), len(hits))
+                if not audio_url:
+                    log.debug("  No audio URL in hit: %s", list(h.keys()))
+                    continue
+                # Accept any duration > 0; skip only truly short clips (jingles < 30s)
+                if duration > 0 and duration < 30:
+                    log.debug("  Skipped (too short, %ds): %s", duration, title)
+                    continue
+                results.append({"url": audio_url, "title": title, "duration": duration})
+            log.info("  Pixabay music '%s': %d usable (from %d hits)", query, len(results), len(hits))
             return results[:n]
         log.warning("Pixabay music API returned HTTP %d for '%s'", resp.status_code, query)
         log.debug("Response: %s", resp.text[:300])
