@@ -74,6 +74,27 @@ def file_exists_nonempty(path: str) -> bool:
     return os.path.exists(path) and os.path.getsize(path) > 0
 
 
+def _is_too_bloody(path: str, threshold: float = 0.18) -> bool:
+    """Return True if image has too many blood-red pixels (R high, G+B low)."""
+    if not PILLOW_AVAILABLE:
+        return False
+    try:
+        import numpy as np
+        img = Image.open(path).convert("RGB").resize((120, 68))
+        arr = np.array(img, dtype=np.float32)
+        r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
+        # Blood red: R > 140, G < 80, B < 80, and R dominates clearly
+        blood_mask = (r > 140) & (g < 80) & (b < 80) & ((r - g) > 80)
+        ratio = blood_mask.sum() / blood_mask.size
+        if ratio > threshold:
+            log.info("    Rejected (bloody image, %.0f%% red pixels): %s",
+                     ratio * 100, os.path.basename(path))
+            return True
+    except Exception:
+        pass
+    return False
+
+
 def download_image(url: str, dest_path: str) -> bool:
     """Download an image from url to dest_path. Returns True on success."""
     try:
@@ -84,6 +105,9 @@ def download_image(url: str, dest_path: str) -> bool:
                     f.write(chunk)
             size = os.path.getsize(dest_path) if os.path.exists(dest_path) else 0
             if size >= _MIN_IMAGE_BYTES:
+                if _is_too_bloody(dest_path):
+                    os.remove(dest_path)
+                    return False
                 log.info("    Downloaded: %s (%.1f KB)", os.path.basename(dest_path), size / 1024)
                 return True
             if os.path.exists(dest_path):
