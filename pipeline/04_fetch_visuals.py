@@ -212,13 +212,8 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
             if download_image(url, dest):
                 saved_paths.append(dest)
 
-    # Generate placeholders if still empty
     if not saved_paths:
-        log.info("  Both APIs failed — generating placeholder images for %s", fact_id)
-        for i in range(2):
-            dest = os.path.join(fact_dir, f"img_{i+1:02d}.jpg")
-            if generate_placeholder(dest, heading, color_idx=color_idx + i):
-                saved_paths.append(dest)
+        log.error("  Both Pixabay and Pexels failed for %s (query: '%s') — no images downloaded", fact_id, query)
 
     return saved_paths
 
@@ -273,16 +268,9 @@ def main():
                                       visuals_dir=visuals_dir)
         all_paths[fact_id] = paths
         log.info("  %s → %d images", fact_id, len(paths))
-
-    # Hook/outro placeholders
-    for segment in [("hook", "Psychology Brain"), ("outro", "Subscribe Brainboda")]:
-        seg_id, seg_label = segment
-        seg_dir = os.path.join(visuals_dir, seg_id)
-        existing = glob.glob(os.path.join(seg_dir, "*.jpg"))
-        if not existing:
-            os.makedirs(seg_dir, exist_ok=True)
-            dest = os.path.join(seg_dir, "img_01.jpg")
-            generate_placeholder(dest, seg_label, color_idx=0)
+        if not paths:
+            log.error("No images for %s — check API keys or network. Aborting.", fact_id)
+            sys.exit(1)
 
     log.info("=== 04_fetch_visuals.py DONE ===")
 

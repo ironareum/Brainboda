@@ -8,7 +8,7 @@ Reads script JSON, generates MP3 files for each segment:
   output/audio/full_narration.mp3 (concatenated)
 
 Skips segments that already exist (size > 0).
-Falls back to silent audio if edge-tts is unavailable.
+Exits with error if edge-tts is unavailable or TTS fails.
 
 Usage:
     python pipeline/03_tts.py --script output/script_main_xxx.json
@@ -67,10 +67,9 @@ log.info("ffmpeg binary: %s", FFMPEG_BIN)
 
 try:
     import edge_tts
-    EDGE_TTS_AVAILABLE = True
 except ImportError:
-    EDGE_TTS_AVAILABLE = False
-    log.warning("edge-tts not installed. Will use silent audio fallback.")
+    log.error("edge-tts not installed. Run: pip install edge-tts")
+    sys.exit(1)
 
 try:
     from pydub import AudioSegment
@@ -87,48 +86,6 @@ def file_exists_nonempty(path: str) -> bool:
     return os.path.exists(path) and os.path.getsize(path) > 0
 
 
-def _write_silent_wav_as_mp3_stub(output_path: str, duration_ms: int) -> bool:
-    """
-    Write a silent WAV file using only stdlib struct/wave.
-    Saves as .wav but renamed to .mp3 — ffmpeg-based players handle it;
-    for pipeline testing this is sufficient.
-    """
-    import struct
-    import wave
-    import io
-
-    sample_rate = 22050
-    n_channels = 1
-    sampwidth = 2  # 16-bit
-    n_frames = int(sample_rate * duration_ms / 1000)
-    wav_path = output_path + ".wav"
-    try:
-        with wave.open(wav_path, "w") as wf:
-            wf.setnchannels(n_channels)
-            wf.setsampwidth(sampwidth)
-            wf.setframerate(sample_rate)
-            wf.writeframes(b"\x00" * n_frames * n_channels * sampwidth)
-
-        # Try converting WAV→MP3 via ffmpeg
-        result = subprocess.run(
-            [FFMPEG_BIN, "-y", "-i", wav_path, "-acodec", "libmp3lame",
-             "-b:a", "64k", output_path],
-            capture_output=True, timeout=30
-        )
-        os.unlink(wav_path)
-        if result.returncode == 0 and file_exists_nonempty(output_path):
-            log.info("  [wav→mp3] Silent audio: %s (%dms)", output_path, duration_ms)
-            return True
-        # If ffmpeg conversion failed, just use the WAV as-is (renamed)
-        import shutil
-        shutil.move(wav_path, output_path)
-        log.info("  [wav fallback] Silent WAV saved as: %s (%dms)", output_path, duration_ms)
-        return file_exists_nonempty(output_path)
-    except Exception as exc:
-        log.error("Silent WAV fallback failed: %s", exc)
-        return False
-
-
 async def synthesize_edge_tts(text: str, output_path: str, voice: str) -> bool:
     """Synthesize text to MP3 using edge-tts. Returns True on success."""
     try:
@@ -143,51 +100,16 @@ async def synthesize_edge_tts(text: str, output_path: str, voice: str) -> bool:
         return False
 
 
-def generate_silent_mp3(output_path: str, duration_ms: int = 3000) -> bool:
-    """Generate a silent MP3 of given duration as fallback."""
-    if not PYDUB_AVAILABLE:
-        # Use ffmpeg directly
-        import subprocess
-        duration_sec = duration_ms / 1000
-        cmd = [
-            FFMPEG_BIN, "-y", "-f", "lavfi", "-i",
-            "anullsrc=r=44100:cl=mono", "-t", str(duration_sec),
-            "-acodec", "libmp3lame", "-b:a", "64k", output_path
-        ]
-        try:
-            result = subprocess.run(cmd, capture_output=True, timeout=30)
-            return result.returncode == 0 and file_exists_nonempty(output_path)
-        except Exception as exc:
-            log.error("ffmpeg silent fallback failed: %s", exc)
-            return False
-    else:
-        try:
-            # Try pydub export via the resolved ffmpeg
-            silent = AudioSegment.silent(duration=duration_ms)
-            silent.export(output_path, format="mp3")
-            log.info("  [fallback] Silent audio: %s (%dms)", output_path, duration_ms)
-            return True
-        except Exception as exc:
-            log.warning("pydub silent fallback failed: %s — trying raw WAV", exc)
-            # Last resort: write a minimal silent WAV file (no external tools needed)
-            return _write_silent_wav_as_mp3_stub(output_path, duration_ms)
-
-
-async def synthesize_segment(text: str, output_path: str, voice: str, duration_est: int) -> bool:
-    """Try edge-tts first, fall back to silent audio."""
+async def synthesize_segment(text: str, output_path: str, voice: str) -> bool:
+    """Synthesize one segment. Returns True if file exists and non-empty."""
     if file_exists_nonempty(output_path):
         log.info("  [skip] Already exists: %s", os.path.basename(output_path))
         return True
 
-    if EDGE_TTS_AVAILABLE:
-        success = await synthesize_edge_tts(text, output_path, voice)
-        if success:
-            return True
-        log.warning("  edge-tts failed, using silent fallback")
-
-    # Fallback: silent audio for estimated duration
-    duration_ms = max(duration_est * 1000, 2000)
-    return generate_silent_mp3(output_path, duration_ms)
+    success = await synthesize_edge_tts(text, output_path, voice)
+    if not success:
+        log.error("  TTS failed for: %s", output_path)
+    return success
 
 
 def concatenate_audio(input_paths: list, output_path: str) -> bool:
@@ -252,23 +174,26 @@ async def run_tts(script_path: str, voice: str, audio_dir: str = None) -> dict:
 
     # Hook
     hook_path = os.path.join(audio_dir, "hook.mp3")
-    ok = await synthesize_segment(script["hook"], hook_path, voice, script.get("hook_duration_est", 20))
-    if ok:
-        results["hook"] = hook_path
+    if not await synthesize_segment(script["hook"], hook_path, voice):
+        log.error("TTS failed for hook — aborting")
+        sys.exit(1)
+    results["hook"] = hook_path
 
     # Facts
     for fact in script["facts"]:
         n = fact["n"]
         fact_path = os.path.join(audio_dir, f"fact_{n:02d}.mp3")
-        ok = await synthesize_segment(fact["narration"], fact_path, voice, fact.get("duration_est", 30))
-        if ok:
-            results[f"fact_{n:02d}"] = fact_path
+        if not await synthesize_segment(fact["narration"], fact_path, voice):
+            log.error("TTS failed for fact_%02d — aborting", n)
+            sys.exit(1)
+        results[f"fact_{n:02d}"] = fact_path
 
     # Outro
     outro_path = os.path.join(audio_dir, "outro.mp3")
-    ok = await synthesize_segment(script["outro"], outro_path, voice, script.get("outro_duration_est", 20))
-    if ok:
-        results["outro"] = outro_path
+    if not await synthesize_segment(script["outro"], outro_path, voice):
+        log.error("TTS failed for outro — aborting")
+        sys.exit(1)
+    results["outro"] = outro_path
 
     # Concatenate full narration
     ordered = []

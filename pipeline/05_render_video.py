@@ -496,7 +496,8 @@ def build_hook_clip(
         except Exception:
             pass
     if not loaded_imgs:
-        loaded_imgs = [make_gradient_bg(width, height)]
+        log.error("No images available for hook segment — run 04_fetch_visuals.py first")
+        sys.exit(1)
 
     # Parse sentences
     sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
@@ -622,7 +623,8 @@ def build_fact_clip(
         except Exception:
             pass
     if not loaded:
-        loaded = [make_gradient_bg(width, height)]
+        log.error("No images available for segment %s — run 04_fetch_visuals.py first", segment_id)
+        sys.exit(1)
 
     # Title text to display during narration of "Fact N: Heading."
     title_text = f"Fact {fact_n}: {heading}." if fact_n and heading else heading
@@ -697,10 +699,10 @@ def build_outro_clip(
         base_vdir = visuals_dir or VISUALS_DIR
         images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:1]
 
-    if images:
-        base_img = Image.open(images[0]).convert("RGB")
-    else:
-        base_img = make_gradient_bg(width, height)
+    if not images:
+        log.error("No images available for outro — run 04_fetch_visuals.py first")
+        sys.exit(1)
+    base_img = Image.open(images[0]).convert("RGB")
     base_cropped = crop_fill(base_img, width, height)
 
     def make_frame(t):
@@ -1087,17 +1089,15 @@ def main():
     if not os.path.exists(bgm_path):
         bgm_path = None
 
-    success = False
-    if MOVIEPY_AVAILABLE and PILLOW_AVAILABLE:
-        try:
-            success = render_with_moviepy(segments, output_path, width, height, bgm_path,
-                                          visuals_dir=visuals_dir)
-        except Exception as exc:
-            log.warning("MoviePy failed: %s — falling back to ffmpeg", exc)
+    if not MOVIEPY_AVAILABLE:
+        log.error("MoviePy not available. Run: pip install moviepy")
+        sys.exit(1)
+    if not PILLOW_AVAILABLE:
+        log.error("Pillow not available. Run: pip install pillow numpy")
+        sys.exit(1)
 
-    if not success:
-        success = render_with_ffmpeg(segments, output_path, width, height, bgm_path,
-                                     visuals_dir=visuals_dir)
+    success = render_with_moviepy(segments, output_path, width, height, bgm_path,
+                                  visuals_dir=visuals_dir)
 
     log.info("=== 05_render_video.py DONE ===")
 
