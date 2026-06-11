@@ -119,31 +119,26 @@ def save_used_ids(ids: set[str]) -> None:
 PSYCHOLOGY_KEYWORDS = [
     "psychology", "psychological", "psycholog",
     "behavior", "behaviour", "cognitive", "cognition",
-    "brain", "neuroscience", "neural", "mental",
-    "bias", "effect", "heuristic", "emotion",
+    "brain", "neuroscience", "neural", "mental health",
+    "bias", "heuristic", "emotion",
     "memory", "perception", "personality", "motivation",
     "anxiety", "depression", "stress", "trauma",
-    "social", "interpersonal", "self-esteem", "consciousness",
-    "decision", "judgment", "attention", "learning",
+    "self-esteem", "consciousness",
     "therapy", "therapist", "psychiatry", "psychoanalysis",
-    "belief", "mindset", "thought", "mind", "awareness",
-    "predict", "prophecy", "tendency", "pattern", "influence",
-    "relationship", "attitude", "feeling", "wellbeing", "self-",
-    "human", "people", "person", "individual",
-]
-
-REJECT_KEYWORDS = [
-    "ghost job", "phantom job", "fake job",
-    "recently recognised field", "field within",
-    "public-private partnership",
-    "hosted at the university",
-    "hosted at the",
+    "mindset", "prophecy", "attitude",
 ]
 
 REJECT_TITLES = [
-    "4or", "19 to zero", "animal studies", "anthropology",
-    "black-american anthropology", "association for behavior analysis",
-    "association for contextual behavioral",
+    "4or",
+    "19 to zero",
+    "animal studies",
+    "anthropology",
+    "black-american anthropology",
+    "association for behavior analysis international",
+    "association for contextual behavioral science",
+    "cog's ladder",
+    "ghost job",
+    "phantom job",
 ]
 
 def is_psychology_relevant(fact: dict) -> bool:
@@ -151,14 +146,12 @@ def is_psychology_relevant(fact: dict) -> bool:
     body = fact.get("body", "").lower()
     category = fact.get("category", "").lower()
 
-    if "psychology" in category or "behavior" in category or "mental" in category:
+    if "psychology" in category or "behaviour" in category or "mental" in category:
         return True
-    if any(kw in title for kw in REJECT_TITLES):
+    if any(title == kw or title.startswith(kw) for kw in REJECT_TITLES):
         return False
 
     text = title + " " + body
-    if any(kw in text for kw in REJECT_KEYWORDS):
-        return False
     return any(kw in text for kw in PSYCHOLOGY_KEYWORDS)
 
 
