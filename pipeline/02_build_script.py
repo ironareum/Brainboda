@@ -129,6 +129,7 @@ PSYCHOLOGY_KEYWORDS = [
 ]
 
 REJECT_IDS = {
+    # Non-psychology fields / organizations / journals
     "4or", "19_to_zero", "animal_studies", "anthropology",
     "black_american_anthropology",
     "association_for_behavior_analysis_international",
@@ -138,6 +139,16 @@ REJECT_IDS = {
     "black_manosphere", "attention_inequality", "honey_trapping",
     "amity_enmity_complex", "blame", "blame_in_organizations",
     "sunk_cost", "aesthetic_usability_effect",
+    # Duplicates
+    "anchoring__cognitive_bias_", "anchoring_effect",
+    "priming__psychology_", "framing_effect__psychology_",
+    "habit", "reciprocity__social_psychology_", "scarcity__social_psychology_",
+    # Too broad / not a fact
+    "list_of_cognitive_biases", "social_psychology",
+    # Non-psychology topics
+    "behavior_imaging", "behavior_informatics",
+    "behavioral_urbanism", "barriers_to_pro_environmental_behaviour",
+    "intimidation",
 }
 
 REJECT_BODY_PHRASES = [

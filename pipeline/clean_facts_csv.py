@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # IDs that are clearly not psychology content — block by ID (most reliable)
 REJECT_IDS = {
+    # Non-psychology fields / organizations / journals
     "4or",
     "19_to_zero",
     "animal_studies",
@@ -35,8 +36,25 @@ REJECT_IDS = {
     "amity_enmity_complex",
     "blame",
     "blame_in_organizations",
-    "sunk_cost",                  # covered by sunk_cost_fallacy
-    "aesthetic_usability_effect", # UX/design, not psychology
+    "sunk_cost",                        # covered by sunk_cost_fallacy
+    "aesthetic_usability_effect",       # UX/design, not psychology
+    # Duplicates
+    "anchoring__cognitive_bias_",       # duplicate of anchoring_bias
+    "anchoring_effect",                 # duplicate of anchoring_bias
+    "priming__psychology_",             # duplicate of priming_psychology
+    "framing_effect__psychology_",      # duplicate of framing_effect
+    "habit",                            # duplicate of habit_psychology
+    "reciprocity__social_psychology_",  # duplicate of reciprocity_social_psychology
+    "scarcity__social_psychology_",     # duplicate of scarcity_psychology
+    # Too broad / not a fact
+    "list_of_cognitive_biases",         # list page, not a single fact
+    "social_psychology",                # field name, too broad
+    # Non-psychology topics
+    "behavior_imaging",                 # autism diagnostic technique
+    "behavior_informatics",             # engineering/informatics field
+    "behavioral_urbanism",              # urban design / architecture
+    "barriers_to_pro_environmental_behaviour",  # environmental behavior
+    "intimidation",                     # primarily a legal term
 }
 
 PSYCHOLOGY_KEYWORDS = [
