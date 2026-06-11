@@ -270,10 +270,13 @@ def build_script(
     # Tags
     tags = _build_tags(facts)
 
+    thumbnail_hook = _build_thumbnail_hook(title, hook, facts)
+
     return {
         "type": video_type,
         "created_at": datetime.now().isoformat(timespec="seconds"),
         "title": title,
+        "thumbnail_hook": thumbnail_hook,
         "hook": hook,
         "hook_duration_est": hook_dur,
         "facts": fact_blocks,
@@ -338,6 +341,66 @@ def build_key_insight(title: str, body: str) -> str:
         chosen = chosen[0].upper() + chosen[1:]
 
     return chosen
+
+
+def _build_thumbnail_hook(title: str, hook: str, facts: list) -> str:
+    """Generate a short 5-7 word punchy hook line for the thumbnail."""
+    import re as _re
+
+    # Patterns: "Your Brain...", "You Actually...", "Science Proved...", "Most People..."
+    STARTERS = [
+        "Your Brain Does This Daily",
+        "You Do This Without Knowing",
+        "Science Proved This About You",
+        "Most People Never Know This",
+        "Your Mind Lies To You Daily",
+    ]
+
+    # Extract a strong keyword from the title
+    stop_words = {"the", "a", "an", "and", "or", "but", "in", "on", "of", "to",
+                  "that", "this", "is", "are", "was", "were", "be", "been",
+                  "facts", "fact", "psychological", "psychology", "hidden", "dark",
+                  "incredible", "shocking", "mind-blowing", "disturbing"}
+    title_words = [w.strip(".,!?\"'") for w in title.split() if w.lower().strip(".,!?\"'") not in stop_words and len(w) > 3]
+
+    # Try to build a hook around the best topic word
+    power_phrases = [
+        ("bias", "Your Brain Has a Hidden Bias"),
+        ("manipul", "People Are Being Manipulated"),
+        ("fear", "Fear Controls Your Decisions"),
+        ("memory", "Your Memories Are Fabricated"),
+        ("success", "Success Rewires Your Brain"),
+        ("decision", "You Make Decisions Unconsciously"),
+        ("social", "Social Pressure Shapes Your Mind"),
+        ("emotion", "Emotions Override Your Logic"),
+        ("habit", "Habits Control Your Every Move"),
+        ("trust", "Your Brain Decides Who To Trust"),
+        ("stress", "Stress Changes Your Brain Daily"),
+        ("sleep", "Sleep Deprivation Warps Reality"),
+        ("conform", "You Conform Without Realizing It"),
+        ("reward", "Your Brain Craves Instant Rewards"),
+        ("dark", "The Dark Side of Human Psychology"),
+        ("lie", "Your Brain Lies To You Constantly"),
+    ]
+
+    title_lower = title.lower()
+    hook_lower = hook.lower()
+    combined = title_lower + " " + hook_lower
+
+    for keyword, phrase in power_phrases:
+        if keyword in combined:
+            return phrase
+
+    # Fallback: use first fact title to build a hook
+    if facts:
+        fact_title = facts[0].get("title", "")
+        words = [w for w in fact_title.split() if len(w) > 3][:3]
+        if words:
+            return f"The Hidden Truth About {' '.join(words[:2])}"
+
+    # Last resort: use a random starter
+    import random
+    return random.choice(STARTERS)
 
 
 def _visual_keywords(fact: dict) -> list[str]:

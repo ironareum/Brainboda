@@ -225,114 +225,200 @@ def extract_key_sentence(narration: str) -> str:
     return sentences[0][:120] if sentences else ""
 
 
-# ── frame renderer ────────────────────────────────────────────────────────────
+# ── frame renderers ───────────────────────────────────────────────────────────
 
-def render_image_frame(
+def _apply_ken_burns(base_cropped: "Image.Image", t: float, duration: float,
+                     width: int, height: int) -> "Image.Image":
+    scale = 1.0 + 0.05 * (t / max(duration, 1))
+    iw, ih = base_cropped.size
+    nw, nh = int(iw * scale), int(ih * scale)
+    zoomed = base_cropped.resize((nw, nh), Image.LANCZOS)
+    left, top = (nw - width) // 2, (nh - height) // 2
+    return zoomed.crop((left, top, left + width, top + height))
+
+
+def render_hook_frame(
     base_img: "Image.Image",
-    width: int,
-    height: int,
-    zoom_scale: float = 1.0,
-) -> "np.ndarray":
-    """Render a clean image-only frame (no text overlay) with optional zoom."""
-    cropped = crop_fill(base_img, width, height)
-    if zoom_scale != 1.0:
-        iw, ih = cropped.size
-        new_w, new_h = int(iw * zoom_scale), int(ih * zoom_scale)
-        zoomed = cropped.resize((new_w, new_h), Image.LANCZOS)
-        left = (new_w - width) // 2
-        top = (new_h - height) // 2
-        cropped = zoomed.crop((left, top, left + width, top + height))
-    return np.array(cropped)
-
-
-def render_text_card(
-    text: str,
-    width: int,
-    height: int,
-    sub_text: str = None,
-    text_color: tuple = (255, 255, 255),
-    bg_color: tuple = (0, 0, 0),
-) -> "np.ndarray":
-    """Render a text-only card on dark background (for fact sentences / outro)."""
-    img = Image.new("RGB", (width, height), bg_color)
-    d = ImageDraw.Draw(img)
-
-    font_main_size = max(56, height // 12)
-    font_sub_size = max(36, height // 22)
-    font_main = find_font(BOLD_FONTS, font_main_size)
-    font_sub = find_font(REGULAR_FONTS, font_sub_size)
-
-    # Wrap text to ~40 chars per line
-    lines = wrap_words(text, max_chars=max(28, int(width * 0.038)))[:3]
-    line_h = font_main_size + 16
-    total_h = len(lines) * line_h
-    if sub_text:
-        total_h += font_sub_size + 24
-
-    y = (height - total_h) // 2
-    for line in lines:
-        try:
-            bb = d.textbbox((0, 0), line, font=font_main)
-            tw = bb[2] - bb[0]
-        except Exception:
-            tw = len(line) * (font_main_size // 2)
-        x = (width - tw) // 2
-        # Drop shadow
-        d.text((x + 3, y + 3), line, font=font_main, fill=(0, 0, 0, 120))
-        d.text((x, y), line, font=font_main, fill=text_color)
-        y += line_h
-
-    if sub_text and font_sub:
-        y += 16
-        try:
-            bb = d.textbbox((0, 0), sub_text, font=font_sub)
-            tw = bb[2] - bb[0]
-        except Exception:
-            tw = len(sub_text) * (font_sub_size // 2)
-        x = (width - tw) // 2
-        d.text((x, y), sub_text, font=font_sub, fill=(160, 160, 160))
-
-    return np.array(img)
-
-
-def render_hook_outro_frame(
-    base_img: "Image.Image",
-    heading: str,
+    first_sentence: str,
     width: int,
     height: int,
 ) -> "np.ndarray":
-    """Hook/outro frame: full-bleed image with channel name overlay at top."""
+    """Aperture-style: dark image + large bold centered text for hook."""
     frame = crop_fill(base_img.copy(), width, height)
     overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     d = ImageDraw.Draw(overlay)
 
-    # Dark vignette at top
-    for y in range(int(height * 0.35)):
-        alpha = int(180 * (1 - y / (height * 0.35)))
-        d.line([(0, y), (width, y)], fill=(0, 0, 0, alpha))
+    # Full dark dim overlay (60% opacity) for readability
+    d.rectangle([0, 0, width, height], fill=(0, 0, 0, 150))
 
-    font_size = max(64, height // 10)
+    # Auto-size font to fit text within 80% of frame width, max 3 lines
+    max_w = int(width * 0.82)
+    font_size = max(60, height // 9)
     font = find_font(BOLD_FONTS, font_size)
 
-    try:
-        bb = d.textbbox((0, 0), heading, font=font)
-        tw = bb[2] - bb[0]
-    except Exception:
-        tw = len(heading) * (font_size // 2)
-    bx = (width - tw) // 2
-    by = int(height * 0.10)
-    d.text((bx + 3, by + 3), heading, font=font, fill=(0, 0, 0, 160))
-    d.text((bx, by), heading, font=font, fill=(255, 255, 255, 255))
+    # Auto-reduce font size until text fits
+    for _ in range(10):
+        chars_per_line = max(10, int(max_w / (font_size * 0.6)))
+        lines = wrap_words(first_sentence, max_chars=chars_per_line)[:3]
+        # Check actual width
+        max_line_w = 0
+        for ln in lines:
+            try:
+                bb = d.textbbox((0, 0), ln, font=font)
+                max_line_w = max(max_line_w, bb[2] - bb[0])
+            except Exception:
+                max_line_w = len(ln) * (font_size * 0.6)
+        if max_line_w <= max_w or font_size <= 40:
+            break
+        font_size = int(font_size * 0.88)
+        font = find_font(BOLD_FONTS, font_size)
+
+    line_h = int(font_size * 1.25)
+    total_h = len(lines) * line_h
+    y = (height - total_h) // 2
+
+    for line in lines:
+        try:
+            bb = d.textbbox((0, 0), line, font=font)
+            tw = bb[2] - bb[0]
+        except Exception:
+            tw = len(line) * int(font_size * 0.6)
+        x = (width - tw) // 2
+        # Drop shadow
+        d.text((x + 4, y + 4), line, font=font, fill=(0, 0, 0, 180))
+        d.text((x, y), line, font=font, fill=(255, 255, 255, 255))
+        y += line_h
 
     frame = overlay_rgba(frame, overlay)
     return np.array(frame)
 
 
-# keep for legacy fallback only
+def render_fact_frame(
+    base_img: "Image.Image",
+    fact_n: int,
+    first_sentence: str,
+    width: int,
+    height: int,
+) -> "np.ndarray":
+    """
+    Fact frame: image background with:
+    - FACT 0N badge top-left (semi-transparent pill)
+    - First sentence text centered (semi-transparent, stays full duration per B2)
+    """
+    frame = crop_fill(base_img.copy(), width, height)
+    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    d = ImageDraw.Draw(overlay)
+
+    badge_font_size = max(26, height // 28)
+    badge_font = find_font(BOLD_FONTS, badge_font_size)
+
+    # ── FACT badge top-left ──────────────────────────────────────────────────
+    badge_text = f"FACT {fact_n:02d}" if fact_n else ""
+    if badge_text:
+        pad_bx, pad_by = 14, 8
+        try:
+            bb = d.textbbox((0, 0), badge_text, font=badge_font)
+            btw, bth = bb[2] - bb[0], bb[3] - bb[1]
+        except Exception:
+            btw, bth = len(badge_text) * badge_font_size // 2, badge_font_size
+        bx1, by1 = 24, 24
+        bx2, by2 = bx1 + btw + pad_bx * 2, by1 + bth + pad_by * 2
+        d.rounded_rectangle([bx1, by1, bx2, by2], radius=8, fill=(0, 0, 0, 160))
+        d.text((bx1 + pad_bx, by1 + pad_by), badge_text, font=badge_font,
+               fill=(255, 255, 255, 220))
+
+    # ── First sentence centered (semi-transparent) ────────────────────────────
+    max_w = int(width * 0.78)
+    font_size = max(42, height // 16)
+    font = find_font(BOLD_FONTS, font_size)
+
+    # Auto-size to fit
+    for _ in range(10):
+        chars_per_line = max(10, int(max_w / (font_size * 0.58)))
+        lines = wrap_words(first_sentence, max_chars=chars_per_line)[:3]
+        max_line_w = 0
+        for ln in lines:
+            try:
+                bb = d.textbbox((0, 0), ln, font=font)
+                max_line_w = max(max_line_w, bb[2] - bb[0])
+            except Exception:
+                max_line_w = len(ln) * int(font_size * 0.58)
+        if max_line_w <= max_w or font_size <= 32:
+            break
+        font_size = int(font_size * 0.88)
+        font = find_font(BOLD_FONTS, font_size)
+
+    pad_tx, pad_ty = 24, 16
+    line_h = int(font_size * 1.3)
+    total_text_h = len(lines) * line_h
+    box_h = total_text_h + pad_ty * 2
+    box_w = max_w + pad_tx * 2
+    box_left = (width - box_w) // 2
+    box_top = int(height * 0.60)  # lower third
+    box_right = box_left + box_w
+    box_bot = box_top + box_h
+
+    # Semi-transparent dark background strip
+    d.rounded_rectangle([box_left, box_top, box_right, box_bot],
+                        radius=12, fill=(0, 0, 0, 140))
+
+    y = box_top + pad_ty
+    for line in lines:
+        try:
+            bb = d.textbbox((0, 0), line, font=font)
+            tw = bb[2] - bb[0]
+        except Exception:
+            tw = len(line) * int(font_size * 0.58)
+        x = box_left + (box_w - tw) // 2
+        d.text((x + 2, y + 2), line, font=font, fill=(0, 0, 0, 120))
+        d.text((x, y), line, font=font, fill=(255, 255, 255, 210))
+        y += line_h
+
+    frame = overlay_rgba(frame, overlay)
+    return np.array(frame)
+
+
+def render_outro_frame(
+    base_img: "Image.Image",
+    width: int,
+    height: int,
+) -> "np.ndarray":
+    """Outro: image with dark vignette, no text (narration handles it)."""
+    frame = crop_fill(base_img.copy(), width, height)
+    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    d = ImageDraw.Draw(overlay)
+    # Soft vignette edges
+    for y in range(int(height * 0.25)):
+        alpha = int(120 * (1 - y / (height * 0.25)))
+        d.line([(0, y), (width, y)], fill=(0, 0, 0, alpha))
+    for y in range(int(height * 0.25)):
+        yy = height - 1 - y
+        alpha = int(140 * (1 - y / (height * 0.25)))
+        d.line([(0, yy), (width, yy)], fill=(0, 0, 0, alpha))
+    frame = overlay_rgba(frame, overlay)
+    return np.array(frame)
+
+
+# keep for legacy ffmpeg fallback only
+def render_hook_outro_frame(base_img, heading, width, height):
+    return Image.fromarray(render_hook_frame(base_img, heading, width, height))
+
+
+def render_image_frame(base_img, width, height, zoom_scale=1.0):
+    cropped = crop_fill(base_img, width, height)
+    if zoom_scale != 1.0:
+        iw, ih = cropped.size
+        nw, nh = int(iw * zoom_scale), int(ih * zoom_scale)
+        zoomed = cropped.resize((nw, nh), Image.LANCZOS)
+        left, top = (nw - width) // 2, (nh - height) // 2
+        cropped = zoomed.crop((left, top, left + width, top + height))
+    return np.array(cropped)
+
+
 def render_frame(base_img, heading, narration, width, height,
                  is_hook_outro=False, fact_n=None, key_insight=None):
     if is_hook_outro:
-        return render_hook_outro_frame(base_img, heading, width, height)
+        return render_hook_frame(base_img, heading, width, height)
     return render_image_frame(base_img, width, height)
 
 # ── MoviePy helpers ───────────────────────────────────────────────────────────
@@ -358,39 +444,72 @@ def _subclip(clip, start, end):
         return clip.subclip(start, end)
 
 
-def build_intro_clip(width: int, height: int, duration: float = 3.0):
-    """Black card with BRAINBODA text — cinematic intro."""
-    arr = render_text_card("BRAINBODA", width, height,
-                           text_color=(255, 215, 0), bg_color=(0, 0, 0))
-    clip = ImageClip(arr)
-    return _set_dur(clip, duration)
+def _make_black_transition(width: int, height: int, duration: float = 0.7):
+    """Short silent black clip used between facts."""
+    arr = np.zeros((height, width, 3), dtype=np.uint8)
+    return _set_dur(ImageClip(arr), duration)
 
 
-def build_hook_outro_clip(
+def build_intro_clip(width: int, height: int):
+    """BRAINBODA cinematic intro — uses intro_sfx.mp3 if present, else silent 2s."""
+    sfx_path = os.path.join(_BASE_DIR, "config", "audio", "intro_sfx.mp3")
+    if os.path.exists(sfx_path):
+        duration = get_audio_duration(sfx_path)
+    else:
+        duration = 2.0
+
+    img = Image.new("RGB", (width, height), (0, 0, 0))
+    d = ImageDraw.Draw(img)
+    font_size = max(80, height // 8)
+    font = find_font(BOLD_FONTS, font_size)
+    text = "BRAINBODA"
+    try:
+        bb = d.textbbox((0, 0), text, font=font)
+        tw, th = bb[2] - bb[0], bb[3] - bb[1]
+    except Exception:
+        tw, th = len(text) * font_size // 2, font_size
+    x, y = (width - tw) // 2, (height - th) // 2
+    d.text((x + 4, y + 4), text, font=font, fill=(80, 60, 0))
+    d.text((x, y), text, font=font, fill=(255, 215, 0))
+
+    clip = _set_dur(ImageClip(np.array(img)), duration)
+    if os.path.exists(sfx_path):
+        try:
+            audio = AudioFileClip(sfx_path)
+            clip = _attach_audio(clip, _subclip(audio, 0, duration))
+        except Exception as exc:
+            log.warning("intro_sfx load failed: %s", exc)
+    return clip
+
+
+def build_hook_clip(
     audio_path: str,
-    segment_id: str,
-    heading: str,
+    narration: str,
     width: int,
     height: int,
     visuals_dir: str = None,
 ):
-    """Hook or outro: full-bleed image with heading overlay."""
+    """Hook: dark image + first hook sentence as large bold centered text (Aperture style)."""
     duration = get_audio_duration(audio_path)
-    images = get_images_for_segment(segment_id, visuals_dir=visuals_dir)
+    images = get_images_for_segment("hook", visuals_dir=visuals_dir)
+    if not images:
+        # Use any available fact image as atmospheric background
+        base_vdir = visuals_dir or VISUALS_DIR
+        images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:1]
+
     if images:
         base_img = Image.open(images[0]).convert("RGB")
     else:
         base_img = make_gradient_bg(width, height)
     base_cropped = crop_fill(base_img, width, height)
 
+    # First sentence of hook (strip leading "Did you know" type openers if very long)
+    sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
+    first_sentence = sentences[0] if sentences else narration
+
     def make_frame(t):
-        scale = 1.0 + 0.04 * (t / max(duration, 1))
-        iw, ih = base_cropped.size
-        nw, nh = int(iw * scale), int(ih * scale)
-        zoomed = base_cropped.resize((nw, nh), Image.LANCZOS)
-        left, top = (nw - width) // 2, (nh - height) // 2
-        img = zoomed.crop((left, top, left + width, top + height))
-        return render_hook_outro_frame(img, heading, width, height)
+        img = _apply_ken_burns(base_cropped, t, duration, width, height)
+        return render_hook_frame(img, first_sentence, width, height)
 
     try:
         video_clip = VideoClip(make_frame, duration=duration)
@@ -398,14 +517,13 @@ def build_hook_outro_clip(
         min_dur = min(duration, audio_clip.duration)
         return _attach_audio(_set_dur(video_clip, min_dur), _subclip(audio_clip, 0, min_dur))
     except Exception as exc:
-        log.error("build_hook_outro_clip failed for %s: %s", segment_id, exc)
+        log.error("build_hook_clip failed: %s", exc)
         return None
 
 
 def build_fact_clip(
     audio_path: str,
     segment_id: str,
-    heading: str,
     narration: str,
     width: int,
     height: int,
@@ -413,99 +531,126 @@ def build_fact_clip(
     visuals_dir: str = None,
 ):
     """
-    Fact clip in two parts:
-    Part A: Black card showing heading + first narration sentence (estimated duration).
-    Part B: Image-only rotation with Ken Burns, no text.
+    Fact clip: rotating images (Ken Burns) with FACT badge + first sentence overlay.
+    Text stays for entire duration (B2). 3 images rotate evenly.
     """
-    full_duration = get_audio_duration(audio_path)
+    duration = get_audio_duration(audio_path)
     images = get_images_for_segment(segment_id, visuals_dir=visuals_dir)
-
-    # Fallback images if none for this fact
     if not images:
         base_vdir = visuals_dir or VISUALS_DIR
-        images = glob.glob(os.path.join(base_vdir, "*/*.jpg"))[:3]
-    if not images:
-        images = []
+        images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:3]
 
-    # Estimate first-sentence duration (WPM ~140)
+    # Extract display sentence (strip "Fact N: Title." opener)
     sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
-    first_sentence = sentences[0] if sentences else narration
-    # Remove "Fact N:" prefix from display
-    display_sentence = _re.sub(r'^Fact\s+\d+:\s*', '', first_sentence).strip()
+    raw_first = sentences[0] if sentences else narration
+    display_sentence = _re.sub(r'^Fact\s+\d+[:\.]?\s*', '', raw_first).strip()
+    # If it's still just a heading (short), use the next sentence
+    if len(display_sentence.split()) <= 3 and len(sentences) > 1:
+        display_sentence = sentences[1]
 
-    wpm = 140
-    first_dur = max(2.5, len(display_sentence.split()) / wpm * 60)
-    first_dur = min(first_dur, full_duration * 0.40)  # cap at 40% of total
-    image_dur = full_duration - first_dur
+    if not images:
+        # Solid gradient fallback
+        def make_frame_bg(t):
+            bg = make_gradient_bg(width, height)
+            return render_fact_frame(bg, fact_n, display_sentence, width, height)
+        try:
+            video_clip = VideoClip(make_frame_bg, duration=duration)
+            audio_clip = AudioFileClip(audio_path)
+            min_dur = min(duration, audio_clip.duration)
+            return _attach_audio(_set_dur(video_clip, min_dur), _subclip(audio_clip, 0, min_dur))
+        except Exception as exc:
+            log.error("build_fact_clip fallback failed for %s: %s", segment_id, exc)
+            return None
 
-    # ── Part A: text card ─────────────────────────────────────────────────────
-    label = f"Fact {fact_n}" if fact_n else heading
-    arr_text = render_text_card(
-        display_sentence, width, height,
-        sub_text=label,
-        text_color=(255, 255, 255), bg_color=(5, 5, 10),
-    )
-    part_a = _set_dur(ImageClip(arr_text), first_dur)
+    n_imgs = len(images)
+    dur_each = duration / n_imgs
+    loaded = []
+    for p in images:
+        try:
+            img = Image.open(p).convert("RGB")
+            loaded.append(crop_fill(img, width, height))
+        except Exception:
+            pass
+    if not loaded:
+        loaded = [make_gradient_bg(width, height)]
+        n_imgs = 1
+        dur_each = duration
 
-    # ── Part B: image rotation (Ken Burns per image) ──────────────────────────
-    if images and image_dur > 0.5:
-        n_imgs = len(images)
-        dur_each = image_dur / n_imgs
-        img_clips = []
-        for idx, img_path in enumerate(images):
-            try:
-                base_img = Image.open(img_path).convert("RGB")
-            except Exception:
-                continue
-            base_cropped = crop_fill(base_img, width, height)
-            seg_dur = dur_each
+    img_clips = []
+    for idx, base_cropped in enumerate(loaded):
+        seg_dur = dur_each
 
-            def make_img_frame(t, bc=base_cropped, sd=seg_dur):
-                scale = 1.0 + 0.05 * (t / max(sd, 1))
-                iw, ih = bc.size
-                nw, nh = int(iw * scale), int(ih * scale)
-                zoomed = bc.resize((nw, nh), Image.LANCZOS)
-                left, top = (nw - width) // 2, (nh - height) // 2
-                return np.array(zoomed.crop((left, top, left + width, top + height)))
+        def make_frame(t, bc=base_cropped, sd=seg_dur):
+            img = _apply_ken_burns(bc, t, sd, width, height)
+            return render_fact_frame(img, fact_n, display_sentence, width, height)
 
-            img_clip = _set_dur(VideoClip(make_img_frame, duration=seg_dur), seg_dur)
-            img_clips.append(img_clip)
-
-        if img_clips:
-            part_b = concatenate_videoclips(img_clips, method="compose")
-        else:
-            arr_bg = np.array(make_gradient_bg(width, height))
-            part_b = _set_dur(ImageClip(arr_bg), image_dur)
-    else:
-        arr_bg = np.array(make_gradient_bg(width, height))
-        part_b = _set_dur(ImageClip(arr_bg), max(image_dur, 0.5))
+        img_clips.append(_set_dur(VideoClip(make_frame, duration=seg_dur), seg_dur))
 
     try:
-        combined = concatenate_videoclips([part_a, part_b], method="compose")
+        combined = concatenate_videoclips(img_clips, method="compose")
         audio_clip = AudioFileClip(audio_path)
-        min_dur = min(full_duration, audio_clip.duration)
+        min_dur = min(duration, audio_clip.duration)
         return _attach_audio(_set_dur(combined, min_dur), _subclip(audio_clip, 0, min_dur))
     except Exception as exc:
         log.error("build_fact_clip failed for %s: %s", segment_id, exc)
         return None
 
 
-# legacy kept for ffmpeg fallback path
-def build_clip(
+def build_outro_clip(
     audio_path: str,
-    segment_id: str,
-    heading: str,
-    narration: str,
     width: int,
     height: int,
-    is_hook_outro: bool = False,
-    fact_n: int = None,
     visuals_dir: str = None,
-    key_insight: str = None,
 ):
-    if is_hook_outro:
-        return build_hook_outro_clip(audio_path, segment_id, heading, width, height, visuals_dir)
-    return build_fact_clip(audio_path, segment_id, heading, narration, width, height,
+    """Outro: image with vignette, no text overlay, fade to black at end."""
+    duration = get_audio_duration(audio_path)
+    images = get_images_for_segment("outro", visuals_dir=visuals_dir)
+    if not images:
+        base_vdir = visuals_dir or VISUALS_DIR
+        images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:1]
+
+    if images:
+        base_img = Image.open(images[0]).convert("RGB")
+    else:
+        base_img = make_gradient_bg(width, height)
+    base_cropped = crop_fill(base_img, width, height)
+
+    def make_frame(t):
+        img = _apply_ken_burns(base_cropped, t, duration, width, height)
+        arr = render_outro_frame(img, width, height)
+        # Fade to black in last 1.5s
+        fade_start = max(0.0, duration - 1.5)
+        if t >= fade_start:
+            fade_frac = (t - fade_start) / 1.5
+            fade_overlay = (np.zeros_like(arr, dtype=np.float32) +
+                            np.array(arr, dtype=np.float32) * (1 - fade_frac))
+            return fade_overlay.clip(0, 255).astype(np.uint8)
+        return arr
+
+    try:
+        video_clip = VideoClip(make_frame, duration=duration)
+        audio_clip = AudioFileClip(audio_path)
+        min_dur = min(duration, audio_clip.duration)
+        return _attach_audio(_set_dur(video_clip, min_dur), _subclip(audio_clip, 0, min_dur))
+    except Exception as exc:
+        log.error("build_outro_clip failed: %s", exc)
+        return None
+
+
+# legacy alias for ffmpeg path
+def build_hook_outro_clip(audio_path, segment_id, heading, width, height, visuals_dir=None):
+    if segment_id == "outro":
+        return build_outro_clip(audio_path, width, height, visuals_dir)
+    return build_hook_clip(audio_path, heading, width, height, visuals_dir)
+
+
+def build_clip(audio_path, segment_id, heading, narration, width, height,
+               is_hook_outro=False, fact_n=None, visuals_dir=None, key_insight=None):
+    if segment_id == "hook":
+        return build_hook_clip(audio_path, narration, width, height, visuals_dir)
+    if segment_id == "outro":
+        return build_outro_clip(audio_path, width, height, visuals_dir)
+    return build_fact_clip(audio_path, segment_id, narration, width, height,
                            fact_n=fact_n, visuals_dir=visuals_dir)
 
 # ── MoviePy renderer ──────────────────────────────────────────────────────────
@@ -514,25 +659,30 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_
     log.info("Using MoviePy renderer")
     clips = []
 
-    # Brainboda cinematic intro (3 sec, no audio)
-    intro = build_intro_clip(width, height, duration=3.0)
+    # BRAINBODA intro
+    intro = build_intro_clip(width, height)
     if intro:
         clips.append(intro)
-        log.info("  Added BRAINBODA intro card")
+        log.info("  Added BRAINBODA intro")
 
     for seg in segments:
         audio_path = seg.get("audio")
         if not audio_path or not os.path.exists(audio_path):
             log.warning("Skipping %s — no audio", seg.get("id"))
             continue
-        log.info("  Building clip: %s", seg.get("heading", seg.get("id")))
-        if seg.get("is_hook_outro"):
-            clip = build_hook_outro_clip(
-                audio_path, seg["id"], seg["heading"], width, height, visuals_dir
-            )
+        seg_id = seg.get("id", "")
+        log.info("  Building clip: %s", seg.get("heading", seg_id))
+
+        if seg_id == "hook":
+            clip = build_hook_clip(audio_path, seg.get("narration", ""),
+                                   width, height, visuals_dir)
+        elif seg_id == "outro":
+            clip = build_outro_clip(audio_path, width, height, visuals_dir)
         else:
+            # Prepend 0.7s black transition before each fact
+            clips.append(_make_black_transition(width, height, 0.7))
             clip = build_fact_clip(
-                audio_path, seg["id"], seg["heading"], seg["narration"],
+                audio_path, seg_id, seg.get("narration", ""),
                 width, height, fact_n=seg.get("fact_n"), visuals_dir=visuals_dir,
             )
         if clip:
@@ -620,20 +770,34 @@ def render_with_ffmpeg(segments, output_path, width, height, bgm_path, visuals_d
         i = seg_counter[0]
         seg_counter[0] += 1
         frame_img = Image.fromarray(frame_arr)
-        frame_path = os.path.join(tmpdir, f"frame_{i:03d}.jpg")
-        frame_img.save(frame_path, "JPEG", quality=90)
+        frame_path = os.path.join(tmpdir, f"frame_{i:03d}.png")
+        frame_img.save(frame_path, "PNG")
         seg_out = os.path.join(tmpdir, f"seg_{i:03d}.mp4")
-        if audio_path:
+        if audio_path and os.path.exists(audio_path):
             r = _ffmpeg_still_to_video(FFMPEG_BIN, frame_path, audio_path, seg_out, duration, width, height, FPS)
         else:
             r = _ffmpeg_silent_video(FFMPEG_BIN, frame_path, seg_out, duration, width, height, FPS)
         if r.returncode == 0 and os.path.exists(seg_out):
             segment_videos.append(seg_out)
+        else:
+            log.warning("  Segment render failed (returncode=%s)", r.returncode if hasattr(r, 'returncode') else '?')
 
-    # Brainboda intro (3 sec, silent)
-    intro_arr = render_text_card("BRAINBODA", width, height,
-                                 text_color=(255, 215, 0), bg_color=(0, 0, 0))
-    save_still_seg(intro_arr, None, 3.0)
+    # BRAINBODA intro
+    sfx_path = os.path.join(_BASE_DIR, "config", "audio", "intro_sfx.mp3")
+    intro_dur = get_audio_duration(sfx_path) if os.path.exists(sfx_path) else 2.0
+    img = Image.new("RGB", (width, height), (0, 0, 0))
+    d_intro = ImageDraw.Draw(img)
+    fs = max(80, height // 8)
+    fnt = find_font(BOLD_FONTS, fs)
+    text = "BRAINBODA"
+    try:
+        bb = d_intro.textbbox((0, 0), text, font=fnt)
+        tw, th = bb[2] - bb[0], bb[3] - bb[1]
+    except Exception:
+        tw, th = len(text) * fs // 2, fs
+    d_intro.text(((width - tw) // 2 + 4, (height - th) // 2 + 4), text, font=fnt, fill=(80, 60, 0))
+    d_intro.text(((width - tw) // 2, (height - th) // 2), text, font=fnt, fill=(255, 215, 0))
+    save_still_seg(np.array(img), sfx_path if os.path.exists(sfx_path) else None, intro_dur)
 
     for seg in segments:
         audio_path = seg.get("audio")
@@ -641,80 +805,62 @@ def render_with_ffmpeg(segments, output_path, width, height, bgm_path, visuals_d
             continue
 
         full_duration = get_audio_duration(audio_path)
-        images = get_images_for_segment(seg["id"], visuals_dir=visuals_dir)
-        heading = seg.get("heading", "")
+        seg_id = seg.get("id", "")
+        images = get_images_for_segment(seg_id, visuals_dir=visuals_dir)
         narration = seg.get("narration", "")
-        is_ho = seg.get("is_hook_outro", False)
         fact_n = seg.get("fact_n")
 
-        if is_ho:
-            if images:
-                base_img = Image.open(images[0]).convert("RGB")
-            else:
-                base_img = make_gradient_bg(width, height)
-            frame_arr = render_hook_outro_frame(
-                crop_fill(base_img, width, height), heading, width, height
-            )
+        if seg_id == "hook":
+            if not images:
+                all_imgs = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))
+                images = all_imgs[:1]
+            base_img = Image.open(images[0]).convert("RGB") if images else make_gradient_bg(width, height)
+            sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
+            first_s = sentences[0] if sentences else narration
+            frame_arr = render_hook_frame(crop_fill(base_img, width, height), first_s, width, height)
             save_still_seg(frame_arr, audio_path, full_duration)
             continue
 
-        # Fact segment: Part A (text card) + Part B (image rotation)
+        if seg_id == "outro":
+            if not images:
+                all_imgs = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))
+                images = all_imgs[:1]
+            base_img = Image.open(images[0]).convert("RGB") if images else make_gradient_bg(width, height)
+            frame_arr = render_outro_frame(crop_fill(base_img, width, height), width, height)
+            save_still_seg(frame_arr, audio_path, full_duration)
+            continue
+
+        # ── Fact segment: black transition + image rotation with overlay ───────
         if not images:
-            all_imgs = glob.glob(os.path.join(base_vdir, "*/*.jpg"))
-            images = all_imgs[:3]
+            images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:3]
 
         sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
-        first_sentence = sentences[0] if sentences else narration
-        display_sentence = _re.sub(r'^Fact\s+\d+:\s*', '', first_sentence).strip()
-        first_dur = max(2.5, len(display_sentence.split()) / 140 * 60)
-        first_dur = min(first_dur, full_duration * 0.40)
-        image_dur = full_duration - first_dur
+        raw_first = sentences[0] if sentences else narration
+        display_sentence = _re.sub(r'^Fact\s+\d+[:\.]?\s*', '', raw_first).strip()
+        if len(display_sentence.split()) <= 3 and len(sentences) > 1:
+            display_sentence = sentences[1]
 
-        label = f"Fact {fact_n}" if fact_n else heading
-        text_arr = render_text_card(display_sentence, width, height,
-                                    sub_text=label, text_color=(255, 255, 255), bg_color=(5, 5, 10))
+        # 0.7s black transition before fact
+        save_still_seg(np.zeros((height, width, 3), dtype=np.uint8), None, 0.7)
 
-        # Part A: text card with proportional audio
-        i_a = seg_counter[0]
-        seg_counter[0] += 1
-        frame_path_a = os.path.join(tmpdir, f"frame_{i_a:03d}.jpg")
-        Image.fromarray(text_arr).save(frame_path_a, "JPEG", quality=90)
-        seg_out_a = os.path.join(tmpdir, f"seg_{i_a:03d}.mp4")
-        # Trim audio to first_dur for Part A
-        audio_a = os.path.join(tmpdir, f"audio_{i_a:03d}_a.m4a")
-        subprocess.run([FFMPEG_BIN, "-y", "-i", audio_path, "-t", str(first_dur),
-                        "-c:a", "aac", audio_a], capture_output=True)
-        if os.path.exists(audio_a):
-            r = _ffmpeg_still_to_video(FFMPEG_BIN, frame_path_a, audio_a, seg_out_a,
-                                       first_dur, width, height, FPS)
-            if r.returncode == 0:
-                segment_videos.append(seg_out_a)
-
-        # Part B: image rotation with remaining audio
-        audio_b = os.path.join(tmpdir, f"audio_{i_a:03d}_b.m4a")
-        subprocess.run([FFMPEG_BIN, "-y", "-i", audio_path,
-                        "-ss", str(first_dur), "-c:a", "aac", audio_b], capture_output=True)
-        if images and os.path.exists(audio_b) and image_dur > 0.5:
-            n_imgs = len(images)
-            dur_each = image_dur / n_imgs
-            for idx, img_path in enumerate(images):
-                try:
-                    base_img = Image.open(img_path).convert("RGB")
-                    frame_arr = render_image_frame(base_img, width, height)
-                except Exception:
-                    continue
-                # Audio slice for this image
-                audio_slice = os.path.join(tmpdir, f"audio_{i_a:03d}_b{idx}.m4a")
-                subprocess.run([FFMPEG_BIN, "-y", "-i", audio_b,
-                                "-ss", str(idx * dur_each), "-t", str(dur_each),
-                                "-c:a", "aac", audio_slice], capture_output=True)
-                if os.path.exists(audio_slice):
-                    save_still_seg(frame_arr, audio_slice, dur_each)
-                else:
-                    save_still_seg(frame_arr, None, dur_each)
-        elif os.path.exists(audio_b):
-            bg_arr = np.array(make_gradient_bg(width, height))
-            save_still_seg(bg_arr, audio_b, image_dur)
+        # Rotate through images with overlay
+        n_imgs = max(1, len(images))
+        dur_each = full_duration / n_imgs
+        for idx, img_path in enumerate(images):
+            try:
+                base_img = Image.open(img_path).convert("RGB")
+            except Exception:
+                base_img = make_gradient_bg(width, height)
+            frame_arr = render_fact_frame(crop_fill(base_img, width, height),
+                                          fact_n, display_sentence, width, height)
+            # Audio slice for this image segment
+            audio_slice = os.path.join(tmpdir, f"aslice_{seg_counter[0]:03d}_{idx}.m4a")
+            subprocess.run([FFMPEG_BIN, "-y", "-i", audio_path,
+                            "-ss", str(idx * dur_each), "-t", str(dur_each),
+                            "-c:a", "aac", audio_slice], capture_output=True)
+            save_still_seg(frame_arr,
+                           audio_slice if os.path.exists(audio_slice) else None,
+                           dur_each)
 
     if not segment_videos:
         return False
