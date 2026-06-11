@@ -705,25 +705,7 @@ def build_fact_clip(
         min_dur = min(duration, audio_clip.duration)
         video_clip = _set_dur(video_clip, min_dur)
         audio_clip = _subclip(audio_clip, 0, min_dur)
-
-        # Mix facts BGM
-        bgm_audio, _ = _load_bgm("facts")
-        if bgm_audio:
-            bgm = _vol(bgm_audio, 0.09)
-            if bgm is not None:
-                try:
-                    if bgm.duration < min_dur:
-                        loops = int(min_dur / bgm.duration) + 1
-                        try:
-                            from moviepy import concatenate_audioclips
-                        except ImportError:
-                            from moviepy.editor import concatenate_audioclips
-                        bgm = concatenate_audioclips([_vol(bgm_audio, 0.09)] * loops)
-                    bgm = _subclip(bgm, 0, min_dur)
-                    return _attach_audio(video_clip, CompositeAudioClip([audio_clip, bgm]))
-                except Exception as exc:
-                    log.warning("Facts BGM mix failed: %s", exc)
-
+        # BGM is NOT mixed here — applied once across the full facts section in render_with_moviepy
         return _attach_audio(video_clip, audio_clip)
     except Exception as exc:
         log.error("build_fact_clip failed for %s: %s", segment_id, exc)
@@ -849,9 +831,48 @@ def _make_black_transition(width: int, height: int, duration: float = 0.3):
     return ImageClip(arr).with_duration(duration)
 
 
+def _loop_audio(clip, duration: float):
+    """Loop an audio clip to fill the given duration."""
+    try:
+        from moviepy import concatenate_audioclips
+    except ImportError:
+        from moviepy.editor import concatenate_audioclips
+    if clip.duration >= duration:
+        return _subclip(clip, 0, duration)
+    loops = int(duration / clip.duration) + 2
+    return _subclip(concatenate_audioclips([clip] * loops), 0, duration)
+
+
+def _mix_bgm_onto_clip(video_clip, bgm_audio, volume: float, bgm_start: float = 0.0):
+    """Overlay bgm_audio (starting at bgm_start offset) onto video_clip's audio."""
+    dur = video_clip.duration
+    try:
+        bgm = _vol(bgm_audio, volume)
+        if bgm is None:
+            return video_clip
+        # Start from bgm_start offset so continuous BGM doesn't restart
+        bgm_seg = _subclip(bgm_audio, bgm_start, bgm_audio.duration)
+        bgm_seg = _vol(bgm_seg, volume)
+        bgm_seg = _loop_audio(bgm_seg, dur)
+        bgm_seg = _subclip(bgm_seg, 0, dur)
+        mixed = CompositeAudioClip([video_clip.audio, bgm_seg])
+        return _attach_audio(video_clip, mixed)
+    except Exception as exc:
+        log.warning("BGM overlay failed: %s", exc)
+        return video_clip
+
+
 def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_dir=None):
     log.info("Using MoviePy renderer")
-    clips = []
+
+    hook_clips = []
+    fact_clips = []
+    outro_clips = []
+
+    # Load facts BGM once — will be applied continuously across all facts
+    facts_bgm, facts_bgm_path = _load_bgm("facts")
+    if facts_bgm_path:
+        log.info("Facts BGM: %s (applied continuously across all facts)", facts_bgm_path)
 
     for seg in segments:
         audio_path = seg.get("audio")
@@ -864,48 +885,37 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_
         if seg_id == "hook":
             clip = build_hook_clip(audio_path, seg.get("narration", ""),
                                    width, height, visuals_dir)
+            if clip:
+                hook_clips.append(clip)
         elif seg_id == "outro":
             clip = build_outro_clip(audio_path, width, height, visuals_dir)
+            if clip:
+                outro_clips.append(clip)
         else:
             # 0.3s black transition before each fact
-            clips.append(_make_black_transition(width, height, 0.3))
+            fact_clips.append(_make_black_transition(width, height, 0.3))
             clip = build_fact_clip(
                 audio_path, seg_id, seg.get("narration", ""),
                 width, height, fact_n=seg.get("fact_n"),
                 heading=seg.get("heading", ""), visuals_dir=visuals_dir,
             )
-        if clip:
-            clips.append(clip)
+            if clip:
+                fact_clips.append(clip)
 
-    if not clips:
+    if not hook_clips and not fact_clips and not outro_clips:
         log.error("No clips built")
         return False
 
     try:
-        final = concatenate_videoclips(clips, method="compose")
+        # Concatenate facts section, then overlay single continuous BGM
+        if fact_clips and facts_bgm:
+            facts_section = concatenate_videoclips(fact_clips, method="compose")
+            facts_section = _mix_bgm_onto_clip(facts_section, facts_bgm, volume=0.09)
+            all_clips = hook_clips + [facts_section] + outro_clips
+        else:
+            all_clips = hook_clips + fact_clips + outro_clips
 
-        if bgm_path and os.path.exists(bgm_path):
-            try:
-                _bgm_raw = AudioFileClip(bgm_path)
-                bgm = _vol(_bgm_raw, 0.08)
-                if bgm is None:
-                    raise Exception("volume control unavailable")
-                try:
-                    bgm = bgm.with_duration(final.duration)
-                except AttributeError:
-                    if bgm.duration < final.duration:
-                        from moviepy.audio.fx.audio_loop import audio_loop
-                        bgm = audio_loop(bgm, duration=final.duration)
-                    else:
-                        bgm = bgm.subclip(0, final.duration)
-                mixed = CompositeAudioClip([final.audio, bgm])
-                try:
-                    final = final.with_audio(mixed)
-                except AttributeError:
-                    final = final.set_audio(mixed)
-                log.info("BGM mixed")
-            except Exception as exc:
-                log.warning("BGM mix failed: %s", exc)
+        final = concatenate_videoclips(all_clips, method="compose")
 
         final.write_videofile(
             output_path, fps=FPS, codec="libx264", audio_codec="aac",
