@@ -29,11 +29,11 @@ PSYCHOLOGY_KEYWORDS = [
 ]
 
 REJECT_KEYWORDS = [
-    "anthropology", "ghost job", "animal studies", "black-american",
-    "phantom job", "fake job", "field within", "recently recognised field",
-    "university of", "public-private partnership", "partnership",
-    "nonprofit", "non-profit", "foundation", "organization",
-    "program", "initiative", "hosted at",
+    "ghost job", "phantom job", "fake job",
+    "recently recognised field", "field within",
+    "public-private partnership",
+    "hosted at the university",
+    "hosted at the",
 ]
 
 
