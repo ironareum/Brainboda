@@ -153,8 +153,11 @@ def download_image(url: str, dest_path: str) -> bool:
 
 _MIN_IMAGE_BYTES = 40_000  # reject images smaller than 40 KB (watermarks/icons)
 
-def fetch_pixabay(query: str, n: int = 10, page: int = 1) -> list[str]:
-    """Return up to n image URLs from Pixabay."""
+def fetch_pixabay(query: str, n: int = 10, page: int = 1,
+                  orientation: str = None) -> list[str]:
+    """Return up to n image URLs from Pixabay.
+    orientation: None (any) | 'vertical' | 'horizontal'
+    """
     if not PIXABAY_KEY or PIXABAY_KEY == "YOUR_PIXABAY_API_KEY":
         log.debug("Pixabay key not configured, skipping")
         return []
@@ -167,9 +170,11 @@ def fetch_pixabay(query: str, n: int = 10, page: int = 1) -> list[str]:
             "per_page": min(n + 8, 30),
             "page": page,
             "safesearch": "true",
-            "min_width": 1000,
+            "min_width": 720,
             "order": "popular",
         }
+        if orientation:
+            params["orientation"] = orientation
         resp = requests.get(url, params=params, timeout=15)
         if resp.status_code == 200:
             hits = resp.json().get("hits", [])
@@ -181,8 +186,11 @@ def fetch_pixabay(query: str, n: int = 10, page: int = 1) -> list[str]:
     return []
 
 
-def fetch_pexels(query: str, n: int = 10, page: int = 1) -> list[str]:
-    """Return up to n image URLs from Pexels."""
+def fetch_pexels(query: str, n: int = 10, page: int = 1,
+                 orientation: str = None) -> list[str]:
+    """Return up to n image URLs from Pexels.
+    orientation: None (any) | 'portrait' | 'landscape'
+    """
     if not PEXELS_KEY or PEXELS_KEY == "YOUR_PEXELS_API_KEY":
         log.debug("Pexels key not configured, skipping")
         return []
@@ -190,6 +198,8 @@ def fetch_pexels(query: str, n: int = 10, page: int = 1) -> list[str]:
         url = "https://api.pexels.com/v1/search"
         headers = {"Authorization": PEXELS_KEY}
         params = {"query": query, "per_page": min(n + 8, 30), "page": page, "size": "large"}
+        if orientation:
+            params["orientation"] = orientation  # portrait | landscape
         resp = requests.get(url, headers=headers, params=params, timeout=15)
         if resp.status_code == 200:
             photos = resp.json().get("photos", [])
@@ -245,33 +255,38 @@ def generate_placeholder(dest_path: str, label: str, color_idx: int = 0) -> bool
         return False
 
 
-def _collect_urls(queries: list[str], target: int, used_urls: set = None) -> list[str]:
+def _collect_urls(queries: list[str], target: int, used_urls: set = None,
+                  orientation: str = None) -> list[str]:
     """Try multiple queries across Pixabay + Pexels with random page offset.
+    orientation: None=any, 'vertical'/'portrait'=shorts, 'horizontal'/'landscape'=main
     Skips URLs already present in used_urls to avoid cross-run repetition.
     """
     if used_urls is None:
         used_urls = set()
+    # Map to per-API orientation names
+    pix_orient = "vertical" if orientation == "vertical" else ("horizontal" if orientation == "horizontal" else None)
+    pex_orient = "portrait" if orientation == "vertical" else ("landscape" if orientation == "horizontal" else None)
+
     seen, urls = set(), []
-    page = random.randint(1, 4)  # random starting page for variety across runs
+    page = random.randint(1, 4)
     for query in queries:
         if len(urls) >= target + 5:
             break
-        for u in fetch_pixabay(query, n=target, page=page):
+        for u in fetch_pixabay(query, n=target, page=page, orientation=pix_orient):
             if u not in seen and u not in used_urls:
                 seen.add(u)
                 urls.append(u)
-        for u in fetch_pexels(query, n=target, page=page):
+        for u in fetch_pexels(query, n=target, page=page, orientation=pex_orient):
             if u not in seen and u not in used_urls:
                 seen.add(u)
                 urls.append(u)
-        # Try next page too if still short
         if len(urls) < target:
             next_page = (page % 5) + 1
-            for u in fetch_pixabay(query, n=target, page=next_page):
+            for u in fetch_pixabay(query, n=target, page=next_page, orientation=pix_orient):
                 if u not in seen and u not in used_urls:
                     seen.add(u)
                     urls.append(u)
-            for u in fetch_pexels(query, n=target, page=next_page):
+            for u in fetch_pexels(query, n=target, page=next_page, orientation=pex_orient):
                 if u not in seen and u not in used_urls:
                     seen.add(u)
                     urls.append(u)
@@ -308,7 +323,7 @@ def _build_queries(keywords: list, heading: str) -> list[str]:
 
 def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0,
                           visuals_dir: str = None, target: int = 5,
-                          used_urls: set = None) -> list[str]:
+                          used_urls: set = None, orientation: str = None) -> list[str]:
     """Download images for a fact into visuals/{fact_id}/. Returns list of saved paths.
 
     img_01.jpg  — reserved for the title card frame (not used in narration slides)
@@ -327,7 +342,8 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
     queries = _build_queries(keywords, heading)
     log.info("  Fetching images for: %s | queries: %s", fact_id, queries[:3])
 
-    candidate_urls = _collect_urls(queries, target * 3, used_urls=used_urls or set())
+    candidate_urls = _collect_urls(queries, target * 3, used_urls=used_urls or set(),
+                                   orientation=orientation)
 
     saved_paths = list(existing)
     newly_downloaded = []
@@ -347,7 +363,8 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
     return saved_paths, newly_downloaded
 
 
-def fetch_hook_images(visuals_dir: str, target: int = 6, used_urls: set = None) -> tuple:
+def fetch_hook_images(visuals_dir: str, target: int = 6, used_urls: set = None,
+                      orientation: str = None) -> tuple:
     """Download generic psychology images for the hook segment."""
     hook_dir = os.path.join(visuals_dir, "_hook")
     existing = sorted(glob.glob(os.path.join(hook_dir, "*.jpg")))
@@ -356,7 +373,8 @@ def fetch_hook_images(visuals_dir: str, target: int = 6, used_urls: set = None) 
         return existing, []
 
     os.makedirs(hook_dir, exist_ok=True)
-    candidate_urls = _collect_urls(_HOOK_QUERIES, target * 2, used_urls=used_urls or set())
+    candidate_urls = _collect_urls(_HOOK_QUERIES, target * 2, used_urls=used_urls or set(),
+                                   orientation=orientation)
     saved = list(existing)
     newly_downloaded = []
     for url in candidate_urls:
@@ -410,7 +428,12 @@ def main():
         script = json.load(f)
 
     facts = script.get("facts", [])
-    log.info("Facts to process: %d", len(facts))
+    video_type = script.get("type", "main")
+    log.info("Facts to process: %d | video type: %s", len(facts), video_type)
+
+    # Shorts prefer portrait orientation; main videos prefer landscape
+    orientation = "vertical" if video_type == "short" else "horizontal"
+    log.info("Image orientation preference: %s", orientation)
 
     # Load previously used URLs to avoid re-downloading the same images
     used_urls = _load_used_urls()
@@ -420,7 +443,8 @@ def main():
     all_paths: dict[str, list] = {}
 
     # Fetch hook images (separate pool, generic psychology visuals)
-    hook_paths, hook_new = fetch_hook_images(visuals_dir, target=6, used_urls=used_urls)
+    hook_paths, hook_new = fetch_hook_images(visuals_dir, target=6, used_urls=used_urls,
+                                             orientation=orientation)
     if not hook_paths:
         log.error("No hook images fetched — check API keys or network. Aborting.")
         sys.exit(1)
@@ -434,7 +458,8 @@ def main():
         heading = fact.get("heading", fact_id)
         result = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
                                        visuals_dir=visuals_dir, target=5,
-                                       used_urls=used_urls | newly_used)
+                                       used_urls=used_urls | newly_used,
+                                       orientation=orientation)
         paths, fact_new = result
         all_paths_facts[fact_id] = paths
         all_paths[fact_id] = paths
