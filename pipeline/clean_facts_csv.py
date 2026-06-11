@@ -26,6 +26,11 @@ PSYCHOLOGY_KEYWORDS = [
     "social", "interpersonal", "self-esteem", "consciousness",
     "decision", "judgment", "attention", "learning",
     "therapy", "therapist", "psychiatry", "psychoanalysis",
+    # broader human-mind terms often in short body snippets
+    "belief", "mindset", "thought", "mind", "awareness",
+    "predict", "prophecy", "tendency", "pattern", "influence",
+    "relationship", "attitude", "feeling", "wellbeing", "self-",
+    "human", "people", "person", "individual",
 ]
 
 REJECT_KEYWORDS = [
@@ -36,9 +41,27 @@ REJECT_KEYWORDS = [
     "hosted at the",
 ]
 
+REJECT_TITLES = [
+    "4or", "19 to zero", "animal studies", "anthropology",
+    "black-american anthropology", "association for behavior analysis",
+    "association for contextual behavioral",
+]
+
 
 def is_psychology_relevant(row: dict) -> bool:
-    text = (row.get("title", "") + " " + row.get("body", "")).lower()
+    title = row.get("title", "").lower()
+    body = row.get("body", "").lower()
+    category = row.get("category", "").lower()
+
+    # Category field is authoritative if present
+    if "psychology" in category or "behavior" in category or "mental" in category:
+        return True
+
+    # Reject by specific non-psychology titles
+    if any(kw in title for kw in REJECT_TITLES):
+        return False
+
+    text = title + " " + body
     if any(kw in text for kw in REJECT_KEYWORDS):
         return False
     return any(kw in text for kw in PSYCHOLOGY_KEYWORDS)

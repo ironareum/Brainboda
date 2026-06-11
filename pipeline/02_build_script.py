@@ -126,6 +126,10 @@ PSYCHOLOGY_KEYWORDS = [
     "social", "interpersonal", "self-esteem", "consciousness",
     "decision", "judgment", "attention", "learning",
     "therapy", "therapist", "psychiatry", "psychoanalysis",
+    "belief", "mindset", "thought", "mind", "awareness",
+    "predict", "prophecy", "tendency", "pattern", "influence",
+    "relationship", "attitude", "feeling", "wellbeing", "self-",
+    "human", "people", "person", "individual",
 ]
 
 REJECT_KEYWORDS = [
@@ -136,11 +140,25 @@ REJECT_KEYWORDS = [
     "hosted at the",
 ]
 
+REJECT_TITLES = [
+    "4or", "19 to zero", "animal studies", "anthropology",
+    "black-american anthropology", "association for behavior analysis",
+    "association for contextual behavioral",
+]
+
 def is_psychology_relevant(fact: dict) -> bool:
-    text = (fact.get("title", "") + " " + fact.get("body", "")).lower()
+    title = fact.get("title", "").lower()
+    body = fact.get("body", "").lower()
+    category = fact.get("category", "").lower()
+
+    if "psychology" in category or "behavior" in category or "mental" in category:
+        return True
+    if any(kw in title for kw in REJECT_TITLES):
+        return False
+
+    text = title + " " + body
     if any(kw in text for kw in REJECT_KEYWORDS):
         return False
-    # Must contain at least one psychology-related keyword
     return any(kw in text for kw in PSYCHOLOGY_KEYWORDS)
 
 
