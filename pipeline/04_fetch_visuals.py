@@ -348,7 +348,7 @@ def main():
     all_paths: dict[str, list] = {}
 
     # Fetch hook images (separate pool, generic psychology visuals)
-    hook_paths = fetch_hook_images(visuals_dir, target=30)
+    hook_paths = fetch_hook_images(visuals_dir, target=6)
     if not hook_paths:
         log.error("No hook images fetched — check API keys or network. Aborting.")
         sys.exit(1)
@@ -360,7 +360,7 @@ def main():
         keywords = fact.get("search_keywords", [])
         heading = fact.get("heading", fact_id)
         paths = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
-                                      visuals_dir=visuals_dir, target=30)
+                                      visuals_dir=visuals_dir, target=10)
         all_paths_facts[fact_id] = paths
         all_paths[fact_id] = paths
         if not paths:
