@@ -233,12 +233,14 @@ def main():
     # ── Step 4: Fetch visuals ─────────────────────────────────────────────────
     cmd = [PYTHON, os.path.join(PIPELINE_DIR, "04_fetch_visuals.py"),
            "--script", script_path, "--run-dir", run_dir]
-    ok = run_step("04_fetch_visuals", cmd, allow_fail=True)
+    ok = run_step("04_fetch_visuals", cmd, allow_fail=False)
     if ok:
         results["steps_ok"].append("04_fetch_visuals")
     else:
         results["steps_failed"].append("04_fetch_visuals")
-        log.warning("04_fetch_visuals failed — video will use placeholder images")
+        log.error("04_fetch_visuals FAILED — aborting pipeline")
+        print_summary(results)
+        sys.exit(1)
 
     # ── Step 5: Render video ──────────────────────────────────────────────────
     cmd = [PYTHON, os.path.join(PIPELINE_DIR, "05_render_video.py"),

@@ -474,6 +474,9 @@ def _build_description(title: str, facts: list[dict]) -> str:
         "🧠 Subscribe to Brainboda for weekly psychology insights.",
         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
         "",
+        "🎵 Music: Pixabay Music (https://pixabay.com/music/)",
+        "License: Pixabay Content License — Free for commercial use, no attribution required.",
+        "",
         "#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience",
     ]
     return "\n".join(lines)

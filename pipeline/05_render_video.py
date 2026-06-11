@@ -289,7 +289,7 @@ def render_typewriter_frame(
     y = text_start_y
     for i, line in enumerate(lines):
         is_last = (i == len(lines) - 1)
-        display = line + ("|" if is_last else "")
+        display = line  # no typing cursor
         d.text((left_margin + 3, y + 3), display, font=font, fill=(0, 0, 0, 160))
         d.text((left_margin, y), display, font=font, fill=(255, 255, 255, 255))
         y += line_h
@@ -311,6 +311,22 @@ def render_hook_frame(
     return np.array(frame)
 
 
+# Solid background colors for fact title cards — cycles per fact number
+# Colors match the thumbnail palette (dark, cinematic)
+_FACT_BG_COLORS = [
+    (10, 10, 30),    # deep navy
+    (20, 10, 30),    # dark purple
+    (10, 25, 20),    # dark teal
+    (30, 15, 10),    # dark brown-red
+    (10, 20, 30),    # dark steel blue
+    (25, 20, 10),    # dark gold-brown
+    (15, 10, 35),    # deep violet
+    (10, 30, 25),    # dark emerald
+    (30, 10, 20),    # dark crimson
+    (20, 25, 10),    # dark olive
+]
+
+
 def render_fact_title_frame(
     base_img: "Image.Image",
     fact_n: int,
@@ -318,15 +334,12 @@ def render_fact_title_frame(
     width: int,
     height: int,
 ) -> "np.ndarray":
-    """
-    Fact title frame: 'Fact N: Heading.' centered on image.
-    Shown while the title sentence is being narrated, then disappears.
-    """
-    frame = crop_fill(base_img.copy(), width, height)
-    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-    d = ImageDraw.Draw(overlay)
-    # Moderate dark overlay for text readability
-    d.rectangle([0, 0, width, height], fill=(0, 0, 0, 130))
+    """Fact title card: solid dark color background + centered 'Fact N: Heading' text."""
+    color_idx = ((fact_n or 1) - 1) % len(_FACT_BG_COLORS)
+    bg_color = _FACT_BG_COLORS[color_idx]
+
+    frame = Image.new("RGB", (width, height), bg_color)
+    d = ImageDraw.Draw(frame)
 
     display_text = f"Fact {fact_n}: {heading}." if fact_n else heading
 
@@ -353,6 +366,11 @@ def render_fact_title_frame(
     total_h = len(lines) * line_h
     y = (height - total_h) // 2
 
+    # Yellow accent bar above text
+    bar_w = int(width * 0.12)
+    bar_x = (width - bar_w) // 2
+    d.rectangle([bar_x, y - 28, bar_x + bar_w, y - 20], fill=(255, 215, 0))
+
     for line in lines:
         try:
             bb = d.textbbox((0, 0), line, font=font)
@@ -360,11 +378,10 @@ def render_fact_title_frame(
         except Exception:
             tw = len(line) * int(font_size * 0.60)
         x = (width - tw) // 2
-        d.text((x + 4, y + 4), line, font=font, fill=(0, 0, 0, 180))
-        d.text((x, y), line, font=font, fill=(255, 255, 255, 255))
+        d.text((x + 4, y + 4), line, font=font, fill=(0, 0, 0))
+        d.text((x, y), line, font=font, fill=(255, 255, 255))
         y += line_h
 
-    frame = overlay_rgba(frame, overlay)
     return _apply_letterbox(np.array(frame))
 
 
@@ -478,16 +495,34 @@ def _vol(clip, v: float):
     return _set_dur(ImageClip(arr), duration)
 
 
-def _load_bgm(name: str):
-    """Load a BGM file from config/audio/ or return None."""
-    path = os.path.join(_BASE_DIR, "config", "audio", name)
+def _load_bgm(segment: str):
+    """Load a random BGM file from config/bgm/{segment}/ folder.
+
+    Falls back to config/audio/bgm_{segment}.mp3 for backwards compatibility.
+    segment: 'hook', 'facts', or 'outro'
+    """
+    import random
+    folder = os.path.join(_BASE_DIR, "config", "bgm", segment)
+    if os.path.isdir(folder):
+        files = sorted(glob.glob(os.path.join(folder, "*.mp3")) +
+                       glob.glob(os.path.join(folder, "*.wav")))
+        if files:
+            path = random.choice(files)
+            try:
+                clip = AudioFileClip(path)
+                log.info("BGM (%s): %s", segment, os.path.basename(path))
+                return clip, path
+            except Exception as exc:
+                log.warning("BGM load failed (%s): %s", path, exc)
+    # Legacy fallback: config/audio/bgm_{segment}.mp3
+    path = os.path.join(_BASE_DIR, "config", "audio", f"bgm_{segment}.mp3")
     if not os.path.exists(path):
         return None, None
     try:
         clip = AudioFileClip(path)
         return clip, path
     except Exception as exc:
-        log.warning("BGM load failed (%s): %s", name, exc)
+        log.warning("BGM load failed (%s): %s", path, exc)
         return None, None
 
 
@@ -510,9 +545,9 @@ def build_hook_clip(
         base_vdir = visuals_dir or VISUALS_DIR
         images = sorted(glob.glob(os.path.join(base_vdir, "*/*.jpg")))[:3]
 
-    # Load images
+    # Load all available hook images (up to 30)
     loaded_imgs = []
-    for p in images[:3]:
+    for p in images:
         try:
             loaded_imgs.append(crop_fill(Image.open(p).convert("RGB"), width, height))
         except Exception:
@@ -522,41 +557,74 @@ def build_hook_clip(
         sys.exit(1)
 
     sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
-    hook_sentence = sentences[0] if sentences else narration
 
-    # Hook text shown for first ~40% of duration, then images cycle
-    hook_dur = min(duration * 0.40, max(3.0, len(hook_sentence.split()) / 135 * 60))
+    # Sentences to show as typewriter (exclude first sentence and any "in this video" sentence)
+    typing_sentences = [
+        s for s in sentences[1:]
+        if "in this video" not in s.lower()
+    ]
+    # All typing text joined — shown centered on screen
+    typing_text = " ".join(typing_sentences).strip()
 
-    # Font metrics
-    left_margin = int(width * 0.08)
-    max_line_w = width - left_margin * 2
-    font_size = max(45, height // 14)
+    # Estimate duration: first sentence is spoken before typing starts
+    first_sent_words = len(sentences[0].split()) if sentences else 0
+    first_sent_dur = max(1.5, first_sent_words / 135 * 60)
+
+    # Typing text is shown for the rest of narration, then images cycle
+    # Images cycle during the last portion (after typing text narration ends)
+    typing_words = len(typing_text.split()) if typing_text else 0
+    typing_dur = max(2.0, typing_words / 135 * 60) if typing_text else 0
+    text_end = first_sent_dur + typing_dur
+    text_end = min(text_end, duration * 0.85)  # keep at least 15% for image cycling
+
+    # Font setup — centered
+    max_line_w = int(width * 0.82)
+    font_size = max(48, height // 13)
     font = find_font(BOLD_FONTS, font_size)
     for _ in range(10):
-        chars_per_line = max(10, int(max_line_w / max(1, font_size * 0.60)))
-        if len(wrap_words(hook_sentence, max_chars=chars_per_line)) <= 3:
+        chars_per_line = max(10, int(max_line_w / max(1, font_size * 0.58)))
+        if len(wrap_words(typing_text or "X", max_chars=chars_per_line)) <= 4:
             break
         font_size = int(font_size * 0.88)
         font = find_font(BOLD_FONTS, font_size)
-    line_h = int(font_size * 1.25)
-    lines = wrap_words(hook_sentence, max_chars=max(10, int(max_line_w / max(1, font_size * 0.60))))
-    text_start_y = (height - len(lines) * line_h) // 2
+    line_h = int(font_size * 1.28)
+    chars_per_line = max(10, int(max_line_w / max(1, font_size * 0.58)))
+    type_lines = wrap_words(typing_text, max_chars=chars_per_line) if typing_text else []
+    text_start_y = (height - len(type_lines) * line_h) // 2 if type_lines else height // 2
 
     n_imgs = len(loaded_imgs)
-    img_dur = max(0.01, (duration - hook_dur) / n_imgs) if duration > hook_dur else 0.01
+    img_dur = max(0.5, (duration - text_end) / n_imgs) if duration > text_end else 0.5
 
     def make_frame(t):
-        if t < hook_dur:
-            bg = _apply_ken_burns(loaded_imgs[0], t, hook_dur, width, height)
-            return render_typewriter_frame(
-                bg, hook_sentence, hook_sentence, width, height,
-                font_size, font, left_margin, line_h, text_start_y,
-            )
+        if t < text_end and typing_text:
+            # Choose image: cycle through all loaded during text phase
+            img_idx = int(t / max(text_end / max(n_imgs, 1), 0.01)) % n_imgs
+            bg = _apply_ken_burns(loaded_imgs[img_idx], t, text_end, width, height)
+
+            frame = crop_fill(bg.copy(), width, height)
+            overlay = Image.new("RGBA", (width, height), (0, 0, 0, 155))
+            d = ImageDraw.Draw(overlay)
+
+            if type_lines:
+                y = text_start_y
+                for line in type_lines:
+                    try:
+                        bb = d.textbbox((0, 0), line, font=font)
+                        tw = bb[2] - bb[0]
+                    except Exception:
+                        tw = len(line) * int(font_size * 0.58)
+                    x = (width - tw) // 2
+                    d.text((x + 3, y + 3), line, font=font, fill=(0, 0, 0, 160))
+                    d.text((x, y), line, font=font, fill=(255, 255, 255, 255))
+                    y += line_h
+
+            return _apply_letterbox(np.array(overlay_rgba(frame, overlay)))
         else:
-            idx = int((t - hook_dur) / img_dur) % n_imgs
+            local_t = max(0, t - text_end)
+            idx = int(local_t / max(img_dur, 0.01)) % n_imgs
             bc = loaded_imgs[idx]
-            local_t = (t - hook_dur) % img_dur
-            bg = _apply_ken_burns(bc, local_t, img_dur, width, height)
+            seg_t = local_t % max(img_dur, 0.01)
+            bg = _apply_ken_burns(bc, seg_t, img_dur, width, height)
             overlay = Image.new("RGBA", (width, height), (0, 0, 0, 55))
             return _apply_letterbox(np.array(overlay_rgba(bg, overlay)))
 
@@ -568,7 +636,7 @@ def build_hook_clip(
         audio_clip = _subclip(audio_clip, 0, min_dur)
 
         # Mix bgm_hook.mp3
-        bgm_audio, bgm_path = _load_bgm("bgm_hook.mp3")
+        bgm_audio, bgm_path = _load_bgm("hook")
         if bgm_audio:
             bgm = _vol(bgm_audio, 0.10)
             if bgm is not None:
@@ -680,7 +748,7 @@ def build_fact_clip(
         audio_clip = _subclip(audio_clip, 0, min_dur)
 
         # Mix bgm_facts.mp3
-        bgm_audio, _ = _load_bgm("bgm_facts.mp3")
+        bgm_audio, _ = _load_bgm("facts")
         if bgm_audio:
             bgm = _vol(bgm_audio, 0.09)
             if bgm is not None:
@@ -734,11 +802,66 @@ def build_outro_clip(
             return fade_overlay.clip(0, 255).astype(np.uint8)
         return arr
 
+    OUTRO_PAUSE = 1.0  # 1s silent pause before outro narration starts
+    total_dur = duration + OUTRO_PAUSE
+
+    def make_frame_outro(t):
+        ct = max(0.0, t - OUTRO_PAUSE)
+        img = _apply_ken_burns(base_cropped, ct, total_dur, width, height)
+        arr = render_outro_frame(img, width, height)
+        fade_start = max(0.0, total_dur - 1.5)
+        if t >= fade_start:
+            fade_frac = (t - fade_start) / 1.5
+            arr = (np.array(arr, dtype=np.float32) * (1 - fade_frac)).clip(0, 255).astype(np.uint8)
+        return arr
+
     try:
-        video_clip = VideoClip(make_frame, duration=duration)
-        audio_clip = AudioFileClip(audio_path)
-        min_dur = min(duration, audio_clip.duration)
-        return _attach_audio(_set_dur(video_clip, min_dur), _subclip(audio_clip, 0, min_dur))
+        video_clip = VideoClip(make_frame_outro, duration=total_dur)
+        narr_clip = AudioFileClip(audio_path)
+        narr_clip = _subclip(narr_clip, 0, min(duration, narr_clip.duration))
+
+        # Prepend 1s silence then narration
+        try:
+            from moviepy import AudioClip as _AClip
+            silence = _AClip(lambda t: [0, 0], duration=OUTRO_PAUSE, nchannels=2)
+        except Exception:
+            try:
+                from moviepy.audio.AudioClip import AudioClip as _AClip
+                silence = _AClip(lambda t: [0, 0], duration=OUTRO_PAUSE, nchannels=2)
+            except Exception:
+                silence = None
+
+        # Load outro BGM
+        bgm_audio, _ = _load_bgm("outro")
+        if bgm_audio is None:
+            bgm_audio, _ = _load_bgm("facts")  # fall back to facts BGM
+
+        audio_parts = []
+        if silence:
+            audio_parts.append(silence)
+        audio_parts.append(narr_clip)
+
+        try:
+            from moviepy import concatenate_audioclips
+        except ImportError:
+            from moviepy.editor import concatenate_audioclips
+
+        final_narr = concatenate_audioclips(audio_parts) if silence else narr_clip
+
+        if bgm_audio:
+            bgm = _vol(bgm_audio, 0.10)
+            if bgm is not None:
+                try:
+                    if bgm.duration < total_dur:
+                        loops = int(total_dur / bgm.duration) + 1
+                        bgm = concatenate_audioclips([_vol(bgm_audio, 0.10)] * loops)
+                    bgm = _subclip(bgm, 0, total_dur)
+                    mixed = CompositeAudioClip([final_narr, bgm])
+                    return _attach_audio(_set_dur(video_clip, total_dur), mixed)
+                except Exception as exc:
+                    log.warning("Outro BGM mix failed: %s", exc)
+
+        return _attach_audio(_set_dur(video_clip, total_dur), final_narr)
     except Exception as exc:
         log.error("build_outro_clip failed: %s", exc)
         return None
