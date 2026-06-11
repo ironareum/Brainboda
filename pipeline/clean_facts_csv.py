@@ -28,7 +28,15 @@ REJECT_IDS = {
     "cog_s_ladder",
     "ghost_job",
     "phantom_job",
-    "behavioral_science___policy",   # journal, not a psychology concept
+    "behavioral_science___policy",
+    "black_manosphere",
+    "attention_inequality",
+    "honey_trapping",
+    "amity_enmity_complex",
+    "blame",
+    "blame_in_organizations",
+    "sunk_cost",                  # covered by sunk_cost_fallacy
+    "aesthetic_usability_effect", # UX/design, not psychology
 }
 
 PSYCHOLOGY_KEYWORDS = [
@@ -41,6 +49,8 @@ PSYCHOLOGY_KEYWORDS = [
     "self-esteem", "consciousness",
     "therapy", "therapist", "psychiatry", "psychoanalysis",
     "mindset", "prophecy", "attitude",
+    "tendency",
+    "belief",
 ]
 
 REJECT_BODY_PHRASES = [

@@ -128,27 +128,35 @@ PSYCHOLOGY_KEYWORDS = [
     "mindset", "prophecy", "attitude",
 ]
 
-REJECT_TITLES = [
-    "4or",
-    "19 to zero",
-    "animal studies",
-    "anthropology",
-    "black-american anthropology",
-    "association for behavior analysis international",
-    "association for contextual behavioral science",
-    "cog's ladder",
-    "ghost job",
-    "phantom job",
+REJECT_IDS = {
+    "4or", "19_to_zero", "animal_studies", "anthropology",
+    "black_american_anthropology",
+    "association_for_behavior_analysis_international",
+    "association_for_contextual_behavioral_science",
+    "cog_s_ladder", "ghost_job", "phantom_job",
+    "behavioral_science___policy",
+    "black_manosphere", "attention_inequality", "honey_trapping",
+    "amity_enmity_complex", "blame", "blame_in_organizations",
+    "sunk_cost", "aesthetic_usability_effect",
+}
+
+REJECT_BODY_PHRASES = [
+    "recently recognised field",
+    "field within anthropology",
+    "operations research",
+    "hosted at the university of calgary",
+    "nonprofit professional membership organization",
+    "nonprofit organization dedicated to promoting",
 ]
 
 def is_psychology_relevant(fact: dict) -> bool:
+    fact_id = fact.get("id", "").lower()
     title = fact.get("title", "").lower()
     body = fact.get("body", "").lower()
-    category = fact.get("category", "").lower()
 
-    if "psychology" in category or "behaviour" in category or "mental" in category:
-        return True
-    if any(title == kw or title.startswith(kw) for kw in REJECT_TITLES):
+    if fact_id in REJECT_IDS:
+        return False
+    if any(phrase in body for phrase in REJECT_BODY_PHRASES):
         return False
 
     text = title + " " + body
