@@ -16,6 +16,21 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# IDs that are clearly not psychology content — block by ID (most reliable)
+REJECT_IDS = {
+    "4or",
+    "19_to_zero",
+    "animal_studies",
+    "anthropology",
+    "black_american_anthropology",
+    "association_for_behavior_analysis_international",
+    "association_for_contextual_behavioral_science",
+    "cog_s_ladder",
+    "ghost_job",
+    "phantom_job",
+    "behavioral_science___policy",   # journal, not a psychology concept
+}
+
 PSYCHOLOGY_KEYWORDS = [
     "psychology", "psychological", "psycholog",
     "behavior", "behaviour", "cognitive", "cognition",
@@ -28,35 +43,30 @@ PSYCHOLOGY_KEYWORDS = [
     "mindset", "prophecy", "attitude",
 ]
 
-# Titles that are clearly NOT psychology content
-REJECT_TITLES = [
-    "4or",
-    "19 to zero",
-    "animal studies",
-    "anthropology",
-    "black-american anthropology",
-    "association for behavior analysis international",
-    "association for contextual behavioral science",
-    "cog's ladder",
-    "ghost job",
-    "phantom job",
+REJECT_BODY_PHRASES = [
+    "recently recognised field",
+    "field within anthropology",
+    "operations research",
+    "hosted at the university of calgary",
+    "nonprofit professional membership organization",
+    "nonprofit organization dedicated to promoting",
 ]
 
 
 def is_psychology_relevant(row: dict) -> bool:
+    row_id = row.get("id", "").lower()
     title = row.get("title", "").lower()
     body = row.get("body", "").lower()
-    category = row.get("category", "").lower()
 
-    # Category field is authoritative
-    if "psychology" in category or "behaviour" in category or "mental" in category:
-        return True
-
-    # Block known non-psychology titles explicitly
-    if any(title == kw or title.startswith(kw) for kw in REJECT_TITLES):
+    # Block known non-psychology IDs
+    if row_id in REJECT_IDS:
         return False
 
-    # Must contain a psychology keyword
+    # Block by body phrases that indicate non-psychology content
+    if any(phrase in body for phrase in REJECT_BODY_PHRASES):
+        return False
+
+    # Must contain at least one psychology keyword
     text = title + " " + body
     return any(kw in text for kw in PSYCHOLOGY_KEYWORDS)
 
