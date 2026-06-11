@@ -211,20 +211,20 @@ def generate_thumbnail(script: dict, run_dir: str, output_path: str) -> bool:
 
     # ── N FACTS badge (top-right) ─────────────────────────────────────────────
     if facts_badge:
-        badge_font_size = 52
+        badge_font_size = 60
         badge_font = find_font(BOLD_FONTS, badge_font_size)
         try:
             bb = draw.textbbox((0, 0), facts_badge, font=badge_font)
             btw, bth = bb[2] - bb[0], bb[3] - bb[1]
         except Exception:
-            btw, bth = len(facts_badge) * 30, badge_font_size
-        pad = 20
-        bx1 = W - btw - pad * 2 - 30
+            btw, bth = len(facts_badge) * 34, badge_font_size
+        pad_x, pad_y = 28, 22
+        bx1 = W - btw - pad_x * 2 - 30
         by1 = 30
         bx2 = W - 30
-        by2 = by1 + bth + pad
-        draw.rounded_rectangle([bx1, by1, bx2, by2], radius=12, fill=(255, 215, 0))
-        draw.text((bx1 + pad, by1 + pad // 2), facts_badge, font=badge_font, fill=(0, 0, 0))
+        by2 = by1 + bth + pad_y * 2
+        draw.rounded_rectangle([bx1, by1, bx2, by2], radius=14, fill=(255, 215, 0))
+        draw.text((bx1 + pad_x, by1 + pad_y), facts_badge, font=badge_font, fill=(0, 0, 0))
 
     img.save(output_path, "JPEG", quality=95)
     log.info("Thumbnail saved: %s (%.1f KB)", output_path, os.path.getsize(output_path) / 1024)
