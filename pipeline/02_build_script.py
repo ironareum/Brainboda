@@ -116,14 +116,32 @@ def save_used_ids(ids: set[str]) -> None:
         json.dump({"used_ids": sorted(merged)}, f, indent=2)
 
 
+PSYCHOLOGY_KEYWORDS = [
+    "psychology", "psychological", "psycholog",
+    "behavior", "behaviour", "cognitive", "cognition",
+    "brain", "neuroscience", "neural", "mental",
+    "bias", "effect", "heuristic", "emotion",
+    "memory", "perception", "personality", "motivation",
+    "anxiety", "depression", "stress", "trauma",
+    "social", "interpersonal", "self-esteem", "consciousness",
+    "decision", "judgment", "attention", "learning",
+    "therapy", "therapist", "psychiatry", "psychoanalysis",
+]
+
 REJECT_KEYWORDS = [
     "anthropology", "ghost job", "animal studies", "black-american",
-    "phantom job", "fake job", "field within", "recently recognised field"
+    "phantom job", "fake job", "field within", "recently recognised field",
+    "university of", "public-private partnership", "partnership",
+    "nonprofit", "non-profit", "foundation", "organization",
+    "program", "initiative", "hosted at",
 ]
 
 def is_psychology_relevant(fact: dict) -> bool:
     text = (fact.get("title", "") + " " + fact.get("body", "")).lower()
-    return not any(kw in text for kw in REJECT_KEYWORDS)
+    if any(kw in text for kw in REJECT_KEYWORDS):
+        return False
+    # Must contain at least one psychology-related keyword
+    return any(kw in text for kw in PSYCHOLOGY_KEYWORDS)
 
 
 def load_available_facts(topic: str | None = None) -> list[dict]:
