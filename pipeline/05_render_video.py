@@ -735,6 +735,12 @@ def build_clip(audio_path, segment_id, heading, narration, width, height,
 
 # ── MoviePy renderer ──────────────────────────────────────────────────────────
 
+def _make_black_transition(width: int, height: int, duration: float = 0.3):
+    """Short black frame clip used between fact segments."""
+    arr = np.zeros((height, width, 3), dtype=np.uint8)
+    return ImageClip(arr).with_duration(duration)
+
+
 def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_dir=None):
     log.info("Using MoviePy renderer")
     clips = []

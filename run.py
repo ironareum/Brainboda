@@ -251,7 +251,9 @@ def main():
         results["video"] = find_latest_video(args.type, run_dir=run_dir)
     else:
         results["steps_failed"].append("05_render_video")
-        log.warning("05_render_video failed — continuing to thumbnail")
+        log.error("05_render_video FAILED — aborting pipeline")
+        print_summary(results)
+        sys.exit(1)
 
     # ── Step 6: Thumbnail ─────────────────────────────────────────────────────
     cmd = [PYTHON, os.path.join(PIPELINE_DIR, "06_thumbnail.py"),
