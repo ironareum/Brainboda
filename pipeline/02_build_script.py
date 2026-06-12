@@ -692,70 +692,14 @@ def build_script_ai(theme: str, video_type: str, n_facts: int,
     return script_data
 
 
-_SHORTS_PICK_PROMPT = """\
-You are helping pick the most impactful fact from a main YouTube video to turn into a Short.
-
-Main video facts:
-{facts_list}
-
-Already used as Shorts (DO NOT pick these):
-{used_headings}
-
-Pick the ONE fact that would perform best as a standalone YouTube Short — the most shocking,
-counterintuitive, or immediately relatable concept that hooks a viewer in under 3 seconds.
-
-Reply with ONLY a JSON object:
-{{"chosen_heading": "Exact heading text from the list above"}}
-"""
-
-_SHORTS_FROM_MAIN_PROMPT = """\
-Create a YouTube Shorts script (vertical video, 45-60 seconds) focused on this psychology concept:
-"{chosen_concept}"
-
-This is a Short extracted from a main video about: "{main_theme}"
-
-The Short must:
-- Hook (15-20 words): Start with the most shocking or counterintuitive aspect of this concept.
-- Fact 1: The concept itself — what it is, named and explained in plain English (30-40 words).
-- Fact 2: A surprising real-world example or consequence most people don't expect (30-40 words).
-- Fact 3: How to recognize or use this in everyday life (30-40 words).
-- Outro (10 words): "Follow Brainboda for more psychology facts that change how you see people."
-
-RULES:
-- Conversational, punchy. No academic language.
-- NEVER fabricate statistics.
-- Each fact narration starts with "Fact N: [Concept Name]."
-
-Return valid JSON only:
-{{
-  "title": "punchy YouTube Shorts title (max 60 chars)",
-  "thumbnail_hook": "5-6 word punchy phrase",
-  "hook": "...",
-  "facts": [
-    {{"n": 1, "heading": "...", "narration": "Fact 1: ...", "search_keywords": ["kw1","kw2","kw3"]}},
-    {{"n": 2, "heading": "...", "narration": "Fact 2: ...", "search_keywords": ["kw1","kw2","kw3"]}},
-    {{"n": 3, "heading": "...", "narration": "Fact 3: ...", "search_keywords": ["kw1","kw2","kw3"]}}
-  ],
-  "outro": "...",
-  "tags": ["tag1", "...up to 15 tags"]
-}}
-"""
+def _pick_best_fact(facts: list) -> dict:
+    """Pick most impactful fact heuristically — longest narration tends to be most developed."""
+    return max(facts, key=lambda f: len(f.get("narration", "")))
 
 
 def build_script_short_from_main(main_script_path: str, run_dir: str,
                                   dry_run: bool = False) -> dict | None:
-    """Generate a Shorts script by extracting the best fact from a main script."""
-    try:
-        import anthropic
-    except ImportError:
-        log.error("anthropic package not installed. Run: pip install anthropic")
-        sys.exit(1)
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY", ANTHROPIC_API_KEY)
-    if not api_key or api_key == "YOUR_ANTHROPIC_API_KEY":
-        log.error("ANTHROPIC_API_KEY not set.")
-        sys.exit(1)
-
+    """Build a Shorts script by extracting facts directly from a main script. Zero AI cost."""
     with open(main_script_path, encoding="utf-8") as f:
         main_script = json.load(f)
 
@@ -767,87 +711,63 @@ def build_script_short_from_main(main_script_path: str, run_dir: str,
     used_headings = _load_used_shorts_facts()
     available_facts = [f for f in main_facts if f["heading"] not in used_headings]
     if not available_facts:
-        log.warning("All facts from this main script already used as Shorts. Using all facts.")
+        log.warning("All facts from this main already used as Shorts — resetting pool.")
         available_facts = main_facts
 
-    main_theme = main_script.get("theme", main_script.get("title", "psychology"))
+    # Pick best fact + 2 supporting facts (all unused if possible)
+    chosen = _pick_best_fact(available_facts)
+    rest = [f for f in available_facts if f["heading"] != chosen["heading"]]
+    # Fill up to 3 facts total
+    selected = [chosen] + rest[:2]
 
-    facts_list = "\n".join(
-        f"- {f['heading']}: {f['narration'][:80]}..." for f in available_facts
-    )
-    used_str = ", ".join(used_headings) if used_headings else "none yet"
+    log.info("Short facts selected: %s", [f["heading"] for f in selected])
 
-    client = anthropic.Anthropic(api_key=api_key)
+    # Re-number narrations as Fact 1/2/3
+    facts_out = []
+    for i, f in enumerate(selected, 1):
+        narration = re.sub(r"^Fact \d+:", f"Fact {i}:", f["narration"])
+        facts_out.append({
+            "n": i,
+            "heading": f["heading"],
+            "narration": narration,
+            "search_keywords": f.get("search_keywords", []),
+            "duration_est": estimate_duration(narration),
+            "id": f.get("id", re.sub(r"[^a-z0-9]+", "_", f["heading"].lower()).strip("_")),
+            "source_url": f.get("source_url", ""),
+            "key_insight": f.get("key_insight", ""),
+        })
 
-    # Step 1: AI picks the best fact
-    log.info("Step 1/2 — AI picking best fact for Short from %d available facts", len(available_facts))
-    try:
-        pick_resp = client.messages.create(
-            model="claude-haiku-4-5",
-            max_tokens=128,
-            messages=[{"role": "user", "content": _SHORTS_PICK_PROMPT.format(
-                facts_list=facts_list,
-                used_headings=used_str,
-            )}],
-        )
-        pick_raw = pick_resp.content[0].text.strip()
-        if pick_raw.startswith("```"):
-            pick_raw = re.sub(r"^```[a-z]*\n?", "", pick_raw)
-            pick_raw = re.sub(r"\n?```$", "", pick_raw)
-        chosen_heading = json.loads(pick_raw).get("chosen_heading", available_facts[0]["heading"])
-    except Exception as exc:
-        log.warning("Fact pick failed (%s) — using first available", exc)
-        chosen_heading = available_facts[0]["heading"]
+    hook = main_script.get("hook", "")
+    outro = main_script.get("outro", "")
+    title = f"{chosen['heading']} — Psychology Short | Brainboda"
+    thumbnail_hook = main_script.get("thumbnail_hook", chosen["heading"])
+    tags = main_script.get("tags", [])
 
-    log.info("Chosen fact for Short: %s", chosen_heading)
+    hook_dur = estimate_duration(hook)
+    outro_dur = estimate_duration(outro)
 
-    # Step 2: Generate Shorts script around chosen concept
-    log.info("Step 2/2 — Generating Shorts script")
-    try:
-        script_resp = client.messages.create(
-            model="claude-haiku-4-5",
-            max_tokens=2048,
-            messages=[{"role": "user", "content": _SHORTS_FROM_MAIN_PROMPT.format(
-                chosen_concept=chosen_heading,
-                main_theme=main_theme,
-            )}],
-        )
-        raw = script_resp.content[0].text.strip()
-        if raw.startswith("```"):
-            raw = re.sub(r"^```[a-z]*\n?", "", raw)
-            raw = re.sub(r"\n?```$", "", raw)
-        script_data = json.loads(raw)
-    except Exception as exc:
-        log.error("Shorts script generation failed: %s", exc)
-        return None
+    script_data = {
+        "type": "short",
+        "created_at": datetime.now().isoformat(timespec="seconds"),
+        "ai_generated": False,
+        "from_main": os.path.abspath(main_script_path),
+        "chosen_fact": chosen["heading"],
+        "title": title,
+        "thumbnail_hook": thumbnail_hook,
+        "hook": hook,
+        "facts": facts_out,
+        "outro": outro,
+        "tags": tags,
+        "hook_duration_est": hook_dur,
+        "outro_duration_est": outro_dur,
+        "total_duration_est": hook_dur + sum(f["duration_est"] for f in facts_out) + outro_dur,
+        "description": _build_description(title, facts_out),
+    }
 
-    # Inject standard fields
-    script_data["type"] = "short"
-    script_data["created_at"] = datetime.now().isoformat(timespec="seconds")
-    script_data["ai_generated"] = True
-    script_data["from_main"] = os.path.abspath(main_script_path)
-    script_data["chosen_fact"] = chosen_heading
-
-    for fact in script_data.get("facts", []):
-        fact["duration_est"] = estimate_duration(fact.get("narration", ""))
-        fact["id"] = re.sub(r"[^a-z0-9]+", "_", fact["heading"].lower()).strip("_")
-        fact["source_url"] = ""
-        fact["key_insight"] = ""
-
-    hook_dur = estimate_duration(script_data.get("hook", ""))
-    outro_dur = estimate_duration(script_data.get("outro", ""))
-    script_data["hook_duration_est"] = hook_dur
-    script_data["outro_duration_est"] = outro_dur
-    script_data["total_duration_est"] = (
-        hook_dur + sum(f["duration_est"] for f in script_data["facts"]) + outro_dur
-    )
-    script_data["description"] = _build_description(script_data["title"], script_data["facts"])
-
-    # Track used shorts facts
     if not dry_run:
-        used_headings.append(chosen_heading)
+        used_headings.append(chosen["heading"])
         _save_used_shorts_facts(used_headings)
-        log.info("Marked '%s' as used for Shorts", chosen_heading)
+        log.info("Marked '%s' as used for Shorts", chosen["heading"])
 
     return script_data
 
