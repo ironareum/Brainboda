@@ -212,6 +212,17 @@ def main():
 
     log.info("Run directory: %s", run_dir)
 
+    def _build_script_cmd():
+        cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"),
+               "--type", args.type, "--run-dir", run_dir]
+        if args.ai:
+            cmd.append("--ai")
+            if args.theme:
+                cmd += ["--theme", args.theme]
+        elif args.topic:
+            cmd += ["--topic", args.topic]
+        return cmd
+
     # ── If script provided, skip steps 1-2 ───────────────────────────────────
     if args.script:
         if not os.path.exists(args.script):
@@ -219,16 +230,27 @@ def main():
             sys.exit(1)
         script_path = args.script
         log.info("Using provided script: %s", script_path)
-        results["steps_ok"].extend(["01_fetch_facts", "02_build_script"])
+        results["steps_ok"].extend(["01_fetch_facts (skipped)", "02_build_script (skipped)"])
+
     elif args.ai:
-        # ── AI mode: skip Wikipedia steps entirely ────────────────────────────
+        # ── AI mode: skip step 1, run step 2 with --ai ───────────────────────
         log.info("AI mode — skipping 01_fetch_facts (not needed)")
         results["steps_ok"].append("01_fetch_facts (skipped — AI mode)")
-        n_needed = None  # suppress linter; unused in this branch
-        available = None
 
-    if not args.script and not args.ai:
-        # ── Step 1: Fetch facts if pool is low ────────────────────────────────
+        ok = run_step("02_build_script (AI)", _build_script_cmd())
+        if not ok:
+            log.error("02_build_script (AI) failed — cannot continue")
+            sys.exit(1)
+        results["steps_ok"].append("02_build_script")
+
+        script_path = find_latest_script(args.type, run_dir=run_dir)
+        if not script_path:
+            log.error("Could not find generated script JSON")
+            sys.exit(1)
+
+    else:
+        # ── Wikipedia mode ────────────────────────────────────────────────────
+        # Step 1: Fetch facts if pool is low
         n_needed = FACTS_PER_SHORT if args.type == "short" else FACTS_PER_VIDEO
         available = count_available_facts(n_needed)
         log.info("Available unused facts: %d (need %d)", available, n_needed)
@@ -248,21 +270,9 @@ def main():
             log.info("Fact pool sufficient — skipping 01_fetch_facts.py")
             results["steps_ok"].append("01_fetch_facts (skipped)")
 
-        # ── Step 2: Build script ───────────────────────────────────────────────
-        def _build_script_cmd():
-            cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"),
-                   "--type", args.type, "--run-dir", run_dir]
-            if args.ai:
-                cmd.append("--ai")
-                if args.theme:
-                    cmd += ["--theme", args.theme]
-            elif args.topic:
-                cmd += ["--topic", args.topic]
-            return cmd
-
+        # Step 2: Build script
         ok = run_step("02_build_script", _build_script_cmd())
         if not ok:
-            # Auto-retry: fetch new facts then try again
             log.warning("02_build_script failed — fetching fresh facts and retrying once")
             fetch_cmd = [PYTHON, os.path.join(PIPELINE_DIR, "01_fetch_facts.py")]
             if args.topic:
@@ -303,7 +313,6 @@ def main():
     else:
         results["steps_failed"].append("04_fetch_visuals")
         log.error("04_fetch_visuals FAILED — aborting pipeline")
-        print_summary(results)
         sys.exit(1)
 
     # ── Step 5: Render video ──────────────────────────────────────────────────
@@ -318,7 +327,6 @@ def main():
     else:
         results["steps_failed"].append("05_render_video")
         log.error("05_render_video FAILED — aborting pipeline")
-        print_summary(results)
         sys.exit(1)
 
     # ── Step 6: Thumbnail ─────────────────────────────────────────────────────
