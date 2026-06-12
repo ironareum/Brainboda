@@ -17,7 +17,7 @@ import json
 import logging
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config.channel import (
@@ -64,6 +64,9 @@ SCOPES = [
 ]
 
 PLAYLIST_NAME = "How Your Mind Works"
+
+# Scheduled publish: upload+1 day at 20:00 UTC (3 PM EST)
+PUBLISH_HOUR_UTC = 20
 
 CONFIG_DIR = os.path.join(BASE_DIR, "config")
 TOKEN_PATH = os.path.join(CONFIG_DIR, "youtube_token.json")
@@ -146,15 +149,37 @@ def _save_token(creds) -> None:
         json.dump(token_data, f, indent=2)
 
 
+def _scheduled_publish_time() -> str:
+    """Returns RFC 3339 timestamp for next day at PUBLISH_HOUR_UTC."""
+    now = datetime.now(timezone.utc)
+    publish = (now + timedelta(days=1)).replace(
+        hour=PUBLISH_HOUR_UTC, minute=0, second=0, microsecond=0
+    )
+    return publish.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
+
 def upload_video(
     youtube,
     video_path: str,
     title: str,
     description: str,
     tags: list,
-    privacy: str = "public",
+    scheduled: bool = True,
 ) -> str:
-    """Upload video with resumable upload. Returns video ID."""
+    """Upload video with resumable upload. Returns video ID.
+
+    scheduled=True  → private + publishAt tomorrow 20:00 UTC
+    scheduled=False → public immediately (--now flag)
+    """
+    status_body = {"selfDeclaredMadeForKids": False}
+    if scheduled:
+        publish_at = _scheduled_publish_time()
+        status_body["privacyStatus"] = "private"
+        status_body["publishAt"] = publish_at
+        log.info("Scheduled publish at: %s", publish_at)
+    else:
+        status_body["privacyStatus"] = "public"
+
     body = {
         "snippet": {
             "title": title[:100],
@@ -162,10 +187,7 @@ def upload_video(
             "tags": tags[:30],
             "categoryId": VIDEO_CATEGORY_ID,
         },
-        "status": {
-            "privacyStatus": privacy,
-            "selfDeclaredMadeForKids": False,
-        },
+        "status": status_body,
     }
 
     media = MediaFileUpload(
@@ -280,7 +302,9 @@ def main():
     parser.add_argument("--run-dir", type=str, default=None,
                         help="Run output directory. Auto-detect video/thumbnail/script from run-dir.")
     parser.add_argument("--test", action="store_true",
-                        help="Upload as private instead of public")
+                        help="Upload as private (no schedule)")
+    parser.add_argument("--now", action="store_true",
+                        help="Publish immediately as public (skip scheduling)")
     args = parser.parse_args()
 
     log.info("=== 07_upload.py START ===")
@@ -320,10 +344,10 @@ def main():
     title = script.get("title", "Brainboda Psychology Facts")
     description = script.get("description", "")
     tags = script.get("tags", [])
-    privacy = "private" if args.test else "public"
+    scheduled = not args.test and not args.now
 
     log.info("Title: %s", title)
-    log.info("Privacy: %s", privacy)
+    log.info("Mode: %s", "scheduled (+1 day 20:00 UTC)" if scheduled else ("test/private" if args.test else "public now"))
 
     if not GOOGLE_API_AVAILABLE:
         log.error("Google API libraries not installed. Run: pip install google-api-python-client google-auth-oauthlib")
@@ -339,7 +363,7 @@ def main():
         sys.exit(1)
 
     try:
-        video_id = upload_video(youtube, video_path, title, description, tags, privacy)
+        video_id = upload_video(youtube, video_path, title, description, tags, scheduled=scheduled)
     except HttpError as exc:
         log.error("Upload HttpError: %s", exc)
         sys.exit(1)
