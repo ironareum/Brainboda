@@ -323,8 +323,8 @@ def _build_queries(keywords: list, heading: str) -> list[str]:
 
 def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx: int = 0,
                           visuals_dir: str = None, target: int = 5,
-                          used_urls: set = None, orientation: str = None) -> list[str]:
-    """Download images for a fact into visuals/{fact_id}/. Returns list of saved paths.
+                          used_urls: set = None, orientation: str = None) -> tuple:
+    """Download images for a fact into visuals/{fact_id}/. Returns (paths, newly_downloaded).
 
     img_01.jpg  — reserved for the title card frame (not used in narration slides)
     img_02+     — used during narration (cycling through)
@@ -335,7 +335,7 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
     existing = sorted(glob.glob(os.path.join(fact_dir, "*.jpg")))
     if len(existing) >= target:
         log.info("  [skip] %s — %d images already downloaded", fact_id, len(existing))
-        return existing
+        return existing, []
 
     os.makedirs(fact_dir, exist_ok=True)
 
