@@ -28,3 +28,7 @@ config/client_secrets.json
 
 # Logs
 logs/
+
+# macOS system files
+.DS_Store
+**/.DS_Store
