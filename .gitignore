@@ -1,19 +1,24 @@
-# Generated output (large files - manage locally)
+# Generated output — large runtime files, manage locally
+# Timestamped run folders (audio, visuals, video)
+output/*/audio/
+output/*/visuals/
+output/*/*.mp4
+output/*/*.tmp_audio.m4a
+
+# Legacy flat output paths
 output/video_*.mp4
-output/audio/*.mp3
+output/audio/
 output/visuals/
 
-# Keep these
+# Keep these (small, useful for reruns)
 !output/.gitkeep
-!output/script_*.json
-!output/thumbnail_*.jpg
+!output/*/script.json
+!output/*/thumbnail.jpg
 
 # Python cache
 __pycache__/
 *.pyc
 *.pyo
-config/__pycache__/
-pipeline/__pycache__/
 
 # Credentials (NEVER commit)
 config/youtube_token.json
