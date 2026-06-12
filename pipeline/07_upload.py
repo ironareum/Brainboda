@@ -57,7 +57,12 @@ except ImportError:
     GOOGLE_API_AVAILABLE = False
     log.warning("google-api-python-client or google-auth-oauthlib not installed.")
 
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.force-ssl",
+]
+
+PLAYLIST_NAME = "How Your Mind Works"
 
 CONFIG_DIR = os.path.join(BASE_DIR, "config")
 TOKEN_PATH = os.path.join(CONFIG_DIR, "youtube_token.json")
@@ -202,6 +207,52 @@ def set_thumbnail(youtube, video_id: str, thumbnail_path: str) -> bool:
         return False
 
 
+def get_or_create_playlist(youtube, name: str) -> str | None:
+    """Return playlist ID matching name, creating it if it doesn't exist."""
+    try:
+        # Search existing playlists
+        resp = youtube.playlists().list(part="snippet", mine=True, maxResults=50).execute()
+        for item in resp.get("items", []):
+            if item["snippet"]["title"].lower() == name.lower():
+                pid = item["id"]
+                log.info("Found existing playlist '%s': %s", name, pid)
+                return pid
+
+        # Create new playlist
+        created = youtube.playlists().insert(
+            part="snippet,status",
+            body={
+                "snippet": {"title": name, "description": ""},
+                "status": {"privacyStatus": "public"},
+            },
+        ).execute()
+        pid = created["id"]
+        log.info("Created playlist '%s': %s", name, pid)
+        return pid
+    except Exception as exc:
+        log.warning("Playlist get/create failed: %s", exc)
+        return None
+
+
+def add_to_playlist(youtube, video_id: str, playlist_id: str) -> bool:
+    """Add a video to a playlist."""
+    try:
+        youtube.playlistItems().insert(
+            part="snippet",
+            body={
+                "snippet": {
+                    "playlistId": playlist_id,
+                    "resourceId": {"kind": "youtube#video", "videoId": video_id},
+                }
+            },
+        ).execute()
+        log.info("Added video %s to playlist %s", video_id, playlist_id)
+        return True
+    except Exception as exc:
+        log.warning("Add to playlist failed: %s", exc)
+        return False
+
+
 def find_latest_script(output_dir: str) -> str | None:
     files = glob.glob(os.path.join(output_dir, "script_*.json"))
     return max(files, key=os.path.getmtime) if files else None
@@ -301,12 +352,18 @@ def main():
     if thumbnail_path and os.path.exists(thumbnail_path):
         set_thumbnail(youtube, video_id, thumbnail_path)
 
+    # Add to playlist
+    playlist_id = get_or_create_playlist(youtube, PLAYLIST_NAME)
+    if playlist_id:
+        add_to_playlist(youtube, video_id, playlist_id)
+
     log.info("=== 07_upload.py DONE ===")
 
     print(f"\n{'='*60}")
     print(f"  Upload complete!")
     print(f"  YouTube URL: {video_url}")
-    print(f"  Privacy: {privacy}")
+    print(f"  Playlist:    {PLAYLIST_NAME}")
+    print(f"  Privacy:     {privacy}")
     print(f"{'='*60}")
 
     return video_url
