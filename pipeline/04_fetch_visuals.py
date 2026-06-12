@@ -457,7 +457,7 @@ def main():
         keywords = fact.get("search_keywords", [])
         heading = fact.get("heading", fact_id)
         result = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
-                                       visuals_dir=visuals_dir, target=5,
+                                       visuals_dir=visuals_dir, target=3,
                                        used_urls=used_urls | newly_used,
                                        orientation=orientation)
         paths, fact_new = result
