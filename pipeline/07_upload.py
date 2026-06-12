@@ -387,7 +387,8 @@ def main():
     print(f"  Upload complete!")
     print(f"  YouTube URL: {video_url}")
     print(f"  Playlist:    {PLAYLIST_NAME}")
-    print(f"  Privacy:     {privacy}")
+    privacy_label = "scheduled (private → public +1 day)" if scheduled else ("private (test)" if args.test else "public now")
+    print(f"  Privacy:     {privacy_label}")
     print(f"{'='*60}")
 
     return video_url
