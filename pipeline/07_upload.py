@@ -25,6 +25,7 @@ from config.channel import (
     LOGS_DIR,
     OUTPUT_DIR,
     VIDEO_CATEGORY_ID,
+    YOUTUBE_PLAYLIST_ID,
 )
 
 # ── logging ───────────────────────────────────────────────────────────────────
@@ -353,9 +354,8 @@ def main():
         set_thumbnail(youtube, video_id, thumbnail_path)
 
     # Add to playlist
-    playlist_id = get_or_create_playlist(youtube, PLAYLIST_NAME)
-    if playlist_id:
-        add_to_playlist(youtube, video_id, playlist_id)
+    if YOUTUBE_PLAYLIST_ID:
+        add_to_playlist(youtube, video_id, YOUTUBE_PLAYLIST_ID)
 
     log.info("=== 07_upload.py DONE ===")
 

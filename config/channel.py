@@ -92,6 +92,9 @@ SECONDS_PER_FACT = 35  # average seconds per fact
 THUMBNAIL_WIDTH = 1280
 THUMBNAIL_HEIGHT = 720
 
+# YouTube playlist
+YOUTUBE_PLAYLIST_ID = "PLAs3NOlOTcp0"  # "How Your Mind Works"
+
 # Upload schedule
 UPLOAD_DAYS = ["Monday", "Wednesday", "Friday"]
 UPLOAD_TIME = "18:00"  # UTC
