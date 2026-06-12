@@ -1,0 +1,81 @@
+name: Upload Only (retry)
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Run ID of the failed main pipeline (find in Actions URL)"
+        required: true
+      artifact_name:
+        description: "Artifact name (default: main-output-{run_id})"
+        required: false
+        default: ""
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install \
+            google-api-python-client \
+            google-auth-oauthlib \
+            google-auth-httplib2
+
+      - name: Write .env and YouTube token
+        run: |
+          cat > .env <<EOF
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          PIXABAY_API_KEY=${{ secrets.PIXABAY_API_KEY }}
+          PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
+          EOF
+          mkdir -p config
+          echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
+
+      - name: Resolve artifact name
+        id: artifact
+        run: |
+          NAME="${{ github.event.inputs.artifact_name }}"
+          if [ -z "$NAME" ]; then
+            NAME="main-output-${{ github.event.inputs.run_id }}"
+          fi
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+
+      - name: Download artifact from previous run
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ steps.artifact.outputs.name }}
+          run-id: ${{ github.event.inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: artifact_output/
+
+      - name: Locate script, video, thumbnail
+        id: files
+        run: |
+          SCRIPT=$(find artifact_output -name "script.json" | head -1)
+          VIDEO=$(find artifact_output -name "video.mp4" | head -1)
+          THUMB=$(find artifact_output -name "thumbnail.jpg" | head -1)
+          echo "script=$SCRIPT" >> $GITHUB_OUTPUT
+          echo "video=$VIDEO" >> $GITHUB_OUTPUT
+          echo "thumbnail=$THUMB" >> $GITHUB_OUTPUT
+          echo "Script:    $SCRIPT"
+          echo "Video:     $VIDEO"
+          echo "Thumbnail: $THUMB"
+
+      - name: Upload to YouTube
+        run: |
+          python pipeline/07_upload.py \
+            --script "${{ steps.files.outputs.script }}" \
+            --video  "${{ steps.files.outputs.video }}" \
+            --thumbnail "${{ steps.files.outputs.thumbnail }}"
