@@ -1,0 +1,99 @@
+name: Main Video Pipeline
+
+on:
+  schedule:
+    # Mon 08:00 UTC → publishes Tue 20:00 UTC
+    # Wed 08:00 UTC → publishes Thu 20:00 UTC
+    - cron: "0 8 * * 1,3"
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: "Theme (optional, e.g. 'dark psychology')"
+        required: false
+        default: ""
+      skip_upload:
+        description: "Skip YouTube upload"
+        type: boolean
+        default: false
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-liberation fonts-dejavu
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install \
+            anthropic \
+            edge-tts \
+            moviepy \
+            pillow \
+            requests \
+            google-api-python-client \
+            google-auth-oauthlib \
+            google-auth-httplib2
+
+      - name: Write .env file
+        run: |
+          cat > .env <<EOF
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          PIXABAY_API_KEY=${{ secrets.PIXABAY_API_KEY }}
+          PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
+          EOF
+
+      - name: Write YouTube OAuth token
+        run: |
+          mkdir -p config
+          echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
+
+      - name: Run main video pipeline
+        run: |
+          if [ -n "${{ github.event.inputs.theme }}" ]; then
+            python run.py --type main --ai --theme "${{ github.event.inputs.theme }}"
+          else
+            python run.py --type main --ai
+          fi
+        env:
+          SKIP_UPLOAD: ${{ github.event.inputs.skip_upload }}
+
+      - name: Save latest main script for Shorts
+        run: |
+          LATEST=$(find output -name "script.json" | sort | tail -1)
+          if [ -n "$LATEST" ]; then
+            mkdir -p data
+            cp "$LATEST" data/latest_main_script.json
+            echo "Saved $LATEST → data/latest_main_script.json"
+          fi
+
+      - name: Commit updated data files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/used_concepts.json data/latest_main_script.json || true
+          git diff --cached --quiet || git commit -m "chore: update used_concepts + latest_main_script [skip ci]"
+          git push origin HEAD
+
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-logs-${{ github.run_id }}
+          path: logs/
+          retention-days: 7

@@ -502,6 +502,25 @@ _USED_CONCEPTS_PATH = os.path.join(
     "data", "used_concepts.json"
 )
 
+_USED_SHORTS_FACTS_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data", "used_shorts_facts.json"
+)
+
+
+def _load_used_shorts_facts() -> list:
+    try:
+        with open(_USED_SHORTS_FACTS_PATH, encoding="utf-8") as f:
+            return json.load(f).get("headings", [])
+    except Exception:
+        return []
+
+
+def _save_used_shorts_facts(headings: list):
+    os.makedirs(os.path.dirname(_USED_SHORTS_FACTS_PATH), exist_ok=True)
+    with open(_USED_SHORTS_FACTS_PATH, "w", encoding="utf-8") as f:
+        json.dump({"headings": headings}, f, indent=2, ensure_ascii=False)
+
 _DEFAULT_THEMES = [
     "dark psychology", "cognitive biases", "social influence",
     "manipulation tactics", "memory and learning", "personality psychology",
@@ -673,6 +692,86 @@ def build_script_ai(theme: str, video_type: str, n_facts: int,
     return script_data
 
 
+def _pick_best_fact(facts: list) -> dict:
+    """Pick most impactful fact heuristically — longest narration tends to be most developed."""
+    return max(facts, key=lambda f: len(f.get("narration", "")))
+
+
+def build_script_short_from_main(main_script_path: str, run_dir: str,
+                                  dry_run: bool = False) -> dict | None:
+    """Build a Shorts script by extracting facts directly from a main script. Zero AI cost."""
+    with open(main_script_path, encoding="utf-8") as f:
+        main_script = json.load(f)
+
+    main_facts = main_script.get("facts", [])
+    if not main_facts:
+        log.error("Main script has no facts.")
+        return None
+
+    used_headings = _load_used_shorts_facts()
+    available_facts = [f for f in main_facts if f["heading"] not in used_headings]
+    if not available_facts:
+        log.warning("All facts from this main already used as Shorts — resetting pool.")
+        available_facts = main_facts
+
+    # Pick best fact + 2 supporting facts (all unused if possible)
+    chosen = _pick_best_fact(available_facts)
+    rest = [f for f in available_facts if f["heading"] != chosen["heading"]]
+    # Fill up to 3 facts total
+    selected = [chosen] + rest[:2]
+
+    log.info("Short facts selected: %s", [f["heading"] for f in selected])
+
+    # Re-number narrations as Fact 1/2/3
+    facts_out = []
+    for i, f in enumerate(selected, 1):
+        narration = re.sub(r"^Fact \d+:", f"Fact {i}:", f["narration"])
+        facts_out.append({
+            "n": i,
+            "heading": f["heading"],
+            "narration": narration,
+            "search_keywords": f.get("search_keywords", []),
+            "duration_est": estimate_duration(narration),
+            "id": f.get("id", re.sub(r"[^a-z0-9]+", "_", f["heading"].lower()).strip("_")),
+            "source_url": f.get("source_url", ""),
+            "key_insight": f.get("key_insight", ""),
+        })
+
+    hook = main_script.get("hook", "")
+    outro = main_script.get("outro", "")
+    title = f"{chosen['heading']} — Psychology Short | Brainboda"
+    thumbnail_hook = main_script.get("thumbnail_hook", chosen["heading"])
+    tags = main_script.get("tags", [])
+
+    hook_dur = estimate_duration(hook)
+    outro_dur = estimate_duration(outro)
+
+    script_data = {
+        "type": "short",
+        "created_at": datetime.now().isoformat(timespec="seconds"),
+        "ai_generated": False,
+        "from_main": os.path.abspath(main_script_path),
+        "chosen_fact": chosen["heading"],
+        "title": title,
+        "thumbnail_hook": thumbnail_hook,
+        "hook": hook,
+        "facts": facts_out,
+        "outro": outro,
+        "tags": tags,
+        "hook_duration_est": hook_dur,
+        "outro_duration_est": outro_dur,
+        "total_duration_est": hook_dur + sum(f["duration_est"] for f in facts_out) + outro_dur,
+        "description": _build_description(title, facts_out),
+    }
+
+    if not dry_run:
+        used_headings.append(chosen["heading"])
+        _save_used_shorts_facts(used_headings)
+        log.info("Marked '%s' as used for Shorts", chosen["heading"])
+
+    return script_data
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -684,19 +783,35 @@ def main():
                         help="Use Claude AI to generate script instead of Wikipedia facts")
     parser.add_argument("--theme", type=str, default=None,
                         help="(AI mode) Theme for the video e.g. 'dark psychology'")
+    parser.add_argument("--from-main", type=str, default=None,
+                        help="(Shorts mode) Path to main script JSON — extracts best fact for Short")
     parser.add_argument("--dry-run", action="store_true", help="Preview only, write no files")
     parser.add_argument("--run-dir", type=str, default=None,
                         help="Run output directory. If provided, save script as {run-dir}/script.json")
     args = parser.parse_args()
 
     log.info("=== 02_build_script.py START ===")
-    log.info("Type: %s | AI: %s | Theme: %s | Dry-run: %s",
-             args.type, args.ai, args.theme or "auto", args.dry_run)
+    log.info("Type: %s | AI: %s | Theme: %s | FromMain: %s | Dry-run: %s",
+             args.type, args.ai, args.theme or "auto", args.from_main or "no", args.dry_run)
 
     n_needed = FACTS_PER_SHORT if args.type == "short" else FACTS_PER_VIDEO
 
+    # ── Shorts from main mode ─────────────────────────────────────────────────
+    if args.from_main:
+        if not os.path.exists(args.from_main):
+            log.error("Main script not found: %s", args.from_main)
+            sys.exit(1)
+        run_dir = args.run_dir or os.path.join(OUTPUT_DIR,
+            datetime.now().strftime("%Y%m%d_%H%M%S") + "_short")
+        os.makedirs(run_dir, exist_ok=True)
+        log.info("Generating Short from main script: %s", args.from_main)
+        script = build_script_short_from_main(args.from_main, run_dir, dry_run=args.dry_run)
+        if not script:
+            log.error("Short-from-main generation failed.")
+            sys.exit(1)
+
     # ── AI mode ───────────────────────────────────────────────────────────────
-    if args.ai:
+    elif args.ai:
         used_concepts = _load_used_concepts()
         theme = _pick_theme(args.theme, used_concepts)
         log.info("AI mode | theme: %s", theme)
