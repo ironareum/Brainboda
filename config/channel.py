@@ -63,6 +63,10 @@ WIKIPEDIA_SEED_PAGES = [
     "Peak–end rule",
 ]
 
+# Anthropic API — for AI script generation (--ai mode)
+# Get key: https://console.anthropic.com
+ANTHROPIC_API_KEY = "YOUR_ANTHROPIC_API_KEY"
+
 # Pixabay API (set your key in environment or here)
 PIXABAY_API_KEY = "YOUR_PIXABAY_API_KEY"
 

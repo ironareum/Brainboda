@@ -1,14 +1,14 @@
 """
 Step 2: Build video script from facts.
 
-Reads facts_raw.csv, selects N facts not in used_facts.json,
-and generates a structured script JSON file in output/.
+Mode A (default): Wikipedia-based — reads facts_raw.csv, selects N facts.
+Mode B (--ai):    AI-generated — gives a theme to Claude, gets full script back.
 
 Usage:
-    python pipeline/02_build_script.py
-    python pipeline/02_build_script.py --type short
-    python pipeline/02_build_script.py --topic manipulation
-    python pipeline/02_build_script.py --dry-run   # preview only, no files written
+    python pipeline/02_build_script.py --type main
+    python pipeline/02_build_script.py --type main --ai --theme "dark psychology"
+    python pipeline/02_build_script.py --type short --ai --theme "cognitive biases"
+    python pipeline/02_build_script.py --dry-run
 """
 
 import argparse
@@ -23,6 +23,7 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config.channel import (
+    ANTHROPIC_API_KEY,
     FACTS_APPROVED_CSV,
     FACTS_RAW_CSV,
     FACTS_PER_SHORT,
@@ -494,35 +495,226 @@ def _build_tags(facts: list[dict]) -> list[str]:
     return [t for t in all_tags if not (t in seen or seen.add(t))][:30]  # type: ignore[func-returns-value]
 
 
+# ── AI script generation (Method B) ──────────────────────────────────────────
+
+_USED_CONCEPTS_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data", "used_concepts.json"
+)
+
+_DEFAULT_THEMES = [
+    "dark psychology", "cognitive biases", "social influence",
+    "manipulation tactics", "memory and learning", "personality psychology",
+    "decision making", "habit formation", "emotional intelligence",
+    "unconscious behavior", "relationship psychology", "fear and anxiety",
+]
+
+_AI_SYSTEM_PROMPT = """\
+You are a YouTube script writer for "Brainboda" — a science-based educational channel.
+
+RULES:
+- Conversational English, not academic. Write like talking to a curious friend.
+- Every fact must be a REAL, named concept (e.g. "Dunning-Kruger Effect", "Dark Triad").
+- Cite the actual researcher or origin where known (e.g. "coined by psychologist Robert Cialdini in 1984").
+- NEVER fabricate statistics, percentages, or study results.
+- If uncertain about specifics, describe the concept generally — no fake citations.
+- Each fact narration: 80-120 words. Must start with "Fact N: [Concept Name].".
+- End each fact with one sentence on why it matters in the viewer's real life.
+- Hook: 40-60 words. Build curiosity WITHOUT revealing or spoiling any specific fact.
+  The hook must NOT mention any concept by name — tease the theme only.
+- Make facts feel surprising, counterintuitive, or unsettling in a thought-provoking way.
+- Facts should flow with a loose narrative arc: start relatable, build intensity, end impactful.
+
+OUTPUT: Return valid JSON only. No explanation, no markdown fences, no text outside the JSON.\
+"""
+
+_AI_USER_PROMPT = """\
+Create a YouTube script for a {video_type} video about: "{theme}"
+
+Number of facts: {n_facts}
+
+Previously used concepts for this theme — DO NOT repeat these:
+{used_concepts}
+
+Return this exact JSON structure:
+{{
+  "title": "catchy YouTube title including the number of facts",
+  "thumbnail_hook": "5-6 word punchy phrase for thumbnail",
+  "hook": "...",
+  "facts": [
+    {{
+      "n": 1,
+      "heading": "Real Concept Name",
+      "narration": "Fact 1: Real Concept Name. ...",
+      "search_keywords": ["keyword1", "keyword2", "keyword3"]
+    }}
+  ],
+  "outro": "engagement CTA — ask viewers to comment which fact hit hardest, subscribe",
+  "tags": ["tag1", "tag2", "...up to 20 tags"]
+}}\
+"""
+
+
+def _load_used_concepts() -> dict:
+    try:
+        with open(_USED_CONCEPTS_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _save_used_concepts(data: dict):
+    os.makedirs(os.path.dirname(_USED_CONCEPTS_PATH), exist_ok=True)
+    with open(_USED_CONCEPTS_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def _pick_theme(requested: str | None, used_concepts: dict) -> str:
+    if requested:
+        return requested.lower().strip()
+    # Auto-pick: prefer themes with fewest used concepts
+    scored = sorted(_DEFAULT_THEMES, key=lambda t: len(used_concepts.get(t, [])))
+    return scored[0]
+
+
+def build_script_ai(theme: str, video_type: str, n_facts: int,
+                    dry_run: bool = False) -> dict | None:
+    """Call Claude Haiku to generate a full script for the given theme."""
+    try:
+        import anthropic
+    except ImportError:
+        log.error("anthropic package not installed. Run: pip install anthropic")
+        sys.exit(1)
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY", ANTHROPIC_API_KEY)
+    if not api_key or api_key == "YOUR_ANTHROPIC_API_KEY":
+        log.error("ANTHROPIC_API_KEY not set. Export it or add to environment.")
+        sys.exit(1)
+
+    used_concepts = _load_used_concepts()
+    theme_key = theme.lower().strip()
+    used_for_theme = used_concepts.get(theme_key, [])
+    used_str = ", ".join(used_for_theme) if used_for_theme else "none yet"
+
+    user_prompt = _AI_USER_PROMPT.format(
+        video_type=video_type,
+        theme=theme,
+        n_facts=n_facts,
+        used_concepts=used_str,
+    )
+
+    log.info("Calling Claude Haiku | theme: %s | n_facts: %d", theme, n_facts)
+    log.info("Previously used concepts for this theme: %s", used_str)
+
+    client = anthropic.Anthropic(api_key=api_key)
+    try:
+        response = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=4096,
+            system=_AI_SYSTEM_PROMPT,
+            messages=[{"role": "user", "content": user_prompt}],
+        )
+        raw = response.content[0].text.strip()
+        log.debug("AI raw response (first 300 chars): %s", raw[:300])
+    except Exception as exc:
+        log.error("Claude API call failed: %s", exc)
+        return None
+
+    # Parse JSON
+    try:
+        # Strip markdown code fences if present
+        if raw.startswith("```"):
+            raw = re.sub(r"^```[a-z]*\n?", "", raw)
+            raw = re.sub(r"\n?```$", "", raw)
+        script_data = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        log.error("Failed to parse AI response as JSON: %s", exc)
+        log.error("Raw response: %s", raw[:500])
+        return None
+
+    # Inject standard fields
+    script_data["type"] = video_type
+    script_data["created_at"] = datetime.now().isoformat(timespec="seconds")
+    script_data["ai_generated"] = True
+    script_data["theme"] = theme
+
+    # Estimate durations
+    hook_dur = estimate_duration(script_data.get("hook", ""))
+    outro_dur = estimate_duration(script_data.get("outro", ""))
+    for fact in script_data.get("facts", []):
+        fact["duration_est"] = estimate_duration(fact.get("narration", ""))
+        fact["id"] = re.sub(r"[^a-z0-9]+", "_", fact["heading"].lower()).strip("_")
+        fact["source_url"] = ""
+        fact["key_insight"] = ""
+    script_data["hook_duration_est"] = hook_dur
+    script_data["outro_duration_est"] = outro_dur
+    script_data["total_duration_est"] = (
+        hook_dur + sum(f["duration_est"] for f in script_data["facts"]) + outro_dur
+    )
+
+    # Build description
+    script_data["description"] = _build_description(script_data["title"],
+                                                     script_data["facts"])
+
+    # Track used concepts
+    if not dry_run:
+        new_concepts = [f["heading"] for f in script_data["facts"]]
+        used_concepts.setdefault(theme_key, [])
+        for c in new_concepts:
+            if c not in used_concepts[theme_key]:
+                used_concepts[theme_key].append(c)
+        _save_used_concepts(used_concepts)
+        log.info("Saved %d concepts to used_concepts.json (theme: %s)",
+                 len(new_concepts), theme_key)
+
+    return script_data
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="Build video script from psychology facts")
     parser.add_argument("--type", choices=["main", "short"], default="main")
-    parser.add_argument("--topic", type=str, default=None)
+    parser.add_argument("--topic", type=str, default=None,
+                        help="(Wikipedia mode) Filter facts by topic keyword")
+    parser.add_argument("--ai", action="store_true",
+                        help="Use Claude AI to generate script instead of Wikipedia facts")
+    parser.add_argument("--theme", type=str, default=None,
+                        help="(AI mode) Theme for the video e.g. 'dark psychology'")
     parser.add_argument("--dry-run", action="store_true", help="Preview only, write no files")
     parser.add_argument("--run-dir", type=str, default=None,
                         help="Run output directory. If provided, save script as {run-dir}/script.json")
     args = parser.parse_args()
 
     log.info("=== 02_build_script.py START ===")
-    log.info("Type: %s | Topic: %s | Dry-run: %s", args.type, args.topic or "any", args.dry_run)
+    log.info("Type: %s | AI: %s | Theme: %s | Dry-run: %s",
+             args.type, args.ai, args.theme or "auto", args.dry_run)
 
     n_needed = FACTS_PER_SHORT if args.type == "short" else FACTS_PER_VIDEO
 
-    available = load_available_facts(topic=args.topic)
-    if not available:
-        log.error("No available facts. Run 01_fetch_facts.py first.")
-        sys.exit(1)
+    # ── AI mode ───────────────────────────────────────────────────────────────
+    if args.ai:
+        used_concepts = _load_used_concepts()
+        theme = _pick_theme(args.theme, used_concepts)
+        log.info("AI mode | theme: %s", theme)
+        script = build_script_ai(theme, args.type, n_needed, dry_run=args.dry_run)
+        if not script:
+            log.error("AI script generation failed.")
+            sys.exit(1)
+    # ── Wikipedia mode (default) ──────────────────────────────────────────────
+    else:
+        available = load_available_facts(topic=args.topic)
+        if not available:
+            log.error("No available facts. Run 01_fetch_facts.py first.")
+            sys.exit(1)
 
-    selected = pick_facts(available, n_needed, args.topic)
-    if not selected:
-        log.error("Could not select enough facts.")
-        sys.exit(1)
+        selected = pick_facts(available, n_needed, args.topic)
+        if not selected:
+            log.error("Could not select enough facts.")
+            sys.exit(1)
 
-    log.info("Selected %d facts for %s video", len(selected), args.type)
-
-    script = build_script(selected, video_type=args.type)
+        log.info("Selected %d facts for %s video", len(selected), args.type)
+        script = build_script(selected, video_type=args.type)
 
     # ── output ────────────────────────────────────────────────────────────────
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -537,10 +729,11 @@ def main():
             json.dump(script, f, indent=2, ensure_ascii=False)
         log.info("Script saved → %s", script_path)
 
-        # Mark facts as used
-        used_ids = {f["id"] for f in selected}
-        save_used_ids(used_ids)
-        log.info("Marked %d fact IDs as used in %s", len(used_ids), USED_FACTS_JSON)
+        if not args.ai:
+            # Mark Wikipedia facts as used (AI mode tracks concepts separately)
+            used_ids = {f["id"] for f in selected}
+            save_used_ids(used_ids)
+            log.info("Marked %d fact IDs as used in %s", len(used_ids), USED_FACTS_JSON)
     else:
         log.info("[DRY RUN] Script NOT saved. No IDs marked as used.")
         script_path = "(dry-run, not saved)"

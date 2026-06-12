@@ -159,7 +159,11 @@ def main():
     parser.add_argument("--type", choices=["main", "short"], default="main",
                         help="Video type: main (10 facts) or short (3 facts)")
     parser.add_argument("--topic", type=str, default=None,
-                        help="Topic keyword to filter facts (e.g. manipulation)")
+                        help="(Wikipedia mode) Topic keyword to filter facts")
+    parser.add_argument("--ai", action="store_true",
+                        help="Use Claude AI to generate script (Method B)")
+    parser.add_argument("--theme", type=str, default=None,
+                        help="(AI mode) Theme e.g. 'dark psychology'. Auto-picked if omitted.")
     parser.add_argument("--test", action="store_true",
                         help="Test mode: render only 2 facts, no upload")
     parser.add_argument("--skip-upload", action="store_true",
@@ -205,7 +209,14 @@ def main():
         script_path = args.script
         log.info("Using provided script: %s", script_path)
         results["steps_ok"].extend(["01_fetch_facts", "02_build_script"])
-    else:
+    elif args.ai:
+        # ── AI mode: skip Wikipedia steps entirely ────────────────────────────
+        log.info("AI mode — skipping 01_fetch_facts (not needed)")
+        results["steps_ok"].append("01_fetch_facts (skipped — AI mode)")
+        n_needed = None  # suppress linter; unused in this branch
+        available = None
+
+    if not args.script and not args.ai:
         # ── Step 1: Fetch facts if pool is low ────────────────────────────────
         n_needed = FACTS_PER_SHORT if args.type == "short" else FACTS_PER_VIDEO
         available = count_available_facts(n_needed)
@@ -230,7 +241,11 @@ def main():
         def _build_script_cmd():
             cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"),
                    "--type", args.type, "--run-dir", run_dir]
-            if args.topic:
+            if args.ai:
+                cmd.append("--ai")
+                if args.theme:
+                    cmd += ["--theme", args.theme]
+            elif args.topic:
                 cmd += ["--topic", args.topic]
             return cmd
 
