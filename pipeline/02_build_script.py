@@ -520,7 +520,10 @@ RULES:
 - If uncertain about specifics, describe the concept generally — no fake citations.
 - Each fact narration: 80-120 words. Must start with "Fact N: [Concept Name].".
 - End each fact with one sentence on why it matters in the viewer's real life.
-- Hook: 40-60 words. Build curiosity WITHOUT revealing or spoiling any specific fact.
+- Hook: 40-60 words. MUST follow this structure:
+    1. Open with a shocking statistic OR a bold counterintuitive claim (makes viewer stop scrolling).
+    2. One sentence that deepens the mystery or raises the stakes.
+    3. End with a direct question that pulls the viewer in (e.g. "So why does your brain do this?").
   The hook must NOT mention any concept by name — tease the theme only.
 - Make facts feel surprising, counterintuitive, or unsettling in a thought-provoking way.
 - Facts should flow with a loose narrative arc: start relatable, build intensity, end impactful.

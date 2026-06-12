@@ -260,6 +260,66 @@ def _apply_ken_burns(base_cropped: "Image.Image", t: float, duration: float,
     return zoomed.crop((left, top, left + width, top + height))
 
 
+def _is_emphasis_word(word: str) -> bool:
+    """Highlight numbers, percentages, and short ALL-CAPS words."""
+    clean = word.strip(".,!?\"'()")
+    if _re.match(r"^\d+([.,]\d+)?%?$", clean):
+        return True
+    if len(clean) >= 2 and clean.isupper():
+        return True
+    return False
+
+
+def render_hook_word_reveal_frame(
+    base_img: "Image.Image",
+    words_to_show: int,
+    all_words: list,
+    width: int,
+    height: int,
+    font_size: int,
+    font,
+    font_em,
+    left_margin: int,
+    line_h: int,
+    text_start_y: int,
+) -> "np.ndarray":
+    """Hook word-by-word reveal: each word fades in sequentially.
+    Emphasis words (numbers, %) are yellow and slightly larger.
+    """
+    frame = crop_fill(base_img.copy(), width, height)
+    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    d = ImageDraw.Draw(overlay)
+    d.rectangle([0, 0, width, height], fill=(0, 0, 0, 150))
+
+    if not words_to_show or not all_words:
+        return _apply_letterbox(np.array(overlay_rgba(frame, overlay)))
+
+    visible = all_words[:words_to_show]
+    text_so_far = " ".join(visible)
+    max_line_w = width - left_margin * 2
+    chars_per_line = max(10, int(max_line_w / max(1, font_size * 0.60)))
+    lines = wrap_words(text_so_far, max_chars=chars_per_line)
+
+    y = text_start_y
+    for line in lines:
+        x = left_margin
+        for word in line.split():
+            is_em = _is_emphasis_word(word)
+            color = (255, 220, 50, 255) if is_em else (255, 255, 255, 255)
+            f = font_em if is_em else font
+            # shadow
+            d.text((x + 2, y + 2), word + " ", font=f, fill=(0, 0, 0, 160))
+            d.text((x, y), word + " ", font=f, fill=color)
+            try:
+                w = f.getlength(word + " ")
+            except AttributeError:
+                w = font_size * 0.6 * (len(word) + 1)
+            x += int(w)
+        y += line_h
+
+    return _apply_letterbox(np.array(overlay_rgba(frame, overlay)))
+
+
 def render_typewriter_frame(
     base_img: "Image.Image",
     text_so_far: str,
@@ -288,7 +348,6 @@ def render_typewriter_frame(
 
     y = text_start_y
     for i, line in enumerate(lines):
-        is_last = (i == len(lines) - 1)
         display = line  # no cursor
         d.text((left_margin + 3, y + 3), display, font=font, fill=(0, 0, 0, 160))
         d.text((left_margin, y), display, font=font, fill=(255, 255, 255, 255))
@@ -529,11 +588,13 @@ def build_hook_clip(
 
     sentences = _re.split(r'(?<=[.!?])\s+', narration.strip())
     hook_sentence = sentences[0] if sentences else narration
+    all_words = hook_sentence.split()
+    n_words = len(all_words)
 
-    # Hook text shown for first ~40% of duration, then images cycle
-    hook_dur = min(duration * 0.40, max(3.0, len(hook_sentence.split()) / 135 * 60))
+    # Hook text reveal covers first ~45% of duration
+    hook_dur = min(duration * 0.45, max(3.0, n_words / 135 * 60))
 
-    # Font metrics
+    # Font metrics — bold font + slightly larger emphasis font
     left_margin = int(width * 0.08)
     max_line_w = width - left_margin * 2
     font_size = max(45, height // 14)
@@ -544,25 +605,34 @@ def build_hook_clip(
             break
         font_size = int(font_size * 0.88)
         font = find_font(BOLD_FONTS, font_size)
-    line_h = int(font_size * 1.25)
-    lines = wrap_words(hook_sentence, max_chars=max(10, int(max_line_w / max(1, font_size * 0.60))))
+    font_em = find_font(BOLD_FONTS, int(font_size * 1.10))  # emphasis: 10% bigger
+    line_h = int(font_size * 1.35)
+    chars_per_line = max(10, int(max_line_w / max(1, font_size * 0.60)))
+    lines = wrap_words(hook_sentence, max_chars=chars_per_line)
     text_start_y = (height - len(lines) * line_h) // 2
 
-    bg_img = loaded_imgs[0]  # single image for entire hook
+    bg_img = loaded_imgs[0]
+
+    # Word reveal: words appear at evenly-spaced intervals across hook_dur
+    word_interval = hook_dur / max(n_words, 1)
 
     def make_frame(t):
         if t < hook_dur:
             bg = _apply_ken_burns(bg_img, t, hook_dur, width, height)
-            return render_typewriter_frame(
-                bg, hook_sentence, hook_sentence, width, height,
-                font_size, font, left_margin, line_h, text_start_y,
+            words_visible = max(1, int(t / word_interval) + 1)
+            return render_hook_word_reveal_frame(
+                bg, words_visible, all_words, width, height,
+                font_size, font, font_em, left_margin, line_h, text_start_y,
             )
         else:
             local_t = t - hook_dur
             remaining = max(duration - hook_dur, 1.0)
             bg = _apply_ken_burns(bg_img, local_t, remaining, width, height)
-            overlay = Image.new("RGBA", (width, height), (0, 0, 0, 55))
-            return _apply_letterbox(np.array(overlay_rgba(bg, overlay)))
+            # All words stay visible in the post-reveal section
+            return render_hook_word_reveal_frame(
+                bg, n_words, all_words, width, height,
+                font_size, font, font_em, left_margin, line_h, text_start_y,
+            )
 
     try:
         video_clip = VideoClip(make_frame, duration=duration)
@@ -571,25 +641,27 @@ def build_hook_clip(
         video_clip = _set_dur(video_clip, min_dur)
         audio_clip = _subclip(audio_clip, 0, min_dur)
 
-        # Mix bgm_hook.mp3
+        # Mix bgm_hook.mp3 with fade-up: starts at vol 0.03, ramps to 0.12 over 2s
         bgm_audio, bgm_path = _load_bgm("hook")
         if bgm_audio:
-            bgm = _vol(bgm_audio, 0.10)
-            if bgm is not None:
+            try:
+                bgm = _loop_audio(_vol(bgm_audio, 1.0), min_dur)
+                fade_dur = min(2.0, min_dur * 0.3)
+
+                def _bgm_vol_at(t):
+                    if t < fade_dur:
+                        return 0.03 + (0.12 - 0.03) * (t / fade_dur)
+                    return 0.12
+
                 try:
-                    if bgm.duration < min_dur:
-                        loops = int(min_dur / bgm.duration) + 1
-                        try:
-                            from moviepy import concatenate_audioclips
-                        except ImportError:
-                            from moviepy.editor import concatenate_audioclips
-                        bgm = concatenate_audioclips([_vol(bgm_audio, 0.10)] * loops)
-                    bgm = _subclip(bgm, 0, min_dur)
-                    video_clip = _attach_audio(video_clip, CompositeAudioClip([audio_clip, bgm]))
-                except Exception as exc:
-                    log.warning("Hook BGM mix failed: %s", exc)
-                    video_clip = _attach_audio(video_clip, audio_clip)
-            else:
+                    bgm = bgm.with_volume_scaled(lambda t: _bgm_vol_at(t))
+                except Exception:
+                    bgm = _vol(bgm, 0.10)
+
+                bgm = _subclip(bgm, 0, min_dur)
+                video_clip = _attach_audio(video_clip, CompositeAudioClip([audio_clip, bgm]))
+            except Exception as exc:
+                log.warning("Hook BGM fade-up failed: %s", exc)
                 video_clip = _attach_audio(video_clip, audio_clip)
         else:
             video_clip = _attach_audio(video_clip, audio_clip)
@@ -892,8 +964,6 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_
             if clip:
                 outro_clips.append(clip)
         else:
-            # 0.3s black transition before each fact
-            fact_clips.append(_make_black_transition(width, height, 0.3))
             clip = build_fact_clip(
                 audio_path, seg_id, seg.get("narration", ""),
                 width, height, fact_n=seg.get("fact_n"),
@@ -907,9 +977,29 @@ def render_with_moviepy(segments, output_path, width, height, bgm_path, visuals_
         return False
 
     try:
+        # Apply cross-fade transitions between fact clips
+        XFADE = 0.4  # seconds overlap for cross-fade
+        if len(fact_clips) > 1:
+            try:
+                xfaded = [fact_clips[0]]
+                for c in fact_clips[1:]:
+                    try:
+                        faded = c.crossfadein(XFADE)
+                    except AttributeError:
+                        try:
+                            from moviepy.video.fx.CrossFadeIn import CrossFadeIn
+                            faded = CrossFadeIn(XFADE).apply(c)
+                        except Exception:
+                            faded = c
+                    xfaded.append(faded)
+                fact_clips = xfaded
+            except Exception as exc:
+                log.warning("Cross-fade setup failed, using plain concat: %s", exc)
+
         # Concatenate facts section, then overlay single continuous BGM
         if fact_clips and facts_bgm:
-            facts_section = concatenate_videoclips(fact_clips, method="compose")
+            facts_section = concatenate_videoclips(fact_clips, method="compose",
+                                                   padding=-XFADE if len(fact_clips) > 1 else 0)
             facts_section = _mix_bgm_onto_clip(facts_section, facts_bgm, volume=0.09)
             all_clips = hook_clips + [facts_section] + outro_clips
         else:
