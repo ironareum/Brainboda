@@ -605,14 +605,10 @@ def build_hook_clip(
 
     bg_img = loaded_imgs[0]
 
-    # Word reveal: spread words evenly across the FULL audio duration (matches narration pace)
-    word_interval = duration / max(n_words, 1)
-
     def make_frame(t):
         bg = _apply_ken_burns(bg_img, t, duration, width, height)
-        words_visible = min(n_words, max(1, int(t / word_interval) + 1))
         return render_hook_word_reveal_frame(
-            bg, words_visible, all_words, width, height,
+            bg, n_words, all_words, width, height,
             font_size, font, font_em, left_margin, line_h, text_start_y,
         )
 
