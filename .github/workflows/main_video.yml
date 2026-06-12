@@ -88,7 +88,17 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/used_concepts.json data/latest_main_script.json || true
           git diff --cached --quiet || git commit -m "chore: update used_concepts + latest_main_script [skip ci]"
+          git pull --rebase origin HEAD || true
           git push origin HEAD
+
+      - name: Save video as artifact (upload step backup)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-video-${{ github.run_id }}
+          path: output/**/video.mp4
+          retention-days: 3
+          if-no-files-found: ignore
 
       - name: Upload logs on failure
         if: failure()
