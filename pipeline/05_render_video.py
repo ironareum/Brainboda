@@ -529,7 +529,6 @@ def _vol(clip, v: float):
 
 def _load_bgm(segment: str):
     """Load a random BGM from config/bgm/{segment}/ folder.
-    Falls back to config/audio/bgm_{segment}.mp3.
     segment: 'hook', 'facts', 'outro'
     """
     import random
@@ -546,14 +545,7 @@ def _load_bgm(segment: str):
             except Exception as exc:
                 log.warning("BGM load failed (%s): %s", path, exc)
     # Fallback: single file
-    path = os.path.join(_BASE_DIR, "config", "audio", f"bgm_{segment}.mp3")
-    if not os.path.exists(path):
-        return None, None
-    try:
-        return AudioFileClip(path), path
-    except Exception as exc:
-        log.warning("BGM load failed (%s): %s", path, exc)
-        return None, None
+    return None, None
 
 
 def build_hook_clip(
