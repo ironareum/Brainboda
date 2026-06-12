@@ -29,6 +29,11 @@ config/client_secrets.json
 # Logs
 logs/
 
+# Wikipedia mode only — not used in AI mode
+data/facts_raw.csv
+data/facts_approved.csv
+data/used_facts.json
+
 # macOS system files
 .DS_Store
 **/.DS_Store
