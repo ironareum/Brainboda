@@ -303,7 +303,138 @@ config/bgm/
 
 ---
 
-## 사전 준비 (최초 1회)
+## YouTube 채널 개설 가이드
+
+### Step 1 — Google 계정 준비
+
+- 기존 개인 계정 사용 가능 (브랜드 계정 권장)
+- **브랜드 계정 이점**: 여러 관리자 추가 가능, 채널명을 본명과 분리, 나중에 Google 계정 변경해도 채널 유지
+- 생성: [myaccount.google.com](https://myaccount.google.com) → 좌측 "브랜드 계정 관리" → 계정 만들기
+
+---
+
+### Step 2 — YouTube 채널 생성
+
+1. [youtube.com](https://youtube.com) 로그인
+2. 우측 상단 프로필 → **"채널 만들기"**
+3. 채널명 입력: `Brainboda` (또는 원하는 이름)
+4. 핸들(handle) 설정: `@Brainboda` — 짧고 기억하기 쉽게
+
+> **채널명 선정 기준**: 영어권 타겟이면 발음하기 쉽고 의미 있는 단어 조합 추천  
+> 예) BrainBoda / MindUnlocked / PsychFacts / CogniFlow
+
+---
+
+### Step 3 — 채널 기본 설정
+
+| 항목 | 내용 |
+|---|---|
+| **채널 설명** | "Weekly psychology facts that change how you see yourself and others. Science-backed insights in under 15 minutes." |
+| **채널 아이콘** | 1000×1000px 이상, PNG. 심플한 뇌/마인드 아이콘 |
+| **채널 아트(배너)** | 2560×1440px (안전 영역 1546×423px) — 채널 컨셉 표현 |
+| **카테고리** | Science & Technology 또는 Education |
+| **국가** | 미국 (US) — CPM 높음 |
+| **언어** | 영어 |
+| **키워드** | psychology, human behavior, mind, cognitive bias, neuroscience, self-improvement |
+
+---
+
+### Step 4 — 채널 수익화 자격 요건 (YPP)
+
+YouTube 파트너 프로그램(YPP) 가입 기준:
+
+| 기준 | 수치 |
+|---|---|
+| 구독자 | **500명** 이상 (기본 monetization feature) |
+| 구독자 (광고 수익) | **1,000명** 이상 |
+| 최근 12개월 시청 시간 | **4,000시간** 이상 |
+| 또는 Shorts 조회수 | **1,000만 뷰** (90일 이내) |
+| 커뮤니티 가이드라인 위반 | 없어야 함 |
+| 연결된 AdSense 계정 | 필요 |
+
+> **전략**: 초기에는 Shorts와 메인 영상을 병행 업로드 — Shorts는 알고리즘 노출이 빠르고, 메인 영상은 시청 시간(4,000시간) 축적에 유리
+
+---
+
+### Step 5 — YouTube Data API v3 설정 (업로드 자동화)
+
+```
+1. Google Cloud Console 접속
+   https://console.cloud.google.com
+
+2. 새 프로젝트 생성
+   "Brainboda" 또는 원하는 이름
+
+3. YouTube Data API v3 활성화
+   API 및 서비스 → 라이브러리 → "YouTube Data API v3" 검색 → 사용 설정
+
+4. OAuth 2.0 사용자 인증 정보 생성
+   API 및 서비스 → 사용자 인증 정보 → + 사용자 인증 정보 만들기
+   → OAuth 클라이언트 ID
+   → 애플리케이션 유형: 데스크톱 앱
+   → 이름: Brainboda Uploader
+
+5. JSON 다운로드
+   생성된 클라이언트 ID 우측 ↓ 버튼 → JSON 다운로드
+
+6. 파일 배치
+   다운로드한 파일을 client_secrets.json 으로 이름 변경 후
+   프로젝트 루트 또는 config/ 폴더에 저장
+
+7. OAuth 동의 화면 설정 (최초 실행 전)
+   API 및 서비스 → OAuth 동의 화면
+   → 외부 선택 → 앱 이름/이메일 입력 → 저장
+   → 테스트 사용자에 본인 Google 계정 추가
+```
+
+> **최초 실행 시**: 브라우저가 열리고 Google 계정 인증 요청됨 → 승인하면  
+> `token.json` 자동 생성 → 이후 자동 업로드 가능
+
+---
+
+### Step 6 — 채널 운영 체크리스트
+
+```
+[ ] Google 계정 / 브랜드 계정 생성
+[ ] YouTube 채널 개설 (채널명, 핸들 설정)
+[ ] 채널 아이콘 제작 (1000×1000px)
+[ ] 채널 배너 제작 (2560×1440px)
+[ ] 채널 설명 작성 (영어)
+[ ] 카테고리 / 국가 / 언어 설정
+[ ] AdSense 계정 연결 (수익화 준비)
+[ ] Google Cloud 프로젝트 생성
+[ ] YouTube Data API v3 활성화
+[ ] OAuth 2.0 credentials 다운로드 → client_secrets.json 저장
+[ ] python run.py --type main --skip-upload 로 영상 생성 테스트
+[ ] python run.py --type main 으로 첫 업로드 테스트
+```
+
+---
+
+### 설명란 자동 생성 포맷 (02_build_script.py)
+
+업로드 시 자동으로 아래 형식의 설명란이 생성됩니다:
+
+```
+{영상 제목}
+
+In this video, we explore {n} fascinating psychology facts about human behavior...
+
+⏱️ TIMESTAMPS
+0:00 - Introduction
+...
+
+📌 Topics covered: {fact_headings}
+
+🎵 Music: Pixabay Music (https://pixabay.com/music/)
+License: Pixabay Content License — Free for commercial use, no attribution required.
+
+#psychology #humanbehavior #mindset #cognitivebias #neuroscience
+```
+
+---
+
+
 
 ```bash
 # 1. Python 패키지
