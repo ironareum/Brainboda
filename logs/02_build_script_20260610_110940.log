@@ -1,8 +1,0 @@
-2026-06-10 11:09:40,367 [INFO] === 02_build_script.py START ===
-2026-06-10 11:09:40,367 [INFO] Type: main | Topic: any | Dry-run: False
-2026-06-10 11:09:40,367 [INFO] Using raw facts: /home/user/Brainboda/data/facts_raw.csv
-2026-06-10 11:09:40,368 [INFO] Available (unused) facts: 30
-2026-06-10 11:09:40,368 [INFO] Selected 10 facts for main video
-2026-06-10 11:09:40,369 [INFO] Script saved → /home/user/Brainboda/output/script_main_20260610_110940.json
-2026-06-10 11:09:40,369 [INFO] Marked 10 fact IDs as used in /home/user/Brainboda/data/used_facts.json
-2026-06-10 11:09:40,370 [INFO] === 02_build_script.py DONE ===

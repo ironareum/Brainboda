@@ -1,9 +1,0 @@
-2026-06-10 11:23:34,737 [INFO] ffmpeg binary: /usr/local/lib/python3.11/dist-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2
-2026-06-10 11:23:34,836 [INFO] MoviePy available
-2026-06-10 11:23:34,837 [INFO] === 05_render_video.py START ===
-2026-06-10 11:23:34,837 [INFO] Script: /home/user/Brainboda/output/script_main_20260610_112334.json
-2026-06-10 11:23:34,837 [INFO] TEST mode — rendering only 2 facts
-2026-06-10 11:23:34,837 [INFO] Segments to render: 4
-2026-06-10 11:23:34,837 [INFO] No bgm.mp3 found — skipping BGM
-2026-06-10 11:23:34,837 [INFO] Using MoviePy renderer
-2026-06-10 11:29:54,973 [INFO] === 05_render_video.py DONE ===

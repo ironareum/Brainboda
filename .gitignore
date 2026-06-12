@@ -20,5 +20,5 @@ config/youtube_token.json
 client_secrets.json
 config/client_secrets.json
 
-# Logs (optional - keep for debugging)
-# logs/
+# Logs
+logs/
