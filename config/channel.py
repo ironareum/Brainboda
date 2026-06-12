@@ -2,6 +2,18 @@
 Brainboda channel configuration.
 """
 
+import os
+from pathlib import Path
+
+# Load .env from project root if present
+_env_path = Path(__file__).parent.parent / ".env"
+if _env_path.exists():
+    for _line in _env_path.read_text().splitlines():
+        _line = _line.strip()
+        if _line and not _line.startswith("#") and "=" in _line:
+            _k, _v = _line.split("=", 1)
+            os.environ.setdefault(_k.strip(), _v.strip())
+
 CHANNEL_NAME = "Brainboda"
 CHANNEL_LANGUAGE = "en"
 CHANNEL_DESCRIPTION = "Psychology · Human Behavior · Success Mindset"
@@ -63,15 +75,10 @@ WIKIPEDIA_SEED_PAGES = [
     "Peak–end rule",
 ]
 
-# Anthropic API — for AI script generation (--ai mode)
-# Get key: https://console.anthropic.com
-ANTHROPIC_API_KEY = "YOUR_ANTHROPIC_API_KEY"
-
-# Pixabay API (set your key in environment or here)
-PIXABAY_API_KEY = "YOUR_PIXABAY_API_KEY"
-
-# Pexels API (set your key in environment or here)
-PEXELS_API_KEY = "YOUR_PEXELS_API_KEY"
+# API keys — set in .env (never hardcode here)
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+PIXABAY_API_KEY = os.getenv("PIXABAY_API_KEY", "")
+PEXELS_API_KEY = os.getenv("PEXELS_API_KEY", "")
 
 # Video settings
 VIDEO_WIDTH = 1920
@@ -90,7 +97,6 @@ UPLOAD_DAYS = ["Monday", "Wednesday", "Friday"]
 UPLOAD_TIME = "18:00"  # UTC
 
 # Paths
-import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")

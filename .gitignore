@@ -19,6 +19,7 @@ pipeline/__pycache__/
 config/youtube_token.json
 client_secrets.json
 config/client_secrets.json
+.env
 
 # Logs
 logs/
