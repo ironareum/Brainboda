@@ -17,6 +17,7 @@ Usage:
     python run.py --type main --ai --theme "dark psychology"   # specific theme
     python run.py --type short --ai              # AI shorts, auto-pick theme
     python run.py --type short --ai --theme "cognitive biases" # AI shorts, specific theme
+    python run.py --type short --from-main output/20260612_main/script.json  # 메인에서 발췌
 
     # Use existing script (skip steps 1-2)
     python run.py --script output/20240101_120000_main/script.json
@@ -179,6 +180,8 @@ def main():
                         help="Test mode: render only 2 facts, no upload")
     parser.add_argument("--skip-upload", action="store_true",
                         help="Skip upload step")
+    parser.add_argument("--from-main", type=str, default=None,
+                        help="(Shorts) Extract best fact from this main script JSON to make a Short")
     parser.add_argument("--script", type=str, default=None,
                         help="Use existing script JSON, skip steps 1-2")
     args = parser.parse_args()
@@ -215,7 +218,9 @@ def main():
     def _build_script_cmd():
         cmd = [PYTHON, os.path.join(PIPELINE_DIR, "02_build_script.py"),
                "--type", args.type, "--run-dir", run_dir]
-        if args.ai:
+        if getattr(args, "from_main", None):
+            cmd += ["--from-main", os.path.abspath(args.from_main)]
+        elif args.ai:
             cmd.append("--ai")
             if args.theme:
                 cmd += ["--theme", args.theme]
@@ -232,10 +237,11 @@ def main():
         log.info("Using provided script: %s", script_path)
         results["steps_ok"].extend(["01_fetch_facts (skipped)", "02_build_script (skipped)"])
 
-    elif args.ai:
-        # ── AI mode: skip step 1, run step 2 with --ai ───────────────────────
-        log.info("AI mode — skipping 01_fetch_facts (not needed)")
-        results["steps_ok"].append("01_fetch_facts (skipped — AI mode)")
+    elif getattr(args, "from_main", None) or args.ai:
+        # ── AI / from-main mode: skip step 1, run step 2 ─────────────────────
+        mode_label = "from-main" if getattr(args, "from_main", None) else "AI"
+        log.info("%s mode — skipping 01_fetch_facts (not needed)", mode_label)
+        results["steps_ok"].append(f"01_fetch_facts (skipped — {mode_label} mode)")
 
         ok = run_step("02_build_script (AI)", _build_script_cmd())
         if not ok:

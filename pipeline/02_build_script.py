@@ -502,6 +502,25 @@ _USED_CONCEPTS_PATH = os.path.join(
     "data", "used_concepts.json"
 )
 
+_USED_SHORTS_FACTS_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data", "used_shorts_facts.json"
+)
+
+
+def _load_used_shorts_facts() -> list:
+    try:
+        with open(_USED_SHORTS_FACTS_PATH, encoding="utf-8") as f:
+            return json.load(f).get("headings", [])
+    except Exception:
+        return []
+
+
+def _save_used_shorts_facts(headings: list):
+    os.makedirs(os.path.dirname(_USED_SHORTS_FACTS_PATH), exist_ok=True)
+    with open(_USED_SHORTS_FACTS_PATH, "w", encoding="utf-8") as f:
+        json.dump({"headings": headings}, f, indent=2, ensure_ascii=False)
+
 _DEFAULT_THEMES = [
     "dark psychology", "cognitive biases", "social influence",
     "manipulation tactics", "memory and learning", "personality psychology",
@@ -673,6 +692,166 @@ def build_script_ai(theme: str, video_type: str, n_facts: int,
     return script_data
 
 
+_SHORTS_PICK_PROMPT = """\
+You are helping pick the most impactful fact from a main YouTube video to turn into a Short.
+
+Main video facts:
+{facts_list}
+
+Already used as Shorts (DO NOT pick these):
+{used_headings}
+
+Pick the ONE fact that would perform best as a standalone YouTube Short — the most shocking,
+counterintuitive, or immediately relatable concept that hooks a viewer in under 3 seconds.
+
+Reply with ONLY a JSON object:
+{{"chosen_heading": "Exact heading text from the list above"}}
+"""
+
+_SHORTS_FROM_MAIN_PROMPT = """\
+Create a YouTube Shorts script (vertical video, 45-60 seconds) focused on this psychology concept:
+"{chosen_concept}"
+
+This is a Short extracted from a main video about: "{main_theme}"
+
+The Short must:
+- Hook (15-20 words): Start with the most shocking or counterintuitive aspect of this concept.
+- Fact 1: The concept itself — what it is, named and explained in plain English (30-40 words).
+- Fact 2: A surprising real-world example or consequence most people don't expect (30-40 words).
+- Fact 3: How to recognize or use this in everyday life (30-40 words).
+- Outro (10 words): "Follow Brainboda for more psychology facts that change how you see people."
+
+RULES:
+- Conversational, punchy. No academic language.
+- NEVER fabricate statistics.
+- Each fact narration starts with "Fact N: [Concept Name]."
+
+Return valid JSON only:
+{{
+  "title": "punchy YouTube Shorts title (max 60 chars)",
+  "thumbnail_hook": "5-6 word punchy phrase",
+  "hook": "...",
+  "facts": [
+    {{"n": 1, "heading": "...", "narration": "Fact 1: ...", "search_keywords": ["kw1","kw2","kw3"]}},
+    {{"n": 2, "heading": "...", "narration": "Fact 2: ...", "search_keywords": ["kw1","kw2","kw3"]}},
+    {{"n": 3, "heading": "...", "narration": "Fact 3: ...", "search_keywords": ["kw1","kw2","kw3"]}}
+  ],
+  "outro": "...",
+  "tags": ["tag1", "...up to 15 tags"]
+}}
+"""
+
+
+def build_script_short_from_main(main_script_path: str, run_dir: str,
+                                  dry_run: bool = False) -> dict | None:
+    """Generate a Shorts script by extracting the best fact from a main script."""
+    try:
+        import anthropic
+    except ImportError:
+        log.error("anthropic package not installed. Run: pip install anthropic")
+        sys.exit(1)
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY", ANTHROPIC_API_KEY)
+    if not api_key or api_key == "YOUR_ANTHROPIC_API_KEY":
+        log.error("ANTHROPIC_API_KEY not set.")
+        sys.exit(1)
+
+    with open(main_script_path, encoding="utf-8") as f:
+        main_script = json.load(f)
+
+    main_facts = main_script.get("facts", [])
+    if not main_facts:
+        log.error("Main script has no facts.")
+        return None
+
+    used_headings = _load_used_shorts_facts()
+    available_facts = [f for f in main_facts if f["heading"] not in used_headings]
+    if not available_facts:
+        log.warning("All facts from this main script already used as Shorts. Using all facts.")
+        available_facts = main_facts
+
+    main_theme = main_script.get("theme", main_script.get("title", "psychology"))
+
+    facts_list = "\n".join(
+        f"- {f['heading']}: {f['narration'][:80]}..." for f in available_facts
+    )
+    used_str = ", ".join(used_headings) if used_headings else "none yet"
+
+    client = anthropic.Anthropic(api_key=api_key)
+
+    # Step 1: AI picks the best fact
+    log.info("Step 1/2 — AI picking best fact for Short from %d available facts", len(available_facts))
+    try:
+        pick_resp = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=128,
+            messages=[{"role": "user", "content": _SHORTS_PICK_PROMPT.format(
+                facts_list=facts_list,
+                used_headings=used_str,
+            )}],
+        )
+        pick_raw = pick_resp.content[0].text.strip()
+        if pick_raw.startswith("```"):
+            pick_raw = re.sub(r"^```[a-z]*\n?", "", pick_raw)
+            pick_raw = re.sub(r"\n?```$", "", pick_raw)
+        chosen_heading = json.loads(pick_raw).get("chosen_heading", available_facts[0]["heading"])
+    except Exception as exc:
+        log.warning("Fact pick failed (%s) — using first available", exc)
+        chosen_heading = available_facts[0]["heading"]
+
+    log.info("Chosen fact for Short: %s", chosen_heading)
+
+    # Step 2: Generate Shorts script around chosen concept
+    log.info("Step 2/2 — Generating Shorts script")
+    try:
+        script_resp = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=2048,
+            messages=[{"role": "user", "content": _SHORTS_FROM_MAIN_PROMPT.format(
+                chosen_concept=chosen_heading,
+                main_theme=main_theme,
+            )}],
+        )
+        raw = script_resp.content[0].text.strip()
+        if raw.startswith("```"):
+            raw = re.sub(r"^```[a-z]*\n?", "", raw)
+            raw = re.sub(r"\n?```$", "", raw)
+        script_data = json.loads(raw)
+    except Exception as exc:
+        log.error("Shorts script generation failed: %s", exc)
+        return None
+
+    # Inject standard fields
+    script_data["type"] = "short"
+    script_data["created_at"] = datetime.now().isoformat(timespec="seconds")
+    script_data["ai_generated"] = True
+    script_data["from_main"] = os.path.abspath(main_script_path)
+    script_data["chosen_fact"] = chosen_heading
+
+    for fact in script_data.get("facts", []):
+        fact["duration_est"] = estimate_duration(fact.get("narration", ""))
+        fact["id"] = re.sub(r"[^a-z0-9]+", "_", fact["heading"].lower()).strip("_")
+        fact["source_url"] = ""
+        fact["key_insight"] = ""
+
+    hook_dur = estimate_duration(script_data.get("hook", ""))
+    outro_dur = estimate_duration(script_data.get("outro", ""))
+    script_data["hook_duration_est"] = hook_dur
+    script_data["outro_duration_est"] = outro_dur
+    script_data["total_duration_est"] = (
+        hook_dur + sum(f["duration_est"] for f in script_data["facts"]) + outro_dur
+    )
+    script_data["description"] = _build_description(script_data["title"], script_data["facts"])
+
+    # Track used shorts facts
+    if not dry_run:
+        used_headings.append(chosen_heading)
+        _save_used_shorts_facts(used_headings)
+        log.info("Marked '%s' as used for Shorts", chosen_heading)
+
+    return script_data
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -684,19 +863,35 @@ def main():
                         help="Use Claude AI to generate script instead of Wikipedia facts")
     parser.add_argument("--theme", type=str, default=None,
                         help="(AI mode) Theme for the video e.g. 'dark psychology'")
+    parser.add_argument("--from-main", type=str, default=None,
+                        help="(Shorts mode) Path to main script JSON — extracts best fact for Short")
     parser.add_argument("--dry-run", action="store_true", help="Preview only, write no files")
     parser.add_argument("--run-dir", type=str, default=None,
                         help="Run output directory. If provided, save script as {run-dir}/script.json")
     args = parser.parse_args()
 
     log.info("=== 02_build_script.py START ===")
-    log.info("Type: %s | AI: %s | Theme: %s | Dry-run: %s",
-             args.type, args.ai, args.theme or "auto", args.dry_run)
+    log.info("Type: %s | AI: %s | Theme: %s | FromMain: %s | Dry-run: %s",
+             args.type, args.ai, args.theme or "auto", args.from_main or "no", args.dry_run)
 
     n_needed = FACTS_PER_SHORT if args.type == "short" else FACTS_PER_VIDEO
 
+    # ── Shorts from main mode ─────────────────────────────────────────────────
+    if args.from_main:
+        if not os.path.exists(args.from_main):
+            log.error("Main script not found: %s", args.from_main)
+            sys.exit(1)
+        run_dir = args.run_dir or os.path.join(OUTPUT_DIR,
+            datetime.now().strftime("%Y%m%d_%H%M%S") + "_short")
+        os.makedirs(run_dir, exist_ok=True)
+        log.info("Generating Short from main script: %s", args.from_main)
+        script = build_script_short_from_main(args.from_main, run_dir, dry_run=args.dry_run)
+        if not script:
+            log.error("Short-from-main generation failed.")
+            sys.exit(1)
+
     # ── AI mode ───────────────────────────────────────────────────────────────
-    if args.ai:
+    elif args.ai:
         used_concepts = _load_used_concepts()
         theme = _pick_theme(args.theme, used_concepts)
         log.info("AI mode | theme: %s", theme)
