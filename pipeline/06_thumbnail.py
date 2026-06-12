@@ -211,50 +211,98 @@ def layout_a(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
         draw_badge(draw, W, facts_badge, BOLD_FONTS, accent=accent)
 
 
-# ── Layout B: Huge keyword top + subtitle ─────────────────────────────────────
-# One big word dominates top half (EVERYTHING style), subtitle small below
+# ── Layout B: Split panel — solid left + image right ─────────────────────────
+# Bold full-sentence text on solid color left panel, image bleeds on right
 
 def layout_b(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
-    words = hook_text.split()
-    # Use longest word as hero, rest as subtitle
-    keyword = max(words, key=len).upper()
-    subtitle_words = [w for w in words if w.lower() != keyword.lower()]
-    subtitle = " ".join(subtitle_words).upper() if subtitle_words else ""
+    panel_w = int(W * 0.56)
 
-    # Hero word — fill top 55% width
-    font_size = 200
-    for _ in range(20):
+    # Solid dark panel on left
+    panel = Image.new("RGB", (panel_w, H), (12, 12, 24))
+    img.paste(panel, (0, 0))
+
+    # Accent bar on right edge of panel
+    bar_w = 7
+    draw.rectangle([panel_w - bar_w, 0, panel_w, H], fill=accent)
+
+    # Text: full hook sentence, left-aligned inside panel
+    pad = 55
+    max_text_w = panel_w - pad * 2
+    font_size = 110
+    font = find_font(BOLD_FONTS, font_size)
+    lines = []
+    for _ in range(15):
         font = find_font(BOLD_FONTS, font_size)
-        tw, _ = text_w(draw, keyword, font)
-        if tw <= int(W * 0.92):
+        lines = wrap_text(hook_text.upper(), draw, font, max_text_w)
+        if len(lines) <= 3:
             break
-        font_size = int(font_size * 0.92)
+        font_size = int(font_size * 0.88)
 
-    # Draw hero word — vertically centered accounting for subtitle
-    sub_font_size = 58
-    sub_font = find_font(BOLD_FONTS, sub_font_size)
-    subtitle_words_list = wrap_text(subtitle, draw, sub_font, int(W * 0.80)) if subtitle else []
-    subtitle_h = len(subtitle_words_list) * int(sub_font_size * 1.2) + 20 if subtitle_words_list else 0
+    line_h = int(font_size * 1.18)
+    total_text_h = len(lines) * line_h
+    text_top = (H - total_text_h) // 2 - 10
 
-    tw, th = text_w(draw, keyword, font)
-    total_block_h = th + subtitle_h
-    y = (H - total_block_h) // 2 - 20  # vertically center the whole block
-    x = (W - tw) // 2
-    draw_shadow_text(draw, (x, y), keyword, font,
-                     shadow_offsets=((6, 6), (5, 5), (-3, -3)))
+    for i, line in enumerate(lines):
+        y = text_top + i * line_h
+        draw_shadow_text(draw, (pad, y), line, font,
+                         shadow_offsets=((4, 4), (3, 3)))
 
-    # Subtitle
-    if subtitle_words_list:
-        sub_y = y + th + 20
-        for line in subtitle_words_list:
-            stw, _ = text_w(draw, line, sub_font)
-            sx = (W - stw) // 2
-            draw_shadow_text(draw, (sx, sub_y), line, sub_font,
-                             fill=accent, shadow_offsets=((3, 3),))
-            sub_y += int(sub_font_size * 1.2)
+    # Accent underline
+    ul_y = text_top + total_text_h + 18
+    draw.rectangle([pad, ul_y, pad + int(max_text_w * 0.55), ul_y + 6], fill=accent)
 
     if facts_badge:
         draw_badge(draw, W, facts_badge, BOLD_FONTS, accent=accent)
+
+
+# ── Layout E: Text box — dark pill/box behind text, full-bleed image bg ───────
+# Ensures readability regardless of background complexity
+
+def layout_e(img, draw, W, H, hook_text, facts_badge, accent=(255, 215, 0)):
+    pad_x = 70
+    max_text_w = int(W * 0.82)
+    font_size = 115
+    font = find_font(BOLD_FONTS, font_size)
+    lines = []
+    for _ in range(15):
+        font = find_font(BOLD_FONTS, font_size)
+        lines = wrap_text(hook_text.upper(), draw, font, max_text_w)
+        if len(lines) <= 3:
+            break
+        font_size = int(font_size * 0.88)
+
+    line_h = int(font_size * 1.2)
+    total_text_h = len(lines) * line_h
+    box_pad_x, box_pad_y = 40, 28
+    box_w = max_text_w + box_pad_x * 2
+    box_x = (W - box_w) // 2
+    box_y = (H - total_text_h) // 2 - box_pad_y - 10
+    box_x2 = box_x + box_w
+    box_y2 = box_y + total_text_h + box_pad_y * 2
+
+    # Dark semi-transparent box (drawn on img via RGBA composite)
+    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    od = ImageDraw.Draw(overlay)
+    od.rounded_rectangle([box_x, box_y, box_x2, box_y2], radius=18, fill=(0, 0, 0, 185))
+    img_rgba = img.convert("RGBA")
+    img_rgba = Image.alpha_composite(img_rgba, overlay)
+    img.paste(img_rgba.convert("RGB"))
+    draw = ImageDraw.Draw(img)
+
+    # Accent top border on box
+    draw.rectangle([box_x, box_y, box_x2, box_y + 7], fill=accent)
+
+    text_top = box_y + box_pad_y + 7
+    for i, line in enumerate(lines):
+        y = text_top + i * line_h
+        tw, _ = text_w(draw, line, font)
+        x = (W - tw) // 2
+        draw_shadow_text(draw, (x, y), line, font,
+                         shadow_offsets=((4, 4), (3, 3)))
+
+    if facts_badge:
+        draw_badge(draw, W, facts_badge, BOLD_FONTS, accent=accent)
+
 
 
 # ── Layout C: Left-aligned + vertical accent bar ──────────────────────────────
@@ -350,8 +398,8 @@ def pick_accent(title: str) -> tuple:
 
 # ── Layout dispatcher ─────────────────────────────────────────────────────────
 
-LAYOUTS = [layout_a, layout_b, layout_c, layout_d]
-LAYOUT_NAMES = ["A (centered classic)", "B (huge keyword)", "C (left-align)", "D (dramatic quote)"]
+LAYOUTS = [layout_a, layout_b, layout_c, layout_d, layout_e]
+LAYOUT_NAMES = ["A (centered classic)", "B (split panel)", "C (left-align)", "D (dramatic quote)", "E (text box)"]
 
 
 def pick_layout(title: str):
