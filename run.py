@@ -4,11 +4,22 @@ Brainboda pipeline orchestrator.
 Connects all 7 pipeline steps end-to-end.
 
 Usage:
+    # Wikipedia mode (requires facts_raw.csv)
     python run.py --type main                    # full pipeline
     python run.py --type short                   # shorts pipeline
     python run.py --type main --test             # render only, no upload, first 2 facts
     python run.py --type main --skip-upload      # all steps except upload
     python run.py --type main --topic manipulation  # specific topic
+
+    # AI mode (Claude Haiku — no CSV needed, ~$0.008/video)
+    python run.py --type main --ai               # auto-pick theme
+    python run.py --type main --ai --skip-upload # AI script, no upload
+    python run.py --type main --ai --theme "dark psychology"   # specific theme
+    python run.py --type short --ai              # AI shorts, auto-pick theme
+    python run.py --type short --ai --theme "cognitive biases" # AI shorts, specific theme
+
+    # Use existing script (skip steps 1-2)
+    python run.py --script output/20240101_120000_main/script.json
 """
 
 import argparse
