@@ -641,27 +641,21 @@ def build_hook_clip(
         video_clip = _set_dur(video_clip, min_dur)
         audio_clip = _subclip(audio_clip, 0, min_dur)
 
-        # Mix bgm_hook.mp3 with fade-up: starts at vol 0.03, ramps to 0.12 over 2s
+        # Mix bgm_hook.mp3 with fade-in: audio_fadein for 2s ramp, then fixed vol 0.12
         bgm_audio, bgm_path = _load_bgm("hook")
         if bgm_audio:
             try:
-                bgm = _loop_audio(_vol(bgm_audio, 1.0), min_dur)
+                bgm = _loop_audio(_vol(bgm_audio, 0.12), min_dur)
                 fade_dur = min(2.0, min_dur * 0.3)
-
-                def _bgm_vol_at(t):
-                    if t < fade_dur:
-                        return 0.03 + (0.12 - 0.03) * (t / fade_dur)
-                    return 0.12
-
+                # Use built-in audio_fadein (works in both MoviePy v1 and v2)
                 try:
-                    bgm = bgm.with_volume_scaled(lambda t: _bgm_vol_at(t))
+                    bgm = bgm.audio_fadein(fade_dur)
                 except Exception:
-                    bgm = _vol(bgm, 0.10)
-
+                    pass  # fallback: no fade, fixed volume is fine
                 bgm = _subclip(bgm, 0, min_dur)
                 video_clip = _attach_audio(video_clip, CompositeAudioClip([audio_clip, bgm]))
             except Exception as exc:
-                log.warning("Hook BGM fade-up failed: %s", exc)
+                log.warning("Hook BGM mix failed: %s", exc)
                 video_clip = _attach_audio(video_clip, audio_clip)
         else:
             video_clip = _attach_audio(video_clip, audio_clip)
