@@ -77,8 +77,10 @@ Brainboda/
 │       └── facts/              ← Facts 구간 BGM (bgm_01.mp3, bgm_02.mp3 ...)
 │
 ├── data/
-│   ├── facts_raw.csv           ← Wikipedia에서 수집된 원본 facts (누적)
-│   └── used_facts.json         ← 사용된 fact ID 트래킹 (중복 방지)
+│   ├── used_concepts.json      ← AI 모드 테마·컨셉 중복 방지 (사용중)
+│   ├── used_image_urls.json    ← 이미지 URL 중복 방지 (사용중)
+│   ├── used_shorts_facts.json  ← 쇼츠로 발췌된 팩트 트래킹 (사용중)
+│   └── latest_main_script.json ← 최신 메인 스크립트 (Shorts Actions가 참조)
 │
 ├── pipeline/
 │   ├── 01_fetch_facts.py       ← Wikipedia EN → 심리학 facts 수집
@@ -523,6 +525,41 @@ PEXELS_API_KEY=your_key     # pexels.com/api 무료 가입
 |---|---|
 | BGM 파일 수집 | Pixabay Music에서 hook용 3개 + facts용 3개 이상 다운로드 |
 | YouTube 업로드 테스트 | client_secrets.json 설정 후 |
+
+---
+
+## data/ 폴더 관리
+
+### 파일 목록
+
+| 파일 | 용도 | 비고 |
+|---|---|---|
+| `used_concepts.json` | AI 테마·컨셉 중복 방지 | 같은 주제 재사용 방지 |
+| `used_image_urls.json` | 이미지 URL 중복 방지 | 동일 이미지 재수집 방지 |
+| `used_shorts_facts.json` | 쇼츠로 발췌된 팩트 기록 | 같은 팩트로 쇼츠 중복 생성 방지 |
+| `latest_main_script.json` | 가장 최근 메인 스크립트 | Shorts Actions가 참조 |
+
+> Wikipedia 모드 파일(`facts_raw.csv`, `facts_approved.csv`, `used_facts.json`)은 AI 모드에서 사용하지 않으므로 `.gitignore` 처리됨.
+
+### 사용 이력 초기화 방법
+
+테스트 재시작이나 리셋이 필요할 때:
+
+```bash
+# 테마·컨셉 이력 초기화
+echo '{"used_themes": [], "used_concepts": {}}' > data/used_concepts.json
+
+# 이미지 이력 초기화
+echo '[]' > data/used_image_urls.json
+
+# 쇼츠 팩트 이력 초기화
+echo '[]' > data/used_shorts_facts.json
+
+# git에 반영
+git add data/
+git commit -m "chore: reset usage history"
+git push origin <branch>
+```
 
 ---
 
