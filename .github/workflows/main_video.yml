@@ -91,12 +91,15 @@ jobs:
           git pull --rebase origin HEAD || true
           git push origin HEAD
 
-      - name: Save video as artifact (upload step backup)
+      - name: Save output as artifact (upload step backup)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: main-video-${{ github.run_id }}
-          path: output/**/video.mp4
+          name: main-output-${{ github.run_id }}
+          path: |
+            output/**/video.mp4
+            output/**/script.json
+            output/**/thumbnail.jpg
           retention-days: 3
           if-no-files-found: ignore
 
