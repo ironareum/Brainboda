@@ -154,7 +154,7 @@ def _save_token(creds) -> None:
 def _scheduled_publish_time() -> str:
     """Returns RFC 3339 timestamp for next day at PUBLISH_HOUR_UTC."""
     now = datetime.now(timezone.utc)
-    publish = (now + timedelta(days=1)).replace(
+    publish = (now + timedelta(days=2)).replace(
         hour=PUBLISH_HOUR_UTC, minute=PUBLISH_MINUTE_UTC, second=0, microsecond=0
     )
     return publish.strftime("%Y-%m-%dT%H:%M:%S.000Z")
@@ -421,7 +421,7 @@ def main():
     scheduled = not args.test and not args.now
 
     log.info("Title: %s", title)
-    log.info("Mode: %s", "scheduled (+1 day 20:00 UTC)" if scheduled else ("test/private" if args.test else "public now"))
+    log.info("Mode: %s", "scheduled (+2 days 20:15 UTC)" if scheduled else ("test/private" if args.test else "public now"))
 
     if not GOOGLE_API_AVAILABLE:
         log.error("Google API libraries not installed. Run: pip install google-api-python-client google-auth-oauthlib")
@@ -465,7 +465,7 @@ def main():
     print(f"  Upload complete!")
     print(f"  YouTube URL: {video_url}")
     print(f"  Playlist:    {PLAYLIST_NAME}")
-    privacy_label = "scheduled (private → public +1 day)" if scheduled else ("private (test)" if args.test else "public now")
+    privacy_label = "scheduled (private → public +2 days)" if scheduled else ("private (test)" if args.test else "public now")
     print(f"  Privacy:     {privacy_label}")
     print(f"{'='*60}")
 

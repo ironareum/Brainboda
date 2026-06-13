@@ -2,11 +2,11 @@ name: Shorts Pipeline
 
 on:
   schedule:
-    # Sun 10:00 UTC → publishes Mon 20:00 UTC
-    # Tue 10:00 UTC → publishes Wed 20:00 UTC
-    # Thu 10:00 UTC → publishes Fri 20:00 UTC
-    # Fri 10:00 UTC → publishes Sat 20:00 UTC
-    - cron: "0 10 * * 0,2,4,5"
+    # Sat 10:00 UTC → publishes Mon 20:15 UTC (+2 days)
+    # Mon 10:00 UTC → publishes Wed 20:15 UTC (+2 days)
+    # Wed 10:00 UTC → publishes Fri 20:15 UTC (+2 days)
+    # Thu 10:00 UTC → publishes Sat 20:15 UTC (+2 days)
+    - cron: "0 10 * * 6,1,3,4"
   workflow_dispatch:
     inputs:
       skip_upload:
