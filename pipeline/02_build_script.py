@@ -539,25 +539,42 @@ _DEFAULT_THEMES = [
 ]
 
 _AI_SYSTEM_PROMPT = """\
-You are a YouTube script writer for "Brainboda" — a science-based educational channel.
+You are a world-class YouTube script writer for "Brainboda" — a psychology & human behavior channel.
 
-RULES:
-- Conversational English, not academic. Write like talking to a curious friend.
-- Every fact must be a REAL, named concept (e.g. "Dunning-Kruger Effect", "Dark Triad").
-- Cite the actual researcher or origin where known (e.g. "coined by psychologist Robert Cialdini in 1984").
-- NEVER fabricate statistics, percentages, or study results.
-- If uncertain about specifics, describe the concept generally — no fake citations.
-- Each fact narration: 80-120 words. Must start with "Fact N: [Concept Name].".
-- End each fact with one sentence on why it matters in the viewer's real life.
-- Hook: 40-60 words. MUST follow this structure:
-    1. Open with a shocking statistic OR a bold counterintuitive claim (makes viewer stop scrolling).
-    2. One sentence that deepens the mystery or raises the stakes.
-    3. End with a direct question that pulls the viewer in (e.g. "So why does your brain do this?").
-  The hook must NOT mention any concept by name — tease the theme only.
-- Make facts feel surprising, counterintuitive, or unsettling in a thought-provoking way.
-- Facts should flow with a loose narrative arc: start relatable, build intensity, end impactful.
+Your scripts make viewers feel genuinely surprised, unsettled, or fascinated — not just educated.
+The best script is one where the viewer pauses and thinks "wait… that's actually me."
 
-OUTPUT: Return valid JSON only. No explanation, no markdown fences, no text outside the JSON.\
+CORE WRITING RULES:
+- Conversational English. Write like you're talking to a smart, curious friend over coffee.
+- Every concept MUST be a real named psychological phenomenon (e.g. "Dunning-Kruger Effect", "Dark Triad", "Bystander Effect").
+- Cite origins where known (e.g. "first described by psychologist Leon Festinger in 1957").
+- NEVER fabricate statistics, percentages, or study results. If you don't know exact numbers, describe the phenomenon qualitatively.
+
+HOOK (40-60 words):
+- Open with the most surprising, counterintuitive, or slightly disturbing truth about the theme.
+- Do NOT name any specific concept — just tease the emotional territory.
+- Structure: bold claim → deepen the mystery → pull them in with a question.
+- Example: "Most people believe they're above-average drivers. Most people are wrong. And the scary part? The less competent you are, the more confident you feel. So what does that say about YOU?"
+
+FACTS (each 90-130 words):
+- Start: "Fact N: [Concept Name]. [One punchy sentence that is the core of the concept.]"
+- Sentence 2-3: Explain the mechanism — how does this actually work in the brain / real life?
+- Sentence 4-5: Give a VIVID, relatable real-world example. Make the viewer recognize themselves or someone they know.
+- Final sentence: The "so what" — why this matters or what it reveals about human nature. Make it slightly unsettling or empowering.
+- Each fact must feel like a mini-revelation. Use tension, surprise, and stakes.
+
+NARRATIVE ARC across facts:
+- Start with something relatable and common.
+- Build toward the more disturbing or mind-bending facts.
+- End with the most impactful or paradigm-shifting concept.
+
+OUTRO (40-60 words):
+- Don't just say "subscribe." Create a moment of reflection.
+- Ask a genuinely interesting question that relates to the theme (makes viewers comment).
+- Then softly invite them to subscribe for more.
+- Example: "Which of these hit closest to home for you? Drop it in the comments — I read every one. And if your mind isn't done being blown, subscribe. New psychology facts every week on Brainboda."
+
+OUTPUT: Return valid JSON only. No explanation, no markdown fences, no extra text.\
 """
 
 _AI_USER_PROMPT = """\
@@ -570,18 +587,18 @@ Previously used concepts for this theme — DO NOT repeat these:
 
 Return this exact JSON structure:
 {{
-  "title": "catchy YouTube title including the number of facts",
-  "thumbnail_hook": "5-6 word punchy phrase for thumbnail",
+  "title": "catchy, slightly provocative YouTube title including the number of facts (e.g. '10 Psychology Facts That Will Make You Question Everything')",
+  "thumbnail_hook": "5-6 word punchy phrase for thumbnail — should feel urgent or alarming",
   "hook": "...",
   "facts": [
     {{
       "n": 1,
       "heading": "Real Concept Name",
-      "narration": "Fact 1: Real Concept Name. ...",
+      "narration": "Fact 1: Real Concept Name. [punchy opener]. [mechanism]. [vivid example]. [so what].",
       "search_keywords": ["keyword1", "keyword2", "keyword3"]
     }}
   ],
-  "outro": "engagement CTA — ask viewers to comment which fact hit hardest, subscribe",
+  "outro": "...",
   "tags": ["tag1", "tag2", "...up to 20 tags"]
 }}\
 """
@@ -709,9 +726,94 @@ def _pick_best_fact(facts: list) -> dict:
     return max(facts, key=lambda f: len(f.get("narration", "")))
 
 
+_SHORTS_TEASER_PROMPT = """\
+You are writing a YouTube Shorts script for "Brainboda" — a psychology education channel.
+
+The goal: tease ONE psychology fact to make viewers curious enough to watch the full video.
+
+CONCEPT: {concept}
+CONCEPT SUMMARY: {summary}
+
+Write a script with exactly 3 parts:
+
+1. HOOK (10-15 seconds / ~30-40 words):
+   - Open with a surprising or counterintuitive question or claim related to the concept.
+   - Do NOT name the concept yet. Just tease the idea.
+   - Example style: "Did you know your brain actively rewrites your memories every time you recall them?"
+
+2. TEASER (25-35 seconds / ~65-90 words):
+   - Partially reveal the concept — give just enough to be fascinating.
+   - Name the concept (e.g. "This is called the {concept}.").
+   - Explain what it is in 1-2 sentences, but leave out the full detail / real-world impact.
+   - End with an open question that makes them NEED to know more.
+   - Example ending: "But here's where it gets really dark — what does this mean for every decision you make?"
+
+3. CTA (5-8 seconds / ~15-20 words):
+   - Direct call to action to watch the full Brainboda video.
+   - Example: "Watch the full breakdown on Brainboda — link in bio. You won't look at yourself the same way."
+
+RULES:
+- Conversational English, like talking to a curious friend.
+- Total script: 45-65 seconds when read aloud (~110-150 words).
+- NEVER fabricate statistics or studies.
+- Return ONLY valid JSON, no markdown, no extra text.
+
+Return this exact JSON:
+{{
+  "hook": "...",
+  "teaser": "...",
+  "cta": "..."
+}}\
+"""
+
+
+def _generate_short_teaser_ai(concept: str, summary: str) -> dict | None:
+    """Call Claude Haiku to generate hook/teaser/cta for a Shorts video."""
+    try:
+        import anthropic
+    except ImportError:
+        log.error("anthropic package not installed.")
+        return None
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY", ANTHROPIC_API_KEY)
+    if not api_key or api_key == "YOUR_ANTHROPIC_API_KEY":
+        log.error("ANTHROPIC_API_KEY not set.")
+        return None
+
+    client = anthropic.Anthropic(api_key=api_key)
+    prompt = _SHORTS_TEASER_PROMPT.format(concept=concept, summary=summary)
+    try:
+        response = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=1024,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = response.content[0].text.strip()
+        raw = re.sub(r"^```[a-z]*\n?", "", raw).rstrip("` \n")
+        return json.loads(raw)
+    except Exception as exc:
+        log.error("Claude API call failed for Shorts teaser: %s", exc)
+        return None
+
+
+def _build_short_description(concept: str, main_script_path: str) -> str:
+    tags = "#psychology #shorts #brainboda #humanbehavior #mindset #neuroscience #psychologyfacts"
+    return "\n".join([
+        f"{concept} — Psychology Short | Brainboda",
+        "",
+        f"Watch the full video for the complete breakdown of {concept} and more mind-bending psychology facts.",
+        "",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "🧠 Subscribe to Brainboda for weekly psychology insights.",
+        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "",
+        tags,
+    ])
+
+
 def build_script_short_from_main(main_script_path: str, run_dir: str,
                                   dry_run: bool = False) -> dict | None:
-    """Build a Shorts script by extracting facts directly from a main script. Zero AI cost."""
+    """Build a Shorts teaser script from one fact in the main script, using AI."""
     with open(main_script_path, encoding="utf-8") as f:
         main_script = json.load(f)
 
@@ -726,60 +828,69 @@ def build_script_short_from_main(main_script_path: str, run_dir: str,
         log.warning("All facts from this main already used as Shorts — resetting pool.")
         available_facts = main_facts
 
-    # Pick best fact + 2 supporting facts (all unused if possible)
     chosen = _pick_best_fact(available_facts)
-    rest = [f for f in available_facts if f["heading"] != chosen["heading"]]
-    # Fill up to 3 facts total
-    selected = [chosen] + rest[:2]
+    concept = chosen["heading"]
+    summary = chosen.get("narration", chosen.get("key_insight", ""))
+    log.info("Short chosen fact: %s", concept)
 
-    log.info("Short facts selected: %s", [f["heading"] for f in selected])
+    # Use AI to write a teaser script
+    teaser = _generate_short_teaser_ai(concept, summary)
+    if not teaser:
+        log.warning("AI teaser generation failed — falling back to raw narration snippet.")
+        snippet = summary[:200].rsplit(".", 1)[0] + "."
+        teaser = {
+            "hook": f"Did you know about {concept}?",
+            "teaser": snippet,
+            "cta": "Watch the full video on Brainboda for more. Link in bio!",
+        }
 
-    # Re-number narrations as Fact 1/2/3
-    facts_out = []
-    for i, f in enumerate(selected, 1):
-        narration = re.sub(r"^Fact \d+:", f"Fact {i}:", f["narration"])
-        facts_out.append({
-            "n": i,
-            "heading": f["heading"],
-            "narration": narration,
-            "search_keywords": f.get("search_keywords", []),
-            "duration_est": estimate_duration(narration),
-            "id": f.get("id", re.sub(r"[^a-z0-9]+", "_", f["heading"].lower()).strip("_")),
-            "source_url": f.get("source_url", ""),
-            "key_insight": f.get("key_insight", ""),
-        })
+    hook_text = teaser["hook"]
+    teaser_text = teaser["teaser"]
+    cta_text = teaser["cta"]
 
-    hook = main_script.get("hook", "")
-    outro = main_script.get("outro", "")
-    title = f"{chosen['heading']} — Psychology Short | Brainboda"
-    thumbnail_hook = main_script.get("thumbnail_hook", chosen["heading"])
+    # Single "fact" entry for the render pipeline (teaser body)
+    hook_dur = estimate_duration(hook_text)
+    teaser_dur = estimate_duration(teaser_text)
+    cta_dur = estimate_duration(cta_text)
+
+    fact_entry = {
+        "n": 1,
+        "heading": concept,
+        "narration": teaser_text,
+        "search_keywords": chosen.get("search_keywords", ["psychology", "mind", "brain"]),
+        "duration_est": teaser_dur,
+        "id": re.sub(r"[^a-z0-9]+", "_", concept.lower()).strip("_"),
+        "source_url": chosen.get("source_url", ""),
+        "key_insight": chosen.get("key_insight", ""),
+    }
+
+    title = f"{concept} — Did You Know? #Shorts | Brainboda"
     tags = main_script.get("tags", [])
-
-    hook_dur = estimate_duration(hook)
-    outro_dur = estimate_duration(outro)
+    if "shorts" not in [t.lower() for t in tags]:
+        tags = ["shorts", "psychology shorts"] + tags
 
     script_data = {
         "type": "short",
         "created_at": datetime.now().isoformat(timespec="seconds"),
-        "ai_generated": False,
+        "ai_generated": True,
         "from_main": os.path.abspath(main_script_path),
-        "chosen_fact": chosen["heading"],
+        "chosen_fact": concept,
         "title": title,
-        "thumbnail_hook": thumbnail_hook,
-        "hook": hook,
-        "facts": facts_out,
-        "outro": outro,
+        "thumbnail_hook": concept,
+        "hook": hook_text,
+        "facts": [fact_entry],
+        "outro": cta_text,
         "tags": tags,
         "hook_duration_est": hook_dur,
-        "outro_duration_est": outro_dur,
-        "total_duration_est": hook_dur + sum(f["duration_est"] for f in facts_out) + outro_dur,
-        "description": _build_description(title, facts_out, hook_dur=hook_dur),
+        "outro_duration_est": cta_dur,
+        "total_duration_est": hook_dur + teaser_dur + cta_dur,
+        "description": _build_short_description(concept, main_script_path),
     }
 
     if not dry_run:
-        used_headings.append(chosen["heading"])
+        used_headings.append(concept)
         _save_used_shorts_facts(used_headings)
-        log.info("Marked '%s' as used for Shorts", chosen["heading"])
+        log.info("Marked '%s' as used for Shorts", concept)
 
     return script_data
 

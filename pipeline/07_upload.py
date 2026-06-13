@@ -448,11 +448,15 @@ def main():
     video_url = f"https://www.youtube.com/watch?v={video_id}"
     log.info("Video URL: %s", video_url)
 
-    if thumbnail_path and os.path.exists(thumbnail_path):
-        set_thumbnail(youtube, video_id, thumbnail_path)
+    is_short = script.get("type") == "short"
 
-    # Add to playlist
-    if YOUTUBE_PLAYLIST_ID:
+    if not is_short and thumbnail_path and os.path.exists(thumbnail_path):
+        set_thumbnail(youtube, video_id, thumbnail_path)
+    elif is_short:
+        log.info("Shorts video — skipping thumbnail")
+
+    # Add to playlist (main videos only — Shorts don't belong in the main playlist)
+    if YOUTUBE_PLAYLIST_ID and not is_short:
         add_to_playlist(youtube, video_id, YOUTUBE_PLAYLIST_ID)
 
     log.info("=== 07_upload.py DONE ===")
