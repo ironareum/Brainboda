@@ -539,42 +539,25 @@ _DEFAULT_THEMES = [
 ]
 
 _AI_SYSTEM_PROMPT = """\
-You are a world-class YouTube script writer for "Brainboda" — a psychology & human behavior channel.
+You are a YouTube script writer for "Brainboda" — a science-based educational channel.
 
-Your scripts make viewers feel genuinely surprised, unsettled, or fascinated — not just educated.
-The best script is one where the viewer pauses and thinks "wait… that's actually me."
+RULES:
+- Conversational English, not academic. Write like talking to a curious friend.
+- Every fact must be a REAL, named concept (e.g. "Dunning-Kruger Effect", "Dark Triad").
+- Cite the actual researcher or origin where known (e.g. "coined by psychologist Robert Cialdini in 1984").
+- NEVER fabricate statistics, percentages, or study results.
+- If uncertain about specifics, describe the concept generally — no fake citations.
+- Each fact narration: 80-120 words. Must start with "Fact N: [Concept Name].".
+- End each fact with one sentence on why it matters in the viewer's real life.
+- Hook: 40-60 words. MUST follow this structure:
+    1. Open with a shocking statistic OR a bold counterintuitive claim (makes viewer stop scrolling).
+    2. One sentence that deepens the mystery or raises the stakes.
+    3. End with a direct question that pulls the viewer in (e.g. "So why does your brain do this?").
+  The hook must NOT mention any concept by name — tease the theme only.
+- Make facts feel surprising, counterintuitive, or unsettling in a thought-provoking way.
+- Facts should flow with a loose narrative arc: start relatable, build intensity, end impactful.
 
-CORE WRITING RULES:
-- Conversational English. Write like you're talking to a smart, curious friend over coffee.
-- Every concept MUST be a real named psychological phenomenon (e.g. "Dunning-Kruger Effect", "Dark Triad", "Bystander Effect").
-- Cite origins where known (e.g. "first described by psychologist Leon Festinger in 1957").
-- NEVER fabricate statistics, percentages, or study results. If you don't know exact numbers, describe the phenomenon qualitatively.
-
-HOOK (40-60 words):
-- Open with the most surprising, counterintuitive, or slightly disturbing truth about the theme.
-- Do NOT name any specific concept — just tease the emotional territory.
-- Structure: bold claim → deepen the mystery → pull them in with a question.
-- Example: "Most people believe they're above-average drivers. Most people are wrong. And the scary part? The less competent you are, the more confident you feel. So what does that say about YOU?"
-
-FACTS (each 90-130 words):
-- Start: "Fact N: [Concept Name]. [One punchy sentence that is the core of the concept.]"
-- Sentence 2-3: Explain the mechanism — how does this actually work in the brain / real life?
-- Sentence 4-5: Give a VIVID, relatable real-world example. Make the viewer recognize themselves or someone they know.
-- Final sentence: The "so what" — why this matters or what it reveals about human nature. Make it slightly unsettling or empowering.
-- Each fact must feel like a mini-revelation. Use tension, surprise, and stakes.
-
-NARRATIVE ARC across facts:
-- Start with something relatable and common.
-- Build toward the more disturbing or mind-bending facts.
-- End with the most impactful or paradigm-shifting concept.
-
-OUTRO (40-60 words):
-- Don't just say "subscribe." Create a moment of reflection.
-- Ask a genuinely interesting question that relates to the theme (makes viewers comment).
-- Then softly invite them to subscribe for more.
-- Example: "Which of these hit closest to home for you? Drop it in the comments — I read every one. And if your mind isn't done being blown, subscribe. New psychology facts every week on Brainboda."
-
-OUTPUT: Return valid JSON only. No explanation, no markdown fences, no extra text.\
+OUTPUT: Return valid JSON only. No explanation, no markdown fences, no text outside the JSON.\
 """
 
 _AI_USER_PROMPT = """\
@@ -587,18 +570,18 @@ Previously used concepts for this theme — DO NOT repeat these:
 
 Return this exact JSON structure:
 {{
-  "title": "catchy, slightly provocative YouTube title including the number of facts (e.g. '10 Psychology Facts That Will Make You Question Everything')",
-  "thumbnail_hook": "5-6 word punchy phrase for thumbnail — should feel urgent or alarming",
+  "title": "catchy YouTube title including the number of facts",
+  "thumbnail_hook": "5-6 word punchy phrase for thumbnail",
   "hook": "...",
   "facts": [
     {{
       "n": 1,
       "heading": "Real Concept Name",
-      "narration": "Fact 1: Real Concept Name. [punchy opener]. [mechanism]. [vivid example]. [so what].",
+      "narration": "Fact 1: Real Concept Name. ...",
       "search_keywords": ["keyword1", "keyword2", "keyword3"]
     }}
   ],
-  "outro": "...",
+  "outro": "engagement CTA — ask viewers to comment which fact hit hardest, subscribe",
   "tags": ["tag1", "tag2", "...up to 20 tags"]
 }}\
 """
