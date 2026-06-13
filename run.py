@@ -69,7 +69,7 @@ def run_step(name: str, cmd: list, allow_fail: bool = False) -> bool:
     log.info("STEP: %s", name)
     log.info("CMD:  %s", " ".join(cmd))
     try:
-        result = subprocess.run(cmd, timeout=2400)
+        result = subprocess.run(cmd, timeout=7200)
         if result.returncode == 0:
             log.info("STEP %s — SUCCESS", name)
             return True
