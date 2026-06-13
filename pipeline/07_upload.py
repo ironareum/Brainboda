@@ -68,6 +68,7 @@ PLAYLIST_NAME = "How Your Mind Works"
 
 # Scheduled publish: upload+1 day at 20:00 UTC (3 PM EST)
 PUBLISH_HOUR_UTC = 20
+PUBLISH_MINUTE_UTC = 15
 
 CONFIG_DIR = os.path.join(BASE_DIR, "config")
 TOKEN_PATH = os.path.join(CONFIG_DIR, "youtube_token.json")
@@ -154,7 +155,7 @@ def _scheduled_publish_time() -> str:
     """Returns RFC 3339 timestamp for next day at PUBLISH_HOUR_UTC."""
     now = datetime.now(timezone.utc)
     publish = (now + timedelta(days=1)).replace(
-        hour=PUBLISH_HOUR_UTC, minute=0, second=0, microsecond=0
+        hour=PUBLISH_HOUR_UTC, minute=PUBLISH_MINUTE_UTC, second=0, microsecond=0
     )
     return publish.strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
