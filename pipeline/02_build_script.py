@@ -859,7 +859,7 @@ def main():
             json.dump(script, f, indent=2, ensure_ascii=False)
         log.info("Script saved → %s", script_path)
 
-        if not args.ai:
+        if not args.ai and not args.from_main:
             # Mark Wikipedia facts as used (AI mode tracks concepts separately)
             used_ids = {f["id"] for f in selected}
             save_used_ids(used_ids)
