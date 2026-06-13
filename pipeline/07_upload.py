@@ -16,6 +16,7 @@ import glob
 import json
 import logging
 import os
+import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
 
@@ -276,6 +277,78 @@ def add_to_playlist(youtube, video_id: str, playlist_id: str) -> bool:
         return False
 
 
+def _get_audio_duration(path: str) -> float:
+    """Get actual duration of an mp3 file via ffprobe."""
+    try:
+        import shutil
+        ffprobe = shutil.which("ffprobe") or "ffprobe"
+        r = subprocess.run(
+            [ffprobe, "-v", "quiet", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", path],
+            capture_output=True, text=True, timeout=10,
+        )
+        val = r.stdout.strip()
+        if val:
+            return float(val)
+    except Exception:
+        pass
+    return 0.0
+
+
+def _fmt_ts(seconds: float) -> str:
+    s = int(seconds)
+    return f"{s // 60}:{s % 60:02d}"
+
+
+def _rebuild_description_with_real_timestamps(script: dict, run_dir: str | None) -> str:
+    """Rebuild description with accurate timestamps from actual audio files."""
+    title = script.get("title", "Brainboda Psychology Facts")
+    facts = script.get("facts", [])
+
+    # Try to get real durations from audio files
+    audio_dir = os.path.join(run_dir, "audio") if run_dir else None
+    hook_dur = 0.0
+    fact_durs = []
+
+    if audio_dir and os.path.isdir(audio_dir):
+        hook_mp3 = os.path.join(audio_dir, "hook.mp3")
+        hook_dur = _get_audio_duration(hook_mp3) if os.path.exists(hook_mp3) else 0.0
+        for i in range(1, len(facts) + 1):
+            mp3 = os.path.join(audio_dir, f"fact_{i:02d}.mp3")
+            fact_durs.append(_get_audio_duration(mp3) if os.path.exists(mp3) else
+                             facts[i - 1].get("duration_est", 30.0))
+        outro_mp3 = os.path.join(audio_dir, "outro.mp3")
+        outro_dur = _get_audio_duration(outro_mp3) if os.path.exists(outro_mp3) else 0.0
+    else:
+        # Fallback to estimates
+        hook_dur = script.get("hook_duration_est", 20.0)
+        fact_durs = [f.get("duration_est", 30.0) for f in facts]
+        outro_dur = script.get("outro_duration_est", 30.0)
+
+    ts_lines = ["⏱️ TIMESTAMPS", "0:00 - Introduction"]
+    cursor = hook_dur
+    for i, (fact, dur) in enumerate(zip(facts, fact_durs), 1):
+        ts_lines.append(f"{_fmt_ts(cursor)} - Fact {i}: {fact.get('heading', '')}")
+        cursor += dur
+    ts_lines.append(f"{_fmt_ts(cursor)} - Outro")
+
+    base_desc = script.get("description", "")
+    # Replace existing TIMESTAMPS block if present, otherwise prepend after first 3 lines
+    import re
+    ts_block = "\n".join(ts_lines)
+    if "⏱️ TIMESTAMPS" in base_desc:
+        base_desc = re.sub(
+            r"⏱️ TIMESTAMPS.*?(?=\n━|$)", ts_block, base_desc, flags=re.DOTALL
+        )
+        return base_desc
+    # Insert after opening paragraph
+    lines = base_desc.split("\n")
+    insert_at = next((i for i, l in enumerate(lines) if l.startswith("━")), 3)
+    lines.insert(insert_at, "")
+    lines.insert(insert_at, ts_block)
+    return "\n".join(lines)
+
+
 def find_latest_script(output_dir: str) -> str | None:
     files = glob.glob(os.path.join(output_dir, "script_*.json"))
     return max(files, key=os.path.getmtime) if files else None
@@ -342,7 +415,7 @@ def main():
         script = json.load(f)
 
     title = script.get("title", "Brainboda Psychology Facts")
-    description = script.get("description", "")
+    description = _rebuild_description_with_real_timestamps(script, args.run_dir)
     tags = script.get("tags", [])
     scheduled = not args.test and not args.now
 
