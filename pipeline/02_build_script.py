@@ -314,7 +314,7 @@ def build_script(
     total_dur = hook_dur + sum(b["duration_est"] for b in fact_blocks) + outro_dur
 
     # Description
-    description = _build_description(title, fact_blocks)
+    description = _build_description(title, fact_blocks, hook_dur=hook_dur)
 
     # Tags
     tags = _build_tags(facts)
@@ -459,17 +459,27 @@ def _visual_keywords(fact: dict) -> list[str]:
     return (title_words + base)[:5]
 
 
-def _build_description(title: str, facts: list[dict]) -> str:
+def _fmt_ts(seconds: float) -> str:
+    """Format seconds as M:SS timestamp."""
+    s = int(seconds)
+    return f"{s // 60}:{s % 60:02d}"
+
+
+def _build_description(title: str, facts: list[dict], hook_dur: float = 20.0) -> str:
+    # Build timestamps
+    ts_lines = ["⏱️ TIMESTAMPS", f"0:00 - Introduction"]
+    cursor = hook_dur
+    for i, b in enumerate(facts, 1):
+        ts_lines.append(f"{_fmt_ts(cursor)} - Fact {i}: {b['heading']}")
+        cursor += b.get("duration_est", 30.0)
+    ts_lines.append(f"{_fmt_ts(cursor)} - Outro")
+
     lines = [
         title,
         "",
         "In this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.",
         "",
-        "What you'll learn:",
-    ]
-    for b in facts:
-        lines.append(f"  ✦ {b['heading']}")
-    lines += [
+        "\n".join(ts_lines),
         "",
         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
         "🧠 Subscribe to Brainboda for weekly psychology insights.",
@@ -675,8 +685,10 @@ def build_script_ai(theme: str, video_type: str, n_facts: int,
     )
 
     # Build description
-    script_data["description"] = _build_description(script_data["title"],
-                                                     script_data["facts"])
+    script_data["description"] = _build_description(
+        script_data["title"], script_data["facts"],
+        hook_dur=script_data.get("hook_duration_est", 20.0)
+    )
 
     # Track used concepts
     if not dry_run:
@@ -761,7 +773,7 @@ def build_script_short_from_main(main_script_path: str, run_dir: str,
         "hook_duration_est": hook_dur,
         "outro_duration_est": outro_dur,
         "total_duration_est": hook_dur + sum(f["duration_est"] for f in facts_out) + outro_dur,
-        "description": _build_description(title, facts_out),
+        "description": _build_description(title, facts_out, hook_dur=hook_dur),
     }
 
     if not dry_run:
