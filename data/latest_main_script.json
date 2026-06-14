@@ -1,178 +1,188 @@
 {
-  "title": "10 Dark Psychology Secrets Your Brain Uses to Manipulate Others",
-  "thumbnail_hook": "Your Brain's Dark Side",
-  "hook": "Right now, you're being manipulated by invisible psychological tricks—even by people who don't realize they're doing it. Some of the smartest people exploit these tactics without ever getting caught. So what's really happening inside your head when someone bends you to their will?",
+  "title": "10 Cognitive Biases That Are Ruining Your Decisions Right Now",
+  "thumbnail_hook": "Your Brain Is Lying To You",
+  "hook": "Studies show that even the smartest people make the same predictable mistakes—over and over again. Your brain is literally working against you, and you have no idea it's happening. So what's the one thing your mind does that destroys your judgment before you even realize it?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Dark Triad",
-      "narration": "Fact 1: The Dark Triad. Psychologists identified three toxic personality traits that cluster together: narcissism, machiavellianism, and psychopathy. First formally studied by researchers Paulhus and Williams in 2002, these traits describe people who manipulate others without guilt, lack empathy, and pursue power relentlessly. Dark Triad individuals aren't always obvious villains—many thrive in leadership, law, and business because their ruthlessness pays off. Understanding this matters because you might unknowingly admire or trust someone exhibiting these dangerous traits in your workplace or personal life.",
+      "heading": "Confirmation Bias",
+      "narration": "Fact 1: Confirmation Bias. This is when your brain actively searches for information that supports what you already believe and ignores evidence that contradicts it. Psychologist Peter Wason first documented this in 1960 with his famous card experiment. You're not even aware you're doing it—your brain filters reality to feel right. This matters because it traps you in bubbles: your politics, your career choices, even your relationships get locked in by the evidence you choose to see.",
       "search_keywords": [
-        "Dark Triad personality",
-        "Paulhus Williams 2002",
-        "narcissism machiavellianism psychopathy"
+        "confirmation bias",
+        "Peter Wason",
+        "cognitive bias research",
+        "belief perseverance"
       ],
-      "duration_est": 33,
-      "id": "the_dark_triad",
+      "duration_est": 31,
+      "id": "confirmation_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Gaslighting",
-      "narration": "Fact 2: Gaslighting. This psychological manipulation tactic, named after the 1944 film 'Gaslight,' involves making someone doubt their own reality, memory, or sanity. A gaslighter denies facts, twists the truth, and makes their victim question what actually happened. It's especially effective because the victim gradually loses confidence in their own judgment. Recognizing gaslighting in real-time is nearly impossible when you're the target, which is why abusers, manipulators, and toxic partners use it so effectively to maintain control.",
+      "heading": "Dunning-Kruger Effect",
+      "narration": "Fact 2: Dunning-Kruger Effect. Named after psychologists David Dunning and Justin Kruger in 1999, this is the brutal truth: people with low ability overestimate their competence, while experts often underestimate theirs. The less you know, the more confident you feel. It's why beginners think they're geniuses and skilled people doubt themselves. This explains why incompetent people are often the loudest in the room and why you second-guess yourself even when you're actually good at something.",
       "search_keywords": [
-        "gaslighting definition",
-        "psychological manipulation",
-        "gaslighting tactics examples"
+        "Dunning-Kruger Effect",
+        "David Dunning",
+        "Justin Kruger",
+        "overconfidence bias"
       ],
-      "duration_est": 31,
-      "id": "gaslighting",
+      "duration_est": 30,
+      "id": "dunning_kruger_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Dunning-Kruger Effect",
-      "narration": "Fact 3: The Dunning-Kruger Effect. Psychologists David Dunning and Justin Kruger discovered in 1999 that incompetent people dramatically overestimate their own competence while underestimating others. Someone who barely knows anything thinks they're an expert, while genuine experts often second-guess themselves. Dark psychologists exploit this relentlessly—they present themselves with absolute confidence, making audiences believe they're authorities even when spouting nonsense. This effect explains why confident liars often win arguments against hesitant truth-tellers in real conversations.",
+      "heading": "Availability Heuristic",
+      "narration": "Fact 3: Availability Heuristic. Coined by psychologists Amos Tversky and Daniel Kahneman in 1973, this bias makes you overweight information that comes to mind easily. Plane crashes feel more dangerous than car accidents because they're memorable, even though statistically you're safer in the air. Your brain uses 'ease of recall' as a shortcut for truth. This shape-shifts your risk assessment, your buying decisions, and your fears—making you worry about unlikely threats while ignoring everyday ones.",
       "search_keywords": [
-        "Dunning-Kruger Effect",
-        "Dunning Kruger 1999",
-        "overconfidence bias"
+        "availability heuristic",
+        "Tversky Kahneman",
+        "mental shortcuts",
+        "heuristics bias"
       ],
       "duration_est": 30,
-      "id": "the_dunning_kruger_effect",
+      "id": "availability_heuristic",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Halo Effect",
-      "narration": "Fact 4: The Halo Effect. Researcher Edward Thorndike coined this term in 1920—when one positive trait influences how we perceive everything else about someone. An attractive person seems smarter. A charismatic speaker seems more trustworthy. A famous person seems more moral. Manipulators weaponize physical appearance, charm, or status to make you overlook their actual character flaws. You might defend someone's bad behavior simply because they're good-looking or funny, never questioning whether your judgment is being hijacked by surface-level traits.",
+      "heading": "Anchoring Bias",
+      "narration": "Fact 4: Anchoring Bias. When you first encounter a number or piece of information, it 'anchors' your thinking for everything that follows—even when you know it's irrelevant. Kahneman and Tversky demonstrated this in the 1970s: people estimate a random number before answering a question, and that random number shifts their answer. Salesmen exploit this constantly. It affects your salary negotiations, your shopping habits, and how you value your own work—that first price you hear haunts every decision after.",
       "search_keywords": [
-        "Halo Effect psychology",
-        "Edward Thorndike 1920",
-        "cognitive bias attractive people"
+        "anchoring bias",
+        "anchoring effect",
+        "Kahneman Tversky",
+        "negotiation psychology"
       ],
-      "duration_est": 32,
-      "id": "the_halo_effect",
+      "duration_est": 31,
+      "id": "anchoring_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Intermittent Reinforcement",
-      "narration": "Fact 5: Intermittent Reinforcement. B.F. Skinner, the behavioral psychologist, discovered that unpredictable rewards create the strongest psychological bonds and compulsions. A slot machine works this way—sometimes you win, sometimes you lose. Toxic partners use intermittent reinforcement: they're loving one day, cruel the next, keeping you hooked wondering when they'll be nice again. Your brain becomes addicted to the unpredictability. This is why people stay in abusive relationships or keep texting someone who ghosted them—the hope of that next reward overrides logic.",
+      "heading": "Sunk Cost Fallacy",
+      "narration": "Fact 5: Sunk Cost Fallacy. This is when you keep investing time, money, or effort into something bad because you've already put resources into it—even though those costs are gone forever. Behavioral economist Richard Thaler helped popularize this concept. You stay in a terrible relationship because you've been together for five years. You finish a bad movie because you bought the ticket. Your past investments should be irrelevant to your future decisions, but your brain treats them like a reason to continue suffering.",
       "search_keywords": [
-        "intermittent reinforcement",
-        "B.F. Skinner schedule reinforcement",
-        "variable ratio reinforcement"
+        "sunk cost fallacy",
+        "sunk cost bias",
+        "Richard Thaler",
+        "behavioral economics"
       ],
-      "duration_est": 32,
-      "id": "intermittent_reinforcement",
+      "duration_est": 33,
+      "id": "sunk_cost_fallacy",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Reciprocity Principle",
-      "narration": "Fact 6: The Reciprocity Principle. Psychologist Robert Cialdini identified this in his 1984 book 'Influence' as one of the most powerful compliance tools: humans feel obligated to repay favors or kindness. When someone does something small for you, you feel indebted and more likely to say yes to their bigger requests later. Manipulators use this deliberately—they'll lend you money, help you move, or give you a compliment, then cash in that emotional debt when they ask for something unreasonable. Recognizing this debt trap helps you make choices based on your actual values, not false obligation.",
+      "heading": "Recency Bias",
+      "narration": "Fact 6: Recency Bias. Your brain weights recent events far more heavily than older ones, making the latest news feel more important and true than patterns from months ago. This is why a bad day at work can erase weeks of good performance in your mind, and why market crashes feel apocalyptic when the long-term trend is up. Your memory isn't filing information chronologically—it's stacking recent stuff on top. This destroys your ability to see true patterns and make rational long-term decisions.",
       "search_keywords": [
-        "Reciprocity Principle Cialdini",
-        "Robert Cialdini Influence 1984",
-        "reciprocity manipulation tactics"
+        "recency bias",
+        "recent bias",
+        "memory bias",
+        "temporal bias psychology"
       ],
-      "duration_est": 38,
-      "id": "the_reciprocity_principle",
+      "duration_est": 33,
+      "id": "recency_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "Cognitive Dissonance Exploitation",
-      "narration": "Fact 7: Cognitive Dissonance Exploitation. Psychologist Leon Festinger discovered that when beliefs and actions conflict, people experience uncomfortable tension and rush to resolve it, often by changing their beliefs instead of their behavior. Manipulators deliberately create this discomfort, then offer themselves as the solution. A cult leader makes you question your family's love, then positions the group as your true family. A toxic boss criticizes your work, then praises you, creating confusion about your actual performance. You rationalize staying because mentally escaping the contradiction feels harder than accepting the abuse.",
+      "heading": "In-group Bias",
+      "narration": "Fact 7: In-group Bias. You automatically favor people who share your identity—your team, your country, your culture—and judge them more generously than outsiders. Social psychologist Henri Tajfel demonstrated this in the 1970s using arbitrary group assignments and found bias erupted instantly. It's tribal, it's automatic, and it happens before conscious thought. This bias fuels prejudice, workplace politics, and polarization; it makes you defend your group's flaws while exaggerating outsiders' mistakes.",
       "search_keywords": [
-        "cognitive dissonance Leon Festinger",
-        "cognitive dissonance manipulation",
-        "belief-action conflict psychology"
+        "in-group bias",
+        "Henri Tajfel",
+        "social identity theory",
+        "intergroup bias"
       ],
-      "duration_est": 36,
-      "id": "cognitive_dissonance_exploitation",
+      "duration_est": 28,
+      "id": "in_group_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Foot-in-the-Door Technique",
-      "narration": "Fact 8: The Foot-in-the-Door Technique. Researchers Freedman and Fraser, in their 1966 study, proved that getting someone to agree to a small request dramatically increases their likelihood of agreeing to a larger request later. Manipulators start with something harmless—'Can you do me a tiny favor?'—then escalate demands. Your brain commits to being helpful, so refusing the next request feels inconsistent with the identity you've already adopted. Abusers use this to isolate victims: first they ask you to skip one hangout with a friend, then another, then another. By the time you realize, you're isolated.",
+      "heading": "Backfire Effect",
+      "narration": "Fact 8: Backfire Effect. When confronted with evidence that contradicts your beliefs, sometimes you believe the opposite even more strongly. Researchers have observed this pattern in misinformation studies, where corrections can paradoxically deepen false convictions. Your ego doesn't want to admit you're wrong, so your brain digs in harder. This explains political arguments that end badly and why debunking myths sometimes doesn't work—correction can feel like an attack, triggering defensive thinking.",
       "search_keywords": [
-        "foot-in-the-door technique",
-        "Freedman Fraser 1966",
-        "compliance escalation psychology"
+        "backfire effect",
+        "belief correction",
+        "misinformation backfire",
+        "confirmation bias paradox"
       ],
-      "duration_est": 38,
-      "id": "the_foot_in_the_door_technique",
+      "duration_est": 28,
+      "id": "backfire_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Social Proof",
-      "narration": "Fact 9: Social Proof. Also identified by Cialdini, this principle states that people assume behavior is correct when they see others doing it. If everyone's laughing at a cruel joke, you laugh too. If a cult has hundreds of members, it must be legitimate, right? Manipulators exploit this by surrounding themselves with followers, creating the illusion of validation and trustworthiness. Misinformation spreads faster than truth partly because bad actors use fake accounts and bots to artificially boost social proof. Your brain trusts the crowd, even when the crowd is being artificially manufactured.",
+      "heading": "Illusion of Control",
+      "narration": "Fact 9: Illusion of Control. You overestimate how much control you have over outcomes, especially in situations with chance involved. Psychologist Ellen Langer documented this in 1975, showing people feel more confident in lotteries when they choose their ticket. You believe your skill or willpower controls things that are actually random. This makes you overconfident in unpredictable situations, leads to risky decisions, and leaves you blaming yourself for uncontrollable failures—eroding your mental health needlessly.",
       "search_keywords": [
-        "social proof psychology",
-        "social proof manipulation",
-        "Cialdini social proof principle"
+        "illusion of control",
+        "Ellen Langer",
+        "control bias",
+        "locus of control"
       ],
-      "duration_est": 37,
-      "id": "social_proof",
+      "duration_est": 30,
+      "id": "illusion_of_control",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Just-World Hypothesis",
-      "narration": "Fact 10: The Just-World Hypothesis. Psychologist Melvin Lerner found that people believe the world is fundamentally just—good things happen to good people, bad things to bad people. This cognitive bias leads victims to blame themselves for abuse ('I must deserve this') and lets manipulators off the hook ('They wouldn't do this if I weren't flawed'). Dark psychologists weaponize this by making victims feel responsible for the manipulation itself. Understanding this hypothesis breaks the spell: sometimes bad things happen to good people because predators target them deliberately, not because the world is balanced or because you did something wrong.",
+      "heading": "Fundamental Attribution Error",
+      "narration": "Fact 10: Fundamental Attribution Error. When someone else screws up, you blame their character; when you screw up, you blame circumstances. A person is late, and you think they're irresponsible—but when you're late, traffic was terrible. Social psychologist Lee Ross named this in 1977. You judge yourself by your situation, others by their personality. This destroys empathy, damages relationships, and makes you harshly evaluate colleagues—all while giving yourself a pass you don't deserve.",
       "search_keywords": [
-        "Just-World Hypothesis Melvin Lerner",
-        "just world bias",
-        "blaming victim psychology"
+        "fundamental attribution error",
+        "Lee Ross",
+        "actor-observer bias",
+        "attribution theory"
       ],
-      "duration_est": 39,
-      "id": "the_just_world_hypothesis",
+      "duration_est": 29,
+      "id": "fundamental_attribution_error",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain is running ancient software that predators know how to hack. Which of these dark psychology tactics hit you the hardest? Drop a comment about a time you recognized one of these in the wild—and don't forget to subscribe so you understand the invisible forces shaping your decisions. Your awareness is your best defense.",
+  "outro": "Your brain just betrayed you ten different ways—and you didn't even notice. Which of these biases hit you hardest? Drop a comment telling us which one you recognize in yourself, because self-awareness is the first step to fighting back. And if you want more science that explains why you do what you do, hit subscribe for Brainboda.",
   "tags": [
-    "dark psychology",
+    "cognitive biases",
     "psychology",
-    "manipulation tactics",
-    "dark triad personality",
-    "gaslighting",
-    "psychological manipulation",
-    "Dunning-Kruger Effect",
-    "toxic relationships",
-    "cognitive bias",
     "behavioral psychology",
-    "Cialdini influence",
-    "social proof",
-    "intermittent reinforcement",
-    "cognitive dissonance",
-    "manipulation techniques",
-    "abuse psychology",
-    "mental health",
-    "psychological tricks",
+    "decision making",
+    "thinking errors",
+    "mental shortcuts",
+    "confirmation bias",
+    "dunning kruger effect",
+    "availability heuristic",
+    "anchoring bias",
+    "sunk cost fallacy",
+    "recency bias",
+    "in-group bias",
+    "backfire effect",
+    "illusion of control",
+    "fundamental attribution error",
+    "cognitive science",
     "brain science",
-    "human behavior"
+    "Brainboda",
+    "educational science"
   ],
   "type": "main",
-  "created_at": "2026-06-13T02:03:36",
+  "created_at": "2026-06-14T10:52:20",
   "ai_generated": true,
-  "theme": "dark psychology",
+  "theme": "cognitive biases",
   "hook_duration_est": 20,
-  "outro_duration_est": 22,
-  "total_duration_est": 388,
-  "description": "10 Dark Psychology Secrets Your Brain Uses to Manipulate Others\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Dark Triad\n0:53 - Fact 2: Gaslighting\n1:24 - Fact 3: The Dunning-Kruger Effect\n1:54 - Fact 4: The Halo Effect\n2:26 - Fact 5: Intermittent Reinforcement\n2:58 - Fact 6: The Reciprocity Principle\n3:36 - Fact 7: Cognitive Dissonance Exploitation\n4:12 - Fact 8: The Foot-in-the-Door Technique\n4:50 - Fact 9: Social Proof\n5:27 - Fact 10: The Just-World Hypothesis\n6:06 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 23,
+  "total_duration_est": 346,
+  "description": "10 Cognitive Biases That Are Ruining Your Decisions Right Now\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Confirmation Bias\n0:51 - Fact 2: Dunning-Kruger Effect\n1:21 - Fact 3: Availability Heuristic\n1:51 - Fact 4: Anchoring Bias\n2:22 - Fact 5: Sunk Cost Fallacy\n2:55 - Fact 6: Recency Bias\n3:28 - Fact 7: In-group Bias\n3:56 - Fact 8: Backfire Effect\n4:24 - Fact 9: Illusion of Control\n4:54 - Fact 10: Fundamental Attribution Error\n5:23 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
