@@ -326,12 +326,18 @@ def _rebuild_description_with_real_timestamps(script: dict, run_dir: str | None)
         fact_durs = [f.get("duration_est", 30.0) for f in facts]
         outro_dur = script.get("outro_duration_est", 30.0)
 
+    # Render pipeline constants (must match 05_render_video.py)
+    XFADE = 0.4       # crossfade overlap between fact clips
+    OUTRO_PAUSE = 1.0  # silence prepended before outro narration
+
     ts_lines = ["⏱️ TIMESTAMPS", "0:00 - Introduction"]
     cursor = hook_dur
     for i, (fact, dur) in enumerate(zip(facts, fact_durs), 1):
         ts_lines.append(f"{_fmt_ts(cursor)} - Fact {i}: {fact.get('heading', '')}")
         cursor += dur
-    ts_lines.append(f"{_fmt_ts(cursor)} - Outro")
+        if i < len(facts):
+            cursor -= XFADE  # next fact starts 0.4s before current one ends
+    ts_lines.append(f"{_fmt_ts(cursor + OUTRO_PAUSE)} - Outro")
 
     base_desc = script.get("description", "")
     # Replace existing TIMESTAMPS block if present, otherwise prepend after first 3 lines
