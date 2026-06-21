@@ -356,12 +356,13 @@ def main():
             cmd += ["--thumbnail", results["thumbnail"]]
         if args.test:
             cmd.append("--test")
-        ok = run_step("07_upload", cmd, allow_fail=True)
+        ok = run_step("07_upload", cmd, allow_fail=False)
         if ok:
             results["steps_ok"].append("07_upload")
         else:
             results["steps_failed"].append("07_upload")
-            log.warning("07_upload failed")
+            log.error("07_upload FAILED — aborting pipeline")
+            sys.exit(1)
     else:
         log.info("Upload skipped (--test or --skip-upload)")
         results["steps_ok"].append("07_upload (skipped)")
