@@ -385,13 +385,15 @@ def render_fact_title_frame(
 
     display_text = f"Fact {fact_n}: {heading}." if fact_n else heading
 
+    is_short = height > width  # vertical = shorts
     max_w = int(width * 0.80)
-    font_size = max(52, height // 13)
+    font_size = max(40, height // (20 if is_short else 13))
+    max_lines = 6 if is_short else 3
     font = find_font(BOLD_FONTS, font_size)
 
     for _ in range(10):
         chars_per_line = max(10, int(max_w / max(1, font_size * 0.60)))
-        lines = wrap_words(display_text, max_chars=chars_per_line)[:3]
+        lines = wrap_words(display_text, max_chars=chars_per_line)[:max_lines]
         max_line_w = 0
         for ln in lines:
             try:
@@ -399,7 +401,7 @@ def render_fact_title_frame(
                 max_line_w = max(max_line_w, bb[2] - bb[0])
             except Exception:
                 max_line_w = len(ln) * int(font_size * 0.60)
-        if max_line_w <= max_w or font_size <= 36:
+        if max_line_w <= max_w or font_size <= 32:
             break
         font_size = int(font_size * 0.88)
         font = find_font(BOLD_FONTS, font_size)
