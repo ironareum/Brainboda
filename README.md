@@ -393,7 +393,43 @@ YouTube 파트너 프로그램(YPP) 가입 기준:
 
 ---
 
-### Step 5 — YouTube Data API v3 설정 (업로드 자동화)
+### Step 5 — YouTube OAuth 토큰 재발급 (만료 시)
+
+YouTube 업로드 시 `invalid_grant: Token has been expired or revoked` 에러가 나면 토큰을 재발급해야 합니다.
+
+**로컬 PC에서 실행:**
+
+```bash
+# 프로젝트 루트에서 실행 (client_secrets.json이 루트에 있어야 함)
+python -c "
+import google_auth_oauthlib.flow, json
+flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+    'client_secrets.json',
+    scopes=['https://www.googleapis.com/auth/youtube.upload',
+            'https://www.googleapis.com/auth/youtube.force-ssl']
+)
+creds = flow.run_local_server(port=0)
+print(json.dumps({
+    'token': creds.token,
+    'refresh_token': creds.refresh_token,
+    'token_uri': creds.token_uri,
+    'client_id': creds.client_id,
+    'client_secret': creds.client_secret,
+    'scopes': list(creds.scopes)
+}))
+"
+```
+
+1. 실행하면 브라우저가 열리며 Google 계정 인증 요청
+2. 승인하면 터미널에 JSON 출력
+3. 출력된 JSON 전체를 복사
+4. GitHub → 레포 Settings → Secrets and variables → Actions → `YOUTUBE_TOKEN_JSON` 값 업데이트
+
+> `client_secrets.json`은 절대 git에 올리지 말 것 (`.gitignore`에 추가되어 있음)
+
+---
+
+### Step 6 — YouTube Data API v3 설정 (업로드 자동화)
 
 ```
 1. Google Cloud Console 접속
