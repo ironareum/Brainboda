@@ -82,8 +82,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/used_shorts_facts.json || true
-          git diff --cached --quiet || git commit -m "chore: update used_shorts_facts [skip ci]"
+          git add data/used_shorts_facts.json data/used_image_urls.json || true
+          git diff --cached --quiet || git commit -m "chore: update data files [skip ci]"
           git pull --rebase origin HEAD || true
           git push origin HEAD
 

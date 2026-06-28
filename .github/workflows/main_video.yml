@@ -86,8 +86,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/used_concepts.json data/latest_main_script.json || true
-          git diff --cached --quiet || git commit -m "chore: update used_concepts + latest_main_script [skip ci]"
+          git add data/used_concepts.json data/latest_main_script.json data/used_image_urls.json || true
+          git diff --cached --quiet || git commit -m "chore: update data files [skip ci]"
           git pull --rebase origin HEAD || true
           git push origin HEAD
 

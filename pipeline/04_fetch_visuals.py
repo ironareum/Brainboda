@@ -355,6 +355,18 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
             saved_paths.append(dest)
             newly_downloaded.append(url)
 
+    # Pool exhaustion fallback: retry without used_urls filter
+    if not saved_paths and used_urls:
+        log.warning("  %s — pool exhausted (all URLs already used). Retrying without filter.", fact_id)
+        fallback_urls = _collect_urls(queries, target * 3, used_urls=set(), orientation=orientation)
+        for url in fallback_urls:
+            if len(saved_paths) >= target:
+                break
+            dest = os.path.join(fact_dir, f"img_{len(saved_paths)+1:02d}.jpg")
+            if download_image(url, dest):
+                saved_paths.append(dest)
+                # Do NOT add to newly_downloaded — these are reused URLs
+
     if not saved_paths:
         log.error("  All sources failed for %s — no images downloaded", fact_id)
     else:
@@ -384,6 +396,17 @@ def fetch_hook_images(visuals_dir: str, target: int = 6, used_urls: set = None,
         if download_image(url, dest):
             saved.append(dest)
             newly_downloaded.append(url)
+
+    # Pool exhaustion fallback: retry without used_urls filter
+    if not saved and used_urls:
+        log.warning("  _hook — pool exhausted. Retrying without used_urls filter.")
+        fallback_urls = _collect_urls(_HOOK_QUERIES, target * 2, used_urls=set(), orientation=orientation)
+        for url in fallback_urls:
+            if len(saved) >= target:
+                break
+            dest = os.path.join(hook_dir, f"img_{len(saved)+1:02d}.jpg")
+            if download_image(url, dest):
+                saved.append(dest)
 
     log.info("  _hook → %d images", len(saved))
     return saved, newly_downloaded
