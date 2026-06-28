@@ -1,188 +1,188 @@
 {
-  "title": "10 Mind-Bending Secrets About Memory and Learning Science Reveals",
-  "thumbnail_hook": "Your Brain's Memory Trick",
-  "hook": "You think you remember things exactly as they happened—but neuroscientist Daniel Schacter proved your memories are reconstructed, not replayed, every single time you recall them. That means every memory you trust could be subtly different from the original event. So why does your brain do this, and what does it mean for everything you think you know?",
+  "title": "10 Personality Psychology Truths That Explain Why You Are Who You Are",
+  "thumbnail_hook": "Your personality isn't fixed",
+  "hook": "Most people think their personality is locked in by age 25—but neuroscience shows it's way more fluid than that. The traits you believe define you might actually be working against you without you realizing it. So what's really shaping who you are, and can you actually change it?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Misinformation Effect",
-      "narration": "Fact 1: The Misinformation Effect. Cognitive psychologist Elizabeth Loftus discovered in the 1970s that false information introduced *after* an event can actually alter your memory of what happened. If someone casually mentions a detail you didn't see, your brain integrates it as if you witnessed it yourself. This happens because memory isn't locked in—it's fluid and updated every time you recall it. Understanding this explains why eyewitness testimony can be unreliable and why you should be careful about the suggestions people plant in your mind after experiences.",
+      "heading": "The Big Five Personality Traits",
+      "narration": "Fact 1: The Big Five Personality Traits. Developed by psychologists in the 1990s through decades of research, the Big Five breaks down human personality into five dimensions: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism—often remembered as OCEAN. Each dimension exists on a spectrum rather than as a fixed box. Understanding where you land on these scales helps explain why you're drawn to certain careers, relationships, and life choices.",
       "search_keywords": [
-        "Misinformation Effect",
-        "Elizabeth Loftus",
-        "false memories",
-        "memory reconstruction"
+        "Big Five personality",
+        "OCEAN model",
+        "personality traits",
+        "Openness Conscientiousness"
       ],
-      "duration_est": 35,
-      "id": "the_misinformation_effect",
+      "duration_est": 27,
+      "id": "the_big_five_personality_traits",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Spacing Effect",
-      "narration": "Fact 2: Spacing Effect. When you spread your learning over days or weeks instead of cramming it all in one night, your brain locks information in way deeper—a principle discovered by psychologist Hermann Ebbinghaus in the 1880s. Each time you revisit material after a gap, your brain has to work harder to retrieve it, which strengthens the neural pathways. The longer you wait before reviewing (without forgetting completely), the stronger the memory becomes. This is why your all-nighter studying strategy basically wastes your time compared to reviewing notes weekly.",
+      "heading": "The Dunning-Kruger Effect",
+      "narration": "Fact 2: The Dunning-Kruger Effect. Psychologists David Dunning and Justin Kruger discovered in 1999 that people with low ability in a skill often overestimate their competence, while experts tend to underestimate theirs. Your brain literally can't see what it doesn't know, so you confidently make decisions in areas where you're actually clueless. This bias affects your personality expression—overconfident people come across as arrogant, while genuinely skilled people seem humble.",
       "search_keywords": [
-        "Spacing Effect",
-        "Hermann Ebbinghaus",
-        "distributed learning",
-        "spaced repetition"
+        "Dunning-Kruger Effect",
+        "cognitive bias",
+        "overconfidence bias",
+        "Dunning Kruger 1999"
       ],
-      "duration_est": 36,
-      "id": "spacing_effect",
+      "duration_est": 28,
+      "id": "the_dunning_kruger_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Serial Position Effect",
-      "narration": "Fact 3: The Serial Position Effect. Memory researcher Norman Murdock documented that you remember the first and last items in a list way better than the middle ones—a quirk called the serial position effect. The first items get primacy (your brain focuses fresh), and the last get recency (they're still in your short-term buffer). Everything in the middle? Your brain basically ignores it. This is why introductions and conclusions feel sticky, and why you blank on the middle chapters of books—knowing this helps you strategically review the material your brain naturally forgets.",
+      "heading": "Extraversion and Dopamine Sensitivity",
+      "narration": "Fact 3: Extraversion and Dopamine Sensitivity. Neuroscientist Hans Eysenck proposed that extraverts have lower baseline dopamine levels, so they crave stimulation and social interaction to feel activated—while introverts are already over-stimulated and withdraw to regulate. It's not shyness; it's literally different brain chemistry. Your personality isn't a choice—it's your nervous system seeking equilibrium, which explains why forcing introverts to be social or extraverts to sit quietly feels exhausting.",
       "search_keywords": [
-        "Serial Position Effect",
-        "primacy effect",
-        "recency effect",
-        "memory recall order"
+        "extraversion dopamine",
+        "Hans Eysenck",
+        "introversion neuroscience",
+        "personality neurobiology"
       ],
-      "duration_est": 37,
-      "id": "the_serial_position_effect",
+      "duration_est": 27,
+      "id": "extraversion_and_dopamine_sensitivity",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "State-Dependent Memory",
-      "narration": "Fact 4: State-Dependent Memory. Neuroscientist Daniel Schacter identified that you retrieve memories best when you're in the same mental or physical state you were in when you learned them. If you study while anxious, you'll recall it better when anxious; if you learn while caffeinated, you'll remember it sharper when caffeinated. This happens because your brain encodes not just *what* you learned, but the neurochemical context around it. This explains why test anxiety can blank your mind even though you studied—your brain learned it in calm mode but needs to retrieve it in panic mode.",
+      "heading": "The Dark Triad",
+      "narration": "Fact 4: The Dark Triad. Psychologist Delroy Paulhus identified three personality traits that cluster together: narcissism, Machiavellianism, and psychopathy. People scoring high on the Dark Triad are charming but manipulative, ambitious but ruthless, and seemingly confident but lacking genuine empathy. These traits exist on a spectrum in everyday people—not just serial killers. Recognizing the Dark Triad in others protects you from toxic relationships and toxic workplaces.",
       "search_keywords": [
-        "State-Dependent Memory",
-        "context-dependent memory",
-        "mood-congruent memory",
-        "encoding specificity"
+        "Dark Triad personality",
+        "narcissism Machiavellianism psychopathy",
+        "Delroy Paulhus",
+        "toxic personality traits"
       ],
-      "duration_est": 38,
-      "id": "state_dependent_memory",
+      "duration_est": 26,
+      "id": "the_dark_triad",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Testing Effect",
-      "narration": "Fact 5: The Testing Effect. Cognitive psychologist Henry Roediger and colleagues proved that *taking a test* on material strengthens memory far more than re-reading or restudying the same material. Even better: the test doesn't have to be graded or correct—the act of retrieving information reorganizes your neural networks and embeds it deeper. This effect is so powerful that it sometimes outweighs studying time itself. If you're preparing for anything important, your time is better spent quizzing yourself than passively reviewing notes.",
+      "heading": "Personality Plasticity Across the Lifespan",
+      "narration": "Fact 5: Personality Plasticity Across the Lifespan. Contrary to the myth that personality freezes by 25, psychologist Brent Roberts' research shows personality continues evolving throughout life. People become more conscientious, agreeable, and emotionally stable as they age—a pattern called the Maturity Principle. Your personality isn't destiny; deliberate life choices, relationships, and experiences actively reshape who you become, even in your 50s and beyond.",
       "search_keywords": [
-        "Testing Effect",
-        "retrieval practice",
-        "Henry Roediger",
-        "learning science"
+        "personality plasticity",
+        "Brent Roberts maturity principle",
+        "personality change adulthood",
+        "personality development lifespan"
       ],
-      "duration_est": 32,
-      "id": "the_testing_effect",
+      "duration_est": 25,
+      "id": "personality_plasticity_across_the_lifespan",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "Encoding Specificity Principle",
-      "narration": "Fact 6: Encoding Specificity Principle. Pioneered by psychologists Tulving and Thomson, this principle states that memory is triggered most effectively by cues that match the context in which you originally encoded the information. If you learn vocabulary while walking, you'll recall it better while walking; if you memorize facts with background music, that music becomes a retrieval cue. Your brain doesn't just store isolated facts—it weaves them into a rich sensory and contextual web. This is why changing your study location or removing background noise can sometimes make information feel like it disappeared, even though it's still there.",
+      "heading": "The Fundamental Attribution Error",
+      "narration": "Fact 6: The Fundamental Attribution Error. When someone cuts you off in traffic, you assume they're reckless; when you do it, you blame the road conditions. This bias—studied extensively by Lee Ross—shows we judge others' personalities while excusing our own behavior as circumstantial. It shapes how you interpret conflicts and whether you hold grudges. Recognizing this error helps you extend grace to others and stop unfairly locking people into personality boxes.",
       "search_keywords": [
-        "Encoding Specificity",
-        "context-dependent learning",
-        "retrieval cues",
-        "Tulving"
+        "Fundamental Attribution Error",
+        "Lee Ross",
+        "attribution bias",
+        "actor-observer bias"
       ],
-      "duration_est": 39,
-      "id": "encoding_specificity_principle",
+      "duration_est": 28,
+      "id": "the_fundamental_attribution_error",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Curse of Knowledge",
-      "narration": "Fact 7: The Curse of Knowledge. Cognitive scientists Justin Kruger and David Dunning (who later became famous for the Dunning-Kruger Effect) identified this trap: once you understand something, you can't remember what it felt like *not* to understand it. You overestimate how obvious the concept is to someone learning it fresh. This is why experts are often terrible teachers—their brains have automated the skill so deeply that the learning steps become invisible. Being aware of this curse helps you explain things better to others and stay patient with your own learning struggles.",
+      "heading": "Emotional Contagion and Personality Expression",
+      "narration": "Fact 7: Emotional Contagion and Personality Expression. Researcher Elaine Hatfield discovered that emotions spread involuntarily between people—you catch someone's mood like a virus through mirror neurons. An introverted person becomes chattier around energetic friends; a naturally anxious person calms down with composed people. Your personality isn't stable across all contexts; it's a dynamic response to the emotional environment around you, making social circles genuinely shape who you are.",
       "search_keywords": [
-        "Curse of Knowledge",
-        "cognitive bias",
-        "expert blind spot",
-        "teaching effectiveness"
+        "emotional contagion",
+        "Elaine Hatfield",
+        "mirror neurons",
+        "mood contagion social"
       ],
-      "duration_est": 37,
-      "id": "the_curse_of_knowledge",
+      "duration_est": 27,
+      "id": "emotional_contagion_and_personality_expression",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "Consolidation and Sleep",
-      "narration": "Fact 8: Consolidation and Sleep. Sleep researcher William Dement and neuroscientist Matthew Walker demonstrated that memories aren't permanently stored during learning—they're fragile until sleep consolidates them, moving information from short-term to long-term storage. Without sleep, your brain can't lock in what you learned, and the neural connections fade. Deep sleep and REM stages are crucial for different memory types: deep sleep solidifies facts, REM strengthens emotional and procedural memories. Pulling an all-nighter before a test doesn't just tire you—it prevents your brain from finalizing any learning from the night before.",
+      "heading": "The Halo Effect in Personality Perception",
+      "narration": "Fact 8: The Halo Effect in Personality Perception. Psychologist Edward Thorndike found that if someone is physically attractive, intelligent, or charming in one dimension, people automatically assume they're good in all dimensions. A tall CEO seems more competent; a beautiful person seems kinder. The halo effect distorts how people perceive your personality based on surface traits you can't control. Understanding this bias prevents you from being judged unfairly and from unfairly judging others.",
       "search_keywords": [
-        "sleep consolidation",
-        "memory consolidation",
-        "Matthew Walker",
-        "sleep and learning"
+        "halo effect",
+        "Edward Thorndike",
+        "cognitive bias perception",
+        "attractiveness bias"
       ],
-      "duration_est": 36,
-      "id": "consolidation_and_sleep",
+      "duration_est": 29,
+      "id": "the_halo_effect_in_personality_perception",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Interference Theory",
-      "narration": "Fact 9: Interference Theory. Learning psychologist John Underwood discovered that new learning can overwrite or interfere with old memories, especially if they're similar. When you cram multiple languages, math formulas, or historical dates in succession, earlier material gets crowded out by later material—called retroactive interference. The reverse happens too: old knowledge can block new learning—proactive interference. This is why learning Spanish becomes harder if you already speak French (similar patterns compete), and why your brain struggles with lists of similar items. Spacing out similar material and using distinct memory cues helps prevent this interference.",
+      "heading": "Neuroticism and the Negativity Bias",
+      "narration": "Fact 9: Neuroticism and the Negativity Bias. High neuroticism—one of the Big Five—correlates with a stronger negativity bias: your brain weighs negative experiences more heavily than positive ones. This isn't pessimism; it's evolutionary wiring meant to keep you safe. Neurotic people remember criticism longer than praise, ruminate on mistakes, and anticipate threats. Awareness of this pattern allows you to actively reframe thoughts and build resilience rather than being hijacked by your own brain's threat-detection system.",
       "search_keywords": [
-        "Interference Theory",
-        "retroactive interference",
-        "proactive interference",
-        "learning overlap"
+        "neuroticism personality",
+        "negativity bias",
+        "psychological trait",
+        "emotional reactivity"
       ],
-      "duration_est": 38,
-      "id": "interference_theory",
+      "duration_est": 30,
+      "id": "neuroticism_and_the_negativity_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Generation Effect",
-      "narration": "Fact 10: The Generation Effect. Psychologist Colin MacLeod found that information you generate yourself (like writing notes in your own words or solving a problem) sticks in memory far better than information you passively read. Your brain treats self-generated knowledge as more important and encodes it more deeply. This effect is so strong that even wrong answers you generate yourself create stickier memories than correct answers given to you. This is why active learning strategies—writing summaries, teaching others, creating flashcards—demolish passive highlight-and-read approaches, and why this knowledge should reshape how you study for anything.",
+      "heading": "Situational Personality and the Person-Situation Debate",
+      "narration": "Fact 10: Situational Personality and the Person-Situation Debate. Psychologist Walter Mischel challenged the idea that personality is consistent, showing people behave very differently across contexts—honest at work but dishonest with friends, introverted at parties but extroverted at home. Modern personality science accepts both truths: you have stable traits AND you adapt dramatically to situations. This explains why your personality feels fluid, contradictory, and context-dependent rather than like a fixed identity.",
       "search_keywords": [
-        "Generation Effect",
-        "self-generated learning",
-        "active learning",
-        "Colin MacLeod"
+        "Walter Mischel situational personality",
+        "person-situation debate",
+        "personality consistency",
+        "contextual personality"
       ],
-      "duration_est": 38,
-      "id": "the_generation_effect",
+      "duration_est": 28,
+      "id": "situational_personality_and_the_person_situation_debate",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain's memory system is way stranger than you thought—and now you know how to hack it. Which of these 10 facts made you rethink how you learn? Drop a comment below with the one that hit hardest, and if you're ready to learn smarter, hit subscribe for more science that actually changes how you think. Brainboda out.",
+  "outro": "So which of these personality truths hit you the hardest? Drop a comment telling me which fact made you rethink who you are—or share a moment when you recognized one of these biases in yourself. And if personality psychology fascinates you, hit subscribe and ring the bell so you never miss our deep dives into the science of human behavior. Thanks for watching Brainboda!",
   "tags": [
-    "memory science",
-    "learning psychology",
-    "how to learn",
-    "brain science",
+    "personality psychology",
+    "Big Five traits",
+    "psychology explained",
+    "behavioral science",
+    "Dunning-Kruger Effect",
+    "Dark Triad",
+    "extraversion introversion",
+    "emotional intelligence",
+    "cognitive bias",
     "neuroscience",
-    "memory techniques",
-    "study tips",
-    "cognitive psychology",
-    "learning hacks",
-    "education",
-    "psychology",
-    "science education",
-    "brain hacks",
-    "memory tricks",
-    "educational psychology",
-    "mental health",
-    "studying methods",
-    "exam preparation",
-    "cognitive science",
-    "brainboda"
+    "personality traits",
+    "human behavior",
+    "psychology education",
+    "mental health science",
+    "self-improvement",
+    "personality types",
+    "behavioral psychology",
+    "Brainboda",
+    "educational science",
+    "personality development"
   ],
   "type": "main",
-  "created_at": "2026-06-23T11:23:00",
+  "created_at": "2026-06-28T15:47:08",
   "ai_generated": true,
-  "theme": "memory and learning",
-  "hook_duration_est": 23,
-  "outro_duration_est": 23,
-  "total_duration_est": 412,
-  "description": "10 Mind-Bending Secrets About Memory and Learning Science Reveals\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:23 - Fact 1: The Misinformation Effect\n0:58 - Fact 2: Spacing Effect\n1:34 - Fact 3: The Serial Position Effect\n2:11 - Fact 4: State-Dependent Memory\n2:49 - Fact 5: The Testing Effect\n3:21 - Fact 6: Encoding Specificity Principle\n4:00 - Fact 7: The Curse of Knowledge\n4:37 - Fact 8: Consolidation and Sleep\n5:13 - Fact 9: Interference Theory\n5:51 - Fact 10: The Generation Effect\n6:29 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "theme": "personality psychology",
+  "hook_duration_est": 20,
+  "outro_duration_est": 26,
+  "total_duration_est": 321,
+  "description": "10 Personality Psychology Truths That Explain Why You Are Who You Are\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Big Five Personality Traits\n0:47 - Fact 2: The Dunning-Kruger Effect\n1:15 - Fact 3: Extraversion and Dopamine Sensitivity\n1:42 - Fact 4: The Dark Triad\n2:08 - Fact 5: Personality Plasticity Across the Lifespan\n2:33 - Fact 6: The Fundamental Attribution Error\n3:01 - Fact 7: Emotional Contagion and Personality Expression\n3:28 - Fact 8: The Halo Effect in Personality Perception\n3:57 - Fact 9: Neuroticism and the Negativity Bias\n4:27 - Fact 10: Situational Personality and the Person-Situation Debate\n4:55 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
