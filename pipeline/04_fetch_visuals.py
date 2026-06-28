@@ -481,19 +481,18 @@ def main():
         heading = fact.get("heading", fact_id)
         result = fetch_images_for_fact(fact_id, keywords, heading, color_idx=i,
                                        visuals_dir=visuals_dir, target=4,
-                                       used_urls=used_urls | newly_used,
+                                       used_urls=set(),
                                        orientation=orientation)
-        paths, fact_new = result
+        paths, _ = result
         all_paths_facts[fact_id] = paths
         all_paths[fact_id] = paths
-        newly_used.update(fact_new)
         if not paths:
             log.error("No images for %s — check API keys or network. Aborting.", fact_id)
             sys.exit(1)
 
-    # Persist used URLs for next run
+    # Persist used hook URLs for next run (fact images not tracked — hook pool is limited)
     _save_used_urls(used_urls | newly_used)
-    log.info("Saved %d used URLs total", len(used_urls | newly_used))
+    log.info("Saved %d used hook URLs total", len(used_urls | newly_used))
 
     log.info("=== 04_fetch_visuals.py DONE ===")
 
