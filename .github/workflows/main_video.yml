@@ -82,6 +82,13 @@ jobs:
             echo "Saved $LATEST → data/latest_main_script.json"
           fi
 
+      - name: Update YouTube token secret
+        if: success()
+        run: |
+          gh secret set YOUTUBE_TOKEN_JSON < config/youtube_token.json
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+
       - name: Commit updated data files
         run: |
           git config user.name "github-actions[bot]"

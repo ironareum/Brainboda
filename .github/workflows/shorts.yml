@@ -77,6 +77,13 @@ jobs:
         run: |
           python run.py --type short --from-main data/latest_main_script.json
 
+      - name: Update YouTube token secret
+        if: steps.check_script.outputs.found == 'true'
+        run: |
+          gh secret set YOUTUBE_TOKEN_JSON < config/youtube_token.json
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+
       - name: Commit updated data files
         if: steps.check_script.outputs.found == 'true'
         run: |
