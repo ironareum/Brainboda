@@ -290,6 +290,12 @@ def _collect_urls(queries: list[str], target: int, used_urls: set = None,
                 if u not in seen and u not in used_urls:
                     seen.add(u)
                     urls.append(u)
+
+    # Pool exhausted — retry without filter so callers never get an empty result
+    if not urls and used_urls:
+        log.warning("_collect_urls: pool exhausted, retrying without used_urls filter")
+        return _collect_urls(queries, target, used_urls=set(), orientation=orientation)
+
     return urls
 
 
@@ -384,17 +390,6 @@ def fetch_hook_images(visuals_dir: str, target: int = 6, used_urls: set = None,
         if download_image(url, dest):
             saved.append(dest)
             newly_downloaded.append(url)
-
-    # Pool exhaustion fallback: retry without used_urls filter
-    if not saved and used_urls:
-        log.warning("  _hook — pool exhausted. Retrying without used_urls filter.")
-        fallback_urls = _collect_urls(_HOOK_QUERIES, target * 2, used_urls=set(), orientation=orientation)
-        for url in fallback_urls:
-            if len(saved) >= target:
-                break
-            dest = os.path.join(hook_dir, f"img_{len(saved)+1:02d}.jpg")
-            if download_image(url, dest):
-                saved.append(dest)
 
     log.info("  _hook → %d images", len(saved))
     return saved, newly_downloaded
