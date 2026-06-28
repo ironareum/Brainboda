@@ -355,18 +355,6 @@ def fetch_images_for_fact(fact_id: str, keywords: list, heading: str, color_idx:
             saved_paths.append(dest)
             newly_downloaded.append(url)
 
-    # Pool exhaustion fallback: retry without used_urls filter
-    if not saved_paths and used_urls:
-        log.warning("  %s — pool exhausted (all URLs already used). Retrying without filter.", fact_id)
-        fallback_urls = _collect_urls(queries, target * 3, used_urls=set(), orientation=orientation)
-        for url in fallback_urls:
-            if len(saved_paths) >= target:
-                break
-            dest = os.path.join(fact_dir, f"img_{len(saved_paths)+1:02d}.jpg")
-            if download_image(url, dest):
-                saved_paths.append(dest)
-                # Do NOT add to newly_downloaded — these are reused URLs
-
     if not saved_paths:
         log.error("  All sources failed for %s — no images downloaded", fact_id)
     else:
