@@ -218,6 +218,16 @@ _HOOK_QUERIES = [
     "neuroscience brain illustration",
     "mental focus meditation",
     "thinking person silhouette",
+    "mindset motivation inspiration",
+    "consciousness awareness concept",
+    "cognitive science thinking",
+    "subconscious mind concept",
+    "emotional intelligence empathy",
+    "brain waves neural network",
+    "wisdom knowledge learning",
+    "mental health wellbeing",
+    "human behavior psychology",
+    "decision making choice",
 ]
 
 
