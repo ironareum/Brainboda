@@ -91,6 +91,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Commit updated data files
+        continue-on-error: true
         run: |
           BRANCH=$(git rev-parse --abbrev-ref HEAD)
           git config user.name "github-actions[bot]"
