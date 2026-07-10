@@ -88,12 +88,17 @@ jobs:
       - name: Commit updated data files
         if: steps.check_script.outputs.found == 'true'
         run: |
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/used_shorts_facts.json data/used_image_urls.json || true
           git diff --cached --quiet || git commit -m "chore: update data files [skip ci]"
-          git pull --rebase origin HEAD || true
-          git push origin HEAD
+          git pull --rebase origin "$BRANCH" || {
+            git checkout --theirs data/used_shorts_facts.json data/used_image_urls.json 2>/dev/null || true
+            git add data/ 2>/dev/null || true
+            git rebase --continue --no-edit
+          }
+          git push origin "HEAD:$BRANCH"
 
       - name: Save output as artifact (retry backup)
         if: steps.check_script.outputs.found == 'true'
