@@ -87,7 +87,6 @@ jobs:
 
       - name: Commit updated data files
         if: steps.check_script.outputs.found == 'true'
-        continue-on-error: true
         run: |
           BRANCH=$(git rev-parse --abbrev-ref HEAD)
           git config user.name "github-actions[bot]"
