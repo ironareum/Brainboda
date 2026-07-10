@@ -64,6 +64,7 @@ jobs:
           echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > config/youtube_token.json
 
       - name: Run main video pipeline
+        id: run_pipeline
         run: |
           if [ -n "${{ github.event.inputs.theme }}" ]; then
             python run.py --type main --ai --theme "${{ github.event.inputs.theme }}"
@@ -97,6 +98,29 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update data files [skip ci]"
           git pull --rebase origin HEAD || true
           git push origin HEAD
+
+      - name: Save output as artifact (retry backup)
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-output-${{ github.run_id }}
+          path: |
+            output/**/video.mp4
+            output/**/script.json
+            output/**/thumbnail.jpg
+          retention-days: 3
+          if-no-files-found: ignore
+
+      - name: Delete artifact on success (no longer needed)
+        if: steps.run_pipeline.outcome == 'success'
+        run: |
+          ARTIFACT_ID=$(gh api repos/${{ github.repository }}/actions/artifacts \
+            --jq '.artifacts[] | select(.name == "main-output-${{ github.run_id }}") | .id' | head -1)
+          if [ -n "$ARTIFACT_ID" ]; then
+            gh api --method DELETE repos/${{ github.repository }}/actions/artifacts/$ARTIFACT_ID
+            echo "Deleted artifact $ARTIFACT_ID"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload logs on failure
         if: failure()
