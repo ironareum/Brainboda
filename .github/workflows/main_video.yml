@@ -100,7 +100,7 @@ jobs:
           git pull --rebase origin "$BRANCH" || {
             git checkout --theirs data/used_concepts.json data/latest_main_script.json data/used_image_urls.json 2>/dev/null || true
             git add data/ 2>/dev/null || true
-            git rebase --continue --no-edit
+            GIT_EDITOR=true git rebase --continue
           }
           git push origin "HEAD:$BRANCH"
 
