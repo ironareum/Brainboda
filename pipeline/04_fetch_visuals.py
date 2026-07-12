@@ -465,7 +465,9 @@ def main():
         log.error("No hook images fetched — check API keys or network. Aborting.")
         sys.exit(1)
     all_paths["_hook"] = hook_paths
-    newly_used.update(hook_new)
+    # Only track img_01.jpg URL — that's the only one used as thumbnail/background
+    if hook_new:
+        newly_used.add(hook_new[0])
 
     all_paths_facts: dict[str, list] = {}
     for i, fact in enumerate(facts):
@@ -483,7 +485,7 @@ def main():
             log.error("No images for %s — check API keys or network. Aborting.", fact_id)
             sys.exit(1)
 
-    # Persist used hook URLs for next run (fact images not tracked — hook pool is limited)
+    # Persist only img_01.jpg hook URL per run (thumbnail/background dedup only)
     _save_used_urls(used_urls | newly_used)
     log.info("Saved %d used hook URLs total", len(used_urls | newly_used))
 
