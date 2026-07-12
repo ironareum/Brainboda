@@ -86,7 +86,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
 
       - name: Commit updated data files
-        if: steps.check_script.outputs.found == 'true'
+        if: steps.run_pipeline.outcome == 'success'
         run: |
           BRANCH=$(git rev-parse --abbrev-ref HEAD)
           git config user.name "github-actions[bot]"
