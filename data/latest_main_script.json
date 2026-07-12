@@ -1,178 +1,180 @@
 {
-  "title": "10 Emotional Intelligence Facts That Will Change How You See People",
-  "thumbnail_hook": "Your Emotions Aren't Real",
-  "hook": "People with sky-high IQs crash and burn in relationships while seemingly average folks become natural leaders. The difference isn't what you think. So what hidden skill are the most successful people actually mastering?",
+  "title": "10 Unconscious Behaviors Your Brain Controls Without You Knowing",
+  "thumbnail_hook": "Your Brain Is Lying To You",
+  "hook": "Right now, your brain is making thousands of decisions you'll never be aware of—and most of them are happening *against* your conscious wishes. We like to think we're in control, but the truth is far more unsettling. So what's really pulling the strings?",
   "facts": [
     {
       "n": 1,
-      "heading": "Emotional Intelligence (EI)",
-      "narration": "Fact 1: Emotional Intelligence. Psychologist Daniel Goleman popularized the term in 1995, defining it as the ability to recognize, understand, and manage your own emotions and those of others. It's not about being nice — it's about reading the emotional room and responding strategically. Higher EI predicts career success, relationship quality, and mental resilience far better than raw IQ ever could. Understanding your emotional patterns is the foundation for literally every relationship you'll ever have.",
+      "heading": "Priming Effect",
+      "narration": "Fact 1: Priming Effect. This is when you're exposed to something subtle—a word, an image, a smell—and it unconsciously influences your thoughts and behavior afterward. Psychologist John Bargh conducted famous experiments in the 1990s showing that people exposed to words related to aging actually walked slower afterward, without realizing it. Your brain absorbs environmental cues and changes how you act before you even know it happened. Understanding priming matters because marketers, advertisements, and even your environment are constantly nudging your behavior in ways you can't see.",
       "search_keywords": [
-        "emotional intelligence",
-        "Daniel Goleman",
-        "EI definition"
+        "priming effect psychology",
+        "John Bargh priming",
+        "unconscious influence"
       ],
-      "duration_est": 30,
-      "id": "emotional_intelligence_ei",
+      "duration_est": 34,
+      "id": "priming_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Affective Empathy vs. Cognitive Empathy",
-      "narration": "Fact 2: Affective Empathy vs. Cognitive Empathy. Researchers distinguish between two types: affective empathy (actually *feeling* someone's pain) and cognitive empathy (understanding their perspective without feeling it). Some people score high on one and low on the other — psychopaths often have cognitive empathy but zero affective empathy, letting them manipulate without remorse. This split explains why some of your smartest friends seem weirdly cold-blooded.",
+      "heading": "Confirmation Bias",
+      "narration": "Fact 2: Confirmation Bias. Once you believe something, your brain automatically searches for evidence that proves you're right—and ignores everything that contradicts you. This isn't a choice; it happens automatically in your unconscious mind. Psychologists like Raymond Nickerson have documented how powerful this bias is, even among scientists and experts. You could be wrong about something fundamental, but your brain will protect that belief by filtering reality itself. This shapes your relationships, politics, and career decisions in ways you never consciously notice.",
       "search_keywords": [
-        "affective empathy",
-        "cognitive empathy",
-        "two types of empathy"
+        "confirmation bias",
+        "Raymond Nickerson bias research",
+        "selective attention"
       ],
-      "duration_est": 26,
-      "id": "affective_empathy_vs_cognitive_empathy",
+      "duration_est": 33,
+      "id": "confirmation_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "Emotional Regulation (Distress Tolerance)",
-      "narration": "Fact 3: Emotional Regulation. Psychologist James Gross developed the Process Model of Emotion Regulation, showing we can't just *feel less* — we have to actively reshape how we interpret situations before emotions spike. Your ability to pause, breathe, and reframe separates people who explode at minor setbacks from those who stay calm under real pressure. The best negotiators, parents, and leaders all master this one skill first.",
+      "heading": "Mere Exposure Effect",
+      "narration": "Fact 3: Mere Exposure Effect. The more you're exposed to something, the more you like it—purely because of familiarity, not because it actually got better. Psychologist Robert Zajonc discovered this in 1968. You could hear a song you initially disliked, and after hearing it fifty times, you'll genuinely enjoy it. Your unconscious mind equates 'familiar' with 'safe' and 'good.' This is why repetition in advertising works so well, and why you might find yourself inexplicably attracted to people you see frequently, even if you didn't like them at first.",
       "search_keywords": [
-        "emotional regulation",
-        "James Gross",
-        "distress tolerance"
+        "mere exposure effect",
+        "Robert Zajonc 1968",
+        "familiarity liking"
       ],
-      "duration_est": 27,
-      "id": "emotional_regulation_distress_tolerance",
+      "duration_est": 36,
+      "id": "mere_exposure_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Dunning-Kruger Effect (Emotional Domain)",
-      "narration": "Fact 4: Dunning-Kruger Effect in Emotions. Psychologists Justin Kruger and David Dunning found that people who understand emotions *least* are most confident they're emotional experts. Someone who blows up at their partner thinks they're just 'being honest,' while someone with actual EI knows they're triggered and works on it silently. Your biggest blind spot? Usually believing you don't have one.",
+      "heading": "Implicit Bias",
+      "narration": "Fact 4: Implicit Bias. You hold prejudices and stereotypes that you genuinely don't believe you have—because they live entirely in your unconscious. Researchers at Harvard developed the Implicit Association Test to measure these hidden biases, showing that people often hold automatic negative associations they'd consciously reject. A doctor might unconsciously treat patients differently based on race, a teacher might call on students differently based on gender—all without realizing it. Your stated values and your actual unconscious behavior can be completely misaligned, and recognizing this gap is the first step to changing it.",
       "search_keywords": [
-        "Dunning-Kruger effect",
-        "overconfidence bias",
-        "emotional self-awareness"
+        "implicit bias",
+        "Implicit Association Test Harvard",
+        "unconscious prejudice"
       ],
-      "duration_est": 24,
-      "id": "the_dunning_kruger_effect_emotional_domain",
+      "duration_est": 37,
+      "id": "implicit_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Microexpressions",
-      "narration": "Fact 5: Microexpressions. Psychologist Paul Ekman discovered microexpressions — fleeting facial expressions (lasting 1/25th to 1/5th of a second) that leak true emotions before people mask them. Your face says 'contempt' for a split-second before your mouth says 'I'm fine.' High-EI people unconsciously pick up these signals, while others miss entire conversations happening on someone's face. This is why some people always know when you're lying.",
+      "heading": "Sleep-Dependent Memory Consolidation",
+      "narration": "Fact 5: Sleep-Dependent Memory Consolidation. While you're asleep, your brain is wildly active—sorting memories, strengthening some, deleting others—and you have absolutely no control over this process. Neuroscientist Matthew Walker's research shows that sleep is when your brain decides what's important enough to remember long-term. You could study something for hours, but if you don't sleep, it won't stick. Your unconscious brain essentially edits your reality every night, deciding what stays and what gets erased from your mind. This is why cramming fails and why sleep deprivation destroys learning—your brain does the real work when you're completely unconscious.",
       "search_keywords": [
-        "microexpressions",
-        "Paul Ekman",
-        "facial expressions emotions"
+        "sleep memory consolidation",
+        "Matthew Walker sleep research",
+        "REM sleep learning"
       ],
-      "duration_est": 26,
-      "id": "microexpressions",
+      "duration_est": 39,
+      "id": "sleep_dependent_memory_consolidation",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "Emotional Contagion",
-      "narration": "Fact 6: Emotional Contagion. Neuroscientists discovered mirror neurons that make us *literally sync* with others' emotional states — your mood rubs off on people around you whether you intend it or not. One person's anxiety can infect an entire team within minutes. This isn't metaphorical; it's neurological. Leaders with high EI weaponize this by staying calm during crises, keeping everyone else grounded too.",
+      "heading": "Sunk Cost Fallacy",
+      "narration": "Fact 6: Sunk Cost Fallacy. Your brain automatically throws good money after bad—staying in bad relationships, finishing terrible movies, continuing failing projects—because your unconscious mind can't let go of what's already been invested. You didn't choose this irrationality; behavioral economists like Richard Thaler documented how universal this bias is. You'll waste hours finishing a book you hate because you've already read 200 pages. Your unconscious keeps score in ways that actively harm you, and you'll rationalize the decision as logical even though it's purely emotional. Recognizing this pattern is crucial because your brain will sabotage your future to protect your past.",
       "search_keywords": [
-        "emotional contagion",
-        "mirror neurons",
-        "emotional transmission"
+        "sunk cost fallacy",
+        "Richard Thaler behavioral economics",
+        "irrational decision making"
       ],
-      "duration_est": 25,
-      "id": "emotional_contagion",
+      "duration_est": 40,
+      "id": "sunk_cost_fallacy",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Negativity Bias",
-      "narration": "Fact 7: Negativity Bias. Psychologist Roy Baumeister showed humans feel negative events roughly three times more intensely than positive ones — evolutionary leftover from survival mode. You'll remember the one critical comment in ten compliments. People with high EI don't ignore this; they actively combat it by celebrating wins and reprocessing criticism factually instead of emotionally. Your brain wants drama; your success depends on overriding it.",
+      "heading": "Mirroring and Motor Mimicry",
+      "narration": "Fact 7: Mirroring and Motor Mimicry. When someone smiles at you, your face automatically starts moving toward a smile before you consciously decide to smile. Your body unconsciously mirrors the posture, tone, and even breathing of people around you—a process driven by mirror neurons discovered by Italian neuroscientist Giacomo Rizzolatti. You're not choosing this; it's hardwired empathy running on automatic. This is why charismatic people feel 'infectious' and why you unconsciously adopt the speech patterns of people you spend time with. Your body is constantly syncing with others without your conscious permission.",
       "search_keywords": [
-        "negativity bias",
-        "Roy Baumeister",
-        "negative focus"
+        "mirror neurons",
+        "Giacomo Rizzolatti",
+        "motor mimicry empathy",
+        "automatic mirroring"
       ],
-      "duration_est": 26,
-      "id": "the_negativity_bias",
+      "duration_est": 37,
+      "id": "mirroring_and_motor_mimicry",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "Perspective-Taking (Theory of Mind)",
-      "narration": "Fact 8: Perspective-Taking. Neuroscientists call this 'Theory of Mind' — the ability to imagine what someone else believes, wants, and knows without them telling you. It develops slowly in children and never fully forms in some adults. People with high EI don't just hear words; they model *why* someone said them. This single skill — asking 'what's actually going on in their world right now?' — transforms how you handle conflict.",
+      "heading": "Hyperbolic Discounting",
+      "narration": "Fact 8: Hyperbolic Discounting. Your brain values immediate rewards enormously more than future rewards—you'd rather have five dollars today than ten dollars next week—and this happens automatically in your decision-making. Behavioral psychologist George Ainslie extensively researched this, showing it's one of the most consistent ways human brains fail at long-term planning. You know you should save money, exercise, study, or eat healthy, but your unconscious brain screams for the immediate pleasure. This isn't weakness; it's how your ancient brain is still wired. Understanding this helps you build systems and habits that work *with* your unconscious biology instead of fighting it.",
       "search_keywords": [
-        "theory of mind",
-        "perspective-taking",
-        "social cognition"
+        "hyperbolic discounting",
+        "George Ainslie impulsivity",
+        "temporal discounting brain"
       ],
-      "duration_est": 28,
-      "id": "perspective_taking_theory_of_mind",
+      "duration_est": 40,
+      "id": "hyperbolic_discounting",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Attachment Theory and Emotional Patterns",
-      "narration": "Fact 9: Attachment Theory. Psychologist John Bowlby showed that your early relationships hardwired your emotional templates — how you handle closeness, rejection, and trust. Anxious-attached people crave reassurance; avoidant folks push intimacy away. Secure attachment means you self-soothe and communicate needs clearly. You can't change your attachment style overnight, but knowing it explains why you keep repeating the same relationship patterns.",
+      "heading": "The Backfire Effect and Belief Perseverance",
+      "narration": "Fact 9: Belief Perseverance. When you encounter evidence that contradicts a core belief, your unconscious mind often doubles down rather than updating. Psychologist Lee Ross documented how people cling to false beliefs even after being shown proof they're wrong. Confronting someone with facts about a belief they hold can actually make them believe it *more* strongly. Your conscious mind wants truth, but your unconscious mind wants consistency and identity. This is why arguments rarely change minds and why people retreat into echo chambers—your brain is unconsciously protecting its own coherence, not seeking accuracy.",
       "search_keywords": [
-        "attachment theory",
-        "John Bowlby",
-        "attachment styles"
+        "belief perseverance",
+        "Lee Ross psychology",
+        "cognitive consistency theory"
       ],
-      "duration_est": 24,
-      "id": "attachment_theory_and_emotional_patterns",
+      "duration_est": 37,
+      "id": "the_backfire_effect_and_belief_perseverance",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Emotional Granularity (Affect Labeling)",
-      "narration": "Fact 10: Emotional Granularity. Psychologist Lisa Feldman Barrett found that people who use precise emotion words — 'I feel ashamed' instead of 'I feel bad' — actually experience less emotional pain and recover faster. Naming a specific emotion changes how your brain processes it. This is why therapy works: you're learning new emotional vocabulary. The gap between 'I'm angry' and 'I feel disrespected and powerless' is the gap between reacting and evolving.",
+      "heading": "Blindsight and Inattentional Blindness",
+      "narration": "Fact 10: Inattentional Blindness. Your brain can register something directly in front of your eyes—process it, respond to it—without you ever becoming consciously aware it exists. The famous invisible gorilla experiment by Christopher Chabris and Daniel Simons showed that people watching a video miss a person in a gorilla suit walking across the screen because they're focused elsewhere. Your unconscious sees everything; your conscious mind only attends to a tiny sliver. You miss opportunities, dangers, and beauty constantly because your conscious attention is a bottleneck. Your brain is working in the dark, making sense of a world you never fully see.",
       "search_keywords": [
-        "emotional granularity",
-        "affect labeling",
-        "Lisa Feldman Barrett"
+        "inattentional blindness",
+        "Christopher Chabris invisible gorilla",
+        "selective attention experiment",
+        "unconscious perception"
       ],
-      "duration_est": 29,
-      "id": "emotional_granularity_affect_labeling",
+      "duration_est": 40,
+      "id": "blindsight_and_inattentional_blindness",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "So which one hit you hardest? Drop it in the comments — are you just now realizing why that one relationship kept spiraling, or did you recognize yourself in the attachment styles? And if this rewired how you think about emotions, subscribe so you don't miss when we go deep on how to actually *build* these skills. Your future self — and everyone around you — will thank you.",
+  "outro": "Your brain is running an entire civilization behind the scenes, and most of us never even notice. Which of these 10 facts hit you the hardest? Drop a comment—did you recognize one of these in your own life? And if your brain can work this hard without you knowing, imagine what you could do if you actually understood it. Subscribe for more science that explains why you do what you do.",
   "tags": [
-    "emotional intelligence",
-    "EI",
+    "unconscious behavior",
     "psychology",
-    "relationships",
-    "leadership",
-    "Daniel Goleman",
-    "emotional awareness",
-    "empathy",
-    "social skills",
-    "personal development",
-    "mental health",
-    "attachment theory",
-    "emotional regulation",
-    "microexpressions",
-    "self-improvement",
     "brain science",
+    "cognitive bias",
+    "priming effect",
+    "confirmation bias",
+    "implicit bias",
+    "behavioral psychology",
     "neuroscience",
-    "interpersonal skills",
-    "emotional intelligence training",
-    "psychology explained"
+    "decision making",
+    "mirror neurons",
+    "memory consolidation",
+    "hyperbolic discounting",
+    "inattentional blindness",
+    "belief perseverance",
+    "psychological phenomena",
+    "mind control",
+    "brain hacks",
+    "self improvement",
+    "educational science"
   ],
   "type": "main",
-  "created_at": "2026-07-07T11:13:27",
+  "created_at": "2026-07-12T09:55:21",
   "ai_generated": true,
-  "theme": "emotional intelligence",
+  "theme": "unconscious behavior",
   "hook_duration_est": 20,
   "outro_duration_est": 28,
-  "total_duration_est": 313,
-  "description": "10 Emotional Intelligence Facts That Will Change How You See People\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Emotional Intelligence (EI)\n0:50 - Fact 2: Affective Empathy vs. Cognitive Empathy\n1:16 - Fact 3: Emotional Regulation (Distress Tolerance)\n1:43 - Fact 4: The Dunning-Kruger Effect (Emotional Domain)\n2:07 - Fact 5: Microexpressions\n2:33 - Fact 6: Emotional Contagion\n2:58 - Fact 7: The Negativity Bias\n3:24 - Fact 8: Perspective-Taking (Theory of Mind)\n3:52 - Fact 9: Attachment Theory and Emotional Patterns\n4:16 - Fact 10: Emotional Granularity (Affect Labeling)\n4:45 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "total_duration_est": 421,
+  "description": "10 Unconscious Behaviors Your Brain Controls Without You Knowing\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Priming Effect\n0:54 - Fact 2: Confirmation Bias\n1:27 - Fact 3: Mere Exposure Effect\n2:03 - Fact 4: Implicit Bias\n2:40 - Fact 5: Sleep-Dependent Memory Consolidation\n3:19 - Fact 6: Sunk Cost Fallacy\n3:59 - Fact 7: Mirroring and Motor Mimicry\n4:36 - Fact 8: Hyperbolic Discounting\n5:16 - Fact 9: The Backfire Effect and Belief Perseverance\n5:53 - Fact 10: Blindsight and Inattentional Blindness\n6:33 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
