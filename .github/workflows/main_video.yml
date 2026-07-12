@@ -104,6 +104,18 @@ jobs:
           }
           git push origin "HEAD:$BRANCH"
 
+      - name: Save output as artifact (upload failed — retry backup)
+        if: steps.run_pipeline.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-output-${{ github.run_id }}
+          path: |
+            output/**/video.mp4
+            output/**/script.json
+            output/**/thumbnail.jpg
+          retention-days: 3
+          if-no-files-found: ignore
+
       - name: Upload logs on failure
         if: failure()
         uses: actions/upload-artifact@v4
