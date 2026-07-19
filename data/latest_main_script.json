@@ -1,180 +1,178 @@
 {
-  "title": "10 Mind-Bending Relationship Psychology Secrets Your Brain Won't Tell You",
-  "thumbnail_hook": "Why Your Partner Isn't Who You Think",
-  "hook": "Your brain rewrites your partner's personality every single day without you noticing. Scientists have discovered that the person you fell in love with might not actually exist—at least not the way you remember them. So why does your mind do this, and what does it mean for your relationship?",
+  "title": "10 Mind-Bending Facts About Fear and Anxiety Your Brain Won't Tell You",
+  "thumbnail_hook": "Your Brain Is Lying To You",
+  "hook": "Your body can literally feel terrified of something that hasn't even happened yet—and your brain treats imaginary threats exactly like real ones. Right now, millions of people are anxious about things that will never occur. So why is your mind so convinced danger is coming?",
   "facts": [
     {
       "n": 1,
-      "heading": "Idealization and Devaluation (Splitting)",
-      "narration": "Fact 1: Idealization and Devaluation. Early relationships trigger a phenomenon where your brain literally sees your partner as flawless—but later, minor flaws become unforgivable. This oscillation between extreme good and extreme bad is rooted in what psychologists call 'splitting,' a cognitive distortion where we struggle to hold both positive and negative qualities about someone simultaneously. Psychiatrist Otto Kernberg documented this pattern extensively in his work on object relations theory. Understanding this helps you catch yourself mid-judgment and remember the full, imperfect human you actually chose.",
+      "heading": "Amygdala Hijacking",
+      "narration": "Fact 1: Amygdala Hijacking. Your amygdala—a tiny almond-shaped region in your brain—can take over your entire nervous system in milliseconds, bypassing your rational prefrontal cortex completely. When you're in genuine danger, this is incredible. But neuroscientist Daniel Goleman noted this same mechanism fires when you're just *thinking* about danger, meaning your body floods with cortisol and adrenaline before logic even has a chance to speak. Understanding this helps you recognize when your emotional brain is overriding reality—and gives you back control.",
       "search_keywords": [
-        "idealization devaluation psychology",
-        "splitting relationships",
-        "partner perception bias"
+        "amygdala hijacking",
+        "emotional hijacking",
+        "amygdala fear response"
       ],
-      "duration_est": 34,
-      "id": "idealization_and_devaluation_splitting",
+      "duration_est": 32,
+      "id": "amygdala_hijacking",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Reciprocity of Attraction",
-      "narration": "Fact 2: Reciprocity of Attraction. You're statistically more likely to be attracted to someone who's attracted to you—even if they weren't your type initially. Social psychologist Donn Byrne called this the 'matching hypothesis,' but the reciprocity effect is darker: your brain interprets someone's interest in you as a sign they must be valuable. It's not really about them; it's your insecurity making their attraction feel like validation. This is why you sometimes end up with people you didn't initially want.",
+      "heading": "The Negativity Bias",
+      "narration": "Fact 2: The Negativity Bias. Your brain is fundamentally wired to remember threats more vividly than positive experiences—a survival mechanism from our ancestors. Psychologist Roy Baumeister's research shows negative events stick with you roughly three times stronger than positive ones. You'll replay an awkward conversation for weeks but forget compliments in hours. This is why anxiety feels so real and intrusive: your brain has evolutionary permission to obsess over what could go wrong.",
       "search_keywords": [
-        "reciprocity of attraction",
-        "matching hypothesis psychology",
-        "why attracted to people attracted to you"
+        "negativity bias",
+        "negative bias psychology",
+        "threat detection brain"
       ],
-      "duration_est": 32,
-      "id": "reciprocity_of_attraction",
+      "duration_est": 29,
+      "id": "the_negativity_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Halo Effect in Relationships",
-      "narration": "Fact 3: The Halo Effect. One attractive quality can make your brain assume someone is good at everything—kind, intelligent, trustworthy, the whole package. Psychologist Edward Thorndike first identified this in 1920, but it's lethal in relationships: you might overlook red flags because someone's charming or physically attractive. Your brain literally stops processing contradictory information. This is why 'love is blind' isn't poetry—it's neuroscience working against your judgment.",
+      "heading": "Catastrophizing",
+      "narration": "Fact 3: Catastrophizing. When anxiety takes hold, your mind doesn't just imagine bad outcomes—it jumps straight to the worst possible scenario. Cognitive therapist Albert Ellis identified this cognitive distortion decades ago: you spill coffee and your brain instantly predicts job loss, financial ruin, and social humiliation. It's not a character flaw; it's your threat-detection system stuck on maximum sensitivity. Recognizing when you're catastrophizing is the first step to breaking the anxiety spiral.",
       "search_keywords": [
-        "halo effect relationships",
-        "Edward Thorndike psychology",
-        "attractive bias judgment"
+        "catastrophizing",
+        "catastrophic thinking",
+        "anxiety spirals"
       ],
-      "duration_est": 27,
-      "id": "the_halo_effect_in_relationships",
+      "duration_est": 29,
+      "id": "catastrophizing",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "Confirmation Bias in Partnership",
-      "narration": "Fact 4: Confirmation Bias in Partnership. Once you decide who your partner is, your brain becomes a prosecutor—hunting for evidence that proves your initial belief, while ignoring everything that contradicts it. This isn't unique to love, but psychologist Peter Wason's confirmation bias research shows it's especially vicious in intimate relationships because the stakes feel existential. You'll literally remember the same argument differently depending on whether you're trying to prove they're selfish or caring. Your memory isn't recording truth; it's building a case.",
+      "heading": "The Uncertainty Effect",
+      "narration": "Fact 4: The Uncertainty Effect. Not knowing what will happen activates your threat response more powerfully than knowing something bad *will* happen. Neuroscientist Nico Bunzeck's research reveals that unpredictability itself is stressful—your brain would rather have certainty, even if it's negative. This is why waiting for test results feels worse than getting bad news, and why vague social situations trigger more anxiety than structured ones. Your anxiety isn't irrational; it's responding exactly as designed to information gaps.",
       "search_keywords": [
-        "confirmation bias relationships",
-        "Peter Wason bias",
-        "selective memory partner"
+        "uncertainty effect",
+        "unpredictability anxiety",
+        "intolerance of uncertainty"
       ],
-      "duration_est": 33,
-      "id": "confirmation_bias_in_partnership",
+      "duration_est": 31,
+      "id": "the_uncertainty_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Triangulation and Drama Addiction",
-      "narration": "Fact 5: Triangulation (Emotional Manipulation). Some people secretly involve a third party—an ex, a friend, a coworker—to create jealousy and insecurity in their partner, then comfort them afterward. It's a manipulation tactic with deep roots in attachment theory, popularized by psychologist and narcissism expert Dr. Ramani Durvasula. But here's the sick part: the trauma bonding that follows the 'making up' creates a cycle where drama feels like intimacy. If your relationship feels like a roller coaster you can't get off, this might be why.",
+      "heading": "The Default Mode Network",
+      "narration": "Fact 5: The Default Mode Network. When you're not focused on anything specific, your brain activates a system called the Default Mode Network—and it's obsessed with threats. Neuroscientist Randy Buckner discovered this network runs simulations of worst-case futures constantly. You're not choosing to worry; your idle brain is literally doing its job by imagining dangers. The moment you direct attention toward something concrete—a task, conversation, sensory detail—this fear-spinning network quiets down. This is why mindfulness actually works at the neurological level.",
       "search_keywords": [
-        "triangulation relationships",
-        "narcissistic manipulation",
-        "drama bonding attachment"
+        "default mode network",
+        "mind wandering anxiety",
+        "DMN neuroscience"
       ],
-      "duration_est": 34,
-      "id": "triangulation_and_drama_addiction",
+      "duration_est": 32,
+      "id": "the_default_mode_network",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "Sunk Cost Fallacy in Love",
-      "narration": "Fact 6: Sunk Cost Fallacy. You've invested five years, combined finances, met the family—so staying feels logical, even when leaving would make you happier. Economists call this the sunk cost fallacy: your brain treats past investments as reasons to throw good money after bad, because admitting the investment was wasted feels unbearable. Behavioral economist Dan Ariely's research proves we make worse relationship decisions when we're scared of appearing foolish about past choices. You're not staying for love; you're staying because leaving feels like failure.",
+      "heading": "State-Dependent Memory",
+      "narration": "Fact 6: State-Dependent Memory. When you're anxious, your brain preferentially retrieves memories of *other* anxious moments—not happy ones. This memory filter, called state-dependent learning, makes danger feel inevitable because you're literally only remembering the times things went wrong. Psychologist Gordon Bower's research shows your emotional state acts as a retrieval cue: anxious mood = anxious memories flood in. Breaking this requires actively remembering counterexamples, not just trying harder to be calm.",
       "search_keywords": [
-        "sunk cost fallacy relationships",
-        "Dan Ariely behavioral economics",
-        "why people stay in bad relationships"
+        "state-dependent memory",
+        "mood-congruent memory",
+        "anxiety bias recall"
       ],
-      "duration_est": 34,
-      "id": "sunk_cost_fallacy_in_love",
+      "duration_est": 28,
+      "id": "state_dependent_memory",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "Anxious-Preoccupied Attachment Seeking",
-      "narration": "Fact 7: Anxious-Preoccupied Attachment. If you constantly need reassurance, check your phone obsessively for messages, or panic when your partner doesn't respond immediately, you likely have anxious attachment—rooted in childhood experiences. Psychologist John Bowlby's attachment theory shows that people with this style unconsciously seek partners who replicate their childhood relationships, often choosing emotionally unavailable people. Then they spend years trying to 'earn' closeness. The sad truth: you're attracted to the exact dynamic that traumatized you in the first place.",
+      "heading": "The Fight-Flight-Freeze Response",
+      "narration": "Fact 7: The Fight-Flight-Freeze Response. Neurobiologist Stephen Porges identified a third branch most people forget: freeze. Your nervous system doesn't just amp up with anxiety—it can paralyze you. This explains why anxiety sometimes feels like panic, sometimes like numbness, and sometimes like exhaustion. The response is hardwired and automatic; your body is preparing for survival in microseconds. Knowing that freezing is a legitimate nervous system state—not laziness or weakness—changes how you relate to anxiety's physical manifestations.",
       "search_keywords": [
-        "anxious attachment style",
-        "John Bowlby attachment theory",
-        "preoccupied attachment relationships"
+        "fight flight freeze",
+        "polyvagal theory",
+        "nervous system response"
       ],
-      "duration_est": 32,
-      "id": "anxious_preoccupied_attachment_seeking",
+      "duration_est": 30,
+      "id": "the_fight_flight_freeze_response",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Sharpening Effect (Memory Distortion)",
-      "narration": "Fact 8: The Sharpening Effect. Your brain doesn't store memories like a video file—it sharpens some details and forgets others, then reinforces the sharpened version every time you remember it. In long-term relationships, psychologists have found that couples remember early arguments as worse than they were, and early romantic moments as better. This memory distortion (documented in cognitive psychology research) means your 'history together' is a collaborative fiction you've both edited and re-edited. The relationship you remember might not be the one you actually had.",
+      "heading": "Safety Signals and Learned Helplessness",
+      "narration": "Fact 8: Safety Signals and Learned Helplessness. Psychologist Martin Seligman discovered that anxiety isn't just about perceived threat—it's about the *absence of safety signals*. When you can't identify anything that makes you feel safe, your brain assumes danger is everywhere. This learned helplessness is why anxiety can persist even when threats diminish: your brain never got permission to relax. Creating intentional safety rituals—specific places, people, or activities that signal 'you're okay'—directly rewires this expectation.",
       "search_keywords": [
-        "memory distortion relationships",
-        "sharpening effect psychology",
-        "false memories couples"
+        "learned helplessness",
+        "safety signals",
+        "anxiety control"
       ],
-      "duration_est": 34,
-      "id": "the_sharpening_effect_memory_distortion",
+      "duration_est": 30,
+      "id": "safety_signals_and_learned_helplessness",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Limerence vs. Attachment Love",
-      "narration": "Fact 9: Limerence vs. Attachment Love. The crazy, obsessive feeling you call love? Psychologist Dorothy Tennov coined the term 'limerence' in 1979 to describe that state—and it's temporary, usually lasting two to three years. Then it fades, and you either face a real person or feel duped. True attachment love is quieter and builds over time, but our culture sells us limerence as the 'real thing.' Millions of people leave relationships the moment limerence dies, thinking love itself disappeared, when actually love was just beginning.",
+      "heading": "Avoidance Reinforcement Cycle",
+      "narration": "Fact 9: Avoidance Reinforcement Cycle. The moment you avoid something anxiety-triggering, your anxiety drops—and your brain learns that avoidance works. Behavioral psychologists discovered this vicious loop: avoidance feels like relief, so you do it again, and the feared thing becomes scarier in your mind. Your brain isn't being irrational; it's doing exactly what it evolved to do. But this means the cure for anxiety isn't avoidance—it's gradual, intentional exposure that teaches your nervous system the threat isn't real.",
       "search_keywords": [
-        "limerence psychology",
-        "Dorothy Tennov love",
-        "limerence vs attachment",
-        "romantic love stages"
+        "avoidance reinforcement",
+        "anxiety cycle",
+        "exposure therapy mechanism"
       ],
-      "duration_est": 34,
-      "id": "limerence_vs_attachment_love",
+      "duration_est": 31,
+      "id": "avoidance_reinforcement_cycle",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Gottman Cascade Model (Relationship Collapse)",
-      "narration": "Fact 10: The Gottman Cascade Model. Psychologist John Gottman studied thousands of couples and found that happy relationships don't end suddenly—they collapse in a predictable four-stage cascade: criticism, defensiveness, contempt, and stonewalling. Contempt is the killer, the point where you've stopped respecting your partner entirely. Gottman could predict divorce with 90% accuracy just by watching ten minutes of a couple arguing. The terrifying part: you probably won't notice you're in the cascade until it's too late. By then, your brain has already written the exit story.",
+      "heading": "Interoception and Anxiety Sensitivity",
+      "narration": "Fact 10: Interoception and Anxiety Sensitivity. Some people's brains are wired to notice internal body signals—like heart rate or breathing—far more acutely than others. This trait, called high interoception, means you literally feel your anxiety symptoms more intensely. Psychologist Brani Vidic's research shows that noticing a racing heart can *trigger* more anxiety because you interpret bodily sensations as danger signs. Ironically, learning to tolerate these internal signals without reacting to them is how you break the anxiety-amplification cycle.",
       "search_keywords": [
-        "Gottman cascade model",
-        "John Gottman relationship",
-        "four horsemen criticism defensiveness contempt",
-        "predict divorce psychology"
+        "interoception",
+        "anxiety sensitivity",
+        "body signal awareness"
       ],
-      "duration_est": 34,
-      "id": "the_gottman_cascade_model_relationship_collapse",
+      "duration_est": 31,
+      "id": "interoception_and_anxiety_sensitivity",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "So here's the real question: which one of these just hit you? Are you seeing yourself in a pattern you didn't know had a name? Drop a comment telling us which fact messed with your head the most—and whether it's making you rethink something about your own relationship right now. If this changed how you see love, subscribe because we're dropping a deep-dive on attachment styles next week that'll change everything. Thanks for watching Brainboda.",
+  "outro": "Your brain is trying to protect you—it's just getting confused about what actually threatens you. Which of these 10 facts hit you the hardest? Comment below the one that made you say 'oh, that's me.' And if this deep dive into how fear works resonated with you, smash that subscribe button so you never miss when we decode the strange science behind your mind.",
   "tags": [
-    "relationship psychology",
-    "psychology facts",
-    "relationships",
-    "love psychology",
-    "attachment theory",
-    "behavioral psychology",
+    "anxiety",
+    "fear psychology",
+    "neuroscience",
     "mental health",
-    "John Gottman",
-    "sunk cost fallacy",
-    "confirmation bias",
-    "anxiety attachment",
-    "narcissism",
-    "emotional manipulation",
-    "psychology explained",
-    "science of love",
-    "relationship advice",
-    "cognitive bias",
-    "human behavior",
     "brain science",
-    "educational psychology"
+    "psychology explained",
+    "amygdala",
+    "stress response",
+    "cognitive distortion",
+    "mindfulness neuroscience",
+    "threat detection",
+    "nervous system",
+    "learned helplessness",
+    "exposure therapy",
+    "interoception",
+    "emotional regulation",
+    "behavioral psychology",
+    "brain hijacking",
+    "anxiety disorder",
+    "self-improvement"
   ],
   "type": "main",
-  "created_at": "2026-07-14T10:03:21",
+  "created_at": "2026-07-19T09:56:15",
   "ai_generated": true,
-  "theme": "relationship psychology",
+  "theme": "fear and anxiety",
   "hook_duration_est": 20,
-  "outro_duration_est": 30,
-  "total_duration_est": 378,
-  "description": "10 Mind-Bending Relationship Psychology Secrets Your Brain Won't Tell You\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Idealization and Devaluation (Splitting)\n0:54 - Fact 2: Reciprocity of Attraction\n1:26 - Fact 3: The Halo Effect in Relationships\n1:53 - Fact 4: Confirmation Bias in Partnership\n2:26 - Fact 5: Triangulation and Drama Addiction\n3:00 - Fact 6: Sunk Cost Fallacy in Love\n3:34 - Fact 7: Anxious-Preoccupied Attachment Seeking\n4:06 - Fact 8: The Sharpening Effect (Memory Distortion)\n4:40 - Fact 9: Limerence vs. Attachment Love\n5:14 - Fact 10: The Gottman Cascade Model (Relationship Collapse)\n5:48 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 26,
+  "total_duration_est": 349,
+  "description": "10 Mind-Bending Facts About Fear and Anxiety Your Brain Won't Tell You\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Amygdala Hijacking\n0:52 - Fact 2: The Negativity Bias\n1:21 - Fact 3: Catastrophizing\n1:50 - Fact 4: The Uncertainty Effect\n2:21 - Fact 5: The Default Mode Network\n2:53 - Fact 6: State-Dependent Memory\n3:21 - Fact 7: The Fight-Flight-Freeze Response\n3:51 - Fact 8: Safety Signals and Learned Helplessness\n4:21 - Fact 9: Avoidance Reinforcement Cycle\n4:52 - Fact 10: Interoception and Anxiety Sensitivity\n5:23 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
