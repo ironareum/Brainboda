@@ -1,188 +1,179 @@
 {
-  "title": "10 Dark Psychology Tactics That Control Your Mind Without You Knowing",
-  "thumbnail_hook": "Dark Psychology Exposed",
-  "hook": "People are being manipulated right now—and most of them have no idea it's happening. Your boss, your partner, even your best friend might be using psychological tricks that literally rewire how you think. So why is your brain so easy to hack?",
+  "title": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)",
+  "thumbnail_hook": "Your Brain Is Lying To You",
+  "hook": "You think you're making rational choices, but studies show your brain decides things *before* you're even aware of them. Every single day, invisible mental shortcuts hijack your judgment in ways you'd never suspect. So what's really going on inside your head when you think you're thinking?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 1: The Spotlight Effect. This is the belief that people are paying way more attention to you than they actually are—that you're the center of everyone's focus. Psychologist Thomas Gilovich discovered this in 1975 when he had students wear embarrassing t-shirts and overestimated how many people would notice. The dark twist? Manipulators weaponize this against you by making you feel constantly watched, judged, or paranoid. It keeps you small, obedient, and second-guessing yourself. Understanding this matters because toxic people rely on your own anxiety to control you—realizing most people aren't actually judging you is the first step to breaking free.",
+      "heading": "Belief Bias",
+      "narration": "Fact 1: Belief Bias. This is when you evaluate an argument's strength based on whether you already agree with the conclusion—not on its actual logic. Psychologist Jonathan Evans documented this in the 1980s. You'll accept terrible reasoning if it supports what you already believe, and reject brilliant logic if it contradicts you. This explains why two people can see the same evidence and reach opposite conclusions, and why arguing online rarely changes anyone's mind.",
       "search_keywords": [
-        "Spotlight Effect psychology",
-        "Thomas Gilovich",
-        "social anxiety psychology",
-        "manipulation tactics"
+        "belief bias",
+        "cognitive bias",
+        "Evans psychology"
       ],
-      "duration_est": 40,
-      "id": "the_spotlight_effect",
+      "duration_est": 30,
+      "id": "belief_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Backfire Effect",
-      "narration": "Fact 2: The Backfire Effect. When someone presents evidence that contradicts your beliefs, you don't change your mind—you actually hold your original belief even stronger. This phenomenon was initially proposed by researchers David Brendan and Brendan Nyhan in 2005. Dark psychologists use this by bombarding you with misinformation, knowing that when you try to fact-check them, your brain digs in harder. You become locked in your position, unable to escape their narrative. This matters because recognizing when you're being fed false information—and forcing yourself to genuinely listen—is your only defense against being trapped in someone else's reality.",
+      "heading": "Mere Exposure Effect",
+      "narration": "Fact 2: Mere Exposure Effect. The more you're exposed to something—a song, a face, a product—the more you tend to like it, even if nothing actually changed about it. Psychologist Robert Zajonc discovered this in 1968. You'll hear a song you hate the first time, but after hearing it fifty times, you genuinely enjoy it. This is why advertisers bombard you with the same ad repeatedly, and why your guilty pleasure music hits harder the more you listen.",
       "search_keywords": [
-        "Backfire Effect",
-        "confirmation bias",
-        "misinformation psychology",
-        "belief perseverance"
+        "mere exposure effect",
+        "Zajonc",
+        "familiarity bias"
       ],
-      "duration_est": 39,
-      "id": "the_backfire_effect",
+      "duration_est": 31,
+      "id": "mere_exposure_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Illusion of Transparency",
-      "narration": "Fact 3: The Illusion of Transparency. You assume other people can read your mind and understand your internal state better than they actually can—and manipulators exploit this by making you feel misunderstood when you're actually being clear. This cognitive bias, studied by psychologists Thomas Gilovich and David Dunning, makes you overestimate how obvious your emotions and intentions are to others. Dark operators weaponize this by gaslighting you: they claim they 'didn't know' how you felt, forcing you to over-explain, apologize, and eventually second-guess your own clarity. Recognizing that others genuinely can't read your mind helps you stop blaming yourself for their deliberate misinterpretations.",
+      "heading": "Curse of Knowledge",
+      "narration": "Fact 3: Curse of Knowledge. Once you know something, you literally can't remember what it felt like *not* to know it. Researchers Colin Camerer and others documented this phenomenon in the 1980s. Expert teachers assume concepts are obvious to beginners. Parents can't fathom why kids don't understand 'simple' things. This creates a communication gap where people struggle to explain their expertise, and newcomers feel stupider than they actually are.",
       "search_keywords": [
-        "Illusion of Transparency",
-        "cognitive bias",
-        "miscommunication psychology",
-        "mind reading assumption"
+        "curse of knowledge",
+        "Camerer",
+        "communication bias"
       ],
-      "duration_est": 41,
-      "id": "the_illusion_of_transparency",
+      "duration_est": 28,
+      "id": "curse_of_knowledge",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Sunk Cost Fallacy",
-      "narration": "Fact 4: The Sunk Cost Fallacy. You keep investing in something—time, money, energy—because you've already invested so much, not because it's actually worth your continued effort. Economist Richard Thaler first formalized this concept in 1980. Toxic people deliberately trap you with this: they make early investments in the relationship to make you feel obligated later, then slowly reveal their true nature. By the time you realize the relationship is toxic, you've already sunk years in, so you stay. Understanding sunk costs matters because it's the invisible chain keeping you in bad jobs, bad relationships, and bad situations—recognizing a loss early is always smarter than throwing good time after bad.",
+      "heading": "False Consensus Effect",
+      "narration": "Fact 4: False Consensus Effect. You overestimate how many people share your beliefs, values, and behaviors. Social psychologist Lee Ross identified this in 1977. You assume 'most people' think like you do, so you're shocked when you meet someone who doesn't. Politicians, activists, and viral posters all fall into this trap—they genuinely believe they represent the 'silent majority.' This bias makes you misjudge social reality and overestimate your normalcy.",
       "search_keywords": [
-        "Sunk Cost Fallacy",
-        "Richard Thaler",
-        "commitment psychology",
-        "toxic relationships"
+        "false consensus effect",
+        "Lee Ross",
+        "social bias"
       ],
-      "duration_est": 44,
-      "id": "the_sunk_cost_fallacy",
+      "duration_est": 28,
+      "id": "false_consensus_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Pratfall Effect",
-      "narration": "Fact 5: The Pratfall Effect. People like you more when you make mistakes—it makes you seem human and relatable. Psychologist Elliot Aronson discovered this in 1966. Manipulators weaponize this by deliberately showing their 'vulnerabilities' or admitting 'mistakes' early in a relationship to build false intimacy and trust. They're not actually broken; they're performing brokenness. Once you're emotionally invested, they stop pretending and reveal their true narcissistic nature. This matters because understanding when vulnerability is genuine versus performed helps you spot predators before they've already embedded themselves into your life and psyche.",
+      "heading": "Spotlight Effect",
+      "narration": "Fact 5: Spotlight Effect. You massively overestimate how much people notice or remember about you. Psychologists Thomas Gilovich and colleagues confirmed this in 2000. You spill coffee on yourself and feel like everyone's staring—but nobody cares. You say something awkward and replay it for weeks; your friends forgot it in minutes. This bias creates unnecessary social anxiety and makes you think you're far more memorable than you actually are.",
       "search_keywords": [
-        "Pratfall Effect",
-        "Elliot Aronson",
-        "vulnerability manipulation",
-        "false intimacy"
+        "spotlight effect",
+        "Gilovich",
+        "social anxiety bias"
       ],
-      "duration_est": 36,
-      "id": "the_pratfall_effect",
+      "duration_est": 28,
+      "id": "spotlight_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Declinism Bias",
-      "narration": "Fact 6: Declinism Bias. You have a deep, almost automatic belief that things used to be better and the world is getting worse—even when data says otherwise. This cognitive pattern was studied extensively by researchers like psychologist Roy Baumeister. Manipulators exploit this by constantly reminding you of 'the good old days' with them or 'when things were normal,' making you nostalgic for a false past that justifies staying in their orbit. They reframe present harm as a temporary downturn instead of the abuse it is. Recognizing this bias matters because it stops you from chasing a fantasy version of someone or a relationship that never actually existed.",
+      "heading": "Semmelweis Reflex",
+      "narration": "Fact 6: Semmelweis Reflex. This is the automatic rejection of new evidence that contradicts established beliefs or paradigms. Named after Ignaz Semmelweis, a 19th-century doctor whose hand-washing findings were rejected by the medical community. When facts threaten your worldview, your brain doesn't just dismiss them—it viscerally *resists* them. You feel threatened and defensive. This is why paradigm shifts take generations; the old guard must literally retire for new ideas to win.",
       "search_keywords": [
-        "Declinism bias",
-        "nostalgia manipulation",
-        "rosy retrospection",
-        "memory distortion"
+        "Semmelweis reflex",
+        "paradigm shift",
+        "resistance to change"
       ],
-      "duration_est": 43,
-      "id": "the_declinism_bias",
+      "duration_est": 28,
+      "id": "semmelweis_reflex",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The False Consensus Effect",
-      "narration": "Fact 7: The False Consensus Effect. You overestimate how many other people share your beliefs, values, and behaviors. First documented by psychologist Lee Ross in 1977, this bias makes you feel normal and validated. Manipulators use this by telling you 'everyone agrees with me,' 'everyone thinks you're the problem,' or 'everyone does what I'm asking'—which isolates you socially because you believe your perspective is now minority. When you're isolated and feel you're the only one who sees reality differently, you become dependent on the manipulator's version of truth. Knowing this bias helps you trust your gut instead of assuming you're the crazy one.",
+      "heading": "Hindsight Bias",
+      "narration": "Fact 7: Hindsight Bias. After an event happens, you convince yourself you 'knew it all along'—even when you couldn't have predicted it. Psychologist Baruch Fischhoff researched this extensively in the 1970s. You watch a sports replay and think the outcome was obvious. You review a failed relationship and insist the red flags were clear from day one. This bias makes you feel smarter than you are and blinds you to genuine uncertainty in the world.",
       "search_keywords": [
-        "False Consensus Effect",
-        "Lee Ross",
-        "social isolation psychology",
-        "groupthink"
+        "hindsight bias",
+        "Fischhoff",
+        "knew-it-all-along effect"
       ],
-      "duration_est": 41,
-      "id": "the_false_consensus_effect",
+      "duration_est": 30,
+      "id": "hindsight_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Exposure Effect (Mere Exposure Hypothesis)",
-      "narration": "Fact 8: The Exposure Effect. You like things more simply because you're exposed to them repeatedly—even if they're harmful. Psychologist Robert Zajonc discovered this in 1968. Abusers exploit this by consistently showing up, texting, calling, and inserting themselves into your daily life until their presence becomes familiar and therefore comforting, despite the toxicity. Your brain literally rewires to crave them because of exposure, not because they're good for you. This matters because understanding that familiarity creates false feelings of safety helps you recognize when you're being conditioned like a lab animal instead of being genuinely cared for.",
+      "heading": "Clustering Illusion",
+      "narration": "Fact 8: Clustering Illusion. Your brain sees patterns in random data and assumes they're meaningful. If you flip a coin six times and get three heads in a row, you feel like something's 'off'—but it's just randomness doing its thing. Psychologists Daniel Kahneman and Amos Tversky documented this in their groundbreaking work on human judgment. You see 'signs' in coincidences, find hidden messages in noise, and believe in lucky rituals because your brain is a pattern-detection machine that can't turn off.",
       "search_keywords": [
-        "Mere Exposure Effect",
-        "Robert Zajonc",
-        "conditioning psychology",
-        "familiarity bias"
+        "clustering illusion",
+        "Kahneman Tversky",
+        "pattern recognition bias"
       ],
-      "duration_est": 39,
-      "id": "the_exposure_effect_mere_exposure_hypothesis",
+      "duration_est": 32,
+      "id": "clustering_illusion",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "The Negativity Bias",
-      "narration": "Fact 9: Negativity Bias. Your brain weights negative experiences roughly twice as heavily as positive ones—a survival mechanism that now works against you. This asymmetry in attention was documented by psychologist Roy Baumeister and confirmed across thousands of studies. Manipulators create small traumas and deploy them strategically, knowing that one harsh word will outweigh ten compliments in your memory. They balance abuse with occasional kindness—just enough to keep you hoping for more good moments—while the negative imprint stays permanently lodged in your nervous system. Recognizing this bias helps you stop 'keeping score' in toxic relationships and see the pattern for what it actually is: harm.",
+      "heading": "Declinism",
+      "narration": "Fact 9: Declinism. You believe the past was better and the world is getting worse—even when objective data shows improvement. This isn't one researcher's term, but it's a well-documented cognitive tendency across cultures and generations. Every generation thought the next generation was doomed; every generation felt like they were living through a moral collapse. Yet life expectancy, literacy, and prosperity have generally risen. This bias makes you underestimate progress and oversestimate your era's uniqueness.",
       "search_keywords": [
-        "Negativity Bias",
-        "Roy Baumeister",
-        "trauma psychology",
-        "memory bias"
+        "declinism",
+        "nostalgia bias",
+        "pessimism"
       ],
-      "duration_est": 42,
-      "id": "the_negativity_bias",
+      "duration_est": 30,
+      "id": "declinism",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Authority Bias",
-      "narration": "Fact 10: Authority Bias. You comply with and trust authority figures—doctors, bosses, teachers—more readily than you should, often ignoring your own instincts. This bias was famously explored by psychologist Stanley Milgram in his obedience experiments in 1961. Dark psychologists exploit this by positioning themselves as experts, specialists, or authority figures in your life, making you doubt your own judgment when they contradict you. Teachers, therapists, and bosses with toxic traits weaponize their position to make abuse seem legitimate or necessary. Understanding this means learning to question authority, trust your gut, and remember that no title or credential justifies crossing your boundaries.",
+      "heading": "Hyperbolic Discounting",
+      "narration": "Fact 10: Hyperbolic Discounting. You value immediate rewards far more than future ones—irrationally so. Behavioral economists like George Ainslie studied this extensively starting in the 1970s. You'd rather have $5 today than $100 in a year, but you'd happily wait if both were pushed back by a year. Your brain treats 'now' as a special moment in time that deserves extreme preference. This explains why you binge-eat, procrastinate, and struggle to save money despite knowing the long-term cost.",
       "search_keywords": [
-        "Authority Bias",
-        "Stanley Milgram",
-        "obedience experiments",
-        "toxic authority figures"
+        "hyperbolic discounting",
+        "Ainslie",
+        "temporal discounting",
+        "delay of gratification"
       ],
-      "duration_est": 40,
-      "id": "the_authority_bias",
+      "duration_est": 31,
+      "id": "hyperbolic_discounting",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "You've just learned ten psychological weapons people use without you even knowing it. Drop a comment: which one hit hardest? Which one have you seen in your own life? Subscribe and turn on notifications because we're dropping a deep dive on how to actually protect yourself from these tactics next week. Your mind is your superpower—don't let anyone else control it.",
+  "outro": "Your brain is *designed* to take shortcuts—they usually save your life. But they also trap you. Drop a comment: which bias hit you the hardest? Did you see yourself in one of these? And if you want your mind blown weekly, hit subscribe and turn on notifications. Because understanding how your brain lies to you is the first step to thinking clearer.",
   "tags": [
-    "dark psychology",
-    "psychology facts",
     "cognitive biases",
-    "manipulation tactics",
-    "mental manipulation",
-    "psychological tricks",
-    "toxic people",
-    "abuse psychology",
-    "mind control",
-    "behavioral psychology",
-    "persuasion psychology",
-    "narcissism",
-    "emotional manipulation",
-    "psychology explained",
-    "brain psychology",
+    "psychology",
     "decision making",
     "human behavior",
-    "relationships",
-    "psychology documentary",
+    "mental shortcuts",
+    "psychology explained",
+    "thinking errors",
+    "belief bias",
+    "mere exposure effect",
+    "curse of knowledge",
+    "false consensus effect",
+    "spotlight effect",
+    "Semmelweis reflex",
+    "hindsight bias",
+    "clustering illusion",
+    "hyperbolic discounting",
+    "cognitive psychology",
+    "brain science",
+    "educational",
     "Brainboda"
   ],
   "type": "main",
-  "created_at": "2026-07-21T10:28:54",
+  "created_at": "2026-07-26T10:04:58",
   "ai_generated": true,
-  "theme": "dark psychology",
+  "theme": "cognitive biases",
   "hook_duration_est": 20,
-  "outro_duration_est": 24,
-  "total_duration_est": 449,
-  "description": "10 Dark Psychology Tactics That Control Your Mind Without You Knowing\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Spotlight Effect\n1:00 - Fact 2: The Backfire Effect\n1:39 - Fact 3: The Illusion of Transparency\n2:20 - Fact 4: The Sunk Cost Fallacy\n3:04 - Fact 5: The Pratfall Effect\n3:40 - Fact 6: The Declinism Bias\n4:23 - Fact 7: The False Consensus Effect\n5:04 - Fact 8: The Exposure Effect (Mere Exposure Hypothesis)\n5:43 - Fact 9: The Negativity Bias\n6:25 - Fact 10: The Authority Bias\n7:05 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 25,
+  "total_duration_est": 341,
+  "description": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Belief Bias\n0:50 - Fact 2: Mere Exposure Effect\n1:21 - Fact 3: Curse of Knowledge\n1:49 - Fact 4: False Consensus Effect\n2:17 - Fact 5: Spotlight Effect\n2:45 - Fact 6: Semmelweis Reflex\n3:13 - Fact 7: Hindsight Bias\n3:43 - Fact 8: Clustering Illusion\n4:15 - Fact 9: Declinism\n4:45 - Fact 10: Hyperbolic Discounting\n5:16 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
