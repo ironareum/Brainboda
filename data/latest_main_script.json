@@ -1,179 +1,189 @@
 {
-  "title": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)",
-  "thumbnail_hook": "Your Brain Is Lying To You",
-  "hook": "You think you're making rational choices, but studies show your brain decides things *before* you're even aware of them. Every single day, invisible mental shortcuts hijack your judgment in ways you'd never suspect. So what's really going on inside your head when you think you're thinking?",
+  "title": "10 Ways Social Influence Controls Your Life (Without You Noticing)",
+  "thumbnail_hook": "They're Controlling Your Brain",
+  "hook": "Right now, you're probably wearing clothes that match what you saw online this morning—and you don't even realize someone engineered that choice. Every major decision you've made today has been nudged by invisible social forces working in the background. So why is your brain so vulnerable to what other people want?",
   "facts": [
     {
       "n": 1,
-      "heading": "Belief Bias",
-      "narration": "Fact 1: Belief Bias. This is when you evaluate an argument's strength based on whether you already agree with the conclusion—not on its actual logic. Psychologist Jonathan Evans documented this in the 1980s. You'll accept terrible reasoning if it supports what you already believe, and reject brilliant logic if it contradicts you. This explains why two people can see the same evidence and reach opposite conclusions, and why arguing online rarely changes anyone's mind.",
+      "heading": "The Spotlight Effect",
+      "narration": "Fact 1: The Spotlight Effect. Psychologist Thomas Gilovich discovered in the 1980s that we massively overestimate how much other people notice our appearance, mistakes, or embarrassing moments. You feel like everyone's staring at your bad haircut—but most people barely registered it. This happens because we're trapped inside our own heads, and our mistakes feel huge to us. Understanding this reshapes how you interact in social situations: once you realize nobody's judging as harshly as you fear, you become bolder, more authentic, and way less anxious around others.",
       "search_keywords": [
-        "belief bias",
-        "cognitive bias",
-        "Evans psychology"
+        "Spotlight Effect",
+        "Thomas Gilovich",
+        "social anxiety psychology",
+        "overestimation bias"
       ],
-      "duration_est": 30,
-      "id": "belief_bias",
+      "duration_est": 35,
+      "id": "the_spotlight_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Mere Exposure Effect",
-      "narration": "Fact 2: Mere Exposure Effect. The more you're exposed to something—a song, a face, a product—the more you tend to like it, even if nothing actually changed about it. Psychologist Robert Zajonc discovered this in 1968. You'll hear a song you hate the first time, but after hearing it fifty times, you genuinely enjoy it. This is why advertisers bombard you with the same ad repeatedly, and why your guilty pleasure music hits harder the more you listen.",
+      "heading": "The Backfire Effect",
+      "narration": "Fact 2: The Backfire Effect. When you directly contradict someone's deeply held belief with facts, they don't shift their view—they double down. Researchers like Brendan Nyhan and Jason Reifler documented this across political, health, and safety beliefs. Your brain treats opposing evidence as a threat, so it actually strengthens your original conviction instead of weakening it. This is brutal when trying to influence anyone: aggressive facts often fail. Recognizing this changes how you debate, persuade friends, or change minds—subtle reframing beats head-on contradiction every single time.",
       "search_keywords": [
-        "mere exposure effect",
-        "Zajonc",
-        "familiarity bias"
+        "Backfire Effect",
+        "Brendan Nyhan",
+        "belief perseverance",
+        "confirmation bias extreme"
       ],
-      "duration_est": 31,
-      "id": "mere_exposure_effect",
+      "duration_est": 34,
+      "id": "the_backfire_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "Curse of Knowledge",
-      "narration": "Fact 3: Curse of Knowledge. Once you know something, you literally can't remember what it felt like *not* to know it. Researchers Colin Camerer and others documented this phenomenon in the 1980s. Expert teachers assume concepts are obvious to beginners. Parents can't fathom why kids don't understand 'simple' things. This creates a communication gap where people struggle to explain their expertise, and newcomers feel stupider than they actually are.",
+      "heading": "Mere Exposure Effect",
+      "narration": "Fact 3: The Mere Exposure Effect. Psychologist Robert Zajonc proved that the more times you see something—a face, a song, a brand logo—the more you like it, even without conscious awareness. Advertisers weaponize this ruthlessly: repeated exposure to a product makes you feel attachment to it, not because it's objectively better, but because familiarity breeds comfort. Your brain mistakes 'I've seen this before' for 'this is good.' This explains why you can't escape jingles from ads you hate, and why your favorite influencer's product starts looking genuinely appealing after their fifth mention.",
       "search_keywords": [
-        "curse of knowledge",
-        "Camerer",
-        "communication bias"
+        "Mere Exposure Effect",
+        "Robert Zajonc",
+        "repetition advertising",
+        "familiarity preference"
       ],
-      "duration_est": 28,
-      "id": "curse_of_knowledge",
+      "duration_est": 37,
+      "id": "mere_exposure_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "False Consensus Effect",
-      "narration": "Fact 4: False Consensus Effect. You overestimate how many people share your beliefs, values, and behaviors. Social psychologist Lee Ross identified this in 1977. You assume 'most people' think like you do, so you're shocked when you meet someone who doesn't. Politicians, activists, and viral posters all fall into this trap—they genuinely believe they represent the 'silent majority.' This bias makes you misjudge social reality and overestimate your normalcy.",
+      "heading": "The Illusion of Transparency",
+      "narration": "Fact 4: The Illusion of Transparency. You believe your intentions, emotions, and inner thoughts are more obvious to others than they actually are—and simultaneously, you overestimate how well you understand what others are thinking. Psychologists including Thomas Gilovich documented this asymmetric blind spot. You think your sarcasm is crystal clear, but it lands as genuine rudeness. You assume your crush knows you're interested when you've barely signaled anything. This creates cascading social misunderstandings that people then influence to their advantage by filling in blanks with their own narratives, letting them steer conversations you thought you were controlling.",
       "search_keywords": [
+        "Illusion of Transparency",
         "false consensus effect",
-        "Lee Ross",
-        "social bias"
+        "mind reading bias",
+        "social miscommunication"
       ],
-      "duration_est": 28,
-      "id": "false_consensus_effect",
+      "duration_est": 39,
+      "id": "the_illusion_of_transparency",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Spotlight Effect",
-      "narration": "Fact 5: Spotlight Effect. You massively overestimate how much people notice or remember about you. Psychologists Thomas Gilovich and colleagues confirmed this in 2000. You spill coffee on yourself and feel like everyone's staring—but nobody cares. You say something awkward and replay it for weeks; your friends forgot it in minutes. This bias creates unnecessary social anxiety and makes you think you're far more memorable than you actually are.",
+      "heading": "The False Consensus Effect",
+      "narration": "Fact 5: The False Consensus Effect. You assume that most people share your beliefs, values, and behaviors more than they actually do. If you like indie music, you overestimate how many others do too. If you're introverted, you think introversion is the norm. Lee Ross and Constance Stillinger found this bias operates across every demographic and belief system. Influencers and social media exploit this mercilessly: they show you a curated minority acting like a majority, and your brain accepts it. Understanding this inoculates you against falling for manufactured trends and recognizing when you're being sold a false 'everyone's doing this' narrative.",
       "search_keywords": [
-        "spotlight effect",
-        "Gilovich",
-        "social anxiety bias"
+        "False Consensus Effect",
+        "Lee Ross",
+        "bias blind spot",
+        "social norm manipulation"
       ],
-      "duration_est": 28,
-      "id": "spotlight_effect",
+      "duration_est": 40,
+      "id": "the_false_consensus_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "Semmelweis Reflex",
-      "narration": "Fact 6: Semmelweis Reflex. This is the automatic rejection of new evidence that contradicts established beliefs or paradigms. Named after Ignaz Semmelweis, a 19th-century doctor whose hand-washing findings were rejected by the medical community. When facts threaten your worldview, your brain doesn't just dismiss them—it viscerally *resists* them. You feel threatened and defensive. This is why paradigm shifts take generations; the old guard must literally retire for new ideas to win.",
+      "heading": "Scarcity and Urgency Principle",
+      "narration": "Fact 6: Scarcity and Urgency Principle. Limited availability triggers primal fear of missing out—and scarcity itself makes things seem more valuable, independent of actual quality. Retailers use 'Only 3 left in stock!' and 'Sale ends tonight!' to bypass rational thinking. Robert Cialdini documented how scarcity taps into loss aversion: we feel the pain of losing something more intensely than the pleasure of gaining it. This is why 'limited edition' creates frenzy and flash sales work. Recognizing this tactic in the wild—marketing language designed to bypass your prefrontal cortex—gives you permission to pause and actually evaluate whether you want something or you're just panicking.",
       "search_keywords": [
-        "Semmelweis reflex",
-        "paradigm shift",
-        "resistance to change"
+        "Scarcity Principle",
+        "urgency marketing",
+        "loss aversion",
+        "FOMO exploitation"
       ],
-      "duration_est": 28,
-      "id": "semmelweis_reflex",
+      "duration_est": 41,
+      "id": "scarcity_and_urgency_principle",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "Hindsight Bias",
-      "narration": "Fact 7: Hindsight Bias. After an event happens, you convince yourself you 'knew it all along'—even when you couldn't have predicted it. Psychologist Baruch Fischhoff researched this extensively in the 1970s. You watch a sports replay and think the outcome was obvious. You review a failed relationship and insist the red flags were clear from day one. This bias makes you feel smarter than you are and blinds you to genuine uncertainty in the world.",
+      "heading": "The Contrast Effect",
+      "narration": "Fact 7: The Contrast Effect. You judge things not in absolute terms, but relative to what you've just seen. Show someone an ugly sweater first, then a mediocre one—suddenly that mediocre sweater looks decent. Psychologists have documented this across pricing, attractiveness, personality, and effort perception. Retailers strategically position products: the 'premium' option suddenly looks like great value next to the 'ultra-premium.' Dating profiles use this—post a bad photo first, then a good one, and the good one lands harder. Understanding contrast lets you strip away the manipulation and evaluate things on their own merit instead of being yanked around by strategic sequencing.",
       "search_keywords": [
-        "hindsight bias",
-        "Fischhoff",
-        "knew-it-all-along effect"
+        "Contrast Effect",
+        "relativity bias",
+        "anchoring manipulation",
+        "reference point bias"
       ],
-      "duration_est": 30,
-      "id": "hindsight_bias",
+      "duration_est": 41,
+      "id": "the_contrast_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "Clustering Illusion",
-      "narration": "Fact 8: Clustering Illusion. Your brain sees patterns in random data and assumes they're meaningful. If you flip a coin six times and get three heads in a row, you feel like something's 'off'—but it's just randomness doing its thing. Psychologists Daniel Kahneman and Amos Tversky documented this in their groundbreaking work on human judgment. You see 'signs' in coincidences, find hidden messages in noise, and believe in lucky rituals because your brain is a pattern-detection machine that can't turn off.",
+      "heading": "Emotional Contagion",
+      "narration": "Fact 8: Emotional Contagion. Your emotions aren't private—they spread to people around you like a virus, often without words or intention. When you're anxious, people nearby absorb that anxiety. When you're energized, others catch the energy. Researchers including psychologist Elaine Hatfield found this happens through unconscious mimicry of facial expressions, tone, and body language. This is why charismatic people dominate rooms: their emotional state is so contagious, others follow. This matters because it means you're not immune to emotional manipulation in crowds, rallies, or viral content—your brain syncs with the mood around you before logic even boots up.",
       "search_keywords": [
-        "clustering illusion",
-        "Kahneman Tversky",
-        "pattern recognition bias"
+        "Emotional Contagion",
+        "Elaine Hatfield",
+        "mood transfer",
+        "mirror neurons emotion"
       ],
-      "duration_est": 32,
-      "id": "clustering_illusion",
+      "duration_est": 39,
+      "id": "emotional_contagion",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Declinism",
-      "narration": "Fact 9: Declinism. You believe the past was better and the world is getting worse—even when objective data shows improvement. This isn't one researcher's term, but it's a well-documented cognitive tendency across cultures and generations. Every generation thought the next generation was doomed; every generation felt like they were living through a moral collapse. Yet life expectancy, literacy, and prosperity have generally risen. This bias makes you underestimate progress and oversestimate your era's uniqueness.",
+      "heading": "The Pratfall Effect",
+      "narration": "Fact 9: The Pratfall Effect. When someone makes a minor mistake or shows vulnerability, they become more likable and trustworthy—not less. Psychologist Elliot Aronson discovered this counterintuitive principle: perfection is intimidating, but relatable flaws are magnetic. This is why celebrities who admit struggles gain devoted followings, why slightly awkward social media confessions outperform polished posts. Influencers leverage this by 'authentically' admitting failures they've actually carefully curated. Knowing this helps you spot when vulnerability is genuine versus weaponized for influence, and it also frees you to be less perfect yourself—because your small failures actually make you more persuasive.",
       "search_keywords": [
-        "declinism",
-        "nostalgia bias",
-        "pessimism"
+        "Pratfall Effect",
+        "Elliot Aronson",
+        "vulnerability likability",
+        "authentic imperfection"
       ],
-      "duration_est": 30,
-      "id": "declinism",
+      "duration_est": 39,
+      "id": "the_pratfall_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Hyperbolic Discounting",
-      "narration": "Fact 10: Hyperbolic Discounting. You value immediate rewards far more than future ones—irrationally so. Behavioral economists like George Ainslie studied this extensively starting in the 1970s. You'd rather have $5 today than $100 in a year, but you'd happily wait if both were pushed back by a year. Your brain treats 'now' as a special moment in time that deserves extreme preference. This explains why you binge-eat, procrastinate, and struggle to save money despite knowing the long-term cost.",
+      "heading": "In-Group Bias and Minimal Group Paradigm",
+      "narration": "Fact 10: In-Group Bias and the Minimal Group Paradigm. You favor people in your group—even when the group is assigned randomly and meaningless. Henri Tajfel's groundbreaking Minimal Group Paradigm showed that arbitrarily dividing people into groups (by coin flip, favorite color, or random number) instantly creates tribal loyalty and discrimination against out-groups. This is why sports fans hate opposing teams irrationally, why online communities become hostile to outsiders, and why political identity calcifies into us-versus-them. Social influencers and movements exploit this by creating artificial in-groups—'we're the enlightened ones' or 'real fans do X'—triggering your tribal instincts. Recognizing this bias is your shield against being weaponized by group identity.",
       "search_keywords": [
-        "hyperbolic discounting",
-        "Ainslie",
-        "temporal discounting",
-        "delay of gratification"
+        "In-Group Bias",
+        "Minimal Group Paradigm",
+        "Henri Tajfel",
+        "tribalism psychology",
+        "out-group discrimination"
       ],
-      "duration_est": 31,
-      "id": "hyperbolic_discounting",
+      "duration_est": 43,
+      "id": "in_group_bias_and_minimal_group_paradigm",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain is *designed* to take shortcuts—they usually save your life. But they also trap you. Drop a comment: which bias hit you the hardest? Did you see yourself in one of these? And if you want your mind blown weekly, hit subscribe and turn on notifications. Because understanding how your brain lies to you is the first step to thinking clearer.",
+  "outro": "Which of these hit you hardest? Drop a comment about a time you realized you'd fallen for one of these influence traps—without even knowing it. And if your brain feels hijacked right now, that's the point. Subscribe so you can see these invisible forces coming before they pull you around.",
   "tags": [
-    "cognitive biases",
+    "social influence",
     "psychology",
-    "decision making",
-    "human behavior",
-    "mental shortcuts",
-    "psychology explained",
-    "thinking errors",
-    "belief bias",
-    "mere exposure effect",
-    "curse of knowledge",
-    "false consensus effect",
-    "spotlight effect",
-    "Semmelweis reflex",
-    "hindsight bias",
-    "clustering illusion",
-    "hyperbolic discounting",
-    "cognitive psychology",
+    "manipulation tactics",
+    "cognitive biases",
     "brain science",
-    "educational",
-    "Brainboda"
+    "behavioral psychology",
+    "influence science",
+    "persuasion psychology",
+    "Robert Zajonc",
+    "Thomas Gilovich",
+    "Brendan Nyhan",
+    "Lee Ross",
+    "Elliot Aronson",
+    "Henri Tajfel",
+    "Elaine Hatfield",
+    "social psychology",
+    "why people do things",
+    "decision making",
+    "marketing psychology",
+    "brainboda"
   ],
   "type": "main",
-  "created_at": "2026-07-26T10:04:58",
+  "created_at": "2026-07-28T10:40:17",
   "ai_generated": true,
-  "theme": "cognitive biases",
+  "theme": "social influence",
   "hook_duration_est": 20,
-  "outro_duration_est": 25,
-  "total_duration_est": 341,
-  "description": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Belief Bias\n0:50 - Fact 2: Mere Exposure Effect\n1:21 - Fact 3: Curse of Knowledge\n1:49 - Fact 4: False Consensus Effect\n2:17 - Fact 5: Spotlight Effect\n2:45 - Fact 6: Semmelweis Reflex\n3:13 - Fact 7: Hindsight Bias\n3:43 - Fact 8: Clustering Illusion\n4:15 - Fact 9: Declinism\n4:45 - Fact 10: Hyperbolic Discounting\n5:16 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 20,
+  "total_duration_est": 428,
+  "description": "10 Ways Social Influence Controls Your Life (Without You Noticing)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Spotlight Effect\n0:55 - Fact 2: The Backfire Effect\n1:29 - Fact 3: Mere Exposure Effect\n2:06 - Fact 4: The Illusion of Transparency\n2:45 - Fact 5: The False Consensus Effect\n3:25 - Fact 6: Scarcity and Urgency Principle\n4:06 - Fact 7: The Contrast Effect\n4:47 - Fact 8: Emotional Contagion\n5:26 - Fact 9: The Pratfall Effect\n6:05 - Fact 10: In-Group Bias and Minimal Group Paradigm\n6:48 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
