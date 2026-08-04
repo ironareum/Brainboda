@@ -1,188 +1,188 @@
 {
-  "title": "10 Manipulation Tactics Your Brain Falls For Every Day",
-  "thumbnail_hook": "They're Weaponizing Your Brain",
-  "hook": "Marketers spend billions annually on techniques that hijack your decision-making before you even realize it's happening. Most of us think we're rational—but the science says otherwise. So what psychological tricks are being used against you right now?",
+  "title": "10 Memory Hacks That Break Everything You Know About Learning",
+  "thumbnail_hook": "Your Brain Is Lying To You",
+  "hook": "Your brain rewrites your memories every single time you recall them—and you have no idea it's happening. Neuroscientists call this the ultimate betrayal of consciousness. But here's the kicker: understanding *why* your brain does this could transform how you learn, study, and remember what actually matters. So why does your brain sabotage its own memories?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Declinism Bias",
-      "narration": "Fact 1: Declinism Bias. This is our tendency to believe things were better in the past and that society is getting worse. Psychologist Roy Baumeister documented how people systematically overweight negative news and underweight positive progress. We see one crime story and forget that violent crime rates have plummeted globally. Marketers exploit this by selling us 'solutions to problems we're nostalgic about'—premium versions of old products framed as 'getting back to basics.' Understanding this bias helps you question whether your urge to buy something 'classic' or 'authentic' is genuine preference or manipulation.",
+      "heading": "Reconsolidation",
+      "narration": "Fact 1: Reconsolidation. Every time you remember something, your brain doesn't just retrieve it—it rewrites it. Neuroscientists discovered that memories become temporarily unstable when recalled, allowing new information to blend in before being stored again. This was first demonstrated in detailed studies by James McGaugh and his team in the 1990s. Your memory isn't a video recording; it's a story your brain reconstructs each time you tell it, mixing in emotions, context, and new details you've learned since. This explains why eyewitness testimony is so unreliable in court—your brain genuinely believes the modified version.",
       "search_keywords": [
-        "declinism bias",
-        "nostalgia marketing",
-        "Roy Baumeister",
-        "negative bias"
+        "reconsolidation",
+        "memory reconsolidation neuroscience",
+        "James McGaugh",
+        "memory rewriting brain"
       ],
-      "duration_est": 37,
-      "id": "the_declinism_bias",
+      "duration_est": 38,
+      "id": "reconsolidation",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Commitment and Consistency Principle",
-      "narration": "Fact 2: Commitment and Consistency Principle. Robert Cialdini discovered that once we commit to something—even something small—we're psychologically driven to stay consistent with that commitment. Sign a petition and you're more likely to donate money later. Say 'yes' to a small favor and you'll say 'yes' to bigger ones. Your brain craves internal consistency, and manipulators know this. They get your small commitment first, then leverage it into major decisions without you realizing the escalation happened. This matters because recognizing when you've been 'soft committed' gives you the power to pause and reassess.",
+      "heading": "The Illusion of Explanatory Depth",
+      "narration": "Fact 2: The Illusion of Explanatory Depth. You feel like you understand how a zipper works, how photosynthesis happens, or how the economy functions—until someone asks you to explain it in detail. Psychologist Leonid Rozenblit and Frank Keil coined this term after finding that people massively overestimate their understanding of complex systems. Your brain creates a *feeling* of comprehension without actually building the knowledge. This is why cramming feels productive but doesn't stick—you're confusing familiarity with understanding.",
       "search_keywords": [
-        "commitment and consistency",
-        "Robert Cialdini",
-        "foot-in-door",
-        "consistency principle"
+        "illusion of explanatory depth",
+        "Rozenblit Keil",
+        "feeling of understanding",
+        "learning illusion"
       ],
-      "duration_est": 37,
-      "id": "the_commitment_and_consistency_principle",
+      "duration_est": 31,
+      "id": "the_illusion_of_explanatory_depth",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Default Effect",
-      "narration": "Fact 3: The Default Effect. Researcher William Samuelson found that people disproportionately stick with pre-set options, even when better alternatives exist. Insurance companies, phone plans, and software all exploit this—they set defaults knowing most users won't change them. We tell ourselves we'll compare options later, but we don't. Tech companies have weaponized this: opt-out systems get higher engagement than opt-in systems. Your passivity becomes their profit. Awareness of this bias means actively questioning 'defaults' instead of accepting them as natural or optimal choices.",
+      "heading": "The Primacy Effect",
+      "narration": "Fact 3: The Primacy Effect. Information you encounter first gets weighted far more heavily in your memory and judgment than information that comes later. This was extensively documented by psychologist Solomon Asch in the 1940s through his conformity and impression-formation studies. The first facts you learn about someone, a topic, or a product tend to dominate your thinking, even when contradicted by stronger evidence later. This is why first impressions feel permanent and why the opening paragraph of an article shapes everything you read afterward—your brain already made its decision.",
       "search_keywords": [
-        "default effect",
-        "William Samuelson",
-        "opt-out bias",
-        "inertia"
+        "primacy effect",
+        "Solomon Asch",
+        "first impression bias",
+        "order effect memory"
       ],
-      "duration_est": 33,
-      "id": "the_default_effect",
+      "duration_est": 36,
+      "id": "the_primacy_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 4: The Spotlight Effect. Psychologist Thomas Gilovich documented that we massively overestimate how much others notice or care about our appearance or mistakes. You wear an unflattering shirt and feel exposed; in reality, people barely register it. This makes us vulnerable to shame-based marketing—companies sell us 'solutions' to problems nobody else sees. Insecurity products, social status items, and 'upgrade' marketing all prey on this distorted self-awareness. Recognizing the spotlight effect deflates the anxiety that makes you buy things you don't actually need.",
+      "heading": "Cryptomnesia",
+      "narration": "Fact 4: Cryptomnesia. You can unconsciously absorb information and later produce it as your own original thought, completely unaware you'd seen it before. Psychologist Frederic Bartlett documented this phenomenon extensively. A melody, a joke, or a creative idea you think is yours might be a memory your brain suppressed the source of—leaving only the content. This isn't dishonesty; it's a genuine gap in your awareness. Many accidental plagiarism cases, artist similarities, and 'independent discoveries' are actually cryptomnesia at work.",
       "search_keywords": [
-        "spotlight effect",
-        "Thomas Gilovich",
-        "overestimation bias",
-        "self-consciousness"
+        "cryptomnesia",
+        "Frederic Bartlett",
+        "unconscious plagiarism",
+        "source amnesia"
       ],
-      "duration_est": 33,
-      "id": "the_spotlight_effect",
+      "duration_est": 32,
+      "id": "cryptomnesia",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Mere Exposure Effect",
-      "narration": "Fact 5: The Mere Exposure Effect. Psychologist Robert Zajonc discovered that repeated exposure to something makes us like it more—even if we don't consciously remember seeing it. You hear a song ten times and suddenly love it. A brand appears everywhere and feels trustworthy. Advertisers weaponize this relentlessly: saturation campaigns work not because they're compelling, but because familiarity breeds preference. Your brain mistakes 'I've seen this before' for 'this must be good.' This is why blocking ads isn't enough—understanding that mere repetition is a persuasion tool helps you critically evaluate whether you actually want something.",
+      "heading": "The Levels-of-Processing Effect",
+      "narration": "Fact 5: The Levels-of-Processing Effect. How deeply you *think* about information determines whether you remember it—not how many times you read it. Fergus Craik and Robert Lockhart introduced this in 1972, showing that asking yourself meaningful questions about material creates stronger memories than passive repetition. If you're studying for a test but just highlighting text, you're not processing deeply. You have to engage your brain by connecting ideas, asking 'why,' and finding personal meaning. Shallow reading = shallow memory.",
       "search_keywords": [
-        "mere exposure effect",
-        "Robert Zajonc",
-        "familiarity bias",
-        "repetition marketing"
+        "levels of processing",
+        "Craik Lockhart",
+        "deep processing learning",
+        "encoding depth memory"
       ],
-      "duration_est": 38,
-      "id": "the_mere_exposure_effect",
+      "duration_est": 32,
+      "id": "the_levels_of_processing_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Framing Effect",
-      "narration": "Fact 6: The Framing Effect. Economists Amos Tversky and Daniel Kahneman showed that how information is presented shapes our decisions more than the information itself. A surgery with '90% survival rate' feels safer than one with '10% mortality rate'—same statistic, opposite psychological impact. Manipulators frame everything to their advantage: 'limited time offer' versus 'available whenever you want,' 'join thousands' versus 'still 40% of people don't use this.' The frame hijacks your reasoning. Recognizing framing as a tactic means you learn to flip language and ask: what would the opposite frame look like?",
+      "heading": "Semantic Satiation",
+      "narration": "Fact 6: Semantic Satiation. Say a word over and over. After about 15-30 repetitions, it stops meaning anything—it becomes just a sound. Psychologist Leon Jakobovits named this effect in 1962. Your brain's neural response to that word literally fatigues, and meaning disappears temporarily. This is why cramming the same fact repeatedly feels productive but actually exhausts your brain's ability to process that information. Your neurons need *rest* between learning sessions, not repetition without breaks.",
       "search_keywords": [
-        "framing effect",
-        "Tversky Kahneman",
-        "linguistic framing",
-        "decision architecture"
+        "semantic satiation",
+        "Leon Jakobovits",
+        "word repetition brain fatigue",
+        "neural adaptation memory"
       ],
-      "duration_est": 37,
-      "id": "the_framing_effect",
+      "duration_est": 30,
+      "id": "semantic_satiation",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Availability Heuristic",
-      "narration": "Fact 7: The Availability Heuristic. Daniel Kahneman and Amos Tversky discovered that we judge probability and risk based on how easily examples come to mind. See a plane crash on the news and you overestimate flight danger. Hear one success story and assume a business is booming. Manipulators exploit this by flooding your feed with testimonials, before-and-after photos, and viral 'wins.' The stuff that's recent and vivid feels representative, even if it's cherry-picked. Understanding this means you demand base rates and statistical evidence instead of trusting the memorable anecdotes companies feed you.",
+      "heading": "The Representativeness Heuristic",
+      "narration": "Fact 7: The Representativeness Heuristic. Your brain judges probability and likelihood based on how well something *fits a pattern*, not actual statistical reality. Psychologists Daniel Kahneman and Amos Tversky mapped this bias in the 1970s. If someone fits the 'stereotype' of a lawyer, you assume they're more likely to be a lawyer, even if lawyers are statistically rare. When learning, this means you remember vivid, pattern-matching examples far better than accurate data—and you often draw false conclusions. Your memory prioritizes narrative fit over truth.",
       "search_keywords": [
-        "availability heuristic",
-        "Daniel Kahneman",
-        "mental availability",
-        "risk perception"
+        "representativeness heuristic",
+        "Kahneman Tversky",
+        "pattern matching bias",
+        "stereotype memory"
       ],
-      "duration_est": 37,
-      "id": "the_availability_heuristic",
+      "duration_est": 34,
+      "id": "the_representativeness_heuristic",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Dunning-Kruger Effect",
-      "narration": "Fact 8: Dunning-Kruger Effect. Psychologists David Dunning and Justin Kruger found that people with low knowledge in a domain overestimate their expertise, while experts underestimate theirs. A novice investor feels confident in their stock picks; a seasoned analyst second-guesses every move. Manipulators exploit this by selling 'easy solutions' to complex problems—crypto schemes, diet pills, life-hack courses—targeting people too inexperienced to know what they don't know. The humbling part: you probably can't tell when you're in the Dunning-Kruger zone. This is why expert opinion and healthy skepticism matter more than your gut confidence.",
+      "heading": "Proactive Interference",
+      "narration": "Fact 8: Proactive Interference. Information you learned *in the past* blocks your ability to learn new, similar information—the old interferes with the new. This is the opposite of retroactive interference and was extensively studied in memory research throughout the 20th century. If you're bilingual, you might struggle to learn a third language similar to your first because your brain defaults to existing patterns. In school, students who learned outdated science facts sometimes struggle to unlearn them. Your brain locks in established pathways and resists rewiring.",
       "search_keywords": [
-        "Dunning-Kruger effect",
-        "David Dunning",
-        "overconfidence bias",
-        "expertise illusion"
+        "proactive interference",
+        "memory interference",
+        "old learning blocks new",
+        "interference theory"
       ],
-      "duration_est": 37,
-      "id": "the_dunning_kruger_effect",
+      "duration_est": 34,
+      "id": "proactive_interference",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "The False Consensus Effect",
-      "narration": "Fact 9: False Consensus Effect. Psychologist Lee Ross discovered that we assume our beliefs, values, and behaviors are more widespread than they actually are. You think most people share your diet habits, political views, or spending patterns—they don't. This makes 'bandwagon' marketing devastatingly effective: 'everyone's switching to X,' 'most people believe Y,' 'join the majority.' You assume the crowd is larger and more aligned with you than reality. Manipulators phrase campaigns as inevitable mainstream movements to make outlier products feel normal. Questioning whether 'everyone really does this' inoculates you against false consensus exploitation.",
+      "heading": "The Curiosity Gap",
+      "narration": "Fact 9: The Curiosity Gap. Your brain is obsessively drawn to incomplete information. When you recognize a gap between what you know and what you want to know, curiosity drives memory formation powerfully. Psychologist George Loewenstein formalized this as 'information gap theory' in 1994. Cliffhangers, mysteries, and unanswered questions hijack your attention and encoding because your brain sees learning as a way to *close* the gap. This is why spoilers kill enjoyment—the curiosity gap disappears. Effective learning exploits this: raise questions before providing answers.",
       "search_keywords": [
-        "false consensus effect",
-        "Lee Ross",
-        "bandwagon effect",
-        "group conformity"
+        "curiosity gap",
+        "George Loewenstein",
+        "information gap theory",
+        "curiosity driven learning"
       ],
-      "duration_est": 37,
-      "id": "the_false_consensus_effect",
+      "duration_est": 34,
+      "id": "the_curiosity_gap",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Dark Pattern: Roach Motel",
-      "narration": "Fact 10: Roach Motel (Dark Pattern). The term 'roach motel' was coined by UX researcher Harry Brignull to describe interfaces designed to make signing up easy but cancellation deliberately hard. You can subscribe with one click; canceling requires navigating phone menus, finding hidden buttons, or contacting support. Gyms, subscriptions, and software thrive on this asymmetry. It's not a bug—it's architectural manipulation. The Federal Trade Commission has increasingly targeted these dark patterns, but they persist. Recognizing roach motel design means you pause before 'easy' sign-ups and always find the exit before entering.",
+      "heading": "Hindsight Bias (The 'I Knew It All Along' Effect)",
+      "narration": "Fact 10: Hindsight Bias. After something happens, your brain unconsciously rewrites history to make the outcome seem inevitable and obvious—even though you couldn't have predicted it beforehand. Psychologist Baruch Fischhoff documented this extensively in the 1970s. This destroys effective learning because you mistake familiarity with past events for understanding of present situations. After an exam, you're convinced you 'knew' the wrong answers. This bias makes you overconfident about your future predictions and underestimate how much you actually need to study—because the past feels like it was always obvious.",
       "search_keywords": [
-        "roach motel dark pattern",
-        "Harry Brignull",
-        "dark patterns UX",
-        "dark pattern design"
+        "hindsight bias",
+        "Baruch Fischhoff",
+        "knew it all along effect",
+        "memory distortion hindsight"
       ],
-      "duration_est": 36,
-      "id": "the_dark_pattern_roach_motel",
+      "duration_est": 35,
+      "id": "hindsight_bias_the_i_knew_it_all_along_effect",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Which manipulation tactic hit you hardest—have you fallen for any of these recently? Drop a comment and let us know what surprised you. And if you want to build immunity to psychological tricks, subscribe for more breakdowns of how your brain really works. Thanks for watching Brainboda.",
+  "outro": "Your brain is way weirder than you thought. Which of these facts hit you hardest? Drop it in the comments—I want to know which memory hack blew your mind. And if you want more deep-dives into how your brain actually works, hit that subscribe button. New videos drop every week. Thanks for watching Brainboda.",
   "tags": [
-    "manipulation tactics",
+    "memory",
+    "learning science",
     "psychology",
-    "dark patterns",
-    "cognitive biases",
-    "marketing manipulation",
-    "decision making",
-    "behavioral economics",
-    "persuasion techniques",
-    "Daniel Kahneman",
-    "Robert Cialdini",
-    "how brands manipulate you",
-    "psychological exploitation",
-    "critical thinking",
+    "neuroscience",
+    "brain",
+    "study tips",
+    "memory hacks",
+    "cognitive psychology",
+    "how memory works",
+    "learning hacks",
     "brain science",
-    "consumer psychology",
-    "advertising tactics",
-    "roach motel",
-    "dunning-kruger effect",
-    "framing effect",
-    "heuristics"
+    "memory techniques",
+    "education",
+    "student tips",
+    "reconsolidation",
+    "illusion of explanatory depth",
+    "cognitive biases",
+    "memory bias",
+    "how to learn better",
+    "brainboda"
   ],
   "type": "main",
-  "created_at": "2026-08-02T10:01:53",
+  "created_at": "2026-08-04T10:44:00",
   "ai_generated": true,
-  "theme": "manipulation tactics",
-  "hook_duration_est": 20,
-  "outro_duration_est": 20,
-  "total_duration_est": 402,
-  "description": "10 Manipulation Tactics Your Brain Falls For Every Day\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Declinism Bias\n0:57 - Fact 2: The Commitment and Consistency Principle\n1:34 - Fact 3: The Default Effect\n2:07 - Fact 4: The Spotlight Effect\n2:40 - Fact 5: The Mere Exposure Effect\n3:18 - Fact 6: The Framing Effect\n3:55 - Fact 7: The Availability Heuristic\n4:32 - Fact 8: The Dunning-Kruger Effect\n5:09 - Fact 9: The False Consensus Effect\n5:46 - Fact 10: The Dark Pattern: Roach Motel\n6:22 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "theme": "memory and learning",
+  "hook_duration_est": 22,
+  "outro_duration_est": 22,
+  "total_duration_est": 380,
+  "description": "10 Memory Hacks That Break Everything You Know About Learning\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:22 - Fact 1: Reconsolidation\n1:00 - Fact 2: The Illusion of Explanatory Depth\n1:31 - Fact 3: The Primacy Effect\n2:07 - Fact 4: Cryptomnesia\n2:39 - Fact 5: The Levels-of-Processing Effect\n3:11 - Fact 6: Semantic Satiation\n3:41 - Fact 7: The Representativeness Heuristic\n4:15 - Fact 8: Proactive Interference\n4:49 - Fact 9: The Curiosity Gap\n5:23 - Fact 10: Hindsight Bias (The 'I Knew It All Along' Effect)\n5:58 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
