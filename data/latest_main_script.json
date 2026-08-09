@@ -1,188 +1,188 @@
 {
-  "title": "10 Memory Hacks That Break Everything You Know About Learning",
-  "thumbnail_hook": "Your Brain Is Lying To You",
-  "hook": "Your brain rewrites your memories every single time you recall them—and you have no idea it's happening. Neuroscientists call this the ultimate betrayal of consciousness. But here's the kicker: understanding *why* your brain does this could transform how you learn, study, and remember what actually matters. So why does your brain sabotage its own memories?",
+  "title": "10 Personality Psychology Facts That Explain Why You Act the Way You Do",
+  "thumbnail_hook": "Your Personality Isn't Real",
+  "hook": "Most people think their personality is fixed — but research shows it's more fragile than you think. What if the traits you believe define you are actually just shortcuts your brain uses to predict behavior? So why does your personality feel so permanent when it's constantly shifting?",
   "facts": [
     {
       "n": 1,
-      "heading": "Reconsolidation",
-      "narration": "Fact 1: Reconsolidation. Every time you remember something, your brain doesn't just retrieve it—it rewrites it. Neuroscientists discovered that memories become temporarily unstable when recalled, allowing new information to blend in before being stored again. This was first demonstrated in detailed studies by James McGaugh and his team in the 1990s. Your memory isn't a video recording; it's a story your brain reconstructs each time you tell it, mixing in emotions, context, and new details you've learned since. This explains why eyewitness testimony is so unreliable in court—your brain genuinely believes the modified version.",
+      "heading": "The Barnum Effect",
+      "narration": "Fact 1: The Barnum Effect. This is when you accept vague, generic personality descriptions as if they were written specifically about you. Named after circus master P.T. Barnum, psychologists discovered people will nod along to horoscopes and personality tests even when the statements apply to almost everyone. Your brain mistakes general truths for personal insights because they feel personally relevant. This matters because it explains why you might overvalue a therapist's generic observation or trust a fake personality test online.",
       "search_keywords": [
-        "reconsolidation",
-        "memory reconsolidation neuroscience",
-        "James McGaugh",
-        "memory rewriting brain"
+        "Barnum Effect",
+        "personality psychology",
+        "cold reading",
+        "vague statements"
       ],
-      "duration_est": 38,
-      "id": "reconsolidation",
+      "duration_est": 32,
+      "id": "the_barnum_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Illusion of Explanatory Depth",
-      "narration": "Fact 2: The Illusion of Explanatory Depth. You feel like you understand how a zipper works, how photosynthesis happens, or how the economy functions—until someone asks you to explain it in detail. Psychologist Leonid Rozenblit and Frank Keil coined this term after finding that people massively overestimate their understanding of complex systems. Your brain creates a *feeling* of comprehension without actually building the knowledge. This is why cramming feels productive but doesn't stick—you're confusing familiarity with understanding.",
+      "heading": "Trait Spillover",
+      "narration": "Fact 2: Trait Spillover. If you're naturally conscientious — organized, detail-oriented — that trait tends to leak into unexpected areas of your life. You might be meticulous at work, then suddenly hyper-organized about your dating profile, your gym routine, even how you arrange your kitchen spices. Psychologists noticed that one strong personality trait often amplifies or creates similar behaviors in unrelated domains. This matters because it shows your personality doesn't compartmentalize as neatly as you think — one part of who you are bleeds into everything.",
       "search_keywords": [
-        "illusion of explanatory depth",
-        "Rozenblit Keil",
-        "feeling of understanding",
-        "learning illusion"
+        "trait spillover",
+        "personality traits",
+        "behavioral consistency",
+        "conscientiousness"
       ],
-      "duration_est": 31,
-      "id": "the_illusion_of_explanatory_depth",
+      "duration_est": 34,
+      "id": "trait_spillover",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Primacy Effect",
-      "narration": "Fact 3: The Primacy Effect. Information you encounter first gets weighted far more heavily in your memory and judgment than information that comes later. This was extensively documented by psychologist Solomon Asch in the 1940s through his conformity and impression-formation studies. The first facts you learn about someone, a topic, or a product tend to dominate your thinking, even when contradicted by stronger evidence later. This is why first impressions feel permanent and why the opening paragraph of an article shapes everything you read afterward—your brain already made its decision.",
+      "heading": "The False Consensus Effect in Personality",
+      "narration": "Fact 3: The False Consensus Effect in Personality. You naturally assume other people share your personality traits more than they actually do. If you're introverted, you think most people are secretly introverts too — just hiding it. If you're highly ambitious, you assume ambition is universal. Psychologist Lee Ross documented this bias extensively; we project our own traits onto the general population. This matters because it creates friction in relationships — you judge others harshly for not being like you, not realizing how different you actually are.",
       "search_keywords": [
-        "primacy effect",
-        "Solomon Asch",
-        "first impression bias",
-        "order effect memory"
+        "false consensus effect",
+        "personality bias",
+        "Lee Ross",
+        "social psychology"
       ],
-      "duration_est": 36,
-      "id": "the_primacy_effect",
+      "duration_est": 35,
+      "id": "the_false_consensus_effect_in_personality",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "Cryptomnesia",
-      "narration": "Fact 4: Cryptomnesia. You can unconsciously absorb information and later produce it as your own original thought, completely unaware you'd seen it before. Psychologist Frederic Bartlett documented this phenomenon extensively. A melody, a joke, or a creative idea you think is yours might be a memory your brain suppressed the source of—leaving only the content. This isn't dishonesty; it's a genuine gap in your awareness. Many accidental plagiarism cases, artist similarities, and 'independent discoveries' are actually cryptomnesia at work.",
+      "heading": "Personality Compensation",
+      "narration": "Fact 4: Personality Compensation. People with low confidence often develop charisma and charm to compensate — they learn to work a room because they're anxious about being overlooked. Introverts build incredible listening skills because they can't rely on chattiness. Psychologists have observed that personality weaknesses often fuel the development of complementary strengths. This matters because it flips the script: your personality flaws aren't dead weight; they're often the birthplace of your most valuable traits.",
       "search_keywords": [
-        "cryptomnesia",
-        "Frederic Bartlett",
-        "unconscious plagiarism",
-        "source amnesia"
+        "personality compensation",
+        "psychological defense",
+        "overcompensation",
+        "personality strength"
       ],
-      "duration_est": 32,
-      "id": "cryptomnesia",
+      "duration_est": 30,
+      "id": "personality_compensation",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Levels-of-Processing Effect",
-      "narration": "Fact 5: The Levels-of-Processing Effect. How deeply you *think* about information determines whether you remember it—not how many times you read it. Fergus Craik and Robert Lockhart introduced this in 1972, showing that asking yourself meaningful questions about material creates stronger memories than passive repetition. If you're studying for a test but just highlighting text, you're not processing deeply. You have to engage your brain by connecting ideas, asking 'why,' and finding personal meaning. Shallow reading = shallow memory.",
+      "heading": "The Spotlight Effect",
+      "narration": "Fact 5: The Spotlight Effect. You believe people notice your personality quirks and flaws way more than they actually do. You think everyone caught that awkward thing you said, that weird laugh, that nervous habit — but research shows people are too focused on themselves to care. Psychologists Thomas Gilovich and Kenneth Savitsky discovered we massively overestimate how much others scrutinize our behavior. This matters because most social anxiety is built on an illusion; people are thinking about themselves, not dissecting you.",
       "search_keywords": [
-        "levels of processing",
-        "Craik Lockhart",
-        "deep processing learning",
-        "encoding depth memory"
+        "spotlight effect",
+        "social anxiety",
+        "Thomas Gilovich",
+        "self-consciousness"
       ],
-      "duration_est": 32,
-      "id": "the_levels_of_processing_effect",
+      "duration_est": 33,
+      "id": "the_spotlight_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "Semantic Satiation",
-      "narration": "Fact 6: Semantic Satiation. Say a word over and over. After about 15-30 repetitions, it stops meaning anything—it becomes just a sound. Psychologist Leon Jakobovits named this effect in 1962. Your brain's neural response to that word literally fatigues, and meaning disappears temporarily. This is why cramming the same fact repeatedly feels productive but actually exhausts your brain's ability to process that information. Your neurons need *rest* between learning sessions, not repetition without breaks.",
+      "heading": "Implicit Personality Theory",
+      "narration": "Fact 6: Implicit Personality Theory. Your brain automatically assumes certain personality traits cluster together — if someone's smart, you assume they're also honest; if they're warm, you think they're competent. These unspoken rules are learned from culture and experience, but they're often dead wrong. Psychologist Solomon Asch documented how we unconsciously group traits into personality 'packages.' This matters because you're constantly misjudging people based on invisible assumptions, treating one trait as a window into their entire character.",
       "search_keywords": [
-        "semantic satiation",
-        "Leon Jakobovits",
-        "word repetition brain fatigue",
-        "neural adaptation memory"
+        "implicit personality theory",
+        "Solomon Asch",
+        "trait clustering",
+        "stereotype"
       ],
-      "duration_est": 30,
-      "id": "semantic_satiation",
+      "duration_est": 31,
+      "id": "implicit_personality_theory",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Representativeness Heuristic",
-      "narration": "Fact 7: The Representativeness Heuristic. Your brain judges probability and likelihood based on how well something *fits a pattern*, not actual statistical reality. Psychologists Daniel Kahneman and Amos Tversky mapped this bias in the 1970s. If someone fits the 'stereotype' of a lawyer, you assume they're more likely to be a lawyer, even if lawyers are statistically rare. When learning, this means you remember vivid, pattern-matching examples far better than accurate data—and you often draw false conclusions. Your memory prioritizes narrative fit over truth.",
+      "heading": "The Primacy Effect in Personality Perception",
+      "narration": "Fact 7: The Primacy Effect in Personality Perception. Your first impression of someone's personality is disproportionately powerful — it literally shapes how you interpret everything they do afterward. If you meet someone and decide they're shy, you'll read future boldness as 'temporary confidence,' not as evidence they're actually bolder than you thought. This cognitive bias was heavily studied in social psychology; initial judgments act like a filter for all future information. This matters because you're locked into first impressions, often missing who people really are.",
       "search_keywords": [
-        "representativeness heuristic",
-        "Kahneman Tversky",
-        "pattern matching bias",
-        "stereotype memory"
+        "primacy effect",
+        "first impression",
+        "personality perception",
+        "cognitive bias"
       ],
       "duration_est": 34,
-      "id": "the_representativeness_heuristic",
+      "id": "the_primacy_effect_in_personality_perception",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "Proactive Interference",
-      "narration": "Fact 8: Proactive Interference. Information you learned *in the past* blocks your ability to learn new, similar information—the old interferes with the new. This is the opposite of retroactive interference and was extensively studied in memory research throughout the 20th century. If you're bilingual, you might struggle to learn a third language similar to your first because your brain defaults to existing patterns. In school, students who learned outdated science facts sometimes struggle to unlearn them. Your brain locks in established pathways and resists rewiring.",
+      "heading": "Actor-Observer Bias",
+      "narration": "Fact 8: Actor-Observer Bias. When you mess up, you blame circumstances — a bad day, stress, external factors. When someone else messes up, you blame their personality — they're careless, irresponsible, or rude. This asymmetry is fundamental to how we judge personality. We attribute our own behavior to situations, but others' behavior to their traits. This was foundational work in attribution theory by psychologists like Edward Jones. This matters because it creates unfair judgments and conflict; you're holding others accountable for personality flaws you excuse in yourself.",
       "search_keywords": [
-        "proactive interference",
-        "memory interference",
-        "old learning blocks new",
-        "interference theory"
+        "actor-observer bias",
+        "attribution theory",
+        "Edward Jones",
+        "personality judgment"
       ],
-      "duration_est": 34,
-      "id": "proactive_interference",
+      "duration_est": 35,
+      "id": "actor_observer_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "The Curiosity Gap",
-      "narration": "Fact 9: The Curiosity Gap. Your brain is obsessively drawn to incomplete information. When you recognize a gap between what you know and what you want to know, curiosity drives memory formation powerfully. Psychologist George Loewenstein formalized this as 'information gap theory' in 1994. Cliffhangers, mysteries, and unanswered questions hijack your attention and encoding because your brain sees learning as a way to *close* the gap. This is why spoilers kill enjoyment—the curiosity gap disappears. Effective learning exploits this: raise questions before providing answers.",
+      "heading": "Personality Assimilation to Roles",
+      "narration": "Fact 9: Personality Assimilation to Roles. When you take on a new role — parent, boss, coach — your personality doesn't stay constant; it actually shifts to match the role's demands. You might be playful and chaotic as a friend but disciplined as a parent. Over time, you might even internalize these role-based personality changes as 'who you really are.' Social psychologists call this role internalization; the more you play a role, the more it becomes real. This matters because your 'true personality' might just be the sum of all the roles you've inhabited — there might not be a fixed core at all.",
       "search_keywords": [
-        "curiosity gap",
-        "George Loewenstein",
-        "information gap theory",
-        "curiosity driven learning"
+        "role internalization",
+        "personality change",
+        "social roles",
+        "identity plasticity"
       ],
-      "duration_est": 34,
-      "id": "the_curiosity_gap",
+      "duration_est": 42,
+      "id": "personality_assimilation_to_roles",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Hindsight Bias (The 'I Knew It All Along' Effect)",
-      "narration": "Fact 10: Hindsight Bias. After something happens, your brain unconsciously rewrites history to make the outcome seem inevitable and obvious—even though you couldn't have predicted it beforehand. Psychologist Baruch Fischhoff documented this extensively in the 1970s. This destroys effective learning because you mistake familiarity with past events for understanding of present situations. After an exam, you're convinced you 'knew' the wrong answers. This bias makes you overconfident about your future predictions and underestimate how much you actually need to study—because the past feels like it was always obvious.",
+      "heading": "The Illusory Truth Effect and Self-Perception",
+      "narration": "Fact 10: The Illusory Truth Effect and Self-Perception. The more you repeat something about yourself — 'I'm not a math person,' 'I'm naturally shy,' 'I'm bad at relationships' — the more you believe it, and the more others believe it too. Repetition literally creates belief, even without evidence. Psychologists have shown that personality self-labels become self-fulfilling prophecies through this effect. This matters because you might be trapped in a false personality narrative of your own creation; the labels you repeat about yourself actually wire your brain and behavior toward confirming them.",
       "search_keywords": [
-        "hindsight bias",
-        "Baruch Fischhoff",
-        "knew it all along effect",
-        "memory distortion hindsight"
+        "illusory truth effect",
+        "self-fulfilling prophecy",
+        "self-perception",
+        "personality belief"
       ],
-      "duration_est": 35,
-      "id": "hindsight_bias_the_i_knew_it_all_along_effect",
+      "duration_est": 36,
+      "id": "the_illusory_truth_effect_and_self_perception",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain is way weirder than you thought. Which of these facts hit you hardest? Drop it in the comments—I want to know which memory hack blew your mind. And if you want more deep-dives into how your brain actually works, hit that subscribe button. New videos drop every week. Thanks for watching Brainboda.",
+  "outro": "So which one of these hit you hardest? Are you living in someone else's first impression of you? Drop a comment about a personality trait you thought was fixed but turned out to be flexible — and subscribe if you want to keep questioning everything you think you know about yourself.",
   "tags": [
-    "memory",
-    "learning science",
-    "psychology",
-    "neuroscience",
-    "brain",
-    "study tips",
-    "memory hacks",
-    "cognitive psychology",
-    "how memory works",
-    "learning hacks",
-    "brain science",
-    "memory techniques",
-    "education",
-    "student tips",
-    "reconsolidation",
-    "illusion of explanatory depth",
-    "cognitive biases",
-    "memory bias",
-    "how to learn better",
-    "brainboda"
+    "personality psychology",
+    "psychology explained",
+    "personality traits",
+    "behavioral psychology",
+    "cognitive bias",
+    "self-awareness",
+    "psychology facts",
+    "social psychology",
+    "personality science",
+    "Brainboda",
+    "educational psychology",
+    "mental health",
+    "self-improvement",
+    "psychology documentary",
+    "how personality works",
+    "personality myths",
+    "psychological research",
+    "human behavior",
+    "understanding personality",
+    "psychology education"
   ],
   "type": "main",
-  "created_at": "2026-08-04T10:44:00",
+  "created_at": "2026-08-09T08:51:02",
   "ai_generated": true,
-  "theme": "memory and learning",
-  "hook_duration_est": 22,
-  "outro_duration_est": 22,
-  "total_duration_est": 380,
-  "description": "10 Memory Hacks That Break Everything You Know About Learning\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:22 - Fact 1: Reconsolidation\n1:00 - Fact 2: The Illusion of Explanatory Depth\n1:31 - Fact 3: The Primacy Effect\n2:07 - Fact 4: Cryptomnesia\n2:39 - Fact 5: The Levels-of-Processing Effect\n3:11 - Fact 6: Semantic Satiation\n3:41 - Fact 7: The Representativeness Heuristic\n4:15 - Fact 8: Proactive Interference\n4:49 - Fact 9: The Curiosity Gap\n5:23 - Fact 10: Hindsight Bias (The 'I Knew It All Along' Effect)\n5:58 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "theme": "personality psychology",
+  "hook_duration_est": 20,
+  "outro_duration_est": 20,
+  "total_duration_est": 382,
+  "description": "10 Personality Psychology Facts That Explain Why You Act the Way You Do\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Barnum Effect\n0:52 - Fact 2: Trait Spillover\n1:26 - Fact 3: The False Consensus Effect in Personality\n2:01 - Fact 4: Personality Compensation\n2:31 - Fact 5: The Spotlight Effect\n3:04 - Fact 6: Implicit Personality Theory\n3:35 - Fact 7: The Primacy Effect in Personality Perception\n4:09 - Fact 8: Actor-Observer Bias\n4:44 - Fact 9: Personality Assimilation to Roles\n5:26 - Fact 10: The Illusory Truth Effect and Self-Perception\n6:02 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
