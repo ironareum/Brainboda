@@ -1,188 +1,188 @@
 {
-  "title": "10 Personality Psychology Facts That Explain Why You Act the Way You Do",
-  "thumbnail_hook": "Your Personality Isn't Real",
-  "hook": "Most people think their personality is fixed — but research shows it's more fragile than you think. What if the traits you believe define you are actually just shortcuts your brain uses to predict behavior? So why does your personality feel so permanent when it's constantly shifting?",
+  "title": "10 Decision-Making Traps Your Brain Falls Into Every Day",
+  "thumbnail_hook": "Your brain is lying to you",
+  "hook": "You make about 35,000 decisions a day — and most of them are terrible. Your brain uses shortcuts that worked thousands of years ago but backfire in the modern world. So what's actually hijacking your choices right now?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Barnum Effect",
-      "narration": "Fact 1: The Barnum Effect. This is when you accept vague, generic personality descriptions as if they were written specifically about you. Named after circus master P.T. Barnum, psychologists discovered people will nod along to horoscopes and personality tests even when the statements apply to almost everyone. Your brain mistakes general truths for personal insights because they feel personally relevant. This matters because it explains why you might overvalue a therapist's generic observation or trust a fake personality test online.",
+      "heading": "Framing Effect",
+      "narration": "Fact 1: Framing Effect. Psychologist Amos Tversky and Daniel Kahneman discovered that how information is *presented* changes our decision completely — even if the facts are identical. Tell someone a surgery has a '90% survival rate' versus a '10% death rate,' and they'll choose differently. Your brain doesn't evaluate choices objectively; it reacts to the *packaging*. This matters because marketers, politicians, and even your doctor use framing to nudge your decisions without you realizing it.",
       "search_keywords": [
-        "Barnum Effect",
-        "personality psychology",
-        "cold reading",
-        "vague statements"
+        "framing effect",
+        "Tversky Kahneman",
+        "decision psychology",
+        "how wording changes choices"
       ],
-      "duration_est": 32,
-      "id": "the_barnum_effect",
+      "duration_est": 30,
+      "id": "framing_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Trait Spillover",
-      "narration": "Fact 2: Trait Spillover. If you're naturally conscientious — organized, detail-oriented — that trait tends to leak into unexpected areas of your life. You might be meticulous at work, then suddenly hyper-organized about your dating profile, your gym routine, even how you arrange your kitchen spices. Psychologists noticed that one strong personality trait often amplifies or creates similar behaviors in unrelated domains. This matters because it shows your personality doesn't compartmentalize as neatly as you think — one part of who you are bleeds into everything.",
+      "heading": "Hyperbolic Discounting",
+      "narration": "Fact 2: Hyperbolic Discounting. You'd rather have $100 today than $110 tomorrow — but you'd take $110 a year from now over $100 in 11 months. Behavioral economists call this hyperbolic discounting: we overvalue immediate rewards and undervalue future ones, but the effect *shrinks* as both rewards get farther away. Your brain treats 'now' as a special moment that deserves a premium. This explains why you skip the gym, overspend on credit, and binge-watch instead of sleeping — immediate gratification always wins.",
       "search_keywords": [
-        "trait spillover",
-        "personality traits",
-        "behavioral consistency",
-        "conscientiousness"
+        "hyperbolic discounting",
+        "temporal discounting",
+        "immediate gratification bias",
+        "future self"
       ],
-      "duration_est": 34,
-      "id": "trait_spillover",
+      "duration_est": 33,
+      "id": "hyperbolic_discounting",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The False Consensus Effect in Personality",
-      "narration": "Fact 3: The False Consensus Effect in Personality. You naturally assume other people share your personality traits more than they actually do. If you're introverted, you think most people are secretly introverts too — just hiding it. If you're highly ambitious, you assume ambition is universal. Psychologist Lee Ross documented this bias extensively; we project our own traits onto the general population. This matters because it creates friction in relationships — you judge others harshly for not being like you, not realizing how different you actually are.",
+      "heading": "The Illusion of Control",
+      "narration": "Fact 3: Illusion of Control. Psychologist Ellen Langer found that people believe they have more control over random outcomes than they actually do. Throw dice yourself and you'll feel more confident in your throw than if someone else throws them — even though it's pure chance. Langer's research showed this bias gets *stronger* when we have personal involvement or skill matters in other contexts. This trap makes you overcommit to risky ventures, gamble more than you should, and blame yourself for things outside your control.",
       "search_keywords": [
-        "false consensus effect",
-        "personality bias",
-        "Lee Ross",
-        "social psychology"
+        "illusion of control",
+        "Ellen Langer",
+        "locus of control bias",
+        "false sense of agency"
       ],
-      "duration_est": 35,
-      "id": "the_false_consensus_effect_in_personality",
+      "duration_est": 34,
+      "id": "the_illusion_of_control",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "Personality Compensation",
-      "narration": "Fact 4: Personality Compensation. People with low confidence often develop charisma and charm to compensate — they learn to work a room because they're anxious about being overlooked. Introverts build incredible listening skills because they can't rely on chattiness. Psychologists have observed that personality weaknesses often fuel the development of complementary strengths. This matters because it flips the script: your personality flaws aren't dead weight; they're often the birthplace of your most valuable traits.",
+      "heading": "The Planning Fallacy",
+      "narration": "Fact 4: Planning Fallacy. Daniel Kahneman and Amos Tversky discovered we systematically *underestimate* how long tasks will take, even when we know our history of being wrong. You think this project will take a week when it'll actually take two. We focus on the task itself and ignore past delays and complications. The bias persists even when experts acknowledge it beforehand — knowing about it doesn't protect you. This explains why deadlines slip, budgets explode, and you're always scrambling at the last minute.",
       "search_keywords": [
-        "personality compensation",
-        "psychological defense",
-        "overcompensation",
-        "personality strength"
+        "planning fallacy",
+        "Kahneman",
+        "optimism bias",
+        "time estimation"
       ],
-      "duration_est": 30,
-      "id": "personality_compensation",
+      "duration_est": 33,
+      "id": "the_planning_fallacy",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 5: The Spotlight Effect. You believe people notice your personality quirks and flaws way more than they actually do. You think everyone caught that awkward thing you said, that weird laugh, that nervous habit — but research shows people are too focused on themselves to care. Psychologists Thomas Gilovich and Kenneth Savitsky discovered we massively overestimate how much others scrutinize our behavior. This matters because most social anxiety is built on an illusion; people are thinking about themselves, not dissecting you.",
+      "heading": "Backfire Effect / Belief Perseverance",
+      "narration": "Fact 5: Belief Perseverance. When you encounter evidence that contradicts your beliefs, your brain doesn't update smoothly — it actually *digs in harder*. Psychologists like David Lord studied this and found people reject contradictory information and reaffirm their original position even stronger. Show a Trump supporter negative news about Trump, show a Biden supporter negative news about Biden, and both dig deeper. Your brain treats beliefs like identity, not like testable hypotheses. This matters because it makes you defend bad decisions instead of learning from mistakes.",
       "search_keywords": [
-        "spotlight effect",
-        "social anxiety",
-        "Thomas Gilovich",
-        "self-consciousness"
+        "belief perseverance",
+        "backfire effect",
+        "motivated reasoning",
+        "identity protective cognition"
       ],
-      "duration_est": 33,
-      "id": "the_spotlight_effect",
+      "duration_est": 34,
+      "id": "backfire_effect_belief_perseverance",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "Implicit Personality Theory",
-      "narration": "Fact 6: Implicit Personality Theory. Your brain automatically assumes certain personality traits cluster together — if someone's smart, you assume they're also honest; if they're warm, you think they're competent. These unspoken rules are learned from culture and experience, but they're often dead wrong. Psychologist Solomon Asch documented how we unconsciously group traits into personality 'packages.' This matters because you're constantly misjudging people based on invisible assumptions, treating one trait as a window into their entire character.",
+      "heading": "False Consensus Effect",
+      "narration": "Fact 6: False Consensus Effect. You think way more people agree with you than actually do. Lee Ross identified this bias: we overestimate how much our beliefs, values, and behaviors are typical. Wear an unusual outfit and you'll think people judge you way more than they actually do because you notice yourself — but others are too busy thinking about themselves. When making group decisions, this bias makes you overestimate internal agreement and be shocked when colleagues disagree. It wrecks meetings and causes avoidable conflict.",
       "search_keywords": [
-        "implicit personality theory",
-        "Solomon Asch",
-        "trait clustering",
-        "stereotype"
+        "false consensus effect",
+        "Lee Ross",
+        "false uniqueness",
+        "agreement bias"
       ],
-      "duration_est": 31,
-      "id": "implicit_personality_theory",
+      "duration_est": 34,
+      "id": "false_consensus_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Primacy Effect in Personality Perception",
-      "narration": "Fact 7: The Primacy Effect in Personality Perception. Your first impression of someone's personality is disproportionately powerful — it literally shapes how you interpret everything they do afterward. If you meet someone and decide they're shy, you'll read future boldness as 'temporary confidence,' not as evidence they're actually bolder than you thought. This cognitive bias was heavily studied in social psychology; initial judgments act like a filter for all future information. This matters because you're locked into first impressions, often missing who people really are.",
+      "heading": "The Focusing Illusion",
+      "narration": "Fact 7: Focusing Illusion. Daniel Kahneman's research shows that whatever you're focused on seems *disproportionately important* to your overall happiness and decisions. Ask someone 'how happy are you?' right after asking about their dating life, and they rate themselves less happy. Move the focus to health, and happiness ratings drop again — not because things changed, but because your brain weighs whatever's in focus. When choosing a job, car, or home, you obsess over one feature and miss the bigger picture. This bias makes you optimize for the wrong things constantly.",
       "search_keywords": [
-        "primacy effect",
-        "first impression",
-        "personality perception",
-        "cognitive bias"
+        "focusing illusion",
+        "attention bias",
+        "salience bias",
+        "what you focus on matters"
       ],
-      "duration_est": 34,
-      "id": "the_primacy_effect_in_personality_perception",
+      "duration_est": 36,
+      "id": "the_focusing_illusion",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "Actor-Observer Bias",
-      "narration": "Fact 8: Actor-Observer Bias. When you mess up, you blame circumstances — a bad day, stress, external factors. When someone else messes up, you blame their personality — they're careless, irresponsible, or rude. This asymmetry is fundamental to how we judge personality. We attribute our own behavior to situations, but others' behavior to their traits. This was foundational work in attribution theory by psychologists like Edward Jones. This matters because it creates unfair judgments and conflict; you're holding others accountable for personality flaws you excuse in yourself.",
+      "heading": "Curse of Knowledge",
+      "narration": "Fact 8: Curse of Knowledge. Once you know something, you can't unsee it — and you assume others know it too. Researcher Colin Camerer studied this: people with expertise can't estimate what it's like to be a beginner. Tell someone a riddle after they hear the answer, and they wildly overestimate how obvious it was. This wrecks communication, teaching, and decision-making in teams. Your expert explanation confuses everyone because you've forgotten what it's like *not* to know. It creates gaps between what you intend to communicate and what others actually understand.",
       "search_keywords": [
-        "actor-observer bias",
-        "attribution theory",
-        "Edward Jones",
-        "personality judgment"
+        "curse of knowledge",
+        "Colin Camerer",
+        "knowledge gap",
+        "communication barrier"
       ],
-      "duration_est": 35,
-      "id": "actor_observer_bias",
+      "duration_est": 36,
+      "id": "curse_of_knowledge",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Personality Assimilation to Roles",
-      "narration": "Fact 9: Personality Assimilation to Roles. When you take on a new role — parent, boss, coach — your personality doesn't stay constant; it actually shifts to match the role's demands. You might be playful and chaotic as a friend but disciplined as a parent. Over time, you might even internalize these role-based personality changes as 'who you really are.' Social psychologists call this role internalization; the more you play a role, the more it becomes real. This matters because your 'true personality' might just be the sum of all the roles you've inhabited — there might not be a fixed core at all.",
+      "heading": "The Declinism Bias",
+      "narration": "Fact 9: Declinism Bias. Most people believe things are getting worse — crime is up, morality is down, society is collapsing — even when objective data shows improvement. Psychologists studying nostalgia and pessimism found this bias is partly because negative news is more memorable and emotionally vivid. 'Everything was better in the old days' feels true because your brain cherry-picks positive memories and forgets the old problems. This pessimistic filter shapes your choices: you might avoid opportunities because you believe the world is declining, miss possibilities because you're convinced things are hopeless.",
       "search_keywords": [
-        "role internalization",
-        "personality change",
-        "social roles",
-        "identity plasticity"
+        "declinism",
+        "pessimism bias",
+        "nostalgia bias",
+        "negativity bias"
       ],
-      "duration_est": 42,
-      "id": "personality_assimilation_to_roles",
+      "duration_est": 37,
+      "id": "the_declinism_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Illusory Truth Effect and Self-Perception",
-      "narration": "Fact 10: The Illusory Truth Effect and Self-Perception. The more you repeat something about yourself — 'I'm not a math person,' 'I'm naturally shy,' 'I'm bad at relationships' — the more you believe it, and the more others believe it too. Repetition literally creates belief, even without evidence. Psychologists have shown that personality self-labels become self-fulfilling prophecies through this effect. This matters because you might be trapped in a false personality narrative of your own creation; the labels you repeat about yourself actually wire your brain and behavior toward confirming them.",
+      "heading": "The Spotlight Effect",
+      "narration": "Fact 10: Spotlight Effect. You believe people notice and remember your embarrassing moments way more than they do — your brain acts like there's a spotlight on your failures. Thomas Gilovich's research shows we massively overestimate how much others observe and judge us. Stutter in a meeting and you'll think everyone remembers it for weeks; they'll forget it by tomorrow. This bias makes you play small, avoid risk, and hold back from opportunities because you think you're more visible than you are. The reality: people are too busy worrying about *their own* spotlight to watch yours.",
       "search_keywords": [
-        "illusory truth effect",
-        "self-fulfilling prophecy",
-        "self-perception",
-        "personality belief"
+        "spotlight effect",
+        "Thomas Gilovich",
+        "social anxiety",
+        "self-focused bias"
       ],
-      "duration_est": 36,
-      "id": "the_illusory_truth_effect_and_self_perception",
+      "duration_est": 38,
+      "id": "the_spotlight_effect",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "So which one of these hit you hardest? Are you living in someone else's first impression of you? Drop a comment about a personality trait you thought was fixed but turned out to be flexible — and subscribe if you want to keep questioning everything you think you know about yourself.",
+  "outro": "Your brain is weirdly brilliant but deeply flawed — and now you know *how*. Which of these 10 traps hit you hardest? Drop a comment telling us the decision that cost you the most, and subscribe because next week we're breaking down how to *fix* these biases and actually make better choices.",
   "tags": [
-    "personality psychology",
-    "psychology explained",
-    "personality traits",
-    "behavioral psychology",
-    "cognitive bias",
-    "self-awareness",
-    "psychology facts",
-    "social psychology",
-    "personality science",
-    "Brainboda",
-    "educational psychology",
-    "mental health",
-    "self-improvement",
-    "psychology documentary",
-    "how personality works",
-    "personality myths",
-    "psychological research",
-    "human behavior",
-    "understanding personality",
-    "psychology education"
+    "decision making",
+    "cognitive biases",
+    "psychology",
+    "behavioral economics",
+    "thinking errors",
+    "Kahneman",
+    "framing effect",
+    "hyperbolic discounting",
+    "planning fallacy",
+    "illusion of control",
+    "belief perseverance",
+    "false consensus",
+    "focusing illusion",
+    "curse of knowledge",
+    "declinism",
+    "spotlight effect",
+    "human psychology",
+    "critical thinking",
+    "brain science",
+    "decision theory"
   ],
   "type": "main",
-  "created_at": "2026-08-09T08:51:02",
+  "created_at": "2026-08-11T09:03:39",
   "ai_generated": true,
-  "theme": "personality psychology",
+  "theme": "decision making",
   "hook_duration_est": 20,
-  "outro_duration_est": 20,
-  "total_duration_est": 382,
-  "description": "10 Personality Psychology Facts That Explain Why You Act the Way You Do\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Barnum Effect\n0:52 - Fact 2: Trait Spillover\n1:26 - Fact 3: The False Consensus Effect in Personality\n2:01 - Fact 4: Personality Compensation\n2:31 - Fact 5: The Spotlight Effect\n3:04 - Fact 6: Implicit Personality Theory\n3:35 - Fact 7: The Primacy Effect in Personality Perception\n4:09 - Fact 8: Actor-Observer Bias\n4:44 - Fact 9: Personality Assimilation to Roles\n5:26 - Fact 10: The Illusory Truth Effect and Self-Perception\n6:02 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 21,
+  "total_duration_est": 386,
+  "description": "10 Decision-Making Traps Your Brain Falls Into Every Day\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Framing Effect\n0:50 - Fact 2: Hyperbolic Discounting\n1:23 - Fact 3: The Illusion of Control\n1:57 - Fact 4: The Planning Fallacy\n2:30 - Fact 5: Backfire Effect / Belief Perseverance\n3:04 - Fact 6: False Consensus Effect\n3:38 - Fact 7: The Focusing Illusion\n4:14 - Fact 8: Curse of Knowledge\n4:50 - Fact 9: The Declinism Bias\n5:27 - Fact 10: The Spotlight Effect\n6:05 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
