@@ -1,188 +1,178 @@
 {
-  "title": "10 Emotional Intelligence Secrets That'll Change How You Read People",
-  "thumbnail_hook": "Your emotions betray you",
-  "hook": "People with high emotional intelligence earn up to 29% more than their peers—yet most of us can't even name what we're feeling right now. The secret isn't being nice or understanding others better. So why do some people seem to read a room like a mind reader, while the rest of us stumble through social situations blind?",
+  "title": "10 Unconscious Behaviors Your Brain Controls Without You Knowing",
+  "thumbnail_hook": "Your brain is lying to you",
+  "hook": "Your brain is making decisions right now—and you have no idea it's happening. We're not talking about breathing or blinking; we're talking about choices, opinions, and actions you think are totally under your control. So why does science say most of what you do happens in the dark?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Somatic Marker Hypothesis",
-      "narration": "Fact 1: The Somatic Marker Hypothesis. Neuroscientist Antonio Damasio discovered that your body literally votes before your brain decides anything. When you feel a gut instinct about someone, that's your body's nervous system flagging subtle cues—tone, posture, pace—before conscious thought catches up. Your gut isn't magical; it's processing emotional data faster than language can. People with high emotional awareness listen to these physical whispers instead of ignoring them. This is why trusting your instincts about people often works better than overthinking conversations.",
+      "heading": "Semantic Priming",
+      "narration": "Fact 1: Semantic Priming. This is when exposure to one word or concept makes related ideas pop into your head faster, without conscious effort. If I say 'doctor,' you'll recognize 'nurse' quicker than 'bread'—even though you're not trying. Psychologist David Meyer documented this in the 1970s through reaction-time studies. Your brain is constantly connecting dots in the background, and you only notice the final answer. This matters because it shows your decisions aren't as independent as you think—context is hijacking your thoughts before you're aware.",
       "search_keywords": [
-        "Somatic Marker Hypothesis",
-        "Antonio Damasio",
-        "gut instinct",
-        "body voting"
+        "semantic priming effect",
+        "David Meyer psychology",
+        "unconscious word association"
       ],
-      "duration_est": 33,
-      "id": "the_somatic_marker_hypothesis",
+      "duration_est": 34,
+      "id": "semantic_priming",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Rumination vs. Reflection",
-      "narration": "Fact 2: Rumination vs. Reflection. Psychologist Susan Nolen-Hoeksema distinguished between two ways we process difficult emotions: rumination—obsessively replaying a painful moment—and reflection, where you examine what happened and extract meaning without judgment. Ruminators feel worse after thinking; reflectors feel better and smarter. The difference isn't willpower; it's asking yourself the right question. Instead of 'Why did this happen to me?' (rumination trap), emotionally intelligent people ask 'What can I learn?' This small shift in self-talk literally determines whether hard experiences make you bitter or stronger.",
+      "heading": "The Cocktail Party Effect",
+      "narration": "Fact 2: The Cocktail Party Effect. In a noisy room full of conversations, you somehow filter out the noise and focus on someone talking directly to you—or oddly, your own name across the room. This selective attention happens automatically, without conscious effort. Colin Cherry studied this in 1953 using headphones and dual messages. Your brain is constantly scanning your environment for relevant information, then blocking the rest out without asking permission. Understanding this explains why you zone out in meetings but snap to attention when your name's mentioned—your unconscious mind is the bouncer.",
       "search_keywords": [
-        "Rumination vs Reflection",
-        "Susan Nolen-Hoeksema",
-        "emotional processing",
-        "self-talk"
+        "cocktail party effect",
+        "Colin Cherry selective attention",
+        "unconscious filtering"
       ],
-      "duration_est": 34,
-      "id": "rumination_vs_reflection",
+      "duration_est": 37,
+      "id": "the_cocktail_party_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Default Mode Network",
-      "narration": "Fact 3: The Default Mode Network. When your brain isn't focused on a task, it activates the Default Mode Network—a web of regions that builds narratives about yourself and others. Neuroscientists discovered this network fires up when you're daydreaming, anxious, or lost in thought. The catch? It loves dramatic stories and worst-case scenarios. Emotionally intelligent people catch this automatic storyteller and question it: 'Is this actually true or just my anxious brain writing fiction?' Meditation and mindfulness literally quieten this network, giving you emotional distance from intrusive thoughts that feel so real they seem like facts.",
+      "heading": "Automaticity and Habit Loops",
+      "narration": "Fact 3: Automaticity and Habit Loops. After you repeat a behavior enough times, your brain shifts it from conscious control to autopilot—this is called automaticity. Driving home, brushing your teeth, scrolling your phone: you're not thinking, you're running a script. Psychologist BJ Fogg and habit researcher Wendy Suzuki have shown that habits form through repetition and reward, then basically run themselves. Your prefrontal cortex (the conscious decision-maker) clocks out, and deeper brain circuits take over. This is why breaking habits is so hard—you're fighting autopilot with willpower, and autopilot never gets tired.",
       "search_keywords": [
-        "Default Mode Network",
-        "neuroscience",
-        "narrative self",
-        "meditation brain"
+        "automaticity psychology",
+        "BJ Fogg habit loops",
+        "unconscious behavior patterns"
       ],
-      "duration_est": 38,
-      "id": "the_default_mode_network",
+      "duration_est": 37,
+      "id": "automaticity_and_habit_loops",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Polyvagal Theory",
-      "narration": "Fact 4: The Polyvagal Theory. Neuroscientist Stephen Porges revealed that your vagus nerve—running from brain to gut—has three layers that control fear responses. When you're truly safe, your 'social engagement system' activates and you can connect. When threatened, you fight or flee. When overwhelmed, you freeze. Most people misread others because they don't recognize which 'layer' someone is in. Someone who's frozen looks cold; someone in fight-mode looks angry. Emotionally intelligent people ask, 'Are they actually upset, or are they dysregulated?' This reframe transforms conflict into compassion.",
+      "heading": "The Dunning-Kruger Effect",
+      "narration": "Fact 4: The Dunning-Kruger Effect. People with low ability at something often dramatically overestimate their competence—without realizing it. Meanwhile, experts often underestimate theirs. Psychologists David Dunning and Justin Kruger discovered this in 1999 through studies on logic, grammar, and humor. The kicker? You can't see your own blind spots; that's what makes them blind. Your unconscious confidence is being calibrated by an invisible meter you can't access. This matters because it means you're probably overconfident about something right now, and your brain won't let you see it.",
       "search_keywords": [
-        "Polyvagal Theory",
-        "Stephen Porges",
-        "vagus nerve",
-        "nervous system states"
+        "Dunning-Kruger effect",
+        "David Dunning Justin Kruger",
+        "overconfidence bias"
       ],
       "duration_est": 35,
-      "id": "the_polyvagal_theory",
+      "id": "the_dunning_kruger_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Emotional Suppression vs. Acceptance",
-      "narration": "Fact 5: Emotional Suppression vs. Acceptance. Psychologist James Gross proved that people who suppress emotions—trying not to feel anger or sadness—ironically experience more emotional pain and worse memory than those who simply allow emotions to exist without judgment. Suppression is like holding a beach ball underwater; it requires constant energy and eventually explodes. Acceptance means feeling anger, staying present with it for 90 seconds, and letting it pass naturally. Emotionally intelligent people don't run from feelings; they sit with discomfort like visiting a friend. This paradox—that accepting pain reduces suffering—is why EI is learned, not born.",
+      "heading": "Subliminal Perception",
+      "narration": "Fact 5: Subliminal Perception. Your brain can process information faster than your conscious mind can detect it. Images flashed for milliseconds, words hidden in background noise—you don't see or hear them consciously, but your brain registers them. Neuroscientist Stanislas Dehaene has mapped how the brain processes subliminal stimuli through brain imaging. Your brain is constantly absorbing signals below the threshold of awareness, which can influence mood, behavior, and even purchasing decisions. This matters because it raises an unsettling question: how much of what you think is your choice is actually influenced by hidden signals you never consented to process.",
       "search_keywords": [
-        "emotional suppression",
-        "James Gross",
-        "emotion regulation",
-        "acceptance paradox"
+        "subliminal perception",
+        "Stanislas Dehaene",
+        "subliminal messaging neuroscience"
       ],
-      "duration_est": 38,
-      "id": "emotional_suppression_vs_acceptance",
+      "duration_est": 40,
+      "id": "subliminal_perception",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Social Baseline Theory",
-      "narration": "Fact 6: The Social Baseline Theory. Psychologist Jim Coan discovered that your nervous system isn't meant to regulate itself alone. When someone you trust is nearby, your cardiovascular system literally relaxes in a measurable way—your baseline stress drops just from proximity. Lonely people have constantly elevated stress markers because their bodies are in perpetual self-regulation mode. Emotionally intelligent people understand this: asking for help or reaching out isn't weakness, it's physiology. Your body was wired for connection as a survival tool. Isolated high-achievers often burn out because they're fighting their own biology by going it alone.",
+      "heading": "Freudian Slips (Parapraxis)",
+      "narration": "Fact 6: Freudian Slips or Parapraxis. You accidentally say what you're actually thinking instead of what you meant to say—'I'm not in the mood for your company' instead of 'I'm not in the mood for coffee.' Sigmund Freud called these 'parapraxis,' though modern neuroscience has expanded beyond pure Freudian theory. Research shows slips reveal genuine unconscious thoughts competing with your intended speech. Psychologist Vicki Fromkin studied speech errors and found they happen when conflicting thoughts are active in the background. This matters because it proves your real thoughts are always there, waiting for a crack in your filter to escape.",
       "search_keywords": [
-        "Social Baseline Theory",
-        "Jim Coan",
-        "nervous system regulation",
-        "loneliness stress"
+        "Freudian slip",
+        "parapraxis",
+        "Vicki Fromkin speech errors"
       ],
-      "duration_est": 38,
-      "id": "the_social_baseline_theory",
+      "duration_est": 40,
+      "id": "freudian_slips_parapraxis",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "Affect Labeling (Emotion Naming)",
-      "narration": "Fact 7: Affect Labeling. Neuroscientist Matthew Lieberman found that naming your emotions—literally saying 'I'm anxious' instead of staying vague—activates your prefrontal cortex and dampens your amygdala (the fear center). Brain scans show this happens automatically; you don't need to understand why you feel something to reduce its grip. This is why journaling works, why saying feelings out loud matters. Emotionally intelligent people have a rich emotional vocabulary—they distinguish between frustrated, disappointed, and exhausted rather than lumping everything as 'bad.' The more specific your emotional language, the more control you have over that emotion.",
+      "heading": "The Blindspot and Eye Movements",
+      "narration": "Fact 7: Saccadic Suppression and the Blindspot. Your eyes are making rapid movements (saccades) 3-4 times per second, and during these jumps, your brain goes blind—literally. But you don't notice the darkness because your brain fills in the gaps automatically. Neuroscientist David Yarrow and eye-movement researchers have documented how your visual system blanks out, then your brain constructs a seamless narrative of continuous vision. You're experiencing a false movie of reality, stitched together without your awareness. This matters because it shows your conscious experience of 'seeing' is constructed by unconscious processes—you're not actually seeing what you think you're seeing.",
       "search_keywords": [
-        "Affect Labeling",
-        "Matthew Lieberman",
-        "emotion naming",
-        "amygdala regulation"
+        "saccadic suppression",
+        "eye movement blindness",
+        "David Yarrow neuroscience"
       ],
-      "duration_est": 37,
-      "id": "affect_labeling_emotion_naming",
+      "duration_est": 40,
+      "id": "the_blindspot_and_eye_movements",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 8: The Spotlight Effect. Psychologists David Dunning and Justin Kruger (also studied by Thomas Gilovich) discovered we massively overestimate how much others notice our mistakes, appearance, or awkwardness. In one famous study, people wore embarrassing T-shirts and predicted 50% of people would notice; only 23% actually did. We're caught in our own perspective, blind to how much others are focused on themselves. Low emotional intelligence often means high spotlight effect—you're so convinced everyone's judging you that you misread social cues. Emotionally mature people realize most people are too busy worrying about themselves to scrutinize you, which paradoxically frees you to be authentic.",
+      "heading": "The Default Mode Network",
+      "narration": "Fact 8: The Default Mode Network. When your brain isn't focused on external tasks, it activates the Default Mode Network (DMN)—a system that runs your mind-wandering, self-referential thoughts, and daydreaming. Neuroscientist Marcus Raichle discovered this in 2001 through fMRI scans. Your brain is constantly narrating stories about yourself, replaying conversations, and imagining futures—without you directing it. This autopilot mode uses significant energy and shapes your mood, anxiety, and self-image unconsciously. This matters because most of your mental life happens in this background narrative, which means you're not the author of your own thoughts as much as you think.",
       "search_keywords": [
-        "Spotlight Effect",
-        "David Dunning",
-        "Justin Kruger",
-        "social anxiety perception"
+        "default mode network",
+        "Marcus Raichle",
+        "mind-wandering neuroscience"
       ],
-      "duration_est": 41,
-      "id": "the_spotlight_effect",
+      "duration_est": 39,
+      "id": "the_default_mode_network",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "The Negativity Bias in Social Bonding",
-      "narration": "Fact 9: Negativity Bias in Social Bonding. Psychologist Roy Baumeister documented that negative social interactions carry roughly five times more weight than positive ones—one harsh word erases five kind ones in relationship math. This evolved because threats were deadlier than rewards in our past. But emotionally intelligent people consciously compensate: they build 'relationship reserves' by intentionally overweighting positive moments. They apologize quickly, repair ruptures faster, and understand that conflict isn't relationship damage—it's how you recover from conflict that matters. Without this knowledge, one fight feels catastrophic; with it, you see tension as navigation, not destruction.",
+      "heading": "Implicit Memory and Priming Responses",
+      "narration": "Fact 9: Implicit Memory. You have memories you can't consciously recall but your body remembers. If you learned to ride a bike as a child, your muscles know what to do even if you can't explain the steps. Psychologist Daniel Schacter distinguished between explicit (conscious) and implicit (unconscious) memory systems. Your unconscious memories influence your reactions, fears, and skills without your permission or awareness. This matters because trauma, phobias, and even your taste in partners might be driven by implicit memories you can't access—your past is haunting you without your conscious mind knowing why.",
       "search_keywords": [
-        "Negativity Bias",
-        "Roy Baumeister",
-        "relationship weight",
-        "social bonding"
+        "implicit memory",
+        "Daniel Schacter memory systems",
+        "procedural memory"
       ],
       "duration_est": 38,
-      "id": "the_negativity_bias_in_social_bonding",
+      "id": "implicit_memory_and_priming_responses",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Cognitive Reappraisal (The Power of Reframing)",
-      "narration": "Fact 10: Cognitive Reappraisal. Psychologist James Gross showed that reframing a threat as a challenge—seeing your racing heart before a speech as excitement instead of fear—activates different neural pathways and genuinely changes your emotional experience. This isn't toxic positivity; brain imaging confirms the reframe is physically real. Your amygdala (fear center) shows less activation when you reappraise. Emotionally intelligent people don't deny stress; they relabel it. 'I'm nervous' becomes 'I'm excited.' 'This is unfair' becomes 'This is an opportunity to show my character.' The reframe must feel honest, but the nervous system doesn't distinguish between true stories and reframed ones—it only knows the physiology of the label you give it.",
+      "heading": "Emotional Contagion",
+      "narration": "Fact 10: Emotional Contagion. You catch emotions from people around you—without realizing it's happening. If someone near you is anxious, you unconsciously absorb that anxiety. Psychologist Elaine Hatfield and colleagues documented that emotions spread through facial mimicry, vocal patterns, and pheromones—all operating beneath conscious awareness. Your brain is constantly syncing with others' emotional states like an invisible emotional Wi-Fi network. This matters because it means your mood right now might not even be yours—it could be borrowed from someone else in the room, hijacking your emotional state without your consent or knowledge.",
       "search_keywords": [
-        "Cognitive Reappraisal",
-        "James Gross",
-        "emotion reframing",
-        "challenge vs threat"
+        "emotional contagion",
+        "Elaine Hatfield",
+        "unconscious emotional transfer"
       ],
-      "duration_est": 44,
-      "id": "cognitive_reappraisal_the_power_of_reframing",
+      "duration_est": 37,
+      "id": "emotional_contagion",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Which of these 10 facts hit you hardest? Drop a comment—did you recognize yourself in the rumination trap? The spotlight effect? The nervous system needing others? And if emotional intelligence suddenly feels less mystical and more like a learnable skill, that's exactly right. Subscribe so you catch the next time science rewires how you see yourself.",
+  "outro": "Your brain is running the show, and you're mostly just along for the ride. Which of these facts hit you hardest? Drop a comment below—I want to know which unconscious behavior you're going to start noticing now that you can't unsee it. And if this blew your mind, smash that subscribe button because we've got way more about how your brain tricks you. Thanks for watching Brainboda.",
   "tags": [
-    "emotional intelligence",
+    "unconscious behavior",
     "psychology",
     "neuroscience",
-    "emotional awareness",
-    "emotional regulation",
-    "self-improvement",
-    "mental health",
     "brain science",
-    "emotional intelligence training",
-    "psychology explained",
-    "personal development",
-    "emotional health",
-    "social skills",
-    "nervous system",
-    "emotion management",
-    "Brainboda",
-    "science education",
+    "cognitive bias",
+    "Dunning-Kruger effect",
+    "default mode network",
+    "implicit memory",
+    "semantic priming",
+    "emotional contagion",
+    "subliminal perception",
+    "habit loops",
+    "automaticity",
+    "Freudian slip",
+    "saccadic suppression",
+    "cocktail party effect",
     "behavioral psychology",
-    "EQ",
-    "emotional maturity"
+    "educational",
+    "mind science",
+    "consciousness"
   ],
   "type": "main",
-  "created_at": "2026-08-18T08:42:00",
+  "created_at": "2026-08-23T08:35:36",
   "ai_generated": true,
-  "theme": "emotional intelligence",
-  "hook_duration_est": 23,
-  "outro_duration_est": 22,
-  "total_duration_est": 421,
-  "description": "10 Emotional Intelligence Secrets That'll Change How You Read People\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:23 - Fact 1: The Somatic Marker Hypothesis\n0:56 - Fact 2: Rumination vs. Reflection\n1:30 - Fact 3: The Default Mode Network\n2:08 - Fact 4: The Polyvagal Theory\n2:43 - Fact 5: Emotional Suppression vs. Acceptance\n3:21 - Fact 6: The Social Baseline Theory\n3:59 - Fact 7: Affect Labeling (Emotion Naming)\n4:36 - Fact 8: The Spotlight Effect\n5:17 - Fact 9: The Negativity Bias in Social Bonding\n5:55 - Fact 10: Cognitive Reappraisal (The Power of Reframing)\n6:39 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "theme": "unconscious behavior",
+  "hook_duration_est": 20,
+  "outro_duration_est": 27,
+  "total_duration_est": 424,
+  "description": "10 Unconscious Behaviors Your Brain Controls Without You Knowing\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Semantic Priming\n0:54 - Fact 2: The Cocktail Party Effect\n1:31 - Fact 3: Automaticity and Habit Loops\n2:08 - Fact 4: The Dunning-Kruger Effect\n2:43 - Fact 5: Subliminal Perception\n3:23 - Fact 6: Freudian Slips (Parapraxis)\n4:03 - Fact 7: The Blindspot and Eye Movements\n4:43 - Fact 8: The Default Mode Network\n5:22 - Fact 9: Implicit Memory and Priming Responses\n6:00 - Fact 10: Emotional Contagion\n6:37 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
