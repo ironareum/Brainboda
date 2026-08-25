@@ -1,178 +1,188 @@
 {
-  "title": "10 Unconscious Behaviors Your Brain Controls Without You Knowing",
-  "thumbnail_hook": "Your brain is lying to you",
-  "hook": "Your brain is making decisions right now—and you have no idea it's happening. We're not talking about breathing or blinking; we're talking about choices, opinions, and actions you think are totally under your control. So why does science say most of what you do happens in the dark?",
+  "title": "10 Relationship Psychology Secrets That Explain Why You Love (or Leave)",
+  "thumbnail_hook": "Your Brain is Lying About Love",
+  "hook": "Most couples break up not because they stop loving each other, but because their brains literally rewire how they see their partner. And it happens faster than you think. So what hidden psychological forces are quietly sabotaging your relationship right now?",
   "facts": [
     {
       "n": 1,
-      "heading": "Semantic Priming",
-      "narration": "Fact 1: Semantic Priming. This is when exposure to one word or concept makes related ideas pop into your head faster, without conscious effort. If I say 'doctor,' you'll recognize 'nurse' quicker than 'bread'—even though you're not trying. Psychologist David Meyer documented this in the 1970s through reaction-time studies. Your brain is constantly connecting dots in the background, and you only notice the final answer. This matters because it shows your decisions aren't as independent as you think—context is hijacking your thoughts before you're aware.",
+      "heading": "Imprinting (Attachment Stamping)",
+      "narration": "Fact 1: Imprinting. Your earliest relationships—especially with your parents—create a psychological template that you unconsciously seek in romantic partners, discovered through attachment research by psychologist John Bowlby in the 1950s. This doesn't mean you're doomed to repeat patterns, but it does mean your \"type\" was largely chosen before you could even choose. Understanding your imprinting helps you recognize whether you're attracted to someone for genuine compatibility or for buried emotional wounds.",
       "search_keywords": [
-        "semantic priming effect",
-        "David Meyer psychology",
-        "unconscious word association"
+        "imprinting attachment theory",
+        "Bowlby attachment",
+        "early relationship patterns",
+        "psychological templates"
       ],
-      "duration_est": 34,
-      "id": "semantic_priming",
+      "duration_est": 28,
+      "id": "imprinting_attachment_stamping",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Cocktail Party Effect",
-      "narration": "Fact 2: The Cocktail Party Effect. In a noisy room full of conversations, you somehow filter out the noise and focus on someone talking directly to you—or oddly, your own name across the room. This selective attention happens automatically, without conscious effort. Colin Cherry studied this in 1953 using headphones and dual messages. Your brain is constantly scanning your environment for relevant information, then blocking the rest out without asking permission. Understanding this explains why you zone out in meetings but snap to attention when your name's mentioned—your unconscious mind is the bouncer.",
+      "heading": "The Mere Exposure Effect",
+      "narration": "Fact 2: The Mere Exposure Effect. Simply being around someone repeatedly makes you like them more—even if you didn't initially—because familiarity creates a sense of safety in your brain. Psychologist Robert Zajonc identified this in 1968. This explains why long-term partners often feel more attractive over time, but it also means proximity alone can create false attachment. Recognizing this helps you distinguish between genuine connection and comfortable habit.",
       "search_keywords": [
-        "cocktail party effect",
-        "Colin Cherry selective attention",
-        "unconscious filtering"
+        "mere exposure effect",
+        "Zajonc familiarity",
+        "repeated exposure attraction",
+        "proximity and liking"
       ],
-      "duration_est": 37,
-      "id": "the_cocktail_party_effect",
+      "duration_est": 27,
+      "id": "the_mere_exposure_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "Automaticity and Habit Loops",
-      "narration": "Fact 3: Automaticity and Habit Loops. After you repeat a behavior enough times, your brain shifts it from conscious control to autopilot—this is called automaticity. Driving home, brushing your teeth, scrolling your phone: you're not thinking, you're running a script. Psychologist BJ Fogg and habit researcher Wendy Suzuki have shown that habits form through repetition and reward, then basically run themselves. Your prefrontal cortex (the conscious decision-maker) clocks out, and deeper brain circuits take over. This is why breaking habits is so hard—you're fighting autopilot with willpower, and autopilot never gets tired.",
+      "heading": "Projection (Psychological Defense)",
+      "narration": "Fact 3: Projection. You unconsciously assign your own unresolved traits, fears, and desires onto your partner, believing they possess qualities that actually live inside you. This defense mechanism, formalized by Sigmund Freud, means you might fall in love with a fantasy version of someone rather than who they actually are. When reality doesn't match your projection, resentment builds fast. Catching yourself projecting is one of the hardest but most relationship-saving skills you can develop.",
       "search_keywords": [
-        "automaticity psychology",
-        "BJ Fogg habit loops",
-        "unconscious behavior patterns"
+        "psychological projection",
+        "Freud defense mechanism",
+        "projecting onto partner",
+        "fantasy vs reality relationships"
       ],
-      "duration_est": 37,
-      "id": "automaticity_and_habit_loops",
+      "duration_est": 30,
+      "id": "projection_psychological_defense",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Dunning-Kruger Effect",
-      "narration": "Fact 4: The Dunning-Kruger Effect. People with low ability at something often dramatically overestimate their competence—without realizing it. Meanwhile, experts often underestimate theirs. Psychologists David Dunning and Justin Kruger discovered this in 1999 through studies on logic, grammar, and humor. The kicker? You can't see your own blind spots; that's what makes them blind. Your unconscious confidence is being calibrated by an invisible meter you can't access. This matters because it means you're probably overconfident about something right now, and your brain won't let you see it.",
+      "heading": "Reactance (Motivational Resistance)",
+      "narration": "Fact 4: Reactance. When someone tries to limit your freedom—even subtly—you feel an automatic urge to do the opposite, a phenomenon psychologist Jack Brehm called Reactance in 1966. In relationships, controlling behavior or ultimatums backfire spectacularly because they trigger rebellion rather than compliance. Partners who feel their autonomy is threatened become defensive, evasive, and often pull away entirely. This is why trying to change your partner always fails.",
       "search_keywords": [
-        "Dunning-Kruger effect",
-        "David Dunning Justin Kruger",
-        "overconfidence bias"
+        "reactance theory",
+        "Brehm psychological reactance",
+        "freedom and resistance",
+        "controlling behavior backfire"
       ],
-      "duration_est": 35,
-      "id": "the_dunning_kruger_effect",
+      "duration_est": 27,
+      "id": "reactance_motivational_resistance",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Subliminal Perception",
-      "narration": "Fact 5: Subliminal Perception. Your brain can process information faster than your conscious mind can detect it. Images flashed for milliseconds, words hidden in background noise—you don't see or hear them consciously, but your brain registers them. Neuroscientist Stanislas Dehaene has mapped how the brain processes subliminal stimuli through brain imaging. Your brain is constantly absorbing signals below the threshold of awareness, which can influence mood, behavior, and even purchasing decisions. This matters because it raises an unsettling question: how much of what you think is your choice is actually influenced by hidden signals you never consented to process.",
+      "heading": "The Proximity-Liking Link (Propinquity Effect)",
+      "narration": "Fact 5: The Proximity-Liking Link (Propinquity Effect). You're statistically most likely to fall in love with someone geographically close to you, not because of destiny but because repeated proximity lowers anxiety and increases comfort. This effect was documented across decades of relationship research. It's a humbling truth: your soulmate is probably just someone you see often enough for your brain to feel safe around. Geography matters far more than most people admit in choosing partners.",
       "search_keywords": [
-        "subliminal perception",
-        "Stanislas Dehaene",
-        "subliminal messaging neuroscience"
+        "propinquity effect proximity",
+        "geographic closeness attraction",
+        "physical distance relationships",
+        "neighborhood effect dating"
       ],
-      "duration_est": 40,
-      "id": "subliminal_perception",
+      "duration_est": 30,
+      "id": "the_proximity_liking_link_propinquity_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "Freudian Slips (Parapraxis)",
-      "narration": "Fact 6: Freudian Slips or Parapraxis. You accidentally say what you're actually thinking instead of what you meant to say—'I'm not in the mood for your company' instead of 'I'm not in the mood for coffee.' Sigmund Freud called these 'parapraxis,' though modern neuroscience has expanded beyond pure Freudian theory. Research shows slips reveal genuine unconscious thoughts competing with your intended speech. Psychologist Vicki Fromkin studied speech errors and found they happen when conflicting thoughts are active in the background. This matters because it proves your real thoughts are always there, waiting for a crack in your filter to escape.",
+      "heading": "Mirror Neurons and Emotional Contagion",
+      "narration": "Fact 6: Mirror Neurons and Emotional Contagion. Your brain contains mirror neurons that automatically mimic the emotions and body language of people around you—meaning you literally \"catch\" your partner's mood like a virus. Neuroscientist Vittorio Gallese discovered mirror neurons in the 1990s, revealing why one anxious partner can destabilize an entire relationship's emotional climate. If your partner is stressed, your nervous system responds without conscious choice. This explains why toxic relationships feel physically exhausting.",
       "search_keywords": [
-        "Freudian slip",
-        "parapraxis",
-        "Vicki Fromkin speech errors"
+        "mirror neurons",
+        "emotional contagion",
+        "Gallese mirror neurons",
+        "emotional mirroring relationships"
       ],
-      "duration_est": 40,
-      "id": "freudian_slips_parapraxis",
+      "duration_est": 30,
+      "id": "mirror_neurons_and_emotional_contagion",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Blindspot and Eye Movements",
-      "narration": "Fact 7: Saccadic Suppression and the Blindspot. Your eyes are making rapid movements (saccades) 3-4 times per second, and during these jumps, your brain goes blind—literally. But you don't notice the darkness because your brain fills in the gaps automatically. Neuroscientist David Yarrow and eye-movement researchers have documented how your visual system blanks out, then your brain constructs a seamless narrative of continuous vision. You're experiencing a false movie of reality, stitched together without your awareness. This matters because it shows your conscious experience of 'seeing' is constructed by unconscious processes—you're not actually seeing what you think you're seeing.",
+      "heading": "Negativity Bias (Negativity Dominance)",
+      "narration": "Fact 7: Negativity Bias. Your brain weighs negative experiences about 3 times heavier than positive ones—so one cruel comment erases ten compliments in your memory. This evolutionary survival mechanism, documented extensively in cognitive psychology, means relationships die not from lack of love but from accumulated small hurts that feel disproportionately large. One fight can overshadow months of joy because your threat-detection system is more powerful than your reward system. This is why intentional appreciation matters so much.",
       "search_keywords": [
-        "saccadic suppression",
-        "eye movement blindness",
-        "David Yarrow neuroscience"
+        "negativity bias psychology",
+        "negativity dominance",
+        "negative experiences weight",
+        "emotional memory relationships"
       ],
-      "duration_est": 40,
-      "id": "the_blindspot_and_eye_movements",
+      "duration_est": 31,
+      "id": "negativity_bias_negativity_dominance",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Default Mode Network",
-      "narration": "Fact 8: The Default Mode Network. When your brain isn't focused on external tasks, it activates the Default Mode Network (DMN)—a system that runs your mind-wandering, self-referential thoughts, and daydreaming. Neuroscientist Marcus Raichle discovered this in 2001 through fMRI scans. Your brain is constantly narrating stories about yourself, replaying conversations, and imagining futures—without you directing it. This autopilot mode uses significant energy and shapes your mood, anxiety, and self-image unconsciously. This matters because most of your mental life happens in this background narrative, which means you're not the author of your own thoughts as much as you think.",
+      "heading": "The Spotlight Effect (Spotlight Fallacy)",
+      "narration": "Fact 8: The Spotlight Effect. You believe your partner notices, judges, and remembers far more of your mistakes and flaws than they actually do—because you assume they're paying as much attention to you as you are to yourself. Psychologists Thomas Gilovich and Kenneth Savitsky identified this in 2000. This distortion causes unnecessary shame and defensive behavior in relationships. Your partner likely forgot that embarrassing thing you did weeks ago; you're the only one replaying it on loop.",
       "search_keywords": [
-        "default mode network",
-        "Marcus Raichle",
-        "mind-wandering neuroscience"
+        "spotlight effect",
+        "Gilovich Savitsky",
+        "overestimated judgment",
+        "self-consciousness relationships"
       ],
-      "duration_est": 39,
-      "id": "the_default_mode_network",
+      "duration_est": 31,
+      "id": "the_spotlight_effect_spotlight_fallacy",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Implicit Memory and Priming Responses",
-      "narration": "Fact 9: Implicit Memory. You have memories you can't consciously recall but your body remembers. If you learned to ride a bike as a child, your muscles know what to do even if you can't explain the steps. Psychologist Daniel Schacter distinguished between explicit (conscious) and implicit (unconscious) memory systems. Your unconscious memories influence your reactions, fears, and skills without your permission or awareness. This matters because trauma, phobias, and even your taste in partners might be driven by implicit memories you can't access—your past is haunting you without your conscious mind knowing why.",
+      "heading": "Reciprocal Liking (Liking Those Who Like You)",
+      "narration": "Fact 9: Reciprocal Liking. You unconsciously fall harder for people who show genuine interest in you—not because they're objectively better, but because your brain interprets interest as validation and safety. Psychologist Donn Byrne and others documented that belief in being liked intensifies actual attraction, even if it's unfounded. This is why love often follows a pattern of being pursued rather than choosing freely. Understanding this can help you distinguish between genuine compatibility and feeling needed.",
       "search_keywords": [
-        "implicit memory",
-        "Daniel Schacter memory systems",
-        "procedural memory"
+        "reciprocal liking psychology",
+        "liking those who like you",
+        "mutual attraction bias",
+        "validation in relationships"
       ],
-      "duration_est": 38,
-      "id": "implicit_memory_and_priming_responses",
+      "duration_est": 30,
+      "id": "reciprocal_liking_liking_those_who_like_you",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Emotional Contagion",
-      "narration": "Fact 10: Emotional Contagion. You catch emotions from people around you—without realizing it's happening. If someone near you is anxious, you unconsciously absorb that anxiety. Psychologist Elaine Hatfield and colleagues documented that emotions spread through facial mimicry, vocal patterns, and pheromones—all operating beneath conscious awareness. Your brain is constantly syncing with others' emotional states like an invisible emotional Wi-Fi network. This matters because it means your mood right now might not even be yours—it could be borrowed from someone else in the room, hijacking your emotional state without your consent or knowledge.",
+      "heading": "The Pratfall Effect (Vulnerability Paradox)",
+      "narration": "Fact 10: The Pratfall Effect. Counterintuitively, people like you MORE when you make mistakes and admit flaws rather than appearing perfect—because vulnerability signals authenticity and trustworthiness, discovered by psychologist Elliot Aronson in 1966. Yet most people hide their weaknesses in relationships, believing perfection is attractive. This creates a cruel irony: the qualities that would make someone fall for you are the exact ones you're taught to hide. Authentic imperfection beats polished distance every single time.",
       "search_keywords": [
-        "emotional contagion",
-        "Elaine Hatfield",
-        "unconscious emotional transfer"
+        "pratfall effect",
+        "Aronson vulnerability",
+        "mistakes endear people",
+        "authenticity attraction"
       ],
-      "duration_est": 37,
-      "id": "emotional_contagion",
+      "duration_est": 30,
+      "id": "the_pratfall_effect_vulnerability_paradox",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain is running the show, and you're mostly just along for the ride. Which of these facts hit you hardest? Drop a comment below—I want to know which unconscious behavior you're going to start noticing now that you can't unsee it. And if this blew your mind, smash that subscribe button because we've got way more about how your brain tricks you. Thanks for watching Brainboda.",
+  "outro": "So which one hit you hardest? Drop a comment telling me which fact just made you go 'oh crap, that's me'—and don't forget to subscribe because next week we're going even deeper into the weird psychology of breakups. Your future self will thank you.",
   "tags": [
-    "unconscious behavior",
-    "psychology",
-    "neuroscience",
-    "brain science",
-    "cognitive bias",
-    "Dunning-Kruger effect",
-    "default mode network",
-    "implicit memory",
-    "semantic priming",
-    "emotional contagion",
-    "subliminal perception",
-    "habit loops",
-    "automaticity",
-    "Freudian slip",
-    "saccadic suppression",
-    "cocktail party effect",
+    "relationship psychology",
+    "attachment theory",
+    "psychology explained",
+    "relationship advice",
+    "dating psychology",
+    "emotional intelligence",
+    "mental health",
+    "psychological defense mechanisms",
+    "attraction science",
+    "human behavior",
+    "cognitive biases",
+    "relationship dynamics",
+    "self-awareness",
     "behavioral psychology",
-    "educational",
-    "mind science",
-    "consciousness"
+    "love science",
+    "neuroscience relationships",
+    "behavioral patterns",
+    "psychology education",
+    "brainboda",
+    "explainer video"
   ],
   "type": "main",
-  "created_at": "2026-08-23T08:35:36",
+  "created_at": "2026-08-25T08:49:30",
   "ai_generated": true,
-  "theme": "unconscious behavior",
+  "theme": "relationship psychology",
   "hook_duration_est": 20,
-  "outro_duration_est": 27,
-  "total_duration_est": 424,
-  "description": "10 Unconscious Behaviors Your Brain Controls Without You Knowing\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Semantic Priming\n0:54 - Fact 2: The Cocktail Party Effect\n1:31 - Fact 3: Automaticity and Habit Loops\n2:08 - Fact 4: The Dunning-Kruger Effect\n2:43 - Fact 5: Subliminal Perception\n3:23 - Fact 6: Freudian Slips (Parapraxis)\n4:03 - Fact 7: The Blindspot and Eye Movements\n4:43 - Fact 8: The Default Mode Network\n5:22 - Fact 9: Implicit Memory and Priming Responses\n6:00 - Fact 10: Emotional Contagion\n6:37 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 20,
+  "total_duration_est": 334,
+  "description": "10 Relationship Psychology Secrets That Explain Why You Love (or Leave)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Imprinting (Attachment Stamping)\n0:48 - Fact 2: The Mere Exposure Effect\n1:15 - Fact 3: Projection (Psychological Defense)\n1:45 - Fact 4: Reactance (Motivational Resistance)\n2:12 - Fact 5: The Proximity-Liking Link (Propinquity Effect)\n2:42 - Fact 6: Mirror Neurons and Emotional Contagion\n3:12 - Fact 7: Negativity Bias (Negativity Dominance)\n3:43 - Fact 8: The Spotlight Effect (Spotlight Fallacy)\n4:14 - Fact 9: Reciprocal Liking (Liking Those Who Like You)\n4:44 - Fact 10: The Pratfall Effect (Vulnerability Paradox)\n5:14 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
