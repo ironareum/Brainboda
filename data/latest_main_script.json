@@ -1,178 +1,188 @@
 {
-  "title": "10 Dark Psychology Tricks People Use On You Every Day",
-  "thumbnail_hook": "They're Manipulating You Right Now",
-  "hook": "People are using invisible psychological tricks on you right now—and you probably don't even know it's happening. The scariest part? Once you see how these work, you'll start noticing them everywhere. So how are the people around you actually getting inside your head?",
+  "title": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)",
+  "thumbnail_hook": "Your brain lies to you",
+  "hook": "You think you're rational, but studies show your brain makes snap judgments that bypass logic entirely. Every single day, invisible mental shortcuts hijack your choices—from who you trust to what you buy. So what's actually running the show in your head?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Narcissistic Supply",
-      "narration": "Fact 1: The Narcissistic Supply. This is the attention, admiration, or emotional reaction that narcissists crave like a drug. Coined by psychologist Heinz Kohut in his self-psychology framework, narcissists engineer situations to extract this 'supply' from others—whether it's rage, jealousy, or admiration. They don't care which emotion you feel; they just need *you* to feel intensely. Understanding this explains why toxic people keep pushing your buttons—they're literally feeding off your emotional reactions, and you're unknowingly fueling their behavior every time you react strongly.",
+      "heading": "The Halo Effect",
+      "narration": "Fact 1: The Halo Effect. When one trait shines, we assume everything else about that person is perfect too. A psychologist named Edward Thorndike discovered this in 1920 after noticing teachers rated attractive students as smarter, even when test scores proved otherwise. We're basically fooled by first impressions into building false narratives. This is why attractive CEOs get more credit for company success and why one mistake can destroy a reputation built over years.",
       "search_keywords": [
-        "narcissistic supply",
-        "Heinz Kohut",
-        "narcissist attention"
+        "Halo Effect",
+        "Edward Thorndike",
+        "cognitive bias first impression",
+        "attractiveness bias"
       ],
-      "duration_est": 33,
-      "id": "the_narcissistic_supply",
+      "duration_est": 30,
+      "id": "the_halo_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Contrast Principle",
-      "narration": "Fact 2: The Contrast Principle. Psychologist Robert Cialdini identified this persuasion tactic: your perception of something changes dramatically depending on what you compare it to. A used car salesman shows you the worst vehicles first, then the 'decent' one looks amazing. A manipulator might treat you terribly, then suddenly be nice—and that kindness feels like heaven because of the contrast. This principle rewires your judgment without you realizing it, making you overlook red flags because relative to the recent bad treatment, anything feels like an improvement.",
+      "heading": "Status Quo Bias",
+      "narration": "Fact 2: Status Quo Bias. Your brain treats the current state as the 'default correct' option and makes you irrationally resistant to change. Researchers Samuelson and Zeckhauser documented this in 1988, finding people cling to existing choices even when switching would objectively benefit them—like staying in bad relationships or keeping money in low-yield accounts. Your inertia isn't laziness; it's your brain treating change as risky by default. This is why people stay in toxic jobs or ignore better opportunities right in front of them.",
       "search_keywords": [
-        "contrast principle",
-        "Robert Cialdini",
-        "persuasion tactics"
+        "Status Quo Bias",
+        "Samuelson Zeckhauser",
+        "resistance to change",
+        "inertia bias"
       ],
       "duration_est": 34,
-      "id": "the_contrast_principle",
+      "id": "status_quo_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Labeling Effect",
-      "narration": "Fact 3: The Labeling Effect. When someone assigns you a label—'you're the smart one,' 'you're selfish,' 'you're a leader'—your brain actually internalizes it and you start behaving in ways that confirm it. This was demonstrated in studies on self-fulfilling prophecies, notably Rosenthal and Jacobson's classroom studies in the 1960s. Manipulators use this by labeling you as something you want to believe, then you unconsciously mold your behavior to match that identity. It's why a partner calling you 'crazy' or a boss saying you're 'unreliable' shapes how you actually behave going forward.",
+      "heading": "The Planning Fallacy",
+      "narration": "Fact 3: The Planning Fallacy. You always underestimate how long tasks will take, even when you've been wrong before. Psychologist Daniel Kahneman and Amos Tversky identified this in 1979—we're optimistic about our own timelines but pessimistic about others'. You'll say 'I can finish this project in a week' while knowing your last project took three. Your brain ignores historical evidence to protect your ego. This wrecks your productivity, damages trust with colleagues, and creates constant stress when reality clashes with your timeline fantasy.",
       "search_keywords": [
-        "labeling effect",
-        "self-fulfilling prophecy",
-        "Rosenthal Jacobson"
+        "Planning Fallacy",
+        "Daniel Kahneman",
+        "Amos Tversky",
+        "time estimation bias"
       ],
-      "duration_est": 36,
-      "id": "the_labeling_effect",
+      "duration_est": 33,
+      "id": "the_planning_fallacy",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Scarcity Principle",
-      "narration": "Fact 4: The Scarcity Principle. Cialdini also identified scarcity as a powerful manipulation tool: we value things more when they're rare or limited. 'This deal expires tonight,' 'I'm only accepting three new clients,' 'Everyone else wants this but you're special'—these phrases trigger panic in your brain. When something feels scarce, your rational decision-making shuts down and your fear of missing out takes over. This is why manipulators create artificial deadlines and exclusivity; they're deliberately trying to prevent you from thinking clearly.",
+      "heading": "The Bystander Effect",
+      "narration": "Fact 4: The Bystander Effect. The more people around during an emergency, the less likely anyone helps—even though you'd think the opposite. Psychologists John Darley and Bibb Latané proved this after the tragic 1964 Kitty Genovese case in New York, where dozens witnessed her assault but nobody called police. Each person assumes someone else will act, so responsibility dissolves. This isn't cowardice; it's a psychological phenomenon hardwired into group dynamics. It explains why viral videos show strangers ignoring accidents, and why you might freeze too when surrounded.",
       "search_keywords": [
-        "scarcity principle",
-        "FOMO",
-        "manipulation tactics"
+        "Bystander Effect",
+        "John Darley",
+        "Bibb Latané",
+        "diffusion of responsibility"
       ],
-      "duration_est": 32,
-      "id": "the_scarcity_principle",
+      "duration_est": 35,
+      "id": "the_bystander_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Mirroring Technique",
-      "narration": "Fact 5: The Mirroring Technique. Skilled manipulators copy your body language, speech patterns, and even your values. This unconscious mimicry makes you feel understood and liked—research shows we naturally trust people who are similar to us. But when someone deliberately mirrors you, they're weaponizing your own brain's preference for similarity against you. You feel an instant bond that feels organic, but it's actually a calculated technique used by con artists, predatory partners, and salespeople to build false rapport before exploiting your trust.",
+      "heading": "Negativity Bias",
+      "narration": "Fact 5: Negativity Bias. Bad news sticks in your brain like superglue; good news slides off like water. Psychologist Paul Rozin and colleagues demonstrated that negative experiences have roughly 5 times more psychological impact than positive ones. A bad meal ruins a vacation you enjoyed for a week. One rude comment overshadows ten compliments. Your ancestors survived because they obsessed over threats, and that ancient wiring still runs your modern brain. Understanding this explains why you scroll doom-filled news feeds instead of celebrating wins, and why anxiety feels louder than joy.",
       "search_keywords": [
-        "mirroring technique",
-        "rapport building",
-        "body language matching"
+        "Negativity Bias",
+        "Paul Rozin",
+        "negative events psychology",
+        "threat detection bias"
       ],
-      "duration_est": 33,
-      "id": "the_mirroring_technique",
+      "duration_est": 36,
+      "id": "negativity_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The False Dilemma",
-      "narration": "Fact 6: The False Dilemma. This is a manipulation tactic where someone presents only two options when more actually exist: 'Either you trust me completely or you don't trust me at all,' or 'You're either with us or against us.' It forces you into binary thinking and removes nuance from the decision. A manipulator uses this to corner you psychologically—you can't find a reasonable middle ground because they've artificially erased it. This is especially dangerous in relationships because it makes you feel like reasonable boundaries are actually betrayals.",
+      "heading": "The Forer Effect",
+      "narration": "Fact 6: The Forer Effect. You accept vague, general descriptions as deeply personal insights tailored just for you. Psychologist Bertram Forer discovered this in 1949 when he gave identical horoscopes to all his students—they each swore it described them perfectly. Tarot readers, astrologers, and cold readers exploit this relentlessly. Your brain craves personalization and fills blanks with self-serving details. This is why horoscopes feel eerily accurate, why fake personality tests go viral, and why charlatans prey on people desperately seeking self-understanding.",
       "search_keywords": [
-        "false dilemma",
-        "false binary",
-        "logical fallacy manipulation"
+        "Forer Effect",
+        "Bertram Forer",
+        "Barnum effect",
+        "false personalization"
       ],
-      "duration_est": 35,
-      "id": "the_false_dilemma",
+      "duration_est": 32,
+      "id": "the_forer_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Normalization of Deviance",
-      "narration": "Fact 7: The Normalization of Deviance. Sociologist Diane Vaughan coined this term after studying the Space Shuttle Challenger disaster. It describes how small boundary violations become normalized over time until serious abuse feels routine. A controlling partner starts with mild criticism, then isolation, then financial control—each step feels like a small escalation, so your sense of 'normal' shifts. By the time you're trapped, you've gradually accepted things you'd never tolerate at the beginning. This is why abuse victims often say 'it wasn't always like this'—the frog boils slowly in the pot.",
+      "heading": "The Decoy Effect",
+      "narration": "Fact 7: The Decoy Effect. Adding a terrible third option makes you suddenly prefer one of the original two—even though the bad option shouldn't influence your choice. Researcher Itamar Simonson published this in 1989, showing how decoys manipulate preference. Movie theaters price popcorn so the large looks like the best value. Stores add overpriced versions of products to make mid-range options seem like bargains. Your rational brain assumes choice architecture is neutral, but marketers weaponize this bias every day. You're being herded into 'better' options that only look good next to intentionally bad ones.",
       "search_keywords": [
-        "normalization of deviance",
-        "Diane Vaughan",
-        "abuse escalation"
+        "Decoy Effect",
+        "Itamar Simonson",
+        "choice architecture",
+        "marketing manipulation"
       ],
-      "duration_est": 36,
-      "id": "the_normalization_of_deviance",
+      "duration_est": 38,
+      "id": "the_decoy_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Projection Defense",
-      "narration": "Fact 8: The Projection Defense. Originally identified by Sigmund Freud, projection is when someone attributes their own unacceptable thoughts or behaviors to you. The unfaithful partner accuses *you* of cheating. The manipulator claims *you're* manipulating them. The liar says *you're* dishonest. This is diabolical because it flips the narrative—suddenly you're defending yourself against accusations that actually describe the accuser. You waste energy proving your innocence while their guilt stays hidden, and the constant gaslighting erodes your sense of reality.",
+      "heading": "Projection Bias",
+      "narration": "Fact 8: Projection Bias. You assume others think, feel, and believe what you do—even when evidence screams otherwise. This operates across politics, relationships, and friendships. You overestimate how many people share your values and underestimate how different others truly are. Your brain treats your perspective as the universal baseline. This leads to shock when someone disagrees, betrayal when friends have different priorities, and political polarization where both sides think the other is insane rather than simply different. Recognizing this gap saves friendships and kills unnecessary conflict.",
       "search_keywords": [
-        "projection defense",
-        "psychological defense mechanism",
-        "projection psychology"
+        "Projection Bias",
+        "false consensus projection",
+        "assumptions about others",
+        "perspective taking"
       ],
-      "duration_est": 32,
-      "id": "the_projection_defense",
+      "duration_est": 34,
+      "id": "projection_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "The Triangulation Strategy",
-      "narration": "Fact 9: The Triangulation Strategy. Manipulators bring a third party into a two-person conflict to destabilize you. They might compare you unfavorably to an ex, an employee, or a rival, or they pit people against each other. This technique creates competition, insecurity, and jealousy—emotional states that cloud your judgment and make you more compliant. You're desperate to win back favor or prove your worth, so you compromise your standards. The triangulation strategy is everywhere: in romantic relationships, workplace dynamics, and family systems, and it exploits our deep fear of being replaced.",
+      "heading": "Reactive Devaluation",
+      "narration": "Fact 9: Reactive Devaluation. When your rival wants something, your brain instantly devalues it—even if you wanted it moments before. If your ex starts dating someone, suddenly that person seems less attractive. If a competitor wants a deal you're negotiating, the deal feels less valuable. Lee Ross and Constance Stillinger studied this intensively, showing how opposition rewires perception. This bias sabotages negotiations, destroys rational bidding in auctions, and makes you dismiss good ideas simply because enemies support them. You're not being principled; you're being manipulated by your own psychological immune system.",
       "search_keywords": [
-        "triangulation strategy",
-        "narcissistic triangulation",
-        "manipulation tactic"
+        "Reactive Devaluation",
+        "Lee Ross",
+        "Constance Stillinger",
+        "devaluation bias"
       ],
       "duration_est": 36,
-      "id": "the_triangulation_strategy",
+      "id": "reactive_devaluation",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Exploitation of Cognitive Load",
-      "narration": "Fact 10: The Exploitation of Cognitive Load. Cognitive load is how much mental effort you're using at any moment. When you're overwhelmed, stressed, or tired, your critical thinking collapses and you're more suggestible. Manipulators deliberately overwhelm you with information, drama, or demands to lower your defenses. A narcissist might start a big argument right when you're exhausted, a scammer might bombard you with technical jargon, or a bad employer might pile on crises. When your brain is at full capacity, you can't think clearly—and that's exactly when they make their move.",
+      "heading": "The Spotlight Effect",
+      "narration": "Fact 10: The Spotlight Effect. You believe everyone notices your appearance, mistakes, and awkward moments far more than they actually do. Psychologists Thomas Gilovich and Kenneth Savitsky proved in 2000 that people dramatically overestimate how much others observe them. You spill coffee and think everyone saw it; they're absorbed in their own lives. You say something dumb and replay it for hours; others forgot in minutes. This ancient survival instinct—obsessing over how the tribe perceives you—misfires in modern contexts where nobody's actually watching. Realizing most people are too self-focused to judge you liberates you from paralyzing social anxiety.",
       "search_keywords": [
-        "cognitive load",
-        "decision fatigue",
-        "mental overload manipulation"
+        "Spotlight Effect",
+        "Thomas Gilovich",
+        "Kenneth Savitsky",
+        "overestimating observation"
       ],
-      "duration_est": 36,
-      "id": "the_exploitation_of_cognitive_load",
+      "duration_est": 39,
+      "id": "the_spotlight_effect",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "So here's the thing—now that you know these tricks, you're not immune to them. But awareness is your shield. Drop a comment telling us which dark psychology tactic hit you the hardest or resonated most with something you've experienced. And if this video made you think twice about the people in your life, hit that subscribe button for more psychology deep dives that actually matter.",
+  "outro": "Your brain is playing tricks on you right now—even watching this video. Drop a comment telling us which bias hit you hardest or a time you caught yourself falling for one. And smash subscribe so you don't miss when we decode the next psychological hack your mind is running in the background.",
   "tags": [
-    "dark psychology",
-    "manipulation tactics",
-    "psychological tricks",
-    "narcissism",
-    "gaslighting",
-    "toxic relationships",
-    "psychology explained",
-    "behavioral psychology",
-    "mind control",
-    "influence and persuasion",
     "cognitive biases",
-    "manipulation techniques",
-    "dark triad psychology",
-    "psychological abuse",
-    "self-help psychology",
-    "manipulative behavior",
-    "mental health awareness",
-    "toxic people",
-    "relationship psychology",
-    "persuasion science"
+    "psychology",
+    "behavioral psychology",
+    "mental shortcuts",
+    "heuristics",
+    "how your brain works",
+    "decision making",
+    "psychological manipulation",
+    "critical thinking",
+    "confirmation bias",
+    "brain science",
+    "human behavior",
+    "rationality",
+    "thinking errors",
+    "cognitive psychology",
+    "self-awareness",
+    "bias education",
+    "science explained",
+    "brainboda",
+    "educational video"
   ],
   "type": "main",
-  "created_at": "2026-09-01T13:18:39",
+  "created_at": "2026-09-06T12:02:42",
   "ai_generated": true,
-  "theme": "dark psychology",
+  "theme": "cognitive biases",
   "hook_duration_est": 20,
-  "outro_duration_est": 26,
-  "total_duration_est": 389,
-  "description": "10 Dark Psychology Tricks People Use On You Every Day\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Narcissistic Supply\n0:53 - Fact 2: The Contrast Principle\n1:27 - Fact 3: The Labeling Effect\n2:03 - Fact 4: The Scarcity Principle\n2:35 - Fact 5: The Mirroring Technique\n3:08 - Fact 6: The False Dilemma\n3:43 - Fact 7: The Normalization of Deviance\n4:19 - Fact 8: The Projection Defense\n4:51 - Fact 9: The Triangulation Strategy\n5:27 - Fact 10: The Exploitation of Cognitive Load\n6:03 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 21,
+  "total_duration_est": 388,
+  "description": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Halo Effect\n0:50 - Fact 2: Status Quo Bias\n1:24 - Fact 3: The Planning Fallacy\n1:57 - Fact 4: The Bystander Effect\n2:32 - Fact 5: Negativity Bias\n3:08 - Fact 6: The Forer Effect\n3:40 - Fact 7: The Decoy Effect\n4:18 - Fact 8: Projection Bias\n4:52 - Fact 9: Reactive Devaluation\n5:28 - Fact 10: The Spotlight Effect\n6:07 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
