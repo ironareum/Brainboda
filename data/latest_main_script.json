@@ -1,188 +1,188 @@
 {
-  "title": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)",
-  "thumbnail_hook": "Your brain lies to you",
-  "hook": "You think you're rational, but studies show your brain makes snap judgments that bypass logic entirely. Every single day, invisible mental shortcuts hijack your choices—from who you trust to what you buy. So what's actually running the show in your head?",
+  "title": "10 Hidden Ways People Control Your Thoughts Without You Knowing",
+  "thumbnail_hook": "They're manipulating you RIGHT NOW",
+  "hook": "Studies show people change their opinions and behavior within seconds of entering a room with strangers. You think you're making your own choices, but invisible forces are reshaping your mind in real time. So why is your brain so easy to hijack?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Halo Effect",
-      "narration": "Fact 1: The Halo Effect. When one trait shines, we assume everything else about that person is perfect too. A psychologist named Edward Thorndike discovered this in 1920 after noticing teachers rated attractive students as smarter, even when test scores proved otherwise. We're basically fooled by first impressions into building false narratives. This is why attractive CEOs get more credit for company success and why one mistake can destroy a reputation built over years.",
+      "heading": "Compliance Without Pressure",
+      "narration": "Fact 1: Compliance Without Pressure. Psychologist Robert Cialdini identified that people are more likely to comply with requests when they're presented as part of a group norm rather than as direct orders. This is called indirect compliance—it flies under the radar because it feels like a choice, not manipulation. You're not being forced; you're just \"going along.\" Understanding this matters because marketers, politicians, and even friends use this constantly to shape what you buy, believe, and do without triggering your defensive instincts.",
       "search_keywords": [
-        "Halo Effect",
-        "Edward Thorndike",
-        "cognitive bias first impression",
-        "attractiveness bias"
+        "compliance psychology",
+        "indirect compliance",
+        "social pressure",
+        "Cialdini influence"
       ],
-      "duration_est": 30,
-      "id": "the_halo_effect",
+      "duration_est": 33,
+      "id": "compliance_without_pressure",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Status Quo Bias",
-      "narration": "Fact 2: Status Quo Bias. Your brain treats the current state as the 'default correct' option and makes you irrationally resistant to change. Researchers Samuelson and Zeckhauser documented this in 1988, finding people cling to existing choices even when switching would objectively benefit them—like staying in bad relationships or keeping money in low-yield accounts. Your inertia isn't laziness; it's your brain treating change as risky by default. This is why people stay in toxic jobs or ignore better opportunities right in front of them.",
+      "heading": "The Bandwagon Effect",
+      "narration": "Fact 2: The Bandwagon Effect. The tendency to believe or do something primarily because many others do is called the Bandwagon Effect—a cognitive bias so powerful it can override your own judgment. Whether it's TikTok trends, restaurant choices, or political opinions, humans unconsciously adopt beliefs when they see them spreading. The effect intensifies in real time; the more people who jump on, the more irresistible it becomes. This shapes your decisions daily, from what you watch to who you vote for, often without you realizing your independence has been quietly overridden.",
       "search_keywords": [
-        "Status Quo Bias",
-        "Samuelson Zeckhauser",
-        "resistance to change",
-        "inertia bias"
+        "bandwagon effect",
+        "herd mentality",
+        "cognitive bias",
+        "social conformity"
       ],
-      "duration_est": 34,
-      "id": "status_quo_bias",
+      "duration_est": 36,
+      "id": "the_bandwagon_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Planning Fallacy",
-      "narration": "Fact 3: The Planning Fallacy. You always underestimate how long tasks will take, even when you've been wrong before. Psychologist Daniel Kahneman and Amos Tversky identified this in 1979—we're optimistic about our own timelines but pessimistic about others'. You'll say 'I can finish this project in a week' while knowing your last project took three. Your brain ignores historical evidence to protect your ego. This wrecks your productivity, damages trust with colleagues, and creates constant stress when reality clashes with your timeline fantasy.",
+      "heading": "Social Facilitation and Inhibition",
+      "narration": "Fact 3: Social Facilitation and Inhibition. When an audience watches you perform a task you're good at, you perform better—but when they watch you do something unfamiliar, you perform worse. Psychologist Norman Triplett discovered this in 1898, calling it social facilitation. Your presence activates arousal in others, amplifying existing strengths and exposing weaknesses. This explains why public speaking terrifies amateurs but energizes seasoned speakers. It matters because your environment—who's watching, what's expected—literally changes your cognitive performance, meaning your \"real\" ability shifts based on who's in the room.",
       "search_keywords": [
-        "Planning Fallacy",
-        "Daniel Kahneman",
-        "Amos Tversky",
-        "time estimation bias"
+        "social facilitation",
+        "audience effect",
+        "performance psychology",
+        "Norman Triplett"
       ],
-      "duration_est": 33,
-      "id": "the_planning_fallacy",
+      "duration_est": 35,
+      "id": "social_facilitation_and_inhibition",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Bystander Effect",
-      "narration": "Fact 4: The Bystander Effect. The more people around during an emergency, the less likely anyone helps—even though you'd think the opposite. Psychologists John Darley and Bibb Latané proved this after the tragic 1964 Kitty Genovese case in New York, where dozens witnessed her assault but nobody called police. Each person assumes someone else will act, so responsibility dissolves. This isn't cowardice; it's a psychological phenomenon hardwired into group dynamics. It explains why viral videos show strangers ignoring accidents, and why you might freeze too when surrounded.",
+      "heading": "Deindividuation",
+      "narration": "Fact 4: Deindividuation. When you're part of a crowd, your sense of individual accountability dissolves—a process called deindividuation. In anonymous groups, people behave in ways they'd never behave alone: more aggressive, less ethical, less predictable. Gustave Le Bon documented this in 1895 studying mob behavior, and it still applies today in online comment sections and protest crowds. Your moral compass doesn't disappear; it gets hijacked by the collective energy around you. This is dangerous because it explains why normal people do terrible things in groups, and why anonymity online unleashes a darker version of yourself.",
       "search_keywords": [
-        "Bystander Effect",
-        "John Darley",
-        "Bibb Latané",
-        "diffusion of responsibility"
+        "deindividuation",
+        "mob psychology",
+        "crowd behavior",
+        "anonymity online"
       ],
-      "duration_est": 35,
-      "id": "the_bystander_effect",
+      "duration_est": 38,
+      "id": "deindividuation",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Negativity Bias",
-      "narration": "Fact 5: Negativity Bias. Bad news sticks in your brain like superglue; good news slides off like water. Psychologist Paul Rozin and colleagues demonstrated that negative experiences have roughly 5 times more psychological impact than positive ones. A bad meal ruins a vacation you enjoyed for a week. One rude comment overshadows ten compliments. Your ancestors survived because they obsessed over threats, and that ancient wiring still runs your modern brain. Understanding this explains why you scroll doom-filled news feeds instead of celebrating wins, and why anxiety feels louder than joy.",
+      "heading": "The Risky Shift Phenomenon",
+      "narration": "Fact 5: The Risky Shift Phenomenon. Groups make riskier decisions than individuals—a discovery that shattered the myth that committees are cautious. Psychologist James Stoner found in 1961 that when people discuss options together, they collectively push toward more extreme positions, including dangerous ones. It's called group polarization: the group amplifies existing tendencies. A cautiously optimistic group becomes recklessly bullish; a skeptical group becomes paranoid. This matters because boardrooms, juries, and governments all make decisions as groups—meaning major risks and historical atrocities often emerge from committee consensus, not lone wolf thinking.",
       "search_keywords": [
-        "Negativity Bias",
-        "Paul Rozin",
-        "negative events psychology",
-        "threat detection bias"
+        "risky shift",
+        "group polarization",
+        "group decision-making",
+        "James Stoner"
       ],
       "duration_est": 36,
-      "id": "negativity_bias",
+      "id": "the_risky_shift_phenomenon",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Forer Effect",
-      "narration": "Fact 6: The Forer Effect. You accept vague, general descriptions as deeply personal insights tailored just for you. Psychologist Bertram Forer discovered this in 1949 when he gave identical horoscopes to all his students—they each swore it described them perfectly. Tarot readers, astrologers, and cold readers exploit this relentlessly. Your brain craves personalization and fills blanks with self-serving details. This is why horoscopes feel eerily accurate, why fake personality tests go viral, and why charlatans prey on people desperately seeking self-understanding.",
+      "heading": "Obedience to Authority",
+      "narration": "Fact 6: Obedience to Authority. Stanley Milgram's infamous 1961 experiments showed that ordinary people will inflict severe pain on strangers if ordered to by an authority figure. Participants administered what they believed were lethal electric shocks simply because a researcher in a lab coat said so. Obedience isn't about stupidity—it's a psychological switch that flips when authority is present and responsibility is diffused. This matters viscerally because it explains how atrocities happen, how abuse persists in institutions, and why you'll follow a boss's unethical order more easily than you'd like to admit.",
       "search_keywords": [
-        "Forer Effect",
-        "Bertram Forer",
-        "Barnum effect",
-        "false personalization"
+        "obedience to authority",
+        "Milgram experiment",
+        "authority bias",
+        "institutional abuse"
       ],
-      "duration_est": 32,
-      "id": "the_forer_effect",
+      "duration_est": 37,
+      "id": "obedience_to_authority",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Decoy Effect",
-      "narration": "Fact 7: The Decoy Effect. Adding a terrible third option makes you suddenly prefer one of the original two—even though the bad option shouldn't influence your choice. Researcher Itamar Simonson published this in 1989, showing how decoys manipulate preference. Movie theaters price popcorn so the large looks like the best value. Stores add overpriced versions of products to make mid-range options seem like bargains. Your rational brain assumes choice architecture is neutral, but marketers weaponize this bias every day. You're being herded into 'better' options that only look good next to intentionally bad ones.",
+      "heading": "The Bystander Effect",
+      "narration": "Fact 7: The Bystander Effect. When multiple people witness an emergency, each individual is less likely to help—not because people are callous, but because responsibility diffuses. Psychologists John Darley and Bibb Latané documented this after the 1964 murder of Kitty Genovese, witnessed by dozens. With more bystanders, each person assumes someone else will act, so nobody does. It's called diffusion of responsibility. This haunts modern life in digital form: thousands watch cyberbullying unfold but nobody intervenes because \"someone else\" will. Understanding it empowers you to recognize when you're a bystander and to act anyway.",
       "search_keywords": [
-        "Decoy Effect",
-        "Itamar Simonson",
-        "choice architecture",
-        "marketing manipulation"
+        "bystander effect",
+        "diffusion of responsibility",
+        "Darley Latané",
+        "helping behavior"
       ],
       "duration_est": 38,
-      "id": "the_decoy_effect",
+      "id": "the_bystander_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "Projection Bias",
-      "narration": "Fact 8: Projection Bias. You assume others think, feel, and believe what you do—even when evidence screams otherwise. This operates across politics, relationships, and friendships. You overestimate how many people share your values and underestimate how different others truly are. Your brain treats your perspective as the universal baseline. This leads to shock when someone disagrees, betrayal when friends have different priorities, and political polarization where both sides think the other is insane rather than simply different. Recognizing this gap saves friendships and kills unnecessary conflict.",
+      "heading": "Terror Management Theory",
+      "narration": "Fact 8: Terror Management Theory. When reminded of death, people unconsciously cling more tightly to their cultural beliefs and prejudices—a phenomenon psychologists Sheldon Solomon, Jeff Greenberg, and Tom Pyszczynski call Terror Management Theory. Mortality reminders activate defense mechanisms that make you more defensive, tribal, and intolerant of outsiders. Politicians weaponize this by evoking existential threats before elections; cults exploit it to bind members. This matters darkly because it reveals that fear doesn't make us rational—it makes us predictably more extreme, more in-group biased, and easier to manipulate toward scapegoating.",
       "search_keywords": [
-        "Projection Bias",
-        "false consensus projection",
-        "assumptions about others",
-        "perspective taking"
+        "terror management theory",
+        "mortality salience",
+        "existential anxiety",
+        "cultural defense"
       ],
-      "duration_est": 34,
-      "id": "projection_bias",
+      "duration_est": 36,
+      "id": "terror_management_theory",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Reactive Devaluation",
-      "narration": "Fact 9: Reactive Devaluation. When your rival wants something, your brain instantly devalues it—even if you wanted it moments before. If your ex starts dating someone, suddenly that person seems less attractive. If a competitor wants a deal you're negotiating, the deal feels less valuable. Lee Ross and Constance Stillinger studied this intensively, showing how opposition rewires perception. This bias sabotages negotiations, destroys rational bidding in auctions, and makes you dismiss good ideas simply because enemies support them. You're not being principled; you're being manipulated by your own psychological immune system.",
+      "heading": "The Illusion of Unanimity",
+      "narration": "Fact 9: The Illusion of Unanimity. In groups where dissent feels risky, people fall silent—but their silence is misread as agreement. This creates what psychologist Irving Janis called groupthink: an illusion that everyone agrees when really people are just self-censoring. The result: teams, boards, and governments make catastrophic decisions nobody privately supported. Each person thinks they're the only doubter, so they stay quiet. This matters because it explains corporate scandals, failed military operations, and why toxic cultures persist—everyone suspects something's wrong, but the silence itself becomes proof that nothing is wrong.",
       "search_keywords": [
-        "Reactive Devaluation",
-        "Lee Ross",
-        "Constance Stillinger",
-        "devaluation bias"
+        "groupthink",
+        "illusion of unanimity",
+        "Irving Janis",
+        "conformity pressure"
       ],
       "duration_est": 36,
-      "id": "reactive_devaluation",
+      "id": "the_illusion_of_unanimity",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 10: The Spotlight Effect. You believe everyone notices your appearance, mistakes, and awkward moments far more than they actually do. Psychologists Thomas Gilovich and Kenneth Savitsky proved in 2000 that people dramatically overestimate how much others observe them. You spill coffee and think everyone saw it; they're absorbed in their own lives. You say something dumb and replay it for hours; others forgot in minutes. This ancient survival instinct—obsessing over how the tribe perceives you—misfires in modern contexts where nobody's actually watching. Realizing most people are too self-focused to judge you liberates you from paralyzing social anxiety.",
+      "heading": "Status Quo Bias and Social Anchoring",
+      "narration": "Fact 10: Status Quo Bias and Social Anchoring. People prefer things to stay as they are, especially if everyone else accepts the current state—a bias psychologists call status quo bias, amplified by social anchoring. The existing social arrangement becomes the \"normal\" reference point, making change feel dangerous even when it's beneficial. This is why oppressive systems persist: the status quo feels like nature, not choice. You're influenced to accept whatever \"everyone else\" has accepted as inevitable. This matters because recognizing your bias toward the status quo is the first step to questioning whether your beliefs are truly yours or just anchored in what everyone around you accepts.",
       "search_keywords": [
-        "Spotlight Effect",
-        "Thomas Gilovich",
-        "Kenneth Savitsky",
-        "overestimating observation"
+        "status quo bias",
+        "social anchoring",
+        "reference point",
+        "conformity"
       ],
-      "duration_est": 39,
-      "id": "the_spotlight_effect",
+      "duration_est": 43,
+      "id": "status_quo_bias_and_social_anchoring",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain is playing tricks on you right now—even watching this video. Drop a comment telling us which bias hit you hardest or a time you caught yourself falling for one. And smash subscribe so you don't miss when we decode the next psychological hack your mind is running in the background.",
+  "outro": "These forces shape you every single day—and most people never notice. Drop a comment: which one hit hardest? Did you recognize it happening in your own life? If this scrambled your brain, subscribe for more psychology that explains the hidden mechanics of human behavior. And share this with someone who needs to see how easily we're all being influenced.",
   "tags": [
-    "cognitive biases",
+    "social influence",
     "psychology",
     "behavioral psychology",
-    "mental shortcuts",
-    "heuristics",
-    "how your brain works",
-    "decision making",
-    "psychological manipulation",
-    "critical thinking",
-    "confirmation bias",
-    "brain science",
+    "social psychology",
+    "manipulation tactics",
+    "cognitive bias",
+    "conformity",
+    "group behavior",
+    "crowd psychology",
+    "obedience",
+    "authority bias",
+    "bystander effect",
+    "groupthink",
+    "status quo bias",
+    "deindividuation",
+    "social facilitation",
+    "risky shift",
     "human behavior",
-    "rationality",
-    "thinking errors",
-    "cognitive psychology",
-    "self-awareness",
-    "bias education",
-    "science explained",
-    "brainboda",
+    "brain science",
     "educational video"
   ],
   "type": "main",
-  "created_at": "2026-09-06T12:02:42",
+  "created_at": "2026-09-08T12:44:30",
   "ai_generated": true,
-  "theme": "cognitive biases",
+  "theme": "social influence",
   "hook_duration_est": 20,
-  "outro_duration_est": 21,
-  "total_duration_est": 388,
-  "description": "10 Cognitive Biases That Control Your Decisions (Without You Knowing)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Halo Effect\n0:50 - Fact 2: Status Quo Bias\n1:24 - Fact 3: The Planning Fallacy\n1:57 - Fact 4: The Bystander Effect\n2:32 - Fact 5: Negativity Bias\n3:08 - Fact 6: The Forer Effect\n3:40 - Fact 7: The Decoy Effect\n4:18 - Fact 8: Projection Bias\n4:52 - Fact 9: Reactive Devaluation\n5:28 - Fact 10: The Spotlight Effect\n6:07 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 24,
+  "total_duration_est": 412,
+  "description": "10 Hidden Ways People Control Your Thoughts Without You Knowing\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Compliance Without Pressure\n0:53 - Fact 2: The Bandwagon Effect\n1:29 - Fact 3: Social Facilitation and Inhibition\n2:04 - Fact 4: Deindividuation\n2:42 - Fact 5: The Risky Shift Phenomenon\n3:18 - Fact 6: Obedience to Authority\n3:55 - Fact 7: The Bystander Effect\n4:33 - Fact 8: Terror Management Theory\n5:09 - Fact 9: The Illusion of Unanimity\n5:45 - Fact 10: Status Quo Bias and Social Anchoring\n6:28 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
