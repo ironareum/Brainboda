@@ -1,188 +1,178 @@
 {
-  "title": "10 Shocking Personality Secrets Your Brain Won't Admit",
-  "thumbnail_hook": "Your Personality is Lying to You",
-  "hook": "Most people think their personality is who they really are — but what if it's just a performance? Scientists have discovered that your core traits might shift more than you think, your worst habits might actually reveal hidden strengths, and the person you believe you are today might be completely different tomorrow. So what's actually controlling your personality?",
+  "title": "10 Cognitive Biases Destroying Your Decisions (And You Don't Even Know It)",
+  "thumbnail_hook": "Your Brain Is Lying To You",
+  "hook": "Studies show most people make the exact same bad decision in identical situations—yet feel completely confident they're right. Your brain isn't broken; it's just following ancient shortcuts that work against you today. But what if I told you that knowing about these traps actually makes them *worse*?",
   "facts": [
     {
       "n": 1,
-      "heading": "Trait Reactivity",
-      "narration": "Fact 1: Trait Reactivity. Psychologist Hans Eysenck discovered that introverts and extroverts have fundamentally different nervous systems — introverts are naturally more reactive to stimulation, so they avoid overstimulation by withdrawing. But here's the twist: this doesn't mean introverts are antisocial; they're just protecting their already-activated nervous systems. Understanding your reactivity type explains why some people thrive at parties while others crash after five minutes.",
+      "heading": "The Illusion of Explanatory Depth",
+      "narration": "Fact 1: The Illusion of Explanatory Depth. Psychologist Leonid Rozenblit discovered we dramatically overestimate how well we understand how things work—zippers, toilets, economics, politics. You feel like you *get it* until someone asks you to explain the details. Then your confidence collapses. We make huge life decisions based on this false sense of understanding, from career pivots to political votes. Realizing how little you actually comprehend changes everything about how you approach important choices.",
       "search_keywords": [
-        "trait reactivity",
-        "Hans Eysenck",
-        "introversion neuroscience",
-        "nervous system personality"
+        "illusion of explanatory depth",
+        "Leonid Rozenblit",
+        "overconfidence bias"
       ],
-      "duration_est": 26,
-      "id": "trait_reactivity",
+      "duration_est": 30,
+      "id": "the_illusion_of_explanatory_depth",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Narcissistic Supply Cycle",
-      "narration": "Fact 2: The Narcissistic Supply Cycle. Narcissists aren't just confident — they're addicted to admiration, a concept therapists call 'narcissistic supply.' When they stop receiving praise, they experience withdrawal-like symptoms and frantically seek it elsewhere. This explains the cycle of charm, devaluation, and sudden love-bombing that people in relationships with narcissists experience. Recognizing this pattern protects you from mistaking manipulation for genuine care.",
+      "heading": "Curse of Knowledge",
+      "narration": "Fact 2: The Curse of Knowledge. Once you know something, you literally cannot unsee it—and you forget what it was like *not* to know it. Researcher Colin Camerer documented this: experts are terrible at explaining basics because they can't imagine genuine confusion. This ruins our decisions about relationships, parenting, and work because we assume others see what we see. You judge harshly when someone doesn't understand something obvious—but only because you've already crossed that knowledge threshold. Understanding this makes you less arrogant and more patient with others.",
       "search_keywords": [
-        "narcissistic supply",
-        "narcissistic personality disorder",
-        "love bombing cycle",
-        "narcissist behavior patterns"
+        "curse of knowledge",
+        "Colin Camerer",
+        "information bias"
       ],
-      "duration_est": 25,
-      "id": "the_narcissistic_supply_cycle",
+      "duration_est": 35,
+      "id": "curse_of_knowledge",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "Openness to Experience and Risk-Taking",
-      "narration": "Fact 3: Openness to Experience and Risk-Taking. People high in Openness — the personality trait for curiosity and creativity — don't just like trying new things; their brains literally process rewards differently, making novelty more pleasurable than safety. This was documented by neuroscientist Colin DeYoung's research on personality neurobiology. This is why some people seem fearless about change while others prefer stability — it's not laziness, it's neurology.",
+      "heading": "Egocentric Bias",
+      "narration": "Fact 3: Egocentric Bias. We unconsciously assume everyone thinks, knows, and values what we do. Psychologist Thomas Gilovich's research shows we wildly overestimate how much others are paying attention to us *and* how much they agree with our worldview. You share an opinion at work and assume silence means agreement. You skip calling a friend and think they're not bothered because you wouldn't be either. This bias sabotages relationships and teamwork because we're constantly making decisions based on a fake version of what others think. Catching yourself assuming agreement could save you from massive miscommunications.",
       "search_keywords": [
-        "openness to experience",
-        "Colin DeYoung personality neurobiology",
-        "curiosity brain reward",
-        "personality neuroscience"
+        "egocentric bias",
+        "Thomas Gilovich",
+        "false consensus"
       ],
-      "duration_est": 27,
-      "id": "openness_to_experience_and_risk_taking",
+      "duration_est": 38,
+      "id": "egocentric_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "Agreeableness as a Vulnerability",
-      "narration": "Fact 4: Agreeableness as a Vulnerability. High agreeableness — being cooperative, empathetic, and conflict-avoidant — is great for relationships but terrible for negotiating salaries, setting boundaries, or saying no to manipulation. Psychologist Roy Baumeister's research shows agreeable people are more susceptible to exploitation because their instinct to appease overrides self-protection. Your niceness might literally be costing you money and respect.",
+      "heading": "The Declinism Bias",
+      "narration": "Fact 4: Declinism Bias. Humans are wired to believe things are getting worse—that 'things used to be better.' Cognitive scientist Steven Pinker calls this the \"Progressiveness Paradox\": despite measurable improvements in health, poverty, and literacy, we feel like we're in decline. This bias shapes your career decisions (should I stay or flee?), financial choices (should I hoard or invest?), and life direction (is it even worth trying?). The bias convinces you that 'the good old days' were real and the future is bleak. Recognizing declinism helps you make decisions based on data instead of mood.",
       "search_keywords": [
-        "agreeableness personality trait",
-        "Roy Baumeister exploitation",
-        "people-pleasing vulnerability",
-        "boundary setting"
+        "declinism bias",
+        "Steven Pinker",
+        "pessimism bias"
       ],
-      "duration_est": 24,
-      "id": "agreeableness_as_a_vulnerability",
+      "duration_est": 38,
+      "id": "the_declinism_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Conscientiousness Paradox",
-      "narration": "Fact 5: Conscientiousness Paradox. Highly conscientious people are successful, reliable, and healthy — but they also experience more stress and anxiety because they internalize responsibility for everything. Psychologist Brent Roberts' longitudinal studies show that extreme conscientiousness can backfire, leading to perfectionism, burnout, and even shortened lifespans from chronic stress. Sometimes your greatest strength is quietly destroying you.",
+      "heading": "Mere Exposure Effect",
+      "narration": "Fact 5: The Mere Exposure Effect. Psychologist Robert Zajonc discovered something unsettling: you like things *purely* because you've seen them before. Not because they're good—just because they're familiar. We mistake familiarity for liking. This warps major decisions: you stay in a job because you've been there five years, choose a partner partly because of proximity, or vote for a candidate because their face is everywhere. Companies weaponize this—ads work not by convincing you, but by repetition. Understanding that 'familiar' doesn't mean 'good' helps you question choices you thought were based on preference.",
       "search_keywords": [
-        "conscientiousness personality",
-        "Brent Roberts longitudinal study",
-        "perfectionism stress burnout",
-        "conscientiousness health"
+        "mere exposure effect",
+        "Robert Zajonc",
+        "familiarity bias"
       ],
-      "duration_est": 23,
-      "id": "conscientiousness_paradox",
+      "duration_est": 37,
+      "id": "mere_exposure_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Imposter Phenomenon in High Achievers",
-      "narration": "Fact 6: The Imposter Phenomenon in High Achievers. Psychologists Pauline Rose Clance and Suzanne Imes documented that high-achieving people — especially those high in conscientiousness and neuroticism — often feel like frauds despite objective success. They attribute wins to luck and losses to incompetence, creating a mental loop where achievement feels hollow. Your success might be real, but your personality might refuse to let you feel it.",
+      "heading": "The Spotlight Effect",
+      "narration": "Fact 6: The Spotlight Effect. You believe everyone notices your mistakes, appearance, and awkwardness way more than they actually do. Researchers Thomas Gilovich and Kenneth Savitsky quantified this: people obsess over social blunders that others completely forget. You wear the wrong shirt to an event and feel exposed all day—meanwhile, nobody remembers. This bias paralyzes your decisions: you avoid social risks, hold back at work, or change life plans to avoid imagined judgment. The gap between how much you think you're being watched and reality is staggering. Realizing most people are too focused on themselves to judge you unlocks bolder decision-making.",
       "search_keywords": [
-        "imposter phenomenon",
-        "Pauline Rose Clance",
-        "Suzanne Imes",
-        "imposter syndrome achievement"
+        "spotlight effect",
+        "Thomas Gilovich",
+        "Kenneth Savitsky"
       ],
-      "duration_est": 27,
-      "id": "the_imposter_phenomenon_in_high_achievers",
+      "duration_est": 40,
+      "id": "the_spotlight_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "Emotional Granularity and Personality Expression",
-      "narration": "Fact 7: Emotional Granularity and Personality Expression. Psychologist Lisa Feldman Barrett's research reveals that people who can name precise emotions — not just 'sad' but 'melancholic,' 'disappointed,' or 'lonely' — have better emotional regulation and mental health. This skill isn't innate; it's learned. Your ability to understand your own personality hinges on your vocabulary for internal states. More words equals better self-awareness.",
+      "heading": "Backfire Effect",
+      "narration": "Fact 7: Backfire Effect (Belief Perseverance). When facts contradict your core beliefs, your brain doesn't update—it digs in. Brendan Nyhan and Jason Reifler's research showed that correcting misinformation often makes people *more* convinced of the lie. Your identity gets tangled with your beliefs, so disproving the belief feels like disproving *you*. This destroys collaborative decision-making in families, teams, and politics because people would rather double down than admit they were wrong. Knowing you're psychologically rigged to reject contradictory evidence is the first step to actually listening to opposing views.",
       "search_keywords": [
-        "emotional granularity",
-        "Lisa Feldman Barrett",
-        "emotion vocabulary",
-        "emotional regulation personality"
+        "backfire effect",
+        "belief perseverance",
+        "Brendan Nyhan"
       ],
-      "duration_est": 25,
-      "id": "emotional_granularity_and_personality_expression",
+      "duration_est": 36,
+      "id": "backfire_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Sunk Cost Fallacy and Personality Rigidity",
-      "narration": "Fact 8: The Sunk Cost Fallacy and Personality Rigidity. People with fixed personality self-concepts — those who believe 'I'm just not a math person' or 'I'm naturally shy' — fall prey to the Sunk Cost Fallacy, staying locked in identities despite new evidence. Psychologist Carol Dweck's research on fixed versus growth mindsets shows that believing personality is rigid literally prevents change. Your identity might be a self-imposed prison.",
+      "heading": "The Focusing Illusion",
+      "narration": "Fact 8: The Focusing Illusion. Nobel laureate Daniel Kahneman proved we overweight whatever we're currently thinking about. If you focus on how annoying your commute is, you'll overestimate how miserable it makes your life. You obsess about one bad conversation and assume the entire relationship is broken. This bias hijacks major decisions: you change careers because of one bad week, end relationships over one argument, or make financial choices based on yesterday's headlines. The thing you're focusing on *feels* massively important, but distance reveals it wasn't. Learning to zoom out before deciding could save you from impulsive, regrettable choices.",
       "search_keywords": [
-        "sunk cost fallacy",
-        "Carol Dweck growth mindset",
-        "fixed personality beliefs",
-        "identity rigidity"
+        "focusing illusion",
+        "Daniel Kahneman",
+        "weighting bias"
       ],
-      "duration_est": 27,
-      "id": "the_sunk_cost_fallacy_and_personality_rigidity",
+      "duration_est": 40,
+      "id": "the_focusing_illusion",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "Extraversion and Temporal Discounting",
-      "narration": "Fact 9: Extraversion and Temporal Discounting. Extraverts tend to discount future rewards in favor of immediate ones — they'd rather party tonight than study for tomorrow's exam. This isn't weakness; it's how their reward systems evolved. Neuroscientist Debra Johnson's research shows extraverts have lower dopamine baseline levels, so they seek higher stimulation now. Understanding this explains why extraverts and introverts make fundamentally different life choices.",
+      "heading": "In-Group Bias",
+      "narration": "Fact 9: In-Group Bias. Henri Tajfel's minimal group paradigm revealed something disturbing: humans favor 'their group' over others almost instantly—even when the group is random. You unconsciously trust people who dress like you, talk like you, or root for your team. This shapes hiring decisions, friendships, where you invest money, and who you believe. You give your group the benefit of the doubt and judge outsiders harshly for identical behavior. It's not racism or tribalism you consciously chose—it's hardwired. Recognizing in-group bias helps you diversify your circles, hire better talent, and make fairer judgments across lines that normally blind you.",
       "search_keywords": [
-        "extraversion temporal discounting",
-        "Debra Johnson dopamine baseline",
-        "reward sensitivity extraversion",
-        "delayed gratification personality"
+        "in-group bias",
+        "Henri Tajfel",
+        "minimal group paradigm"
       ],
-      "duration_est": 26,
-      "id": "extraversion_and_temporal_discounting",
+      "duration_est": 40,
+      "id": "in_group_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Personality Bifurcation in Trauma Survivors",
-      "narration": "Fact 10: Personality Bifurcation in Trauma Survivors. Trauma doesn't just hurt; it can split personality expression — people develop different 'modes' depending on context, a phenomenon trauma psychologist Bessel van der Kolk documented in his research. Survivors often seem composed in public but chaotic at home, or vice versa, leading others to doubt their struggles. Your fractured personality isn't weakness; it's an adaptation that kept you alive.",
+      "heading": "The Illusion of Validity",
+      "narration": "Fact 10: The Illusion of Validity. You see patterns that don't exist and predict outcomes with false confidence. Daniel Kahneman calls it 'the illusion of understanding'—you feel certain about predictions that are actually near-random. A hiring manager sees one interview and swears they know if a candidate will succeed (they don't). You predict how a relationship will go after one date. You forecast market moves or career trajectories with unwarranted certainty. We overestimate the predictive power of the information we have. Humbling yourself about how little the future is actually predictable makes you less arrogant and more adaptive when plans inevitably crumble.",
       "search_keywords": [
-        "trauma personality bifurcation",
-        "Bessel van der Kolk",
-        "complex trauma personality",
-        "trauma response splitting"
+        "illusion of validity",
+        "Daniel Kahneman",
+        "overconfidence bias"
       ],
-      "duration_est": 27,
-      "id": "personality_bifurcation_in_trauma_survivors",
+      "duration_est": 41,
+      "id": "the_illusion_of_validity",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Alright, which of these personality truths hit you hardest? Comment below with the fact that made you rethink yourself — or drop a personality type that describes you perfectly. And if your brain just got rewired by this video, smash that subscribe button so you never miss another deep dive into the weird science of being human.",
+  "outro": "Your brain just played every trick in this video on you while you watched. Drop a comment: which bias hit you hardest? Have you caught yourself falling for one recently? And if this reshaped how you think about your decisions, smash subscribe so you catch the next one. Your future self will thank you.",
   "tags": [
-    "personality psychology",
+    "decision making",
+    "cognitive biases",
     "psychology",
-    "personality traits",
-    "neuroscience",
-    "mental health",
-    "self-improvement",
-    "behavioral science",
+    "behavioral economics",
+    "Kahneman",
+    "critical thinking",
+    "how your brain works",
+    "cognitive science",
+    "decision science",
     "psychology explained",
-    "dark psychology",
-    "personality types",
-    "emotional intelligence",
-    "trauma psychology",
-    "conscientiousness",
-    "extraversion",
-    "openness to experience",
-    "narcissism",
-    "imposter syndrome",
-    "growth mindset",
-    "psychology education",
-    "brain science"
+    "biases that control you",
+    "mental traps",
+    "rational decision making",
+    "logical fallacies",
+    "neuroscience",
+    "self-improvement",
+    "productivity",
+    "education",
+    "learning science",
+    "Brainboda"
   ],
   "type": "main",
-  "created_at": "2026-09-20T12:57:53",
+  "created_at": "2026-09-22T13:15:10",
   "ai_generated": true,
-  "theme": "personality psychology",
-  "hook_duration_est": 23,
-  "outro_duration_est": 23,
-  "total_duration_est": 303,
-  "description": "10 Shocking Personality Secrets Your Brain Won't Admit\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:23 - Fact 1: Trait Reactivity\n0:49 - Fact 2: The Narcissistic Supply Cycle\n1:14 - Fact 3: Openness to Experience and Risk-Taking\n1:41 - Fact 4: Agreeableness as a Vulnerability\n2:05 - Fact 5: Conscientiousness Paradox\n2:28 - Fact 6: The Imposter Phenomenon in High Achievers\n2:55 - Fact 7: Emotional Granularity and Personality Expression\n3:20 - Fact 8: The Sunk Cost Fallacy and Personality Rigidity\n3:47 - Fact 9: Extraversion and Temporal Discounting\n4:13 - Fact 10: Personality Bifurcation in Trauma Survivors\n4:40 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "theme": "decision making",
+  "hook_duration_est": 20,
+  "outro_duration_est": 22,
+  "total_duration_est": 417,
+  "description": "10 Cognitive Biases Destroying Your Decisions (And You Don't Even Know It)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Illusion of Explanatory Depth\n0:50 - Fact 2: Curse of Knowledge\n1:25 - Fact 3: Egocentric Bias\n2:03 - Fact 4: The Declinism Bias\n2:41 - Fact 5: Mere Exposure Effect\n3:18 - Fact 6: The Spotlight Effect\n3:58 - Fact 7: Backfire Effect\n4:34 - Fact 8: The Focusing Illusion\n5:14 - Fact 9: In-Group Bias\n5:54 - Fact 10: The Illusion of Validity\n6:35 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
