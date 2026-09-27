@@ -1,178 +1,188 @@
 {
-  "title": "10 Cognitive Biases Destroying Your Decisions (And You Don't Even Know It)",
-  "thumbnail_hook": "Your Brain Is Lying To You",
-  "hook": "Studies show most people make the exact same bad decision in identical situations—yet feel completely confident they're right. Your brain isn't broken; it's just following ancient shortcuts that work against you today. But what if I told you that knowing about these traps actually makes them *worse*?",
+  "title": "10 Mind-Bending Habit Secrets That Neuroscience Just Confirmed",
+  "thumbnail_hook": "Your Brain is Lying to You",
+  "hook": "Most people think habits take 21 days to form — but neuroscience just proved that's completely wrong. Your brain is actively resisting the very changes you're trying to make. So why does willpower feel like it's fighting against your own body?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Illusion of Explanatory Depth",
-      "narration": "Fact 1: The Illusion of Explanatory Depth. Psychologist Leonid Rozenblit discovered we dramatically overestimate how well we understand how things work—zippers, toilets, economics, politics. You feel like you *get it* until someone asks you to explain the details. Then your confidence collapses. We make huge life decisions based on this false sense of understanding, from career pivots to political votes. Realizing how little you actually comprehend changes everything about how you approach important choices.",
+      "heading": "Neuroplasticity Windows",
+      "narration": "Fact 1: Neuroplasticity Windows. Your brain is most capable of rewiring itself during specific windows of heightened attention and emotional arousal — discovered through research on learning and brain adaptation by neuroscientist Merzenich in the 1980s. This is why cramming habits into your life randomly doesn't stick, but doing them during peak alertness (usually morning) creates faster neural pathways. Understanding when your brain is most plastic means you can time habit formation for maximum impact.",
       "search_keywords": [
-        "illusion of explanatory depth",
-        "Leonid Rozenblit",
-        "overconfidence bias"
+        "neuroplasticity windows",
+        "Merzenich brain rewiring",
+        "optimal learning timing",
+        "neural adaptation"
       ],
       "duration_est": 30,
-      "id": "the_illusion_of_explanatory_depth",
+      "id": "neuroplasticity_windows",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Curse of Knowledge",
-      "narration": "Fact 2: The Curse of Knowledge. Once you know something, you literally cannot unsee it—and you forget what it was like *not* to know it. Researcher Colin Camerer documented this: experts are terrible at explaining basics because they can't imagine genuine confusion. This ruins our decisions about relationships, parenting, and work because we assume others see what we see. You judge harshly when someone doesn't understand something obvious—but only because you've already crossed that knowledge threshold. Understanding this makes you less arrogant and more patient with others.",
+      "heading": "Dopamine Sensitization",
+      "narration": "Fact 2: Dopamine Sensitization. When you repeat a behavior, your brain doesn't release more dopamine — it releases less, a phenomenon studied extensively in addiction research. This is why that new workout high fades, and why chasing the same reward gets exhausting. Your neural receptors become less responsive, forcing you to either intensify the stimulus or find novelty. This is why sustainable habits need built-in variation to keep your dopamine system engaged.",
       "search_keywords": [
-        "curse of knowledge",
-        "Colin Camerer",
-        "information bias"
+        "dopamine sensitization",
+        "reward adaptation",
+        "hedonic treadmill habits",
+        "dopamine receptor downregulation"
       ],
-      "duration_est": 35,
-      "id": "curse_of_knowledge",
+      "duration_est": 29,
+      "id": "dopamine_sensitization",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "Egocentric Bias",
-      "narration": "Fact 3: Egocentric Bias. We unconsciously assume everyone thinks, knows, and values what we do. Psychologist Thomas Gilovich's research shows we wildly overestimate how much others are paying attention to us *and* how much they agree with our worldview. You share an opinion at work and assume silence means agreement. You skip calling a friend and think they're not bothered because you wouldn't be either. This bias sabotages relationships and teamwork because we're constantly making decisions based on a fake version of what others think. Catching yourself assuming agreement could save you from massive miscommunications.",
+      "heading": "Stress Inoculation Theory",
+      "narration": "Fact 3: Stress Inoculation Theory. Psychologist Donald Meichenbaum discovered that exposing yourself to controlled stress related to a habit makes you more resilient when real obstacles hit. This means deliberately making your habit harder during training (cold showers before warm ones, running in rain before sunshine) actually builds psychological armor. Your brain learns the habit is non-negotiable, not just a fair-weather commitment.",
       "search_keywords": [
-        "egocentric bias",
-        "Thomas Gilovich",
-        "false consensus"
+        "stress inoculation theory",
+        "Meichenbaum habit resilience",
+        "controlled stress training",
+        "psychological hardening"
       ],
-      "duration_est": 38,
-      "id": "egocentric_bias",
+      "duration_est": 25,
+      "id": "stress_inoculation_theory",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Declinism Bias",
-      "narration": "Fact 4: Declinism Bias. Humans are wired to believe things are getting worse—that 'things used to be better.' Cognitive scientist Steven Pinker calls this the \"Progressiveness Paradox\": despite measurable improvements in health, poverty, and literacy, we feel like we're in decline. This bias shapes your career decisions (should I stay or flee?), financial choices (should I hoard or invest?), and life direction (is it even worth trying?). The bias convinces you that 'the good old days' were real and the future is bleak. Recognizing declinism helps you make decisions based on data instead of mood.",
+      "heading": "The Primacy Effect in Habit Anchoring",
+      "narration": "Fact 4: The Primacy Effect in Habit Anchoring. The first time you perform a habit in a new location or context, your brain weights that memory more heavily than all future repetitions combined — a principle discovered in memory research by Ebbinghaus. This is why your first gym session, your first meditation, or your first run sets the neural expectation for all future ones. Starting strong isn't motivational fluff; it's literally programming your brain's baseline for that habit.",
       "search_keywords": [
-        "declinism bias",
-        "Steven Pinker",
-        "pessimism bias"
+        "primacy effect habits",
+        "first impression neuroscience",
+        "habit anchoring",
+        "Ebbinghaus memory"
       ],
-      "duration_est": 38,
-      "id": "the_declinism_bias",
+      "duration_est": 31,
+      "id": "the_primacy_effect_in_habit_anchoring",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "Mere Exposure Effect",
-      "narration": "Fact 5: The Mere Exposure Effect. Psychologist Robert Zajonc discovered something unsettling: you like things *purely* because you've seen them before. Not because they're good—just because they're familiar. We mistake familiarity for liking. This warps major decisions: you stay in a job because you've been there five years, choose a partner partly because of proximity, or vote for a candidate because their face is everywhere. Companies weaponize this—ads work not by convincing you, but by repetition. Understanding that 'familiar' doesn't mean 'good' helps you question choices you thought were based on preference.",
+      "heading": "Temporal Motivation Theory",
+      "narration": "Fact 5: Temporal Motivation Theory. Developed by Piers Steel in 2007, this theory shows that motivation skyrockets as a deadline approaches, even for habits. Your brain doesn't naturally care about distant health benefits, but it obsesses over immediate deadlines. This is why hourly accountability check-ins beat weekly reviews, and why publicly committing to a habit for 30 days works better than vague long-term goals. Your brain respects urgency, not importance.",
       "search_keywords": [
-        "mere exposure effect",
-        "Robert Zajonc",
-        "familiarity bias"
+        "temporal motivation theory",
+        "Piers Steel deadline motivation",
+        "habit deadline psychology",
+        "immediate consequences"
       ],
-      "duration_est": 37,
-      "id": "mere_exposure_effect",
+      "duration_est": 28,
+      "id": "temporal_motivation_theory",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 6: The Spotlight Effect. You believe everyone notices your mistakes, appearance, and awkwardness way more than they actually do. Researchers Thomas Gilovich and Kenneth Savitsky quantified this: people obsess over social blunders that others completely forget. You wear the wrong shirt to an event and feel exposed all day—meanwhile, nobody remembers. This bias paralyzes your decisions: you avoid social risks, hold back at work, or change life plans to avoid imagined judgment. The gap between how much you think you're being watched and reality is staggering. Realizing most people are too focused on themselves to judge you unlocks bolder decision-making.",
+      "heading": "Motor Imagery Effect",
+      "narration": "Fact 6: Motor Imagery Effect. Visualizing yourself performing a habit activates almost the same neural pathways as actually doing it — research by neuroscientist Alvaro Pascual-Leone proved that mental practice alone produces measurable brain changes. This isn't mystical thinking; it's literal neural priming. Spending five minutes visualizing your habit before bed rewires your motor cortex without the physical fatigue, giving you a cognitive head start.",
       "search_keywords": [
-        "spotlight effect",
-        "Thomas Gilovich",
-        "Kenneth Savitsky"
+        "motor imagery effect",
+        "Pascual-Leone visualization",
+        "mental practice neuroscience",
+        "visualization habit formation"
       ],
-      "duration_est": 40,
-      "id": "the_spotlight_effect",
+      "duration_est": 26,
+      "id": "motor_imagery_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "Backfire Effect",
-      "narration": "Fact 7: Backfire Effect (Belief Perseverance). When facts contradict your core beliefs, your brain doesn't update—it digs in. Brendan Nyhan and Jason Reifler's research showed that correcting misinformation often makes people *more* convinced of the lie. Your identity gets tangled with your beliefs, so disproving the belief feels like disproving *you*. This destroys collaborative decision-making in families, teams, and politics because people would rather double down than admit they were wrong. Knowing you're psychologically rigged to reject contradictory evidence is the first step to actually listening to opposing views.",
+      "heading": "Self-Affirmation Effects",
+      "narration": "Fact 7: Self-Affirmation Effects. Psychologist Claude Steele found that affirming your core values before attempting a difficult habit reduces defensive processing — meaning your brain stops fighting the change and accepts it as congruent with who you are. Saying 'I am someone who runs' before lacing up doesn't sound powerful until you realize it's literally rewiring your identity neural networks. Your brain resists habits that feel foreign; affirmations make them feel like home.",
       "search_keywords": [
-        "backfire effect",
-        "belief perseverance",
-        "Brendan Nyhan"
+        "self-affirmation effects",
+        "Claude Steele values",
+        "identity affirmation habits",
+        "defensive processing"
       ],
-      "duration_est": 36,
-      "id": "backfire_effect",
+      "duration_est": 29,
+      "id": "self_affirmation_effects",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Focusing Illusion",
-      "narration": "Fact 8: The Focusing Illusion. Nobel laureate Daniel Kahneman proved we overweight whatever we're currently thinking about. If you focus on how annoying your commute is, you'll overestimate how miserable it makes your life. You obsess about one bad conversation and assume the entire relationship is broken. This bias hijacks major decisions: you change careers because of one bad week, end relationships over one argument, or make financial choices based on yesterday's headlines. The thing you're focusing on *feels* massively important, but distance reveals it wasn't. Learning to zoom out before deciding could save you from impulsive, regrettable choices.",
+      "heading": "The Reminiscence Bump",
+      "narration": "Fact 8: The Reminiscence Bump. Your brain disproportionately encodes and remembers habits formed during transitions — moving cities, changing jobs, life milestones — a phenomenon studied in memory research. During these periods, your brain is already rewiring, making new habits stick faster. This is why people often say 'I quit smoking after my divorce' or 'I started exercising after my promotion.' Timing habit formation with life transitions amplifies neural encoding by leveraging your brain's natural reset points.",
       "search_keywords": [
-        "focusing illusion",
-        "Daniel Kahneman",
-        "weighting bias"
+        "reminiscence bump",
+        "transition habits formation",
+        "life event memory encoding",
+        "behavioral change timing"
       ],
-      "duration_est": 40,
-      "id": "the_focusing_illusion",
+      "duration_est": 31,
+      "id": "the_reminiscence_bump",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "In-Group Bias",
-      "narration": "Fact 9: In-Group Bias. Henri Tajfel's minimal group paradigm revealed something disturbing: humans favor 'their group' over others almost instantly—even when the group is random. You unconsciously trust people who dress like you, talk like you, or root for your team. This shapes hiring decisions, friendships, where you invest money, and who you believe. You give your group the benefit of the doubt and judge outsiders harshly for identical behavior. It's not racism or tribalism you consciously chose—it's hardwired. Recognizing in-group bias helps you diversify your circles, hire better talent, and make fairer judgments across lines that normally blind you.",
+      "heading": "Social Baseline Theory",
+      "narration": "Fact 9: Social Baseline Theory. Developed by neuroscientist James Coan, this theory shows that your brain literally offloads emotional regulation onto people you're close to — meaning habits are physiologically easier when someone you trust is present or knows about them. This isn't just motivation; it's actual nervous system regulation. Accountability partners don't just remind you; they literally calm your brain's threat response to habit change, making the neural rewiring less painful.",
       "search_keywords": [
-        "in-group bias",
-        "Henri Tajfel",
-        "minimal group paradigm"
+        "social baseline theory",
+        "James Coan",
+        "accountability partner neuroscience",
+        "social nervous system regulation"
       ],
-      "duration_est": 40,
-      "id": "in_group_bias",
+      "duration_est": 29,
+      "id": "social_baseline_theory",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "The Illusion of Validity",
-      "narration": "Fact 10: The Illusion of Validity. You see patterns that don't exist and predict outcomes with false confidence. Daniel Kahneman calls it 'the illusion of understanding'—you feel certain about predictions that are actually near-random. A hiring manager sees one interview and swears they know if a candidate will succeed (they don't). You predict how a relationship will go after one date. You forecast market moves or career trajectories with unwarranted certainty. We overestimate the predictive power of the information we have. Humbling yourself about how little the future is actually predictable makes you less arrogant and more adaptive when plans inevitably crumble.",
+      "heading": "The Default Mode Network (DMN) Suppression",
+      "narration": "Fact 10: The Default Mode Network (DMN) Suppression. Your brain's default mode network — the system active when you're idle and ruminating — actively opposes habit execution by generating doubt and procrastination, as shown in fMRI research. Successful habit-formers suppress their DMN through immediate action, not willpower. This is why 'just start' works: you're neurologically jamming the self-doubt circuit before it activates. The moment you begin, your prefrontal cortex seizes control.",
       "search_keywords": [
-        "illusion of validity",
-        "Daniel Kahneman",
-        "overconfidence bias"
+        "default mode network habits",
+        "DMN procrastination neuroscience",
+        "prefrontal cortex habit execution",
+        "neural procrastination circuits"
       ],
-      "duration_est": 41,
-      "id": "the_illusion_of_validity",
+      "duration_est": 28,
+      "id": "the_default_mode_network_dmn_suppression",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain just played every trick in this video on you while you watched. Drop a comment: which bias hit you hardest? Have you caught yourself falling for one recently? And if this reshaped how you think about your decisions, smash subscribe so you catch the next one. Your future self will thank you.",
+  "outro": "These aren't hacks — they're how your brain actually works. Which one surprised you most? Comment below, and if habit science fascinates you, hit subscribe for more neuroscience that explains why you do what you do.",
   "tags": [
-    "decision making",
-    "cognitive biases",
-    "psychology",
-    "behavioral economics",
-    "Kahneman",
-    "critical thinking",
-    "how your brain works",
-    "cognitive science",
-    "decision science",
-    "psychology explained",
-    "biases that control you",
-    "mental traps",
-    "rational decision making",
-    "logical fallacies",
+    "habit formation",
     "neuroscience",
+    "habit psychology",
+    "brain science",
+    "behavioral change",
+    "habit hacks",
+    "neuroplasticity",
+    "dopamine",
+    "motivation psychology",
     "self-improvement",
-    "productivity",
-    "education",
-    "learning science",
-    "Brainboda"
+    "cognitive psychology",
+    "habit science",
+    "brain function",
+    "personal development",
+    "neuroscience explained",
+    "habit building",
+    "willpower",
+    "behavioral neuroscience",
+    "mental habits",
+    "psychology education"
   ],
   "type": "main",
-  "created_at": "2026-09-22T13:15:10",
+  "created_at": "2026-09-27T13:43:11",
   "ai_generated": true,
-  "theme": "decision making",
+  "theme": "habit formation",
   "hook_duration_est": 20,
-  "outro_duration_est": 22,
-  "total_duration_est": 417,
-  "description": "10 Cognitive Biases Destroying Your Decisions (And You Don't Even Know It)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Illusion of Explanatory Depth\n0:50 - Fact 2: Curse of Knowledge\n1:25 - Fact 3: Egocentric Bias\n2:03 - Fact 4: The Declinism Bias\n2:41 - Fact 5: Mere Exposure Effect\n3:18 - Fact 6: The Spotlight Effect\n3:58 - Fact 7: Backfire Effect\n4:34 - Fact 8: The Focusing Illusion\n5:14 - Fact 9: In-Group Bias\n5:54 - Fact 10: The Illusion of Validity\n6:35 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 20,
+  "total_duration_est": 326,
+  "description": "10 Mind-Bending Habit Secrets That Neuroscience Just Confirmed\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: Neuroplasticity Windows\n0:50 - Fact 2: Dopamine Sensitization\n1:19 - Fact 3: Stress Inoculation Theory\n1:44 - Fact 4: The Primacy Effect in Habit Anchoring\n2:15 - Fact 5: Temporal Motivation Theory\n2:43 - Fact 6: Motor Imagery Effect\n3:09 - Fact 7: Self-Affirmation Effects\n3:38 - Fact 8: The Reminiscence Bump\n4:09 - Fact 9: Social Baseline Theory\n4:38 - Fact 10: The Default Mode Network (DMN) Suppression\n5:06 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
