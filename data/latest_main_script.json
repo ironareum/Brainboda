@@ -1,178 +1,195 @@
 {
-  "title": "10 Unconscious Behaviors That Control Your Life (Without You Knowing)",
-  "thumbnail_hook": "Your Brain Runs The Show",
-  "hook": "You make about 35,000 decisions a day, but you're consciously aware of maybe 100 of them. The rest? Your brain is steering the ship while you think you're in control. What if I told you that right now, invisible forces are shaping what you say, buy, and do—and you'll never see them coming? So why does your unconscious mind have all the power?",
+  "title": "10 Relationship Psychology Secrets That Explain Why Love Fails (And Succeeds)",
+  "thumbnail_hook": "Why Your Love Fails",
+  "hook": "Most couples break up for a reason that has nothing to do with actually loving each other. In fact, the thing that tears people apart most is something so automatic your brain does it without permission. So what's the hidden force sabotaging your relationship right now?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Recency Bias",
-      "narration": "Fact 1: The Recency Bias. This is your brain's tendency to weigh recent events more heavily than older ones when making decisions—even if the old information is more relevant. You just had a bad experience at a restaurant, so you assume it's always bad, ignoring the 50 great meals you had there before. Psychologists discovered this happens because recent memories are more mentally available, sitting closer to the surface of your mind. This bias sneaks into your job interviews, relationship choices, and financial decisions every single day.",
+      "heading": "The Pursuit-Distance Dynamic (Demand-Withdraw Pattern)",
+      "narration": "Fact 1: The Pursuit-Distance Dynamic. Developed by therapists John Gottman and Janis Spring, this describes when one partner pursues emotional connection while the other withdraws—and the more one chases, the faster the other backs away. It's a spiral, not a stalemate. The pursuer feels rejected, so they push harder; the withdrawer feels smothered, so they retreat further. It matters because recognizing this pattern lets you break the cycle before resentment calcifies into contempt.",
       "search_keywords": [
-        "recency bias psychology",
-        "cognitive bias recent events",
-        "decision making memory"
+        "pursuit distance dynamic",
+        "demand withdraw pattern",
+        "Gottman relationship",
+        "emotional pursuit withdrawal"
       ],
-      "duration_est": 35,
-      "id": "the_recency_bias",
+      "duration_est": 29,
+      "id": "the_pursuit_distance_dynamic_demand_withdraw_pattern",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Halo Effect",
-      "narration": "Fact 2: The Halo Effect. When you find one thing attractive about someone, your brain instantly paints everything else about them as attractive too. A handsome person reads as smarter, kinder, and more trustworthy—even though looks have nothing to do with character. Psychologist Edward Thorndike named this in 1920, and it's been confirmed thousands of times since. Your unconscious mind treats single positive traits like a master key that unlocks your approval of the entire person, which is why attractive people get hired faster and treated better in court.",
+      "heading": "Responsive Desire vs. Spontaneous Desire",
+      "narration": "Fact 2: Responsive Desire vs. Spontaneous Desire. Researcher Emily Nagoski popularized this distinction: spontaneous desire happens out of nowhere, but responsive desire builds when you're already being touched or intimate. Most people assume everyone experiences desire the same way—they don't. One partner might need initiation to feel aroused, not be 'turned off' by the relationship. Understanding this gap eliminates one of the biggest sources of sexual tension and misinterpretation.",
       "search_keywords": [
-        "halo effect psychology",
-        "attractiveness bias",
-        "first impression unconscious"
+        "responsive desire",
+        "spontaneous desire",
+        "Emily Nagoski",
+        "desire types",
+        "sexual motivation"
       ],
-      "duration_est": 36,
-      "id": "the_halo_effect",
+      "duration_est": 28,
+      "id": "responsive_desire_vs_spontaneous_desire",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "Automaticity and Skill Execution",
-      "narration": "Fact 3: Automaticity and Skill Execution. Once you master a skill—driving, typing, playing guitar—your conscious mind checks out completely and your basal ganglia takes over. This is efficient for familiar tasks, but it means you're operating on autopilot with zero awareness of what you're doing. You can drive home and have zero memory of the actual drive. Psychologist William James studied this in the 1890s and called it 'the stream of consciousness.' This is why breaking bad habits is so hard—your unconscious mind runs the show, and your conscious mind doesn't even know it's happening.",
+      "heading": "The Vulnerability Hangover Effect",
+      "narration": "Fact 3: The Vulnerability Hangover Effect. When you share something deeply personal—a fear, shame, or secret—your brain sometimes responds with regret or awkwardness afterward, even if the other person responded with warmth. Psychologist Harriet Lerner's work on shame and connection shows this is normal, not a sign you made a mistake. Knowing this prevents you from over-correcting and pushing away the person who just earned your trust.",
       "search_keywords": [
-        "automaticity psychology",
-        "skill execution unconscious",
-        "habit formation basal ganglia"
+        "vulnerability hangover",
+        "shame after disclosure",
+        "Harriet Lerner",
+        "emotional vulnerability regret"
       ],
-      "duration_est": 38,
-      "id": "automaticity_and_skill_execution",
+      "duration_est": 27,
+      "id": "the_vulnerability_hangover_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 4: The Spotlight Effect. You believe everyone is watching you and noticing your every flaw—but they're not. Your unconscious mind inflates how much attention others are paying to you by roughly double. You trip in public and think everyone saw it; most people didn't even notice. Psychologists Thomas Gilovich and Kenneth Savitsky named this in 2000 after a series of embarrassment studies. This unconscious distortion wastes mental energy on social anxiety that nobody else is actually experiencing, which is why public speaking feels terrifying even though most people in the audience aren't judging you harshly.",
+      "heading": "Emotional Flooding (The Autonomic Nervous System Shutdown)",
+      "narration": "Fact 4: Emotional Flooding. When conflict gets intense, your nervous system can literally shut down rational thinking—heart racing, blood pressure spiking, adrenaline flooding. Gottman named this 'flooding,' and once it hits, your brain can't process repair attempts or reason. You're in fight-or-flight mode. Recognizing flooding means you can pause, cool down separately, and actually resolve things instead of escalating into saying things you regret.",
       "search_keywords": [
-        "spotlight effect psychology",
-        "social anxiety overestimation",
-        "public attention bias"
+        "emotional flooding",
+        "Gottman flooding",
+        "autonomic nervous system",
+        "conflict overwhelm",
+        "nervous system shutdown"
       ],
-      "duration_est": 38,
-      "id": "the_spotlight_effect",
+      "duration_est": 26,
+      "id": "emotional_flooding_the_autonomic_nervous_system_shutdown",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Planning Fallacy",
-      "narration": "Fact 5: The Planning Fallacy. You unconsciously underestimate how long tasks will take, even when you have evidence they take longer. You say a project will take two hours, and it takes five. Your brain does this over and over, learning nothing from past failures. Daniel Kahneman and Amos Tversky identified this in 1979 and found it happens because you focus on the best-case scenario while ignoring historical data. Your unconscious optimism bias sabotages your work timelines, your deadlines, and your ability to plan realistic schedules—costing you stress, missed goals, and wasted productivity.",
+      "heading": "The Four Horsemen of the Apocalypse (Relationship Death Predictors)",
+      "narration": "Fact 5: The Four Horsemen of the Apocalypse. Gottman identified four communication patterns that predict relationship failure with shocking accuracy: criticism, contempt, defensiveness, and stonewalling. Contempt—the sense that your partner is beneath you—is the most toxic. These aren't just bad habits; they're documented markers of relationship death. Spotting them early lets you course-correct before the relationship becomes unsalvageable.",
       "search_keywords": [
-        "planning fallacy psychology",
-        "time estimation bias",
-        "optimism bias planning"
+        "four horsemen apocalypse",
+        "Gottman four horsemen",
+        "contempt criticism defensiveness",
+        "relationship failure predictors",
+        "stonewalling"
       ],
-      "duration_est": 37,
-      "id": "the_planning_fallacy",
+      "duration_est": 23,
+      "id": "the_four_horsemen_of_the_apocalypse_relationship_death_predictors",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Empathy Gap",
-      "narration": "Fact 6: The Empathy Gap. When you're calm, you can't predict how you'll act when you're angry, hungry, or scared. Your unconscious mind severely underestimates how differently you behave in different emotional states. You promise yourself you'll eat healthy, then you're starving and that promise vanishes. Psychologist George Loewenstein named this in 1996 after studying how badly we misjudge our own future behavior. This invisible gap between 'cool' you and 'hot' you explains why you break diets, overspend when excited, and make decisions you regret when emotions run high—your calm brain can't imagine your emotional brain's power.",
+      "heading": "Attachment Trauma Reenactment",
+      "narration": "Fact 6: Attachment Trauma Reenactment. Psychotherapist Harville Hendrix discovered that we unconsciously choose partners who mirror unresolved wounds from childhood—then we repeat our family patterns with them. You're not choosing randomly; you're casting roles. Once you see this, you realize your partner isn't the villain—they're triggering old survival strategies. That shift from blame to understanding is the start of real healing.",
       "search_keywords": [
-        "empathy gap psychology",
-        "emotional states decision making",
-        "hot cold empathy"
+        "attachment trauma reenactment",
+        "Harville Hendrix",
+        "childhood wounds partner",
+        "imago therapy",
+        "unconscious partner choice"
       ],
-      "duration_est": 39,
-      "id": "the_empathy_gap",
+      "duration_est": 24,
+      "id": "attachment_trauma_reenactment",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Mere Exposure Effect (extended)",
-      "narration": "Fact 7: The Exposure Effect—But Deeper. Your unconscious mind likes familiar things more just because they're familiar. See a face enough times, and your brain decides it's attractive and trustworthy, even if the person hasn't changed. Robert Zajonc discovered this in 1968 and called it the 'mere exposure effect.' But here's the dark side: this same mechanism makes propaganda, scams, and toxic relationships seem normal the more you're exposed to them. Abusers know this; they repeat the same harmful message until victims' unconscious minds accept it as normal, which is why you're vulnerable to accepting things you'd reject on day one if they arrived all at once.",
+      "heading": "The Relative Deprivation Principle (Comparison Trap)",
+      "narration": "Fact 7: The Relative Deprivation Principle. Sociologist Samuel Stouffer found that satisfaction isn't absolute—it's relative to your comparison group. Your relationship feels less fulfilling when you compare it to others' highlight reels on social media, not because it actually got worse. You have fewer arguments than your friends but feel more disconnected. This principle explains why social media is silently poisoning modern relationships without you realizing it.",
       "search_keywords": [
-        "mere exposure effect unconscious",
-        "familiarity bias psychology",
-        "propaganda repetition"
+        "relative deprivation",
+        "comparison satisfaction",
+        "social media relationships",
+        "Samuel Stouffer",
+        "relationship satisfaction comparison"
       ],
-      "duration_est": 43,
-      "id": "the_mere_exposure_effect_extended",
+      "duration_est": 27,
+      "id": "the_relative_deprivation_principle_comparison_trap",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Actor-Observer Bias",
-      "narration": "Fact 8: The Actor-Observer Bias. When you mess up, your unconscious mind blames the situation—traffic made you late, the test was unfair. When someone else messes up, you blame their character—they're lazy, stupid, or careless. This automatic double standard is called the actor-observer bias, identified by psychologists Edward Jones and Richard Nisbett in 1971. You're blind to this bias, which means you judge others harshly while excusing yourself constantly, poisoning relationships and workplaces with unfair expectations and resentment you don't even realize you're harboring.",
+      "heading": "The Nagging Paradox (Demand-Withdraw Criticism Loop)",
+      "narration": "Fact 8: The Nagging Paradox. What feels like 'nagging' to one partner is often desperate pursuit to the other—and the behavior that feels most justified (insisting on change) usually causes the opposite effect. The harder you push, the more entrenched your partner becomes. Neuroscientist James Siegel's work shows repetition triggers resistance, not compliance. Recognizing this paradox means you shift from pressure to curiosity, which actually invites change.",
       "search_keywords": [
-        "actor observer bias psychology",
-        "attribution bias self",
-        "fundamental attribution error"
+        "nagging paradox",
+        "demand withdraw nagging",
+        "psychological resistance",
+        "behavior change tactics",
+        "criticism loops"
       ],
-      "duration_est": 34,
-      "id": "the_actor_observer_bias",
+      "duration_est": 27,
+      "id": "the_nagging_paradox_demand_withdraw_criticism_loop",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "The Bystander Effect",
-      "narration": "Fact 9: The Bystander Effect. When you're in a group, your unconscious mind deactivates your sense of personal responsibility. You assume someone else will help, so you don't. Social psychologists John Darley and Bibb Latané discovered this in 1968 after studying why witnesses to crimes often don't intervene. The more people around, the less likely any one person acts—and nobody's conscious mind realizes it's happening. This unconscious diffusion of responsibility has led to people being hurt in crowded places while dozens watched and did nothing, revealing a terrifying gap between who you think you are and who you actually become in a group.",
+      "heading": "The Bidirectional Causality Problem (Fighting About the Fight)",
+      "narration": "Fact 9: The Bidirectional Causality Problem. After conflict, couples often can't agree on what caused it because each partner remembers the OTHER'S escalation, not their own. Research on memory and conflict shows we encode events from our defensive perspective, not objectively. You both feel righteous because you both genuinely remember different fights. Realizing this is not about winning the 'what really happened' argument—it's about stopping the cycle.",
       "search_keywords": [
-        "bystander effect psychology",
-        "diffusion responsibility groups",
-        "social loafing"
+        "bidirectional causality conflict",
+        "memory bias arguments",
+        "couples fight disagreement",
+        "conflict memory distortion"
       ],
-      "duration_est": 41,
-      "id": "the_bystander_effect",
+      "duration_est": 27,
+      "id": "the_bidirectional_causality_problem_fighting_about_the_fight",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Stereotype Threat",
-      "narration": "Fact 10: Stereotype Threat. When you're reminded of a negative stereotype about your group before a test, your performance drops—even if you don't consciously believe the stereotype. Your unconscious mind activates the stereotype and your anxiety spikes, overloading your working memory. Psychologists Claude Steele and Joshua Aronson documented this in 1995 with groundbreaking research showing that women performed worse on math tests when told women are worse at math, even though they were equally capable. This invisible unconscious pressure has shaped careers, educational outcomes, and life trajectories for millions—proving that stereotypes don't need your belief to hijack your brain and sabotage your potential.",
+      "heading": "Post-Relationship Clarity (The Retrospective Bias Flip)",
+      "narration": "Fact 10: Post-Relationship Clarity. After a breakup, people often report that the problems were obvious all along—but during the relationship, they missed them completely. Psychologists call this retrospective bias; once you leave, your brain rewrites the story to make the ending feel inevitable. This doesn't mean you were blind then; it means your brain now has the luxury of hindsight. Understanding this prevents you from beating yourself up for 'not seeing it' and helps you notice red flags sooner next time.",
       "search_keywords": [
-        "stereotype threat psychology",
-        "unconscious bias performance",
-        "social identity threat"
+        "retrospective bias breakup",
+        "hindsight bias relationships",
+        "post breakup clarity",
+        "memory reconstruction",
+        "clarity after breakup"
       ],
-      "duration_est": 41,
-      "id": "stereotype_threat",
+      "duration_est": 32,
+      "id": "post_relationship_clarity_the_retrospective_bias_flip",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your unconscious mind is pulling strings you can't see. So tell me in the comments: which of these 10 facts hit you the hardest? Did you recognize yourself in any of these behaviors? And if you want to understand the weird hidden forces running your brain, smash that subscribe button and turn on notifications—because we're diving deeper into the psychology that nobody talks about.",
+  "outro": "So which of these ten patterns hit closest to home? Drop a comment telling me which relationship psychology fact just made something click for you—because your insight matters, and other viewers need to hear it too. And if you want more psychology that explains the stuff you actually experience, hit subscribe and ring the bell. Brainboda's here to decode your mind.",
   "tags": [
-    "unconscious behavior",
-    "psychology",
-    "cognitive bias",
-    "human behavior",
-    "unconscious mind",
-    "psychology facts",
-    "brain science",
+    "relationship psychology",
+    "relationship advice",
+    "attachment theory",
+    "couples therapy",
+    "relationship patterns",
+    "emotional intelligence",
+    "psychology explained",
+    "gottman method",
+    "relationship dynamics",
+    "attachment styles",
+    "communication skills",
+    "toxic relationships",
+    "healthy relationships",
+    "relationship science",
+    "breakup psychology",
+    "couple conflict",
+    "relationship breakdown",
+    "human psychology",
     "behavioral psychology",
-    "cognitive psychology",
-    "decision making",
-    "bias psychology",
-    "mental health",
-    "self improvement",
-    "social psychology",
-    "neuroscience",
-    "consciousness",
-    "educational content",
-    "science explained",
-    "psychology documentary",
-    "behavior analysis"
+    "relationship red flags"
   ],
   "type": "main",
-  "created_at": "2026-10-04T13:50:52",
+  "created_at": "2026-10-06T14:55:36",
   "ai_generated": true,
-  "theme": "unconscious behavior",
-  "hook_duration_est": 25,
-  "outro_duration_est": 26,
-  "total_duration_est": 433,
-  "description": "10 Unconscious Behaviors That Control Your Life (Without You Knowing)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:25 - Fact 1: The Recency Bias\n1:00 - Fact 2: The Halo Effect\n1:36 - Fact 3: Automaticity and Skill Execution\n2:14 - Fact 4: The Spotlight Effect\n2:52 - Fact 5: The Planning Fallacy\n3:29 - Fact 6: The Empathy Gap\n4:08 - Fact 7: The Mere Exposure Effect (extended)\n4:51 - Fact 8: The Actor-Observer Bias\n5:25 - Fact 9: The Bystander Effect\n6:06 - Fact 10: Stereotype Threat\n6:47 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "theme": "relationship psychology",
+  "hook_duration_est": 20,
+  "outro_duration_est": 24,
+  "total_duration_est": 314,
+  "description": "10 Relationship Psychology Secrets That Explain Why Love Fails (And Succeeds)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Pursuit-Distance Dynamic (Demand-Withdraw Pattern)\n0:49 - Fact 2: Responsive Desire vs. Spontaneous Desire\n1:17 - Fact 3: The Vulnerability Hangover Effect\n1:44 - Fact 4: Emotional Flooding (The Autonomic Nervous System Shutdown)\n2:10 - Fact 5: The Four Horsemen of the Apocalypse (Relationship Death Predictors)\n2:33 - Fact 6: Attachment Trauma Reenactment\n2:57 - Fact 7: The Relative Deprivation Principle (Comparison Trap)\n3:24 - Fact 8: The Nagging Paradox (Demand-Withdraw Criticism Loop)\n3:51 - Fact 9: The Bidirectional Causality Problem (Fighting About the Fight)\n4:18 - Fact 10: Post-Relationship Clarity (The Retrospective Bias Flip)\n4:50 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
