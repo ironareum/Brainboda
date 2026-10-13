@@ -150,6 +150,7 @@ python pipeline/clean_facts_csv.py             # 실제 적용
 
 [Step 03] 03_tts.py
   script.json → edge-tts → hook.mp3, fact_01~10.mp3, outro.mp3
+  tts 생성 실패시 sys.exit(1)로 프로세스 종료
 
 [Step 04] 04_fetch_visuals.py
   script.json → Pixabay/Pexels → visuals/ 이미지 수집

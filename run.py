@@ -21,6 +21,8 @@ Usage:
 
     # Use existing script (skip steps 1-2)
     python run.py --script output/20240101_120000_main/script.json
+
+    2026-10-13: 03_tts 실패 시 파이프라인 중단 (기존 continuing anyway 제거)
 """
 
 import argparse
@@ -308,7 +310,10 @@ def main():
         results["steps_ok"].append("03_tts")
     else:
         results["steps_failed"].append("03_tts")
-        log.warning("03_tts failed — continuing anyway (may affect video quality)")
+        # 2026-10-13: TTS 실패 시 음성 없는 영상은 무의미 → 중단 (04/05 불필요 실행 방지, 원인 로그 명확화)
+        # log.warning("03_tts failed — continuing anyway (may affect video quality)")
+        log.error("03_tts FAILED — aborting pipeline")
+        sys.exit(1)
 
     # ── Step 4: Fetch visuals ─────────────────────────────────────────────────
     cmd = [PYTHON, os.path.join(PIPELINE_DIR, "04_fetch_visuals.py"),
