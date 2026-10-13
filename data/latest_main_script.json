@@ -1,178 +1,191 @@
 {
-  "title": "10 Hidden Psychology Tricks Your Brain Uses to Create Fear (Even When You're Safe)",
-  "thumbnail_hook": "Your Brain Is Lying",
-  "hook": "Your heart's racing, your palms are sweating, and logically you know nothing bad is happening—yet your brain won't listen. Millions of people experience this disconnect every single day, feeling terror over situations that pose zero real threat. So why does your brain betray you when you need it most?",
+  "title": "10 Sneaky Brain Tricks That Control Your Decisions",
+  "thumbnail_hook": "Your Brain Is Lying To You",
+  "hook": "You think you're making rational choices, but research shows your decisions are often made before you even realize it. Your brain has hidden shortcuts it uses thousands of times a day—and they're manipulating you more than you know. So what's actually pulling the strings when you decide?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 1: The Spotlight Effect. Psychologist Thomas Gilovich discovered in 1999 that we believe far more people notice us than actually do—we feel like we're on stage constantly. When you're anxious in social situations, your brain convinces you everyone's judging your every move. In reality, most people are too focused on their own insecurities to care. This matters because recognizing the spotlight effect can instantly shrink social anxiety—you're way less visible than you think.",
+      "heading": "The Mere Exposure Effect",
+      "narration": "Fact 1: The Mere Exposure Effect. Psychologist Robert Zajonc discovered in 1968 that the more you're exposed to something, the more you like it—even if you don't realize it's happening. You could hear a song once and dislike it, but after hearing it ten times, you'll suddenly love it. This isn't because the song changed; your brain literally rewires your preference through repetition alone. This explains why ads work and why you end up liking people just by sitting next to them.",
       "search_keywords": [
-        "spotlight effect",
-        "social anxiety psychology",
-        "Thomas Gilovich 1999"
+        "Mere Exposure Effect",
+        "Robert Zajonc",
+        "repeated exposure preference",
+        "familiarity bias"
       ],
-      "duration_est": 30,
-      "id": "the_spotlight_effect",
+      "duration_est": 33,
+      "id": "the_mere_exposure_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "The Illusion of Explanatory Depth",
-      "narration": "Fact 2: The Illusion of Explanatory Depth. Cognitive scientists Leonid Rozenblit and Frank Keil found that we overestimate how deeply we understand things, then panic when forced to explain them. With anxiety, this becomes dangerous—your brain thinks it fully understands the threat (\"I'll definitely fail this presentation\"), but hasn't actually examined why. Once you ask yourself to explain the exact mechanism of failure, the anxiety often crumbles. This matters because anxiety thrives on vague, unexplored fears that collapse under scrutiny.",
+      "heading": "Hindsight Bias",
+      "narration": "Fact 2: Hindsight Bias. After something happens, your brain convinces you that you always knew it was going to happen—even if you had no idea beforehand. A stock crashes and you think, 'I totally saw that coming,' when really you didn't. Psychologists call this 'knew-it-all-along effect.' Your brain rewrites history to make itself look smarter and more predictable than it actually is. Understanding this bias helps you be more humble about your own predictions and more forgiving of others' mistakes.",
       "search_keywords": [
-        "illusion of explanatory depth",
-        "Leonid Rozenblit",
-        "cognitive bias anxiety"
+        "Hindsight Bias",
+        "knew-it-all-along effect",
+        "I-knew-it-all-along",
+        "outcome bias"
       ],
       "duration_est": 32,
-      "id": "the_illusion_of_explanatory_depth",
+      "id": "hindsight_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The Peak-End Rule",
-      "narration": "Fact 3: The Peak-End Rule. Nobel laureate Daniel Kahneman discovered that we judge experiences not by their total duration, but by the worst moment (the peak) and how they end. If you have one awful panic attack at a party, your anxious brain labels the entire evening as catastrophic, ignoring the peaceful moments. This distortion makes anxiety stick around longer than it should, replaying the worst moments obsessively. Understanding this helps you recognize that one bad moment doesn't define an entire experience.",
-      "search_keywords": [
-        "peak-end rule",
-        "Daniel Kahneman",
-        "memory bias anxiety"
-      ],
-      "duration_est": 33,
-      "id": "the_peak_end_rule",
-      "source_url": "",
-      "key_insight": ""
-    },
-    {
-      "n": 4,
-      "heading": "The Availability Heuristic",
-      "narration": "Fact 4: The Availability Heuristic. When psychologists Amos Tversky and Daniel Kahneman introduced this concept in 1973, they showed that we judge how likely something is by how easily examples come to mind. Anxious brains excel at retrieving worst-case scenarios from memory. You hear one plane crash story and suddenly flights feel dangerous, even though they're statistically safe. Your mind's pattern-matching system floods with available scary examples, distorting risk perception entirely. Recognizing this helps you fact-check your fear instead of trusting gut-level dread.",
-      "search_keywords": [
-        "availability heuristic",
-        "Tversky Kahneman 1973",
-        "risk perception bias"
-      ],
-      "duration_est": 33,
-      "id": "the_availability_heuristic",
-      "source_url": "",
-      "key_insight": ""
-    },
-    {
-      "n": 5,
-      "heading": "The Backfire Effect (Information Reversal)",
-      "narration": "Fact 5: The Backfire Effect. When presented with facts that contradict our beliefs, our brains sometimes double down on the original fear instead—researchers like Brendan Nyhan documented this. Tell an anxious person \"statistically you're safe\" and their brain might actually strengthen the anxiety, treating reassurance as evidence they need to worry harder. This is why anxious people often push away help and become more isolated. Breaking this cycle requires addressing the emotional root, not just logical facts alone.",
-      "search_keywords": [
-        "backfire effect",
-        "Brendan Nyhan",
-        "belief perseverance anxiety"
-      ],
-      "duration_est": 31,
-      "id": "the_backfire_effect_information_reversal",
-      "source_url": "",
-      "key_insight": ""
-    },
-    {
-      "n": 6,
-      "heading": "The Curse of Knowledge",
-      "narration": "Fact 6: The Curse of Knowledge. Once you know something scary (like plane crash statistics or disease symptoms), you can't unknow it—your brain assumes everyone else knows it too. This traps anxious people in cycles where they believe others are judging them for knowledge they think is common. More insidiously, the more you \"know\" about a threat through internet research, the more anxious you become because you can't unsee that information. This matters because it shows why compulsive Googling feeds anxiety instead of curing it.",
-      "search_keywords": [
-        "curse of knowledge",
-        "anxiety research rabbit hole",
-        "information overload"
-      ],
-      "duration_est": 34,
-      "id": "the_curse_of_knowledge",
-      "source_url": "",
-      "key_insight": ""
-    },
-    {
-      "n": 7,
-      "heading": "The Attentional Blink",
-      "narration": "Fact 7: The Attentional Blink. Neuroscientists discovered that when your brain detects a threat, it enters a temporary 200-300 millisecond window where it's \"blind\" to everything else. An anxious person's threat-detection system is hypersensitive, so they're constantly hitting this attentional blink—missing present-moment safety cues while fixated on danger. This literally rewires what you notice in any given moment. Understanding this explains why anxiety makes you feel trapped; you're neurologically unable to see the good things happening around you simultaneously.",
-      "search_keywords": [
-        "attentional blink",
-        "threat detection neuroscience",
-        "visual perception anxiety"
-      ],
-      "duration_est": 32,
-      "id": "the_attentional_blink",
-      "source_url": "",
-      "key_insight": ""
-    },
-    {
-      "n": 8,
-      "heading": "The Planning Fallacy",
-      "narration": "Fact 8: The Planning Fallacy. Psychologist Daniel Kahneman and others found that we consistently underestimate how long tasks take and overestimate our ability to handle them—then panic when reality hits. Anxious people amplify this: they catastrophize about being unprepared, ruminate on past failures, and freeze up when facing deadlines. The gap between what they think they can handle and what actually happens becomes a breeding ground for shame and more anxiety. Recognizing this bias helps you build realistic timelines and reduce the panic-procrastination spiral.",
-      "search_keywords": [
-        "planning fallacy",
-        "Kahneman time estimation",
-        "procrastination anxiety"
-      ],
-      "duration_est": 34,
-      "id": "the_planning_fallacy",
-      "source_url": "",
-      "key_insight": ""
-    },
-    {
-      "n": 9,
       "heading": "The False Consensus Effect",
-      "narration": "Fact 9: The False Consensus Effect. Lee Ross demonstrated that people overestimate how many others share their beliefs and behaviors—anxious people assume everyone agrees their fears are justified. You feel like a freak for being anxious at parties, convinced others are naturally confident, when studies show most people feel social anxiety. This false consensus makes you feel uniquely broken, increasing shame and isolation. Once you realize almost everyone struggles with these exact fears, the crushing loneliness of anxiety begins to lift.",
+      "narration": "Fact 3: The False Consensus Effect. You naturally assume that most people think and behave the way you do—way more than they actually do. If you love pineapple on pizza, your brain thinks most people agree with you. If you're introverted, you assume introversion is more common than it is. This bias, documented extensively by psychologists Lee Ross and Constance Stillinger, makes you underestimate how different other people's values and beliefs really are. This leads to shocking surprises when you discover just how different the world actually thinks from you.",
       "search_keywords": [
-        "false consensus effect",
-        "Lee Ross psychology",
-        "social anxiety isolation"
+        "False Consensus Effect",
+        "Lee Ross",
+        "assumed similarity",
+        "social perception bias"
       ],
-      "duration_est": 32,
+      "duration_est": 36,
       "id": "the_false_consensus_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
-      "n": 10,
-      "heading": "The Contrast Effect",
-      "narration": "Fact 10: The Contrast Effect. Your brain judges things not by absolute standards, but by comparison—so one moment of relief after intense anxiety feels euphoric, while one small stressor after calm feels catastrophic. This keeps anxious people stuck in emotional whiplash, where safety and danger feel impossibly extreme. The contrast effect also means that after a panic attack, normal stress feels unbearable because it's relative to the recent calm. Recognizing this helps you evaluate situations on their actual merit, not their emotional contrast.",
+      "n": 4,
+      "heading": "Moral Licensing",
+      "narration": "Fact 4: Moral Licensing. When you do something good, your brain gives you a free pass to do something bad—and you don't even notice. You hit the gym hard, so you reward yourself with junk food guilt-free. You donate to charity, so you feel justified cutting corners at work. Psychologists found that good behavior actually makes people more likely to make unethical decisions afterward because they've 'earned' the right to misbehave. Your brain uses moral wins as currency to justify later compromises.",
       "search_keywords": [
-        "contrast effect psychology",
-        "relative judgment bias",
-        "emotional whiplash"
+        "Moral Licensing",
+        "self-licensing",
+        "ethical licensing",
+        "virtue signaling"
       ],
       "duration_est": 33,
-      "id": "the_contrast_effect",
+      "id": "moral_licensing",
+      "source_url": "",
+      "key_insight": ""
+    },
+    {
+      "n": 5,
+      "heading": "The Bystander Effect",
+      "narration": "Fact 5: The Bystander Effect. The more people present during an emergency, the less likely any single person is to help—even though logically there are more helpers available. Discovered by social psychologists John Darley and Bibb Latané after the Kitty Genovese murder in 1964, this effect shows that your brain assumes someone else will step in, so you unconsciously step back. You diffuse responsibility across the crowd and paralyze yourself into inaction. This matters because understanding it makes you more likely to take personal responsibility in critical moments instead of waiting for others.",
+      "search_keywords": [
+        "Bystander Effect",
+        "John Darley",
+        "Bibb Latané",
+        "diffusion of responsibility",
+        "Kitty Genovese"
+      ],
+      "duration_est": 37,
+      "id": "the_bystander_effect",
+      "source_url": "",
+      "key_insight": ""
+    },
+    {
+      "n": 6,
+      "heading": "The Illusion of Transparency",
+      "narration": "Fact 6: The Illusion of Transparency. You drastically overestimate how well others can read your thoughts and emotions. You think your inner turmoil is obvious to everyone, when really nobody notices. Conversely, you underestimate how much others are judging you, because you assume they're too busy thinking about themselves—which they are. Psychologist Tom Gilovich documented this asymmetry: you're convinced you're an open book while simultaneously convinced everyone's eyes are on you. This creates anxiety where there often is none and makes you act defensively around people who barely notice you.",
+      "search_keywords": [
+        "Illusion of Transparency",
+        "Tom Gilovich",
+        "transparency bias",
+        "spotlight effect"
+      ],
+      "duration_est": 36,
+      "id": "the_illusion_of_transparency",
+      "source_url": "",
+      "key_insight": ""
+    },
+    {
+      "n": 7,
+      "heading": "The Backfire Effect",
+      "narration": "Fact 7: The Backfire Effect—Revised Understanding. When you encounter information that contradicts your beliefs, your brain doesn't just dismiss it—it can actually strengthen your original belief even more. Brendan Nyhan and Jason Reifler documented this effect in 2005, showing that corrections sometimes backfire. However, recent research suggests this effect is less universal than once thought, but it definitely happens when people feel their identity is threatened. When facts feel like personal attacks, your brain digs in harder rather than opens up to new ideas.",
+      "search_keywords": [
+        "Backfire Effect",
+        "Brendan Nyhan",
+        "Jason Reifler",
+        "belief perseverance",
+        "identity-protective cognition"
+      ],
+      "duration_est": 34,
+      "id": "the_backfire_effect",
+      "source_url": "",
+      "key_insight": ""
+    },
+    {
+      "n": 8,
+      "heading": "The Spotlight Effect",
+      "narration": "Fact 8: The Spotlight Effect. You overestimate how much people notice your appearance, mistakes, and social awkwardness. You have a bad hair day and think everyone's staring at you—they're not. You stumble over words in a meeting and feel like the room is judging you—most people forgot it immediately. Psychologist Thomas Gilovich and colleagues demonstrated that you believe you're constantly under scrutiny, when most people are too focused on themselves to care about your slip-ups. Recognizing this frees you from unnecessary social anxiety that's mostly built on your brain's false assumptions.",
+      "search_keywords": [
+        "Spotlight Effect",
+        "Thomas Gilovich",
+        "social anxiety bias",
+        "overestimating attention"
+      ],
+      "duration_est": 36,
+      "id": "the_spotlight_effect",
+      "source_url": "",
+      "key_insight": ""
+    },
+    {
+      "n": 9,
+      "heading": "The False Dilemma Bias",
+      "narration": "Fact 9: The False Dilemma Bias. Your brain loves to present complex decisions as if there are only two options—yes or no, good or bad, stay or leave—when dozens of alternatives actually exist. This simplification feels satisfying because it reduces mental effort, but it blinds you to creative solutions. When facing a difficult choice, your brain automatically narrows your options as a shortcut, making you feel trapped when you're not. Recognizing you always have more than two real choices is one of the most powerful ways to break free from bad decisions.",
+      "search_keywords": [
+        "False Dilemma",
+        "false dichotomy",
+        "either-or thinking",
+        "cognitive bias decision making"
+      ],
+      "duration_est": 37,
+      "id": "the_false_dilemma_bias",
+      "source_url": "",
+      "key_insight": ""
+    },
+    {
+      "n": 10,
+      "heading": "Preference Reversals",
+      "narration": "Fact 10: Preference Reversals. You make completely opposite decisions depending on how a choice is presented to you—even though the outcomes are mathematically identical. Economists Amos Tversky and Daniel Kahneman discovered this phenomenon: when you frame a choice as a gain, you become risk-averse; when you frame it as a loss, you become risk-seeking. Choose between 'saving 200 lives' versus 'gambling for all 600' and you pick safety. But frame it as 'losing 400 lives' versus 'gambling,' and suddenly you gamble. Your decisions aren't based on logic—they're based on the emotional angle of the story you're told.",
+      "search_keywords": [
+        "Preference Reversals",
+        "Amos Tversky",
+        "Daniel Kahneman",
+        "framing effect",
+        "decision making psychology"
+      ],
+      "duration_est": 39,
+      "id": "preference_reversals",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "Your brain isn't broken—it's just using outdated threat-detection software. Comment below: which of these mental tricks surprised you most? And let me know in the comments if there's a specific anxiety pattern you want me to break down in the next video. Hit subscribe so you don't miss when we decode the psychology keeping you stuck.",
+  "outro": "These ten biases are running in the background of every decision you make—right now, even as you're watching this. Which one hit you the hardest? Which bias do you recognize in your own life? Drop a comment below and tell us which sneaky brain trick surprised you most. And if this made you rethink how you make decisions, hit subscribe so you don't miss the next video that breaks down your brain. Your future, smarter self will thank you.",
   "tags": [
-    "psychology",
-    "anxiety",
-    "mental health",
-    "brain science",
+    "decision making psychology",
     "cognitive biases",
-    "fear psychology",
-    "social anxiety",
-    "panic attacks",
-    "mental health education",
     "behavioral psychology",
-    "neuroscience",
-    "mindset",
-    "self-help",
-    "depression",
-    "stress management",
-    "cognitive distortions",
-    "mental wellness",
-    "brain function",
-    "emotional intelligence",
-    "BrainBoda"
+    "brain science",
+    "psychology explained",
+    "decision making tips",
+    "behavioral economics",
+    "cognitive psychology",
+    "thought patterns",
+    "mental shortcuts",
+    "how the brain works",
+    "psychology education",
+    "critical thinking",
+    "bias in decision making",
+    "Tversky Kahneman",
+    "social psychology",
+    "reasoning biases",
+    "mind tricks",
+    "human behavior",
+    "neuroscience education"
   ],
   "type": "main",
-  "created_at": "2026-10-11T14:47:49",
+  "created_at": "2026-10-13T15:45:12",
   "ai_generated": true,
-  "theme": "fear and anxiety",
+  "theme": "decision making",
   "hook_duration_est": 20,
-  "outro_duration_est": 22,
-  "total_duration_est": 366,
-  "description": "10 Hidden Psychology Tricks Your Brain Uses to Create Fear (Even When You're Safe)\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Spotlight Effect\n0:50 - Fact 2: The Illusion of Explanatory Depth\n1:22 - Fact 3: The Peak-End Rule\n1:55 - Fact 4: The Availability Heuristic\n2:28 - Fact 5: The Backfire Effect (Information Reversal)\n2:59 - Fact 6: The Curse of Knowledge\n3:33 - Fact 7: The Attentional Blink\n4:05 - Fact 8: The Planning Fallacy\n4:39 - Fact 9: The False Consensus Effect\n5:11 - Fact 10: The Contrast Effect\n5:44 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 32,
+  "total_duration_est": 405,
+  "description": "10 Sneaky Brain Tricks That Control Your Decisions\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Mere Exposure Effect\n0:53 - Fact 2: Hindsight Bias\n1:25 - Fact 3: The False Consensus Effect\n2:01 - Fact 4: Moral Licensing\n2:34 - Fact 5: The Bystander Effect\n3:11 - Fact 6: The Illusion of Transparency\n3:47 - Fact 7: The Backfire Effect\n4:21 - Fact 8: The Spotlight Effect\n4:57 - Fact 9: The False Dilemma Bias\n5:34 - Fact 10: Preference Reversals\n6:13 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
