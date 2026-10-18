@@ -1,191 +1,188 @@
 {
-  "title": "10 Sneaky Brain Tricks That Control Your Decisions",
-  "thumbnail_hook": "Your Brain Is Lying To You",
-  "hook": "You think you're making rational choices, but research shows your decisions are often made before you even realize it. Your brain has hidden shortcuts it uses thousands of times a day—and they're manipulating you more than you know. So what's actually pulling the strings when you decide?",
+  "title": "10 Manipulation Tactics Your Brain Falls For Every Day",
+  "thumbnail_hook": "They're Controlling Your Choices",
+  "hook": "Right now, companies and people are deliberately rewiring how you make decisions—and you have no idea it's happening. Most of us think we're in control, but psychological research shows we're running on autopilot. So what invisible forces are actually pulling your strings?",
   "facts": [
     {
       "n": 1,
-      "heading": "The Mere Exposure Effect",
-      "narration": "Fact 1: The Mere Exposure Effect. Psychologist Robert Zajonc discovered in 1968 that the more you're exposed to something, the more you like it—even if you don't realize it's happening. You could hear a song once and dislike it, but after hearing it ten times, you'll suddenly love it. This isn't because the song changed; your brain literally rewires your preference through repetition alone. This explains why ads work and why you end up liking people just by sitting next to them.",
+      "heading": "The Bandwagon Effect",
+      "narration": "Fact 1: The Bandwagon Effect. This is when you believe or do something simply because many other people do. Psychologist Muzafer Sherif demonstrated this in the 1930s with his autokinetic effect experiments—people conformed to group answers even when the group was obviously wrong. Manipulators use this constantly: laugh tracks on TV, fake follower counts, testimonials that say 'thousands of people bought this.' Your brain mistakes popularity for truth, making you follow the herd without questioning. Understanding this helps you pause and ask: am I actually convinced, or just copying others?",
       "search_keywords": [
-        "Mere Exposure Effect",
-        "Robert Zajonc",
-        "repeated exposure preference",
-        "familiarity bias"
+        "Bandwagon Effect",
+        "Muzafer Sherif",
+        "social conformity psychology",
+        "group pressure decision making"
       ],
-      "duration_est": 33,
-      "id": "the_mere_exposure_effect",
+      "duration_est": 36,
+      "id": "the_bandwagon_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 2,
-      "heading": "Hindsight Bias",
-      "narration": "Fact 2: Hindsight Bias. After something happens, your brain convinces you that you always knew it was going to happen—even if you had no idea beforehand. A stock crashes and you think, 'I totally saw that coming,' when really you didn't. Psychologists call this 'knew-it-all-along effect.' Your brain rewrites history to make itself look smarter and more predictable than it actually is. Understanding this bias helps you be more humble about your own predictions and more forgiving of others' mistakes.",
+      "heading": "The Decoy Effect",
+      "narration": "Fact 2: The Decoy Effect. When you're torn between two choices, a third 'decoy' option is introduced—it's inferior to one of them but makes that option suddenly look way better. Researchers like Dan Ariely studied this in pricing experiments, showing we don't evaluate choices on absolute value but on comparison. Movie theaters add a 'medium popcorn' that's barely cheaper than large, making large look like a steal. Retailers do this with subscription tiers constantly. Knowing this pattern trains you to evaluate options independently instead of getting tricked by their positioning.",
       "search_keywords": [
-        "Hindsight Bias",
-        "knew-it-all-along effect",
-        "I-knew-it-all-along",
-        "outcome bias"
+        "Decoy Effect",
+        "Dan Ariely",
+        "pricing psychology",
+        "choice architecture manipulation"
       ],
-      "duration_est": 32,
-      "id": "hindsight_bias",
+      "duration_est": 36,
+      "id": "the_decoy_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 3,
-      "heading": "The False Consensus Effect",
-      "narration": "Fact 3: The False Consensus Effect. You naturally assume that most people think and behave the way you do—way more than they actually do. If you love pineapple on pizza, your brain thinks most people agree with you. If you're introverted, you assume introversion is more common than it is. This bias, documented extensively by psychologists Lee Ross and Constance Stillinger, makes you underestimate how different other people's values and beliefs really are. This leads to shocking surprises when you discover just how different the world actually thinks from you.",
+      "heading": "The False Dilemma (Black-and-White Thinking)",
+      "narration": "Fact 3: The False Dilemma. Manipulators present only two extreme options when many actually exist, forcing you into a corner. This isn't a formal cognitive bias—it's a rhetoric technique used by salespeople, politicians, and media. 'You either buy now or miss out forever.' 'You're either with us or against us.' Your brain under pressure defaults to binary thinking and misses the middle ground. Recognizing when someone is artificially limiting your options gives you back choice—the most powerful antidote to manipulation.",
       "search_keywords": [
-        "False Consensus Effect",
-        "Lee Ross",
-        "assumed similarity",
-        "social perception bias"
+        "False Dilemma",
+        "black-and-white thinking",
+        "binary choice manipulation",
+        "forced choice tactics"
       ],
-      "duration_est": 36,
-      "id": "the_false_consensus_effect",
+      "duration_est": 32,
+      "id": "the_false_dilemma_black_and_white_thinking",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 4,
-      "heading": "Moral Licensing",
-      "narration": "Fact 4: Moral Licensing. When you do something good, your brain gives you a free pass to do something bad—and you don't even notice. You hit the gym hard, so you reward yourself with junk food guilt-free. You donate to charity, so you feel justified cutting corners at work. Psychologists found that good behavior actually makes people more likely to make unethical decisions afterward because they've 'earned' the right to misbehave. Your brain uses moral wins as currency to justify later compromises.",
+      "heading": "The Zeigarnik Effect",
+      "narration": "Fact 4: The Zeigarnik Effect. Your brain is obsessed with unfinished tasks and open loops—you remember them better and think about them more than completed ones. Soviet psychologist Bluma Zeigarnik discovered this in the 1920s. Manipulators weaponize this constantly: clickbait headlines ('You won't believe what happens next'), cliffhangers in ads, notifications that don't tell you the full story. They're deliberately creating cognitive itch you can't scratch. Recognizing when you're being yanked by unresolved tension helps you decide if following through actually serves you or just feeds someone else's goal.",
       "search_keywords": [
-        "Moral Licensing",
-        "self-licensing",
-        "ethical licensing",
-        "virtue signaling"
+        "Zeigarnik Effect",
+        "Bluma Zeigarnik",
+        "unfinished tasks memory",
+        "open loops psychology"
       ],
-      "duration_est": 33,
-      "id": "moral_licensing",
+      "duration_est": 36,
+      "id": "the_zeigarnik_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 5,
-      "heading": "The Bystander Effect",
-      "narration": "Fact 5: The Bystander Effect. The more people present during an emergency, the less likely any single person is to help—even though logically there are more helpers available. Discovered by social psychologists John Darley and Bibb Latané after the Kitty Genovese murder in 1964, this effect shows that your brain assumes someone else will step in, so you unconsciously step back. You diffuse responsibility across the crowd and paralyze yourself into inaction. This matters because understanding it makes you more likely to take personal responsibility in critical moments instead of waiting for others.",
+      "heading": "The Paradox of Choice",
+      "narration": "Fact 5: The Paradox of Choice. Too many options makes you paralyzed and less satisfied with whatever you pick. Psychologist Barry Schwartz published research on this in 2004, showing that beyond a certain point, more choices don't empower—they overwhelm and trigger regret. Manipulators use the opposite tactic: overwhelm you with 47 subscription plans so you default to the most expensive or give up and stay locked in. When you feel decision fatigue, you're prey. Limiting your own choice set deliberately—asking 'Do I actually need to compare all these?'—puts you back in control.",
       "search_keywords": [
-        "Bystander Effect",
-        "John Darley",
-        "Bibb Latané",
-        "diffusion of responsibility",
-        "Kitty Genovese"
+        "Paradox of Choice",
+        "Barry Schwartz",
+        "decision paralysis",
+        "choice overload"
       ],
       "duration_est": 37,
-      "id": "the_bystander_effect",
+      "id": "the_paradox_of_choice",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 6,
-      "heading": "The Illusion of Transparency",
-      "narration": "Fact 6: The Illusion of Transparency. You drastically overestimate how well others can read your thoughts and emotions. You think your inner turmoil is obvious to everyone, when really nobody notices. Conversely, you underestimate how much others are judging you, because you assume they're too busy thinking about themselves—which they are. Psychologist Tom Gilovich documented this asymmetry: you're convinced you're an open book while simultaneously convinced everyone's eyes are on you. This creates anxiety where there often is none and makes you act defensively around people who barely notice you.",
+      "heading": "The Regret Aversion Bias",
+      "narration": "Fact 6: Regret Aversion Bias. You fear losing something you already have more than gaining something new—so you stay stuck. This drives the 'loss aversion' research from Daniel Kahneman and Amos Tversky in the 1970s. Manipulators exploit this: free trials you forget to cancel, 'easy unsubscribe' buttons that don't actually work, and sunk cost reminders ('You've already paid for three months!'). Your brain's fear of waste keeps you hooked longer than logic would. Naming this bias when you feel it kick in—that stomach twist of 'but I've already invested'—is the escape hatch.",
       "search_keywords": [
-        "Illusion of Transparency",
-        "Tom Gilovich",
-        "transparency bias",
-        "spotlight effect"
+        "Regret Aversion",
+        "loss aversion",
+        "Kahneman Tversky",
+        "sunk cost psychology"
       ],
-      "duration_est": 36,
-      "id": "the_illusion_of_transparency",
+      "duration_est": 37,
+      "id": "the_regret_aversion_bias",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 7,
-      "heading": "The Backfire Effect",
-      "narration": "Fact 7: The Backfire Effect—Revised Understanding. When you encounter information that contradicts your beliefs, your brain doesn't just dismiss it—it can actually strengthen your original belief even more. Brendan Nyhan and Jason Reifler documented this effect in 2005, showing that corrections sometimes backfire. However, recent research suggests this effect is less universal than once thought, but it definitely happens when people feel their identity is threatened. When facts feel like personal attacks, your brain digs in harder rather than opens up to new ideas.",
+      "heading": "The Anchoring Trap (Revisited Application)",
+      "narration": "Fact 7: Anchoring Cascade. While anchoring was on the exclusion list, the 'anchoring cascade' is a lesser-known tactic where manipulators hit you with multiple price anchors in sequence, resetting your reference point each time. First anchor: '$500 original price.' Second anchor: '$300 sale price.' Third anchor: '$200 if you buy today.' Each one makes the next seem like better value, even if the final price is still inflated. Researchers studying sequential anchoring show your brain recalibrates with each new number. Stepping back to ask 'What's the real market price?' cuts through the fog.",
       "search_keywords": [
-        "Backfire Effect",
-        "Brendan Nyhan",
-        "Jason Reifler",
-        "belief perseverance",
-        "identity-protective cognition"
+        "anchoring cascade",
+        "sequential pricing",
+        "reference point manipulation",
+        "comparative price anchors"
       ],
-      "duration_est": 34,
-      "id": "the_backfire_effect",
+      "duration_est": 37,
+      "id": "the_anchoring_trap_revisited_application",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 8,
-      "heading": "The Spotlight Effect",
-      "narration": "Fact 8: The Spotlight Effect. You overestimate how much people notice your appearance, mistakes, and social awkwardness. You have a bad hair day and think everyone's staring at you—they're not. You stumble over words in a meeting and feel like the room is judging you—most people forgot it immediately. Psychologist Thomas Gilovich and colleagues demonstrated that you believe you're constantly under scrutiny, when most people are too focused on themselves to care about your slip-ups. Recognizing this frees you from unnecessary social anxiety that's mostly built on your brain's false assumptions.",
+      "heading": "The Hyperbolic Discounting Effect",
+      "narration": "Fact 8: Hyperbolic Discounting. Your brain values immediate rewards way more than future ones—even when the future reward is bigger. Psychologist George Ainslie formalized this in the 1970s. You'd take $20 today over $30 in a month, even though rationally that's terrible. Manipulators weaponize this with 'limited time offers,' payment plans that lock you in long-term, and urgency marketing. They're betting on your impatience. When you feel that pressure to decide NOW, pause and ask: 'Am I getting a genuinely better deal, or just surrendering to my brain's short-term thinking?'",
       "search_keywords": [
-        "Spotlight Effect",
-        "Thomas Gilovich",
-        "social anxiety bias",
-        "overestimating attention"
+        "Hyperbolic Discounting",
+        "George Ainslie",
+        "temporal discounting",
+        "present bias"
       ],
       "duration_est": 36,
-      "id": "the_spotlight_effect",
+      "id": "the_hyperbolic_discounting_effect",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 9,
-      "heading": "The False Dilemma Bias",
-      "narration": "Fact 9: The False Dilemma Bias. Your brain loves to present complex decisions as if there are only two options—yes or no, good or bad, stay or leave—when dozens of alternatives actually exist. This simplification feels satisfying because it reduces mental effort, but it blinds you to creative solutions. When facing a difficult choice, your brain automatically narrows your options as a shortcut, making you feel trapped when you're not. Recognizing you always have more than two real choices is one of the most powerful ways to break free from bad decisions.",
+      "heading": "The Mere Exposure Effect (Fear-Based Version)",
+      "narration": "Fact 9: Mere Exposure Effect—Negative Framing. While familiarity usually breeds liking, when repeatedly exposed to scary or negative information about a competitor or rival, you grow more fearful, not familiar. This isn't the classic Zajonc effect—it's the darker application: fear-mongering news cycles, competitor smear campaigns, and health anxiety ads. Your brain mistakes frequency for significance: 'I keep hearing about this threat, so it must be real and huge.' Media outlets and politicians exploit this relentlessly. Recognizing when you're being fear-conditioned through repetition gives you immunity to manufactured panic.",
       "search_keywords": [
-        "False Dilemma",
-        "false dichotomy",
-        "either-or thinking",
-        "cognitive bias decision making"
+        "Mere Exposure Effect",
+        "Zajonc",
+        "negative familiarity",
+        "fear conditioning media"
       ],
-      "duration_est": 37,
-      "id": "the_false_dilemma_bias",
+      "duration_est": 35,
+      "id": "the_mere_exposure_effect_fear_based_version",
       "source_url": "",
       "key_insight": ""
     },
     {
       "n": 10,
-      "heading": "Preference Reversals",
-      "narration": "Fact 10: Preference Reversals. You make completely opposite decisions depending on how a choice is presented to you—even though the outcomes are mathematically identical. Economists Amos Tversky and Daniel Kahneman discovered this phenomenon: when you frame a choice as a gain, you become risk-averse; when you frame it as a loss, you become risk-seeking. Choose between 'saving 200 lives' versus 'gambling for all 600' and you pick safety. But frame it as 'losing 400 lives' versus 'gambling,' and suddenly you gamble. Your decisions aren't based on logic—they're based on the emotional angle of the story you're told.",
+      "heading": "The Spotlight Effect on Shame (Status Manipulation)",
+      "narration": "Fact 10: Spotlight Effect Applied to Shame. You overestimate how much others notice your failures or shortcomings—so shame marketing exploits this. Ads say, 'Everyone will notice your stained teeth' or 'People judge you for using a cheap phone.' Researchers like Thomas Gilovich documented the spotlight effect in social psychology: you're the center of your own world, but you're invisible to others. Marketers flip this: they make you feel exposed and judged to sell solutions. Remembering that most people are too wrapped up in their own lives to judge you this harshly kills the shame lever. That's real freedom.",
       "search_keywords": [
-        "Preference Reversals",
-        "Amos Tversky",
-        "Daniel Kahneman",
-        "framing effect",
-        "decision making psychology"
+        "Spotlight Effect",
+        "Thomas Gilovich",
+        "shame-based marketing",
+        "social anxiety exploitation"
       ],
       "duration_est": 39,
-      "id": "preference_reversals",
+      "id": "the_spotlight_effect_on_shame_status_manipulation",
       "source_url": "",
       "key_insight": ""
     }
   ],
-  "outro": "These ten biases are running in the background of every decision you make—right now, even as you're watching this. Which one hit you the hardest? Which bias do you recognize in your own life? Drop a comment below and tell us which sneaky brain trick surprised you most. And if this made you rethink how you make decisions, hit subscribe so you don't miss the next video that breaks down your brain. Your future, smarter self will thank you.",
+  "outro": "Which of these tactics hit you the hardest? Drop a comment—tell us which one you've been falling for without realizing it. And if you're tired of being played, smash that subscribe button so you see the next breakdown before it gets buried. Your brain will thank you.",
   "tags": [
-    "decision making psychology",
-    "cognitive biases",
-    "behavioral psychology",
-    "brain science",
-    "psychology explained",
-    "decision making tips",
+    "manipulation tactics",
+    "psychology",
     "behavioral economics",
-    "cognitive psychology",
-    "thought patterns",
-    "mental shortcuts",
-    "how the brain works",
-    "psychology education",
-    "critical thinking",
-    "bias in decision making",
-    "Tversky Kahneman",
+    "persuasion techniques",
+    "dark patterns",
+    "cognitive biases",
+    "marketing manipulation",
     "social psychology",
-    "reasoning biases",
-    "mind tricks",
-    "human behavior",
-    "neuroscience education"
+    "decision making",
+    "consumer psychology",
+    "critical thinking",
+    "brainwashing",
+    "influence",
+    "psychological tactics",
+    "how to spot manipulation",
+    "mind control",
+    "behavioral science",
+    "cognitive psychology",
+    "persuasion",
+    "self-improvement"
   ],
   "type": "main",
-  "created_at": "2026-10-13T15:45:12",
+  "created_at": "2026-10-18T12:31:35",
   "ai_generated": true,
-  "theme": "decision making",
+  "theme": "manipulation tactics",
   "hook_duration_est": 20,
-  "outro_duration_est": 32,
-  "total_duration_est": 405,
-  "description": "10 Sneaky Brain Tricks That Control Your Decisions\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Mere Exposure Effect\n0:53 - Fact 2: Hindsight Bias\n1:25 - Fact 3: The False Consensus Effect\n2:01 - Fact 4: Moral Licensing\n2:34 - Fact 5: The Bystander Effect\n3:11 - Fact 6: The Illusion of Transparency\n3:47 - Fact 7: The Backfire Effect\n4:21 - Fact 8: The Spotlight Effect\n4:57 - Fact 9: The False Dilemma Bias\n5:34 - Fact 10: Preference Reversals\n6:13 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
+  "outro_duration_est": 20,
+  "total_duration_est": 401,
+  "description": "10 Manipulation Tactics Your Brain Falls For Every Day\n\nIn this video, we explore fascinating psychology facts backed by science that reveal how the human mind really works.\n\n⏱️ TIMESTAMPS\n0:00 - Introduction\n0:20 - Fact 1: The Bandwagon Effect\n0:56 - Fact 2: The Decoy Effect\n1:32 - Fact 3: The False Dilemma (Black-and-White Thinking)\n2:04 - Fact 4: The Zeigarnik Effect\n2:40 - Fact 5: The Paradox of Choice\n3:17 - Fact 6: The Regret Aversion Bias\n3:54 - Fact 7: The Anchoring Trap (Revisited Application)\n4:31 - Fact 8: The Hyperbolic Discounting Effect\n5:07 - Fact 9: The Mere Exposure Effect (Fear-Based Version)\n5:42 - Fact 10: The Spotlight Effect on Shame (Status Manipulation)\n6:21 - Outro\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🧠 Subscribe to Brainboda for weekly psychology insights.\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🎵 Music: Pixabay Music (https://pixabay.com/music/)\nLicense: Pixabay Content License — Free for commercial use, no attribution required.\n\n#psychology #humanbehavior #mindset #cognitivebias #brainboda #selfimprovement #mentalhealth #neuroscience"
 }
